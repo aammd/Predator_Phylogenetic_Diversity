@@ -81,7 +81,8 @@ with(measured,table(sp))
 
 ## add these
 
-## ignorning for the moment about the size, add these together within predatorxprey combo
+## ignorning for the moment about the size, add these together within
+## predatorxprey combo
 
 ## then combine with unmeasured predators
 
