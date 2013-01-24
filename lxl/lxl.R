@@ -1,0 +1,512 @@
+ ## analysis of leaf-by-leaf survey
+## Andrew MacDonald, June 2011
+
+## read in data
+lvs<-read.csv("leaves.csv",comment.char="#")
+fine<-read.csv("../detritus/filters.csv",comment.char="#")
+coarse<-read.csv("../detritus/paperbags.csv",comment.char="#")
+
+brom <- read.csv("bromeliads.csv",comment.char="#")
+
+insects<-read.csv("insectslong.csv",comment.char="#")
+chironomid.ids <- read.csv("chironomid.IDs.csv",comment.char="#")
+scoped <- read.csv("scoped.insects.csv",comment.char="#")
+
+## delete comment columns
+insects <- insects[,-which(names(insects)=="X")]
+chironomid.ids <- chironomid.ids[,-which(names(chironomid.ids)=="X.")]
+
+## libraries
+
+source("lxl.functions.R")
+library(ggplot2)
+library(lattice)
+library(recast)
+
+
+### this .R file adds together insects, chironomid.ids and scoped and writes 
+#source("combiningdata.R")
+
+all.insects <- read.csv("all.insects.csv")
+all.insects <- all.insects[,-1]
+
+
+lvs$position <- factor(lvs$position,levels=c("btm",1:20,"top"))
+
+all.insects.molten <- melt(all.insects,id.vars=c("leaf.ID","Bromeliad"),variable_name="insect.species")
+
+
+                                        #section I : combining the various datasets
+
+##________________________________fine
+
+## select only the fine detritus measurements from the lxl survey
+fine<-subset(fine,fine$experiment=="lxl")
+fine$eu<-factor(fine$eu)
+fine$det<-fine$full-fine$empty
+## combine all the filters from one leaf
+finedet<-with(fine,tapply(det,eu,sum,na.rm=TRUE))
+
+## combine with the data on treatment!
+finedet<-data.frame(leaf.ID=names(finedet),fine.det=finedet)
+lvs<-merge(finedet,lvs,all=T)
+rm(finedet)
+
+##with(lvs,plot(vol,fine.det))
+##summary(with(lvs,lm(vol~fine.det)))
+
+##hist(lvs$fine.det)
+##hist(lvs$vol)
+
+##________________________________coarse
+
+## select only the fine detritus measurements from the lxl survey
+coarse<-subset(coarse,coarse$experiment=="lxl")
+coarse$eu<-factor(coarse$eu)
+coarse$det<-coarse$full-coarse$empty
+## combine all the filters from one leaf
+coarsedet<-with(coarse,tapply(det,eu,sum,na.rm=TRUE))
+
+## combine with the data on treatment!
+coarsedet<-data.frame(leaf.ID=names(coarsedet),coarse.det=coarsedet)
+lvs<-merge(coarsedet,lvs,all=T)
+rm(coarsedet)
+
+
+
+
+
+## combine data on the insects
+
+lvs.insect<-merge(lvs,all.insects,all=T)
+
+lvs.insect.molten<-merge(lvs,all.insects.molten,all=T)
+
+#brom.lvs.insect <- merge(brom,lvs.insect,all=T)
+#write.csv(brom.lvs.insect,file="completedata.csv")
+
+## order the dataset(s)
+lvs.insect.ord <- lvs.insect[order(lvs.insect$Bromeliad,lvs.insect$position),]
+lvs.insect.ord.molt <- lvs.insect.molten[order(lvs.insect.molten$Bromeliad,lvs.insect.molten$position),]
+
+
+sort(with(lvs.insect.ord.molt,tapply(value,insect.species,sum)),decreasing=TRUE)[1:5]
+
+lvs.insect.ord.molt.simple <- 
+
+## there are numerous problems to correct with the help of the notebooks:
+## every NA in completedata.csv should be checked against notes to confirm whether it is NA or actually 0, eg where there are no insects.
+
+
+## check about the NA bromeliad
+sum(is.na(lvs.insect.ord$Bromeliad))
+
+
+
+
+
+with(lvs.insect,plot(Polypedilum.sp1~position))
+
+with(lvs.insect,plot(Polypedilum.sp2~position))
+
+#there are 22 levels in the factor "position" > length(levels(lvs.insect$position))
+# so we can do this:
+
+xyplot(Polypedilum.sp2&Polypedilum.sp1~position|Bromeliad,data=lvs.insect,groups=Bromeliad)
+
+#first goal - make these lines.  simply adding type = "l" doesn't work
+#nor does coercing to numeric the factor.
+
+## order the dataset first
+
+
+qplot(position,value,data=lvs.insect.ord.molt,geom="line",group=insect.species,ylab="abundance")+
+  facet_wrap(~Bromeliad,scales="free")
+
+
+
+
+
+
+## do the chironomid species partition the bromeliad?
+p <- ggplot(lvs.insect.ord, aes(x=Polypedilum.sp2, y=Polypedilum.sp1, group=Bromeliad
+                                #,size=as.numeric(position)
+                                ))
+p <- p+geom_point()
+p <- p+geom_path(aes(colour=position))
+p <- p+facet_grid(~Bromeliad,scales="free_x")
+print(p)
+
+
+pngPPT("poly1.png")
+## How does the abundance of the major species change over volume?
+p <- ggplot(lvs.insect.ord, aes(x=vol, y=Polypedilum.sp1,group=Bromeliad,ylab="abundance"))
+p <- p+geom_point()
+#p <- p+geom_point(aes(y=Polypedilum.sp2),lty=2)
+p <- p+geom_smooth(method="lm")
+#p <- p+geom_point(aes(colour=position))
+p <- p+facet_wrap(~Bromeliad,scales="free")
+print(p)
+dev.off()
+
+pngPPT("poly1.png",width=7.5)
+## How does the abundance of the major species change over volume?
+p <- ggplot(lvs.insect.ord, aes(y=position, x=Polypedilum.sp1,group=Bromeliad,ylab="abundance"))
+p <- p+geom_point(aes(colour=vol))
+#p <- p+geom_point(aes(y=Polypedilum.sp2),lty=2)
+#p <- p+geom_smooth(method="loess",span=1.5)
+#p <- p+geom_point(aes(colour=position))
+p <- p+facet_wrap(~Bromeliad,scales="free")
+print(p)
+
+dev.off()
+
+pngPPT("scirt.png")
+p <- ggplot(lvs.insect.ord, aes(x=vol, y=scirtes.spA,group=Bromeliad,ylab="abundance"))
+p <- p+geom_point(aes(colour=position))
+#p <- p+geom_point(aes(y=Polypedilum.sp2),lty=2)
+p <- p+geom_smooth(method="lm")
+#p <- p+geom_point(aes(colour=position))
+p <- p+facet_wrap(~Bromeliad,scales="free")
+print(p)
+
+dev.off()
+
+png("poly.vertical.png",heigth=21,width=19.1,units="cm")
+print(p)
+dev.off()
+
+## how do physical variables change over the bromeliad?
+
+
+pngPPT("vol.pos.png")
+p <- ggplot(lvs.insect.ord, aes(x=position,y=vol,group=Bromeliad,ylab="abundance"))
+p <- p+geom_point(aes(colour=position))
+p <- p+geom_smooth(method="loess")
+p <- p+facet_wrap(~Bromeliad,scales="free")
+print(p)
+dev.off()
+
+##############################333
+## These don't work yet!!!
+p <- ggplot(lvs.insect.ord, aes(x=position,y=as.numeric(coarse.det),group=Bromeliad,ylab="abundance"))
+p <- p+geom_point(aes(colour=position))
+p <- p+geom_smooth(method="loess")
+p <- p+facet_wrap(~Bromeliad,scales="free")
+print(p)
+
+
+p <- ggplot(lvs.insect.ord, aes(x=position,y=fine.det,group=Bromeliad,ylab="abundance"))
+p <- p+geom_point(aes(colour=position))
+#p <- p+geom_point(aes(y=Polypedilum.sp2),lty=2)
+p <- p+geom_smooth(method="loess")
+#p <- p+geom_point(aes(colour=position))
+p <- p+facet_wrap(~Bromeliad,scales="free")
+print(p)
+
+
+
+
+
+with(subset(lvs.insect,Bromeliad=="lxl1"),
+     plot(Polypedilum.sp2~as.numeric(position)))
+
+#just checking
+ord <- with(subset(lvs.insect,Bromeliad=="lxl1"),
+            order(position))
+
+with(subset(lvs.insect,Bromeliad=="lxl1"),
+     lines(as.numeric(position)[ord],
+           Polypedilum.sp2[ord]))
+
+
+xyplot(Polypedilum.sp2+Polypedilum.sp1~position|Bromeliad,
+       data=lvs.insect)
+
+
+## this works very well!!
+
+xyplot(Polypedilum.sp2~position|Bromeliad,
+       data=lvs.insect,groups=Bromeliad,
+       panel=function(x,y){
+         ord<-order(x)
+         panel.xyplot(x[ord],y[ord],type='b')
+       }
+       )
+
+xyplot(Polypedilum.sp2+Polypedilum.sp1~position|Bromeliad,
+       data=lvs.insect)
+
+xyplot(Polypedilum.sp1+Polypedilum.sp2~position|Bromeliad,
+       data=lvs.insect,
+       panel=panel.superpose,
+       panel.groups=function(x,y,...){
+         ord<-order(x)
+         panel.xyplot(x[ord],y[ord],
+                      type='b',
+                      ...)
+       }
+       )
+
+# paranoid checking
+lvs.insect[which(lvs.insect$Bromeliad=="lxl6"),c('position',"Polypedilum.sp2")]
+
+
+pdf("coexisting.polypedilum.pdf")
+xyplot(Polypedilum.sp1+Polypedilum.sp2~position|Bromeliad,
+       data=lvs.insect,
+       panel=panel.superpose,
+       panel.groups=function(x,y,...){
+         ord<-order(x)
+         panel.xyplot(x[ord],y[ord],
+                      ...)
+       },
+       type='b',
+       auto.key=TRUE
+       ) 
+dev.off()
+
+
+#which taxa to examine?  How about the top 5 species in abundance
+
+#the names of the top six variables (in this case the most abundant species)
+topsix <- paste(names(sort(colSums(lvs.insect[,13:81],na.rm=TRUE),decreasing=TRUE)[1:6]),collapse="+")
+
+#forming a model formula
+topsix.form <- as.formula(paste(topsix,"~","position|Bromeliad"))
+
+#then put it in a model!
+
+pdf("most.abd.insects.pdf")
+xyplot(topsix.form,
+       data=lvs.insect,
+       ylab="abundance",
+       panel=panel.superpose,
+       panel.groups=function(x,y,...){
+         ord<-order(x)
+         panel.xyplot(x[ord],y[ord],
+                      ...)
+       },
+       type='b',
+       auto.key=TRUE
+       ) 
+dev.off()
+
+pdf("rankabds.pdf")
+#rank abundance plot lxl1
+barchart(sort(
+              colSums(
+                      subset(
+                             lvs.insect,Bromeliad=="lxl1"
+                             )[,13:81],
+                      na.rm=TRUE
+                      ),
+              decreasing=FALSE
+              ),
+         cex.axis=0.5,
+         xlab="Abundance"
+         )
+#lxl2
+barchart(sort(
+              colSums(
+                      subset(
+                             lvs.insect,Bromeliad=="lxl2"
+                             )[,13:81],
+                      na.rm=TRUE
+                      ),
+              decreasing=FALSE
+              ),
+         cex.axis=0.5,
+         xlab="Abundance"
+         )
+#lxl4
+barchart(sort(
+              colSums(
+                      subset(
+                             lvs.insect,Bromeliad=="lxl4"
+                             )[,13:81],
+                      na.rm=TRUE
+                      ),
+              decreasing=FALSE
+              ),
+         cex.axis=0.5,
+         xlab="Abundance"
+         )
+#lxl5
+barchart(sort(
+              colSums(
+                      subset(
+                             lvs.insect,Bromeliad=="lxl5"
+                             )[,13:81],
+                      na.rm=TRUE
+                      ),
+              decreasing=FALSE
+              ),
+         cex.axis=0.5,
+         xlab="Abundance"
+         )
+#lxl6
+barchart(sort(
+              colSums(
+                      subset(
+                             lvs.insect,Bromeliad=="lxl6"
+                             )[,13:81],
+                      na.rm=TRUE
+                      ),
+              decreasing=FALSE
+              ),
+         cex.axis=0.5,
+         xlab="Abundance"
+         )
+#lxl7
+barchart(sort(
+              colSums(
+                      subset(
+                             lvs.insect,Bromeliad=="lxl7"
+                             )[,13:81],
+                      na.rm=TRUE
+                      ),
+              decreasing=FALSE
+              ),
+         cex.axis=0.5,
+         xlab="Abundance"
+         )
+dev.off()
+
+
+#to do one for each bromeliad would be a bit tricky
+#aggregate within bromeliad
+#combine with bromeliad data
+#that's already done!
+whole.brom <- read.csv("~/Dropbox/CommunityAnalysis/Data/Cardoso.leaf.by.leaf.2011/species.by.bromeliads.csv")
+
+barchart(whole.brom[1,])
+
+barchart(whole.brom[1,c(-1,-2)])
+
+barplot(height=as.matrix(whole.brom[1,c(-1,-2)]),
+        horiz=TRUE,
+        yaxt="n")
+
+axis(2,
+     at=1:length(dimnames(as.matrix(whole.brom[1,c(-1,-2)]))[[2]]),
+     labels=dimnames(as.matrix(whole.brom[1,c(-1,-2)]))[[2]],
+     crt=-90,
+     xpd=TRUE,
+     adj=1  
+     )
+
+
+
+axis(2,labels=FALSE)
+
+text(1:length(dimnames(as.matrix(whole.brom[1,c(-1,-2)]))[[2]]),
+     labels=dimnames(as.matrix(whole.brom[1,c(-1,-2)]))[[2]],
+     srt=-90,
+     xpd=TRUE,
+     adj=1     
+     )
+
+
+##_______habitat size
+
+
+topsix <- paste(names(sort(colSums(lvs.insect[,13:81],na.rm=TRUE),
+                           decreasing=TRUE)[3:6]),
+                collapse="+")
+#forming a model formula
+topsix.area.form <- as.formula(paste(topsix,"~","vol|Bromeliad"))
+
+#here I tried to make logistic plots showing how the occurance of each group changes with increased volume of leaf-wells
+xyplot(topsix.area.form,
+       data=lvs.insect,
+       ylim=c(-0.1,1.1),
+       panel=panel.superpose,
+       panel.groups=function(x,y,...){
+         ord<-order(x)
+         panel.xyplot(x[ord],
+                      jitter(as.numeric(y[ord]>0),amount=0.1),
+                      ...)
+       },
+       auto.key=TRUE
+       )
+#didn't really show much of a pattern
+
+# intercorrelations among variables
+plot(lvs.insect[,c(3,4,6,8,9)])  
+
+#perhaps some exploring of the abiotic variables has a place
+#remove all the negative numbers from 'fine' and 'coarse' and then see
+# measure position and volume correlation - except remove 'top' because it is a skewed one.
+
+#### below I tried to measure the prediction made by coarse.det (correlated with volume and position)
+
+
+topsix <- paste(names(sort(colSums(lvs.insect[,13:81],na.rm=TRUE),
+                           decreasing=TRUE)[1:6]),
+                collapse="+")
+#forming a model formula
+topsix.area.form <- as.formula(paste(topsix,"~","coarse.det|Bromeliad"))
+
+#here I tried to make logistic plots showing how the occurance of each group changes with increased volume of leaf-wells
+xyplot(topsix.area.form,
+       data=lvs.insect,
+       ylim=c(-0.1,1.1),
+       panel=panel.superpose,
+       panel.groups=function(x,y,...){
+         ord<-order(x)
+         panel.xyplot(x[ord],
+                      jitter(as.numeric(y[ord]>0),amount=0.1),
+                      ...)
+       },
+       auto.key=TRUE
+       )
+
+##########33
+
+# is a bit tricky.  this presentation is inelegant because while it focusses on the top species it does so across all brom and they may not have even occurred there.  better would be to have a figure for one bromeliad and a different animal in each panel.  would that require rearranging the dataset?  maybe the converse is just as good: one insect, and each panel a bromeliad.
+
+
+# what do I eventually want?  C-scores?  A-stars?  something else?
+
+#logistic regression for the A-stars to demonstrate that they can't be estimated?
+#for each bromeliad separately?
+#randomized communities, and then what?  would use the picante package.
+
+
+#co-occurance!
+xyplot(Polypedilum.sp2&Polypedilum.sp1~position|Bromeliad,data=lvs.insect,groups=Bromeliad)
+# non-occurance!!
+xyplot(Polypedilum.sp2|Polypedilum.sp1~position|Bromeliad,data=lvs.insect,groups=Bromeliad)
+
+
+with(subset(lvs.insect,Bromeliad=="lxl4"),matlines(Polypedilum.sp2))
+
+## number of insects CHECK THE COL NUMBERS CAREFULLY
+lvs.insect$totalabd<-rowSums(lvs.insect[,13:81])
+
+## number of species
+lvs.insect$n.sp<-rowSums(lvs.insect[,13:81]>0)
+
+## number of insects in relation to volume and position
+with(lvs.insect,plot(totalabd~vol))
+with(lvs.insect,plot(totalabd~vol,log="xy"))
+
+with(lvs.insect,plot(totalabd~position))
+
+## number of species in relation to volume and position
+with(lvs.insect,plot(jitter(n.sp)~vol,log="x"))
+with(lvs.insect,plot(n.sp~position))
+
+##  Try omitting singletons
+## try omitting the top because it is a structurally different thing
+## omit Elpidium and others
+## omit the open bromeliad
+
+bwplot(totalabd~position|Bromeliad,data=lvs.insect)
+
+xyplot(n.sp~position|Bromeliad,data=lvs.insect)
+
+
+## how do simple variables here - ie the volume, the fine det, coarse det - correlate with each other?
+## how do these correlations, CVs etc compare with Diane's data?

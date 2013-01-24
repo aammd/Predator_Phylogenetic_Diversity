@@ -1,0 +1,18 @@
+"Predator ","Prey","Trial started","Trial stopped","N° trials","N° trials with eaten prey","Comments"
+"3 Monopelopia","1 Trichoptera",26/03/11,28/03/11,5,0,
+"3 Monopelopia","1 Culex",26/03/11,28/03/11,5,0,
+"3 Monopelopia","5 Ostracoda",28/03/11,30/03/11,5,0,"#In two jars the Monopelopia molted"
+"3 Monopelopia","1 Polypedilum 1",28/03/11,30/03/11,5,3,"#In one of the trial with eaten prey the Monopelopia was not found"
+"3 Monopelopia","1 Tipulid",29/03/11,31/03/11,5,2,"#In one jar the Tipulid molted "
+"1 Leech ","1 Tipulid",29/03/11,31/03/11,5,5,
+"1 Tabanid","1 Polypedilum 1",30/03/11,03/04/11,6,3,
+"1 Trichoptera","1 Polypedilum 1",24/03/11,26/03/11,10,1,"#In one of them the Poly 1 molted"
+"1 Leech ","1 psychodid",28/04/11,30/04/11,6,3,"# in one trial, prey killed in pupal stage.  In two others, lifeless"
+"Dysticid","scirtes A",29/04/11,01/05/11,5,3,"# one dead but not eaten"
+"Dysticid","tricoptera",29/04/11,01/05/11,4,0,
+"Dysticid","leech",29/04/11,01/05/11,5,0,"# in one the leech died, in the other the dytiscid died in the lid"
+"Dysticid","ostracod",29/04/11,01/05/11,4,2,"# 1 found in one vial, 2 in another.  In a third the dytiscid died"
+"Dysticid","culex",29/04/11,01/05/11,4,2,
+"leech","leech",29/04/11,01/05/11,4,0,"# 4 per vial.  All survived"
+"leech","scirtes B",29/04/11,01/05/11,3,2,"# in the other scirtid was dead and mouldy"
+"Leptagrion elongatum","scirtes B",29/04/11,01/05/11,1,1,

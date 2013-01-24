@@ -1,0 +1,37 @@
+bromeliads collected between 90 and 200ml, thoroughly washed and soaked for 12 hours in a tub of water.  hung for 48 hours to dry and allow insects to escape.  One bromeliad dissected after this procedure contained no insects.
+
+leaves:
+Jabuticaba leaves, watered with N-15 fertilizer at <<concentration>> for <<duration>>.  the leaves were dried in a gas oven with the door propped open with a matchbox for about 40 minutes, until completely dry.  then, they were soaked for three days and the water discarded. I used about 1.5 g per bromeliad.
+
+n-tagged leaves:
+ammonium sulfate 10% atom excess, 15N
+Solution: 5g/L
+application: 40ml/pot/day
+beginning: 27/1/11
+
+There was a lot of controversy over the use of dead leaves.  Originally, as we had discussed, i intended to use some dead leaves to help the detritivores get started.  I was just collecting the leaves from the tree that I showed to you, when Paula came up and said, oh that's Ochrea pulchella, the tree that never decomposed in my bromeliads!  So I felt disinclined to use that one; then a passing botanist was kind enough to help us find a nice Myrtaceae plant: Psidium cattleyanum (common name: Araca).  So I dried and weighed 40 bags of leaves, only to discover that it was barely possible to fit 1.5 g of N-15 tagged leaves in my bromeliads.  So, because it really wasn't possible to put any more in, I didn't use Araca leaves after all.  I'll check my bromeliads midway through, and if the tagged-leaves are nearly gone I'll add more Araca after all.  Basically, I didn't use dead leaves because all i could find was dead O. pulchella, and none would fit in anyway.
+ 
+Each bromeliad was stocked with a representative insect community.  Densities were calculated from 2008 dataset survey in two ways: the first, by poisson regression and the second, by taking the average of all bromeliads in between 90 and 200ml (n = 6???).  This makes sense because some species occur rarely below this size (e.g. Trichoptera), but a regression would predict their presence.  For all species, the second calculation produced a lower number.  For each group of insect (ie Family) I kept the densities within the range of these two estimates.  However, the species composition within insect family was adjusted to reflect the relative abundances of species collected from bromeliads in 2011, producing the following list:
+Chironomus dentriticula	10
+Polypedilum sp 1		4
+Polypedilum sp 2		2
+Psychodid			1
+Scyrtes sp A*			5
+Culex				4
+Trentepholia			1
+
+* size classes small-med to med-large
+
+I've been checking emergence daily and so far am a little bit worried.  very few animals are emerging, and I am beginning to wonder if that is because they have all been eaten by predators.  I'd like to do some additions of insects now.  I 'm thinking that halfway is a logical time to make these additions, so <<time that I would have to do that>>
+
+As I was writing this email, I thought that I would write it as if I was writing a methods section.  However, I realized that makes it very long.  So I thought I would focus a few questions at the start:
+past decision to be aware of: I've used tagged leaves only, not collected dead leaves.  I've also tried to carefully calculate the mass and density of predators I used; I hope that the latter is consistent with what we discussed.
+present decision for feedback: only very few insects have emerged.  I am hoping to do additions next week; what do you think?
+ 
+ 
+
+   to do:
+find out when I started my different blocks and calculate when I could add insects for a 3- or 4- or halfway time.
+fix up the metabolic figure.\
+find out how many brom I used to estimate the other numbers.
+Ask Gustavo the species name of Jabuticaba
