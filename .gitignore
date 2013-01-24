@@ -1,0 +1,13 @@
+.Rproj.user
+.Rhistory
+.RData
+
+*.pdf
+*.svg
+*.ps
+*~
+
+predator.div.experiment/*.pdf
+predator.div.experiment/*.svg
+predator.div.experiment/*.ps
+predator.div.experiment/*.png
