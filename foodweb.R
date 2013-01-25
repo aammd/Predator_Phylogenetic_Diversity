@@ -1,8 +1,8 @@
 ##Graphing the Foodweb
 ## by Andrew MacDonald
 
-measured <- read.csv("measured.predators.csv")
-preds <- read.csv("other.predators.csv")
+measured <- read.csv("./feeding.rearing//measured.predators.csv",comment.char="#")
+preds <- read.csv("./feeding.rearing//other.predators.csv")
 preds <- preds[,-7]                              #drop comments
 lepts <- read.csv("../Leptagrion/lept.csv")
 
