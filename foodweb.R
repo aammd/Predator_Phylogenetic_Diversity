@@ -1,26 +1,36 @@
 ##Graphing the Foodweb
 ## by Andrew MacDonald
 
-measured <- read.csv("./feeding.rearing//measured.predators.csv",comment.char="#")
-preds <- read.csv("./feeding.rearing//other.predators.csv")
-preds <- preds[,-7]                              #drop comments
-lepts <- read.csv("../Leptagrion/lept.csv")
 
-source("foodweb.fn.R")
+# read in data, functions, packages ---------------------------------------
+
+measured <- read.csv("./feeding.rearing/measured.predators.csv",comment.char="#")
+preds <- read.csv("./feeding.rearing/other.predators.csv",comment.char="#")
+lepts <- read.csv("./Leptagrion/lept.csv")
+
+source("./feeding.rearing/foodweb.fn.R")
 source("../general.R")
 
+# tidy up variable names --------------------------------------------------
+
+measured <- measured[,-which(names(measured)=="Comments")] #drop comments
+peds <- preds[,-which(names(preds)=="Comments")]  #drop comments
 ## make the lepts dataframe more managable
 lepts <- with(lepts,
               data.frame(predator=Number,
-                         predator.sp.lept=Sp.,body=Measuring..body.,
+                         predator.sp.lept=Sp..,
+                         body=Measuring..body.,
                          tail=Measuring..tail.))
 
-measured.lept <- merge(measured,lepts,all.x=T)
-
-
 # rename the awkward column
+names(measured)[which(names(measured)=="Eaten.or.not..1...eaten")] <- "eaten"
 
-names(measured.lept)[which(names(measured.lept)=="Eaten.or.not..1...eaten")] <- "eaten"
+
+head(measured)
+head(lepts)
+
+measured.lept <- merge(measured,lepts,all.x=TRUE)
+
 
 #now combine the predator names from both datasets
 
