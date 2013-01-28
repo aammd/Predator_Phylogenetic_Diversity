@@ -25,10 +25,6 @@ lepts <- with(lepts,
 # rename the awkward column
 names(measured)[which(names(measured)=="Eaten.or.not..1...eaten")] <- "eaten"
 
-
-head(measured)
-head(lepts)
-
 measured.lept <- merge(measured,lepts,all.x=TRUE)
 
 
