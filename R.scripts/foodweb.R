@@ -6,67 +6,93 @@ setwd("/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/")
 
 # read in data, functions, packages ---------------------------------------
 
-measured <- read.csv("../feeding.rearing/measured.predators.csv",comment.char="#")
-preds <- read.csv("../feeding.rearing/other.predators.csv",comment.char="#")
-lepts <- read.csv("../Leptagrion/lept.csv")
+measured <- read.csv("../feeding.rearing/measured.predators.csv",comment.char="#",as.is=TRUE)
+preds <- read.csv("../feeding.rearing/other.predators.csv",comment.char="#",as.is=TRUE)
+lepts <- read.csv("../Leptagrion/lept.csv",as.is=TRUE)
 
 source("foodweb.fn.R")
 source("general.R")
 
+library(ggplot2)
+
 # tidy up variable names --------------------------------------------------
 
 measured <- measured[,-which(names(measured)=="Comments")] #drop comments
-peds <- preds[,-which(names(preds)=="Comments")]  #drop comments
+preds <- preds[,-which(names(preds)=="Comments")]  #drop comments
 ## make the lepts dataframe more managable
-lepts <- with(lepts,
+lepts2 <- with(lepts,
               data.frame(predator=Number,
                          predator.sp.lept=Sp..,
                          body=Measuring..body.,
-                         tail=Measuring..tail.))
+                         tail=Measuring..tail.,
+                         stringsAsFactors=FALSE))
 
 # rename the awkward column
 names(measured)[which(names(measured)=="Eaten.or.not..1...eaten")] <- "eaten"
 
-measured.lept <- merge(measured,lepts,all.x=TRUE)
-
+## keep all measured predators, but merge in the information from 'lepts'
+measured.lept <- merge(measured,lepts2,all.x=TRUE)
 
 #now combine the predator names from both datasets
 
-names(measured.lept)
+is.nonzero.pred.species <- grepl("[a-z]+",measured.lept$predator.sp.)
+## all the names
+measured.lept$predator.sp.[is.nonzero.pred.species]
+## no names!
+measured.lept$predator.sp.[!is.nonzero.pred.species]
 
-one <- with(measured.lept,as.character(predator.sp.))
-two <- with(measured.lept,as.character(predator.sp.lept))
+## take one vector, and fill in the blanks from the other
+measured.lept$predator.names <- measured.lept$predator.sp.
+measured.lept$predator.names[!is.nonzero.pred.species] <- measured.lept$predator.sp.lept[!is.nonzero.pred.species]
 
-#one[which(one=="")] <- NA
+## we can compare all of these side-by-side
+cbind(measured.lept$predator,measured.lept$predator.sp.,measured.lept$predator.sp.lept,measured.lept$predator.names)
 
-new <- character(length=length(one))
+## there are some missing values in predator.names
+missing <- measured.lept$predator.names==""|is.na(measured.lept$predator.names)
+measured.lept$predator.names[missing]
 
-new[which(one!="")] <- one[which(one!="")]
-new[which(!is.na(two))] <- two[which(!is.na(two))]
+## what are their codes?
+unique(measured.lept$predator[missing])
+## [1] "197"  "198"  "208"  "L211" "L212" "L218" "L220" "L4"  
+## if we make the assumption that 197, 198, 208 are leptagrion
+## also that L211, L212, L218 L220 L4 are all leptagrion
+## we can fill these in by brute force:
 
-new[which(new=="1 Leech "|new=="leech")] <- "Leech"
+measured.lept[measured.lept$predator=="197","predator.names"] <- "andromache"
+measured.lept[measured.lept$predator=="198","predator.names"] <- "andromache"
+measured.lept[measured.lept$predator=="208","predator.names"] <- "andromache"
+measured.lept[measured.lept$predator=="L211","predator.names"] <- NA
+measured.lept[measured.lept$predator=="L212","predator.names"] <- NA
+measured.lept[measured.lept$predator=="L218","predator.names"] <- NA
+measured.lept[measured.lept$predator=="L220","predator.names"] <- NA
+measured.lept[measured.lept$predator=="L4","predator.names"] <- "elongatum"
 
-new[which(new=="elongatum"|new=="Leptagrion elongatum "|new=="leptagrion elongatum")] <- "Leptagrion elongatum"
+## Next eliminate duplicate names
+unique(measured.lept$predator.names)
 
-new[which(new=="andromache")] <- "Leptagrion andromache"
+measured.lept$predator.names[which(measured.lept$predator.names=="1 Leech "|measured.lept$predator.names=="leech")] <- "Leech"
 
-new[which(new=="tan")] <- "Leptagrion 'tan'"
+measured.lept$predator.names[which(measured.lept$predator.names=="elongatum"|measured.lept$predator.names=="Leptagrion elongatum "|measured.lept$predator.names=="leptagrion elongatum")] <- "Leptagrion elongatum"
 
-new[which(new=="small")] <- "Leptagrion small"
+measured.lept$predator.names[which(measured.lept$predator.names=="andromache")] <- "Leptagrion andromache"
 
-new[which(new=="green Tabanid"|new=="leech")] <- "Green Tabanid"
+measured.lept$predator.names[which(measured.lept$predator.names=="tan")] <- "Leptagrion 'tan'"
 
-measured.lept$Predator <- as.factor(new)
+measured.lept$predator.names[which(measured.lept$predator.names=="small")] <- "Leptagrion small"
+
+measured.lept$predator.names[which(measured.lept$predator.names=="green Tabanid"|measured.lept$predator.names=="tabanid")] <- "Green Tabanid"
+
+unique(measured.lept$predator.names)
 
 #make an assumption about the fate of uneaten animals:
-measured.lept$eaten[which(measured.lept$eaten!="0"&measured.lept$eaten!="1")]<- 0 
+measured.lept$eaten[which(measured.lept$eaten!="0"&measured.lept$eaten!="1")]<- "0"
 #in other words, if it didn't get eaten it doesn't count as eaten
-measured.lept$eaten <- factor(measured.lept$eaten)
-measured.lept$eaten <- as.numeric(measured.lept$eaten)-1  #lazy trick to convert to numbers
+measured.lept$eaten.numeric <- as.numeric(measured.lept$eaten=="1")
 
 ## and now for the Prey variable
 
-prey.mes <- as.character(measured.lept$Prey)
+prey.mes <- measured.lept$Prey
 
 prey.mes[which(prey.mes=="1 Tipulid "|prey.mes=="tipulid"|prey.mes=="1 Tipulid")] <- "Tipulid"
 
@@ -80,6 +106,9 @@ prey.mes[which(prey.mes=="1 Psychodid "|prey.mes=="1 psychodid ")] <- "Psychodid
 
 prey.mes[which(prey.mes=="1 Polypedilum 2")] <- "Polypedilum 2"
 
+prey.mes[which(prey.mes=="1 Monopelopia "|prey.mes=="1 Monopelopia")] <- "Monopelopia"
+
+unique(prey.mes)
 measured.lept$Prey <- factor(prey.mes)
 
 ## predators in this dataset
