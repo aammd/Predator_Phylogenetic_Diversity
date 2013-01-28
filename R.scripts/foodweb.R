@@ -1,15 +1,17 @@
 ##Graphing the Foodweb
 ## by Andrew MacDonald
 
+# I guess we start by setting WD to be here?  Needless if you start from emacs
+setwd("/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/")
 
 # read in data, functions, packages ---------------------------------------
 
-measured <- read.csv("./feeding.rearing/measured.predators.csv",comment.char="#")
-preds <- read.csv("./feeding.rearing/other.predators.csv",comment.char="#")
-lepts <- read.csv("./Leptagrion/lept.csv")
+measured <- read.csv("../feeding.rearing/measured.predators.csv",comment.char="#")
+preds <- read.csv("../feeding.rearing/other.predators.csv",comment.char="#")
+lepts <- read.csv("../Leptagrion/lept.csv")
 
-source("./feeding.rearing/foodweb.fn.R")
-source("../general.R")
+source("foodweb.fn.R")
+source("general.R")
 
 # tidy up variable names --------------------------------------------------
 
