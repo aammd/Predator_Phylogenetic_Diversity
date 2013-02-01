@@ -95,24 +95,31 @@ measured.lept$eaten.numeric <- as.numeric(measured.lept$eaten=="1")
 prey.mes <- measured.lept$Prey
 
 prey.mes[which(prey.mes=="1 Tipulid "|prey.mes=="tipulid"|prey.mes=="1 Tipulid")] <- "Tipulid"
-
 prey.mes[which(prey.mes=="1 polypedilum 2")] <- "1 Polypedilum 2"
-
 prey.mes[which(prey.mes=="1 Scirtes A"|prey.mes=="scirtid A")] <- "Scirtes A"
-
 prey.mes[which(prey.mes=="Leptagrion elongatum ")] <- "Leptagrion elongatum"
-
 prey.mes[which(prey.mes=="1 Psychodid "|prey.mes=="1 psychodid ")] <- "Psychodid"
-
 prey.mes[which(prey.mes=="1 Polypedilum 2")] <- "Polypedilum 2"
-
 prey.mes[which(prey.mes=="1 Monopelopia "|prey.mes=="1 Monopelopia")] <- "Monopelopia"
+prey.mes[which(prey.mes=="1 Chironomus detriticula")] <- "Chironomus detriticula"
+prey.mes[which(prey.mes=="1 Trichoptera")] <- "Phylloicus bromeliarum"
+prey.mes[which(prey.mes=="1 Scirtes B")] <- "Scirtes B"
+prey.mes[which(prey.mes=="1 Polypedilum 1")] <- "Polypedilum 1"
+prey.mes[which(prey.mes=="1 Leech")] <- "Leech"
+prey.mes[which(prey.mes=="1 Culex")] <- "Culex"
+prey.mes[which(prey.mes=="ostracod"|prey.mes=="5 Ostracoda")] <- "Ostracod"
 
 unique(prey.mes)
-measured.lept$Prey <- factor(prey.mes)
+
+## compare with original factor
+cbind(prey.mes,measured.lept$Prey)
+
+## add to the dataframe
+measured.lept$Prey.species <- factor(prey.mes)
 
 ## predators in this dataset
 with(measured,table(sp))
+
 
 ## we seem to be missing species names for 211, 212, 218 and 220
 
