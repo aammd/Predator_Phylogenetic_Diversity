@@ -11,7 +11,7 @@ library(reshape)
 
 # read in data ------------------------------------------------------------
 
-foodweb <- read.csv("../feeding.rearing/reorganized.feeding.trial.data.csv")
+foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/feeding.rearing/reorganized.feeding.trial.data.csv")
 
 
 # graph data --------------------------------------------------------------
@@ -28,11 +28,28 @@ foodweb.matrix <- as.matrix(foodweb.cast[,-1])
 dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
 foodweb.matrix
 
+
+
 visweb(foodweb.matrix)
 plotweb(foodweb.matrix)
 
+## should display only those which are in the experiment:
+dimnames(foodweb.matrix)[[1]][c(1,2,3,5,7,8,9,9,11,12,14)]
+dimnames(foodweb.matrix)[[2]][c(1,2,3,4)]
+
+pdf("~/Dropbox/PhD/Brazil2011/figures/FoodwebExperimentSpecies.pdf")
+par(cex=0.8)
+plotweb(y.width.low=0.05,y.width.high=0.05,ybig=1,
+        foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
+dev.off()
 ## the PROBLEM is that there are 0s and there are NAs and I want to have a means
 ## of displaying each
+pdf("../Brazil2011/figures/test.pdf")
+visweb(foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
+dev.off()
+
+## or you could look for compartments!
+visweb(type="diagonal",foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
 
 
 # not yet reorganized!  clean it up ---------------------------------------
