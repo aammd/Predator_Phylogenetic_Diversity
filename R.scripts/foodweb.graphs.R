@@ -7,7 +7,7 @@ source("general.R")
 
 library(ggplot2)
 library(bipartite)
-
+library(reshape)
 
 # read in data ------------------------------------------------------------
 
@@ -16,8 +16,23 @@ foodweb <- read.csv("../feeding.rearing/reorganized.feeding.trial.data.csv")
 
 # graph data --------------------------------------------------------------
 
+## try the bipartite approach:
+## data needs to be in a matrix
 
+head(foodweb)
 
+## need predators as columns, herbivores as rows
+foodweb.cast <- cast(data=foodweb,formula=Prey.species~predator.names,value="eaten.numeric",fun.aggregate=sum)
+
+foodweb.matrix <- as.matrix(foodweb.cast[,-1])
+dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
+foodweb.matrix
+
+visweb(foodweb.matrix)
+plotweb(foodweb.matrix)
+
+## the PROBLEM is that there are 0s and there are NAs and I want to have a means
+## of displaying each
 
 
 # not yet reorganized!  clean it up ---------------------------------------
