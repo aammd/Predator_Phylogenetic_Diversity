@@ -1,9 +1,27 @@
 ## analysis and graphing of the food web data 
 
+# read in functions and packages ------------------------------------------
+
 source("foodweb.fn.R")
 source("general.R")
 
 library(ggplot2)
+library(bipartite)
+
+
+# read in data ------------------------------------------------------------
+
+foodweb <- read.csv("../feeding.rearing/reorganized.feeding.trial.data.csv")
+
+
+# graph data --------------------------------------------------------------
+
+
+
+
+
+# not yet reorganized!  clean it up ---------------------------------------
+
 
 pred.char <- as.character(preds$Predator)
 pred.char[which(preds$Predator=="1 Leech "|preds$Predator=="leech")] <- "Leech"
