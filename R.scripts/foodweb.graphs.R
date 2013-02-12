@@ -44,9 +44,12 @@ plotweb(y.width.low=0.05,y.width.high=0.05,ybig=1,
 dev.off()
 ## the PROBLEM is that there are 0s and there are NAs and I want to have a means
 ## of displaying each
-pdf("../Brazil2011/figures/test.pdf")
-visweb(foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
+pdf("../Brazil2011/figures/foodwebVisweb.pdf")
+visweb(labsize=0.4,
+       foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
 dev.off()
+
+example(visweb)
 
 ## or you could look for compartments!
 visweb(type="diagonal",foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
