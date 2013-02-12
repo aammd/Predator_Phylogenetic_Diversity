@@ -1,7 +1,0 @@
-
-
-combine.rows <- function(sp1,sp2,name){
-  total[name] <- rowSums(total[c(sp1,sp2)])
-  total <- total[!names(total)%in%c(sp1,sp2)]
-  return(total)
-}
