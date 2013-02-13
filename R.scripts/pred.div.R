@@ -1,14 +1,5 @@
 ## dataset for analysis of pred diversity experiment data
 
-## Read in the datasets
-lvs<-read.csv("leaves.csv")
-coarse<-read.csv("../detritus/paperbags.csv")
-fine <- read.csv("../detritus/filters.csv")
-pd<-read.csv("cages.csv")
-n15<-read.csv("n15.csv")
-emerg<-read.csv("emerg.csv")
-surv <- read.csv("survived.csv",comment.char="#")
-samp <- read.table("Samples.csv",comment.char="#",sep=",",flush=TRUE,header=TRUE)
 ## read in functions
 source('pd.functions.R')
 ### organization
@@ -72,28 +63,28 @@ head(pd)
 ##---------------------------------------------------------------------------
 ##-----this section of the analysis is on INDIVIDUALS not GROUP MEANS
 ##---------------------------------------------------------------------------
-go <- responses(500)
-write.csv(go,"randomizations.one.at.a.time.csv")
-rand.indiv <- read.csv("randomizations.one.at.a.time.csv")
+#go <- responses(500)
+#write.csv(go,"../predator.div.experiment/randomizations.one.at.a.time.csv")
+rand.indiv <- read.csv("../predator.div.experiment/randomizations.one.at.a.time.csv")
 rand.indiv$sp.pair <- factor(rand.indiv$sp.pair,
                              levels=c('elong + andro','elong + tab',
                                'elong + leech')
                              )
 
 
-pdf("randomization.indiv.pdf")
+pdf("../figures/randomization.indiv.pdf")
 densityplot(~growth,groups=sp.pair,data=rand.indiv,auto.key=T)
 densityplot(~survival,groups=sp.pair,data=rand.indiv,auto.key=T)
 densityplot(~fine,groups=sp.pair,data=rand.indiv,auto.key=T)
 densityplot(~decomp,groups=sp.pair,data=rand.indiv,auto.key=T)
 dev.off()
 
-
-pdf('confidence.intervals.indiv.means.pdf')
-par(mfrow=c(2,2),bty='l')
-for(i in 2:6) ci.resp(i,sim.data=rand.indiv,
-                      Ylab="monoculture-polyculture (single reps)")
-dev.off()
+### no longer works for individual-based data :()
+# pdf('../figures/confidence.intervals.indiv.means.pdf')
+# par(mfrow=c(2,2),bty='l')
+# for(i in 2:6) ci.resp(i,sim.data=rand.indiv,
+#                       Ylab="monoculture-polyculture (single reps)")
+# dev.off()
 
 ##--------------------------------------------------------------------------
 
@@ -102,7 +93,7 @@ dev.off()
 ##---------------------------------------------------------------------------
 ##go2 <- responses.means(1000)
 #write.csv(go2,"randomizations.group.means.csv")
-rand.means <- read.csv("randomizations.group.means.csv")
+rand.means <- read.csv("../predator.div.experiment/randomizations.group.means.csv")
 rand.means$sp.pair <- factor(rand.means$sp.pair,
                              levels=c('elong + andro','elong + tab',
                                'elong + leech')
@@ -123,7 +114,7 @@ rand.means$sp.pair <- factor(rand.means$sp.pair,
 
 #densityplot(~growth+survival+fine+decomp,groups=sp.pair,data=go)
 
-pdf("randomization.mean.pdf")
+pdf("../figures/randomization.mean.pdf")
 densityplot(~growth,groups=sp.pair,data=rand.means,auto.key=T)
 densityplot(~survival,groups=sp.pair,data=rand.means,auto.key=T)
 densityplot(~fine,groups=sp.pair,data=rand.means,auto.key=T)
@@ -131,7 +122,7 @@ densityplot(~decomp,groups=sp.pair,data=rand.means,auto.key=T)
 densityplot(~N,groups=sp.pair,data=rand.means,auto.key=T)
 dev.off()
 
-pdf('confidence.intervals.group.means.pdf')
+pdf('../figures/confidence.intervals.group.means.pdf')
 par(mfrow=c(2,3),bty='l')
 for(i in 2:6) ci.resp(i)
 dev.off()
@@ -169,7 +160,7 @@ qplot(decomp,total.surv,facets=treatment~.,data=pd)
   
 
 ##png("polys.png",width=279,height=150,units="mm",res=100)
-svg("polys.svg",height=3.5)
+svg("../figures/polys.svg",height=3.5)
 pred.graph()
 dev.off()
 
@@ -177,7 +168,7 @@ dev.off()
 
 xyplot(d15N~treatment,data=pd)
 
-svg("n.trt.svg",height=3.5)
+svg("../figures/n.trt.svg",height=3.5)
 par(bty="l")
 x <- with(pd,plotmeans(d15N~treatment,n.label=FALSE,barcol="black",pch=21,col="gray",connect=FALSE,ylab=expression(delta)))
 x <-
@@ -196,7 +187,7 @@ plot(with(pd,lm(X15N~treatment)))
 par(mfrow=c(2,3),bty='l')
 for(i in 2:6) ci.resp(i)
 
-svg("n.effect.svg",height=10,width=10)
+svg("../figures/n.effect.svg",height=10,width=10)
 par(cex=2.5,bty="l",lwd=3)
 ci.resp(6,Ylab="additive effect on N")
 dev.off()
@@ -206,7 +197,7 @@ densityplot(~N,groups=sp.pair,data=rand.means,auto.key=T)
 xyplot(X15N~decomp|treatment,data=pd)
 
 #svg("bivar.svg",height=3.5)
-pdf(file="bivar.pdf",height=3.5)
+pdf(file="../figures/bivar.pdf",height=3.5)
 bivar.graph(Xvar="decomp",Yvar="survival",yvar.lab="detritivore mortality")
 dev.off()
 
@@ -217,8 +208,6 @@ bivar.graph(Xvar="N",Yvar="growth")
 rbind(names(pd),1:length(names(pd)))
 pairs(pd[,c(5,6,7,8,9,14,18,19)])
 
-
-=TRpairs(surv[,insect.species.used.in.survival])
 
 xyplot(chiromids~treatment,data=pd)
 
@@ -240,7 +229,7 @@ test <- merge(ord,pd,all.y=TRUE)
 combo.ord <-
   subset(test,test$treatment%in%c("elong + tab","elong + leech","elong + andro"))
 
-svg("ord.svg")
+svg("../figures/ord.svg")
 par(bty="l",cex=1.5)
 with(combo.ord,plot(X1,X2,type="n",xlab="axis 1",ylab="axis 2"))
 with(subset(combo.ord,combo.ord$treatment=="elong + andro"),points(X1,X2,pch=21,bg="black"))

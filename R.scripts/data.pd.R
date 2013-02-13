@@ -164,3 +164,5 @@ samp$eu <- as.numeric(sub("EU","",samp$Id))  # two rows (1A and 2A) are lost by
                                   # this process.  I don't know what
                                   # they are!
 pd <- merge(samp,pd)
+
+rm(lvs,coarse,fine,n15,emerg,surv,samp)
