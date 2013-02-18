@@ -20,6 +20,7 @@ foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/feeding.rearing/reorganized.feedin
 ## data needs to be in a matrix
 
 head(foodweb)
+str(foodweb)
 
 ## need predators as columns, herbivores as rows
 foodweb.cast <- cast(data=foodweb,formula=Prey.species~predator.names,value="eaten.numeric",fun.aggregate=sum)
@@ -55,71 +56,7 @@ example(visweb)
 visweb(type="diagonal",foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
 
 
-# not yet reorganized!  clean it up ---------------------------------------
-
-
-pred.char <- as.character(preds$Predator)
-pred.char[which(preds$Predator=="1 Leech "|preds$Predator=="leech")] <- "Leech"
-preds$Predator <- factor(pred.char)
-
-
-prey.char <- as.character(preds$Prey)
-prey.char[which(preds$Prey=="tricoptera"|preds$Prey=="1 Trichoptera")] <- "Trichoptera"
-prey.char[which(preds$Prey=="culex"|preds$Prey=="1 Culex")] <- "Culex"
-preds$Prey <- factor(prey.char)
-
-preds$eaten <- preds[,"N..trials.with.eaten.prey"]/preds[,"N..trials"]
-
-picture(preds)
-
-
-## editing the measured.lept dataset
-
-### count the number of trials of each pair and sum successes
-
-from.measured <- with(measured.lept,aggregate(eaten,
-                                              by=list(Predator=Predator,Prey=Prey),
-                                              FUN=function(x) sum(x)/length(x)
-)
-)
-
-names(from.measured)[which(names(from.measured)=="x")] <- "eaten"
-
-picture(from.measured)
-
-#now we have two separate ones - but I want to put them together!!
-
-Predator <- c(as.character(preds$Predator),
-              as.character(from.measured$Predator))
-
-Predator[which(Predator=="tabanid"|Predator=="1 Tabanid")] <- "Tabanid"
-
-Prey <- c(as.character(preds$Prey),
-          as.character(from.measured$Prey))
-
-Prey[which(Prey=="1 Monopelopia ")] <- "1 Monopelopia"
-
-Prey[which(Prey=="1 Tipulid")] <- "Tipulid"
-
-Prey[which(Prey=="scirtes B"|Prey=="1 Scirtes B")] <- "Scirtes B"
-
-Prey[which(Prey=="scirtes A")] <- "Scirtes A"
-
-Prey[which(Prey=="ostracod"|Prey=="5 Ostracoda")] <- "Ostracod"
-
-Prey[which(Prey=="1 Culex")] <- "Culex"
-
-Prey[which(Prey=="1 Leech"|Prey=="leech")] <- "Leech"
-
-Prey[which(Prey=="1 Trichoptera")] <- "Trichoptera"
-
-Prey[which(Prey=="1 psychodid")] <- "Psychodid"
-
-eaten <- c(preds$eaten,from.measured$eaten)
-
-feeding <- data.frame(Predator,Prey,eaten)
-feeding <- subset(feeding,feeding$Predator!="")
-feeding$Predator <- factor(feeding$Predator)          #removes unwanted factor levels
+### older graphs -- may not still work!
 
 
 pngPPT("Cardoso food web.png")
