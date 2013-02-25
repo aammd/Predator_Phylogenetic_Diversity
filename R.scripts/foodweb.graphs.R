@@ -8,6 +8,7 @@ source("general.R")
 library(ggplot2)
 library(bipartite)
 library(reshape)
+library(vegan)
 
 # read in data ------------------------------------------------------------
 
@@ -29,9 +30,12 @@ foodweb.matrix <- as.matrix(foodweb.cast[,-1])
 dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
 foodweb.matrix
 
+distances <- vegdist(t(foodweb.matrix))
+plot(distances)
 
 
-visweb(foodweb.matrix)
+
+                     visweb(foodweb.matrix)
 plotweb(foodweb.matrix)
 
 ## should display only those which are in the experiment:
