@@ -1,0 +1,77 @@
+#NEXUS
+[written Mon Mar 04 14:53:37 PST 2013 by Mesquite  version 2.75 (build 564) at ardea/127.0.1.1]
+
+BEGIN TAXA;
+	TITLE Taxa;
+	DIMENSIONS NTAX=16;
+	TAXLABELS
+		Unnamed_Taxon Unnamed_Taxon2 Leptagrion Unnamed_Taxon3 Unnamed_Taxon4 Unnamed_Taxon5 Monopelopia Bezzia ')' Corethrella Unnamed_Taxon6 Unnamed_Taxon7 Dolichopodidae Empididae Tabanidae Hirudinidae 
+	;
+
+END;
+
+
+BEGIN TREES;
+	Title Imported_trees;
+	LINK Taxa = Taxa;
+	TRANSLATE
+		1 Unnamed_Taxon,
+		2 Unnamed_Taxon2,
+		3 Leptagrion,
+		4 Unnamed_Taxon3,
+		5 Unnamed_Taxon4,
+		6 Unnamed_Taxon5,
+		7 Monopelopia,
+		8 Bezzia,
+		9 ')',
+		10 Corethrella,
+		11 Unnamed_Taxon6,
+		12 Unnamed_Taxon7,
+		13 Dolichopodidae,
+		14 Empididae,
+		15 Tabanidae,
+		16 Hirudinidae;
+	TREE 'Imported tree 0+' = (2);
+	TREE 'Imported tree 1+' = (3);
+	TREE 'Imported tree 3+' = (5);
+	TREE 'Imported tree 4+' = (6);
+	TREE 'Imported tree 5+' = (7);
+	TREE 'Imported tree 11+' = (12);
+	TREE 'Imported tree 12+' = (13);
+	TREE Imported_tree_20 = 0;
+	TREE Imported_tree_21 = 9:4.0;
+
+END;
+
+
+Begin MESQUITE;
+		MESQUITESCRIPTVERSION 2;
+		TITLE AUTO;
+		tell ProjectCoordinator;
+		timeSaved 1362437627777;
+		getEmployee #mesquite.minimal.ManageTaxa.ManageTaxa;
+		tell It;
+			setID 0 8391544184091659455;
+		endTell;
+		getWindow;
+		tell It;
+			suppress;
+			setResourcesState true false 100;
+			setPopoutState 400;
+			setExplanationSize 0;
+			setAnnotationSize 0;
+			setFontIncAnnot 0;
+			setFontIncExp 0;
+			setSize 700 464;
+			setLocation 8 8;
+			setFont SanSerif;
+			setFontSize 10;
+			getToolPalette;
+			tell It;
+			endTell;
+			desuppress;
+		endTell;
+		endTell;
+end;
+
+
