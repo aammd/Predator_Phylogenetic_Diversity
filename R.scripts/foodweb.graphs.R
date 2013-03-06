@@ -10,10 +10,16 @@ library(bipartite)
 library(reshape)
 library(vegan)
 
+library(picante)
+library(beanplot)
+
+
+
 # read in data ------------------------------------------------------------
 
 foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/feeding.rearing/reorganized.feeding.trial.data.csv")
 
+predtree <- read.tree("../TreeData/predators.arbit.ultrametric.phy")
 
 # graph data --------------------------------------------------------------
 
@@ -23,19 +29,42 @@ foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/feeding.rearing/reorganized.feedin
 head(foodweb)
 str(foodweb)
 
+## I want a list of all predators:
+trial.list <- split(foodweb,foodweb$predator.names)
+sapply(trial.list,nrow)
+
+
 ## need predators as columns, herbivores as rows
 foodweb.cast <- cast(data=foodweb,formula=Prey.species~predator.names,value="eaten.numeric",fun.aggregate=sum)
 
+
 foodweb.matrix <- as.matrix(foodweb.cast[,-1])
 dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
-foodweb.matrix
+foodweb.matrix <- foodweb.matrix[,-ncol(foodweb.matrix)]  ## last column was an NA predator.
 
-distances <- vegdist(t(foodweb.matrix))
+distances <- vegdist(t(foodweb.matrix),method='jaccard')
 plot(distances)
+str(distances)
 
 
+phylodist <- cophenetic(predtree)
+dimnames(phylodist)[[1]]
+distances
+aligns <- c(11,14,1,3,2,12,13)
+phylo.selected <- phylodist[aligns,aligns]
 
-                     visweb(foodweb.matrix)
+dist.mat <- as.matrix(distances)
+dist.mat.nosmall <- dist.mat[-5,-5]
+
+pdf("~/Dropbox/PhD/Brazil2011/figures/dietSimilarityDistance.pdf")
+plot(1:12,rep(c(1,0),times=6),ylim=c(-0.1,1.1),type="n",
+     xlab="distance on tree",
+     ylab="similarity in diet")
+beanplot(dist.mat.nosmall[lower.tri(dist.mat.nosmall)]~phylo.selected[lower.tri(phylo.selected)],cut=1,add=TRUE,at=c(1,10,12),axes=FALSE)
+dev.off()
+
+
+visweb(foodweb.matrix)
 plotweb(foodweb.matrix)
 
 ## should display only those which are in the experiment:

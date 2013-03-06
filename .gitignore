@@ -15,3 +15,9 @@ ms.synctex.gz
 ms.bbl
 ms.log
 ms.tex
+
+MS/*.bbl
+MS/*.blg
+MS/*.log
+MS/*.synctex.gz
+MS/*-concordance.tex
