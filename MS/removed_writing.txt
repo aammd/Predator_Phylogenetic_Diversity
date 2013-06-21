@@ -1,27 +1,4 @@
-\documentclass[10pt]{article}
-\usepackage{graphicx}
-% \usepackage{fullpage}
-\usepackage{setspace}
-\usepackage{natbib}
-%%%%% \usepackage{lineno}
-\usepackage[margin=3.2cm]{geometry}
-\usepackage[singlelinecheck=off]{caption}
-\usepackage{lineno}
-\setcounter{secnumdepth}{-1}
 
-
-\begin{document}
-\title{Predator phylogenetic diversity decreases predation rate via
-  antagonistic interactions} 
-\author{A. Andrew M. MacDonald, Diane
-  S. Srivastava, Gustavo Q. Romero}
-%\date{November 2012}
-\begin{spacing}{2}
-\maketitle
-
-\linenumbers
-
-\section{Introduction}
 
 % %\paragraph{Predators have important effects on ecosystems, and
 %   predator combinations could have either greater or smaller effects}
@@ -146,68 +123,11 @@ all species via a series of feeding trials.  Finally, we conducted a
 community-level manipulation of predator phylogenetic diversity to
 estimate its effects on prey emergence and ecosystem function.
 
-\section{Methods}
-
-% Introduction themes related to this: the presence/rarity of food web
+% Introduction themes: the presence/rarity of food web
 % quantifications.  the large variation in ecosystem function (decomp
 % rate) in bromeliads in this habitat (lecraw, unpub data).  does pred
 % pd account for some of this? 
 
-
-We combined predators together in species pairs that represented a
-range of relatedness: congeners (two congeneric damselflies,
-\emph{Leptagrion andromache} and \emph{Leptagrion elongatum}), two
-insects (a damselfly, \emph{Leptagrion elongatum} and a predatory fly
-(Diptera: Tabanidae)) and two invertebrates (\emph{L. elongatum} and
-leeches).  We also included these four species in monoculture, along
-with a predator-free control (8 treatments, n=5).  Combinations were
-substitutive, maintaining the same amount of predator metabolic
-capacity (biomass raised to the power of 0.69, predicting the scaling
-of metabolism with body mass) in each.  Response
-variables included the rate of decomposition of leaves, bromeliad
-growth and insect emergence.  This experiment allows the estimation of
-the effect of each predator species from monoculture treatments, as
-well as the detection of non-additive effects in predator
-combinations.
-
-In Feburary 2011, bromeliads between 90 and 200ml were collected,
-thoroughly washed and soaked for 12 hours in a tub of water.  They
-were then hung for 48 hours to dry.  One bromeliad dissected after
-this procedure contained no insects.
-
-Each bromeliad was supplied with dried leaves, simulating natural
-detritus inputs from the canopy.  We enriched these leaves with N-15
-by fertilizing five (Jabuticaba, \emph{Genus species}) plants with
-40ml/pot/day of 5g/L ammonium sulphate containing 10 percent atom
-excess of N15. %%duration. started on 27/1/2011
-Whole leaves were then picked from plants and air-dried until constant
-weight, and then soaked for three days and the water discarded.  About
-1.5 g of leaves were placed in each bromeliad.
-
-Each bromeliad was stocked with a representative insect community.
-The densities of each prey taxon were calculated from a 2008
-observational dataset, using data from bromeliads of similar size to
-those in our experiment (DS Srivastava, upub. data).  All densities
-used were within the range of these calculated abundances, and all
-experimental bromeliads received the same insect community.  Halfway
-through the experiment, insects were added to bromeliads a second
-time.
-
-\begin{table}
-  \centering
-  \caption{densities of each species}
-  \label{tab:sppden}
-  \begin{tabular}{l l}
-    \hline
-    \emph{Chironomus detriticula} & 10 \\
-    \emph{Polypedium} sp. 1 & 4 \\
-    \emph{Polypedium} sp. 2 & 2 \\
-    \emph{Psychodid} sp. 1 & 1 \\
-    \emph{Scyrtes} sp. A & 5 \\
-    \emph{Culex} spp. & 4 \\
-    \emph{Trentepholia} sp. & 1
-  \end{tabular}
-\end{table}
 
 
 % Densities were calculated from 2008 dataset survey in two ways: the
@@ -256,75 +176,3 @@ highest emergence rate (number of surviving or emerging prey insects)
 confirming that predator treatments reduced the successful emergence
 of prey. Randomization tests confirmed that predator combinations had
 more prey survivorship than monoculture treatments \ref{fig:prednonadd}.
-
-%% would we see the same effects of predator survivorship?
-% \begin{figure}
-%   \centering
-%   \includegraphics{../figures/foodwebVisweb.pdf}
-%   \caption{A diagram of the food web among the taxa used in this
-% experiment. The top row represents predators, and the bottom prey.
-% the width of the grey lines indicates the strength of predation. Data
-% is from controlled feeding trials in laboratory conditions.}
-% \label{fig:foodweb}
-% \end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics{../figures/predatorPhylogenyCardoso2008.pdf}
-  \caption{A phylogeny of the predator species which coexist on Cardoso
-Island.  The tree is arbitrarily ultrametric; with the shortest branch
-length equal to 1.}
-\label{fig:predphylo}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics{../figures/beanplot_correlation_predator_dist.pdf}
-  \caption{phylogenetic distance and correlation between abundances}
-\label{fig:abdcorphylo}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics{../figures/beanplot_euclid_predator_dist.pdf}
-  \caption{phylogenetic distance and euclidian distances between species abundances}
-  \label{fig:euclidphylo}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics[width=0.9\textwidth]{../figures/bivar.pdf}
-  \caption{The non-additive effects of predator combinations. Percent
-    decomposition is the change in mass of the coarse detritus which
-    was supplied in each bromeliad.  Survivorship is the sum of
-    emerged adults and also those prey larvae which were found still
-    alive at the end of the experiment.  The non-additive effect is
-    calculated as the difference between the mean of the monoculture
-    treatments and the mean of the polyculture treatment. Solid lines
-    indicate 95\% bootstrap confidence intervals.}
-\label{fig:prednonadd}
-\end{figure}
-
-\begin{figure}
-  \centering
-  \includegraphics{../figures/dietSimilarityDistance.pdf}
-  \caption{Diet similarity in feeding trials as a function of
-    phylogenetic (taxonomic) distance}
-\label{fig:dietsim}
-\end{figure}
-
-
-\section{Discussion}
-
-It seems that this food web is dominated by omnivory.  Also, that
-damselflies are highly sensitive to the presence of other predators,
-which both decreases damselfly survivorship and perhaps also predation
-rate.  Other work in the similar Costa Rican bromeliad communities
-demonstrates that damselflies will voluntarily leave if in physical
-contact with dytiscid beetles (Edd and Trisha's work?).
-
-\end{spacing}
-
-\bibliographystyle{../../Writing/sysbio3} 
-\bibliography{../references/references.bib}
-\end{document}
