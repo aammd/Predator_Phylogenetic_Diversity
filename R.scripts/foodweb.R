@@ -1,14 +1,12 @@
 ## Foodweb data reorganization
 ## by Andrew MacDonald
-
-# I guess we start by setting WD to be here?  Needless if you start from emacs
-setwd("/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/")
+## based on foodweb data collected by Aline Nishi, Alathea Letaw, Robin Lecraw and Andrew MacDonald
 
 # read in data, functions, packages ---------------------------------------
 
-measured <- read.csv("../feeding.rearing/measured.predators.csv",comment.char="#",as.is=TRUE)
-preds <- read.csv("../feeding.rearing/other.predators.csv",comment.char="#",as.is=TRUE)
-lepts <- read.csv("../Leptagrion/lept.csv",as.is=TRUE)
+measured <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/measured.predators.csv",comment.char="#",as.is=TRUE)
+preds <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/other.predators.csv",comment.char="#",as.is=TRUE)
+lepts <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/Leptagrion/lept.csv",as.is=TRUE)
 
 
 # tidy up variable names --------------------------------------------------

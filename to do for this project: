@@ -2,3 +2,5 @@ to do for this project:
 Rearrange data into a data folder
 Add notes describing which of the many copies of data are valid -- put these in their own folders.
 Convert document to Markdown?
+
+make a 'cleaned data' directory, to separate edited data from unedited data.
