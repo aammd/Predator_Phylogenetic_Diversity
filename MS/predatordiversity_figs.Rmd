@@ -1,0 +1,7 @@
+## Figures
+
+```{r data_clean,echo=FALSE,message=FALSE}
+source("~/Dropbox/PhD/")
+opts_chunk$set(dev="pdf",results='hide',message=FALSE,warning=FALSE,echo=FALSE)
+```
+
