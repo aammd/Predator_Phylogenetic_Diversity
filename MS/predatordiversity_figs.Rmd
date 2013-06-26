@@ -23,6 +23,9 @@ source("../R.scripts/foodweb.fn.R")
 ```
 
 ```{r}
+# 
+# trial.list <- split(foodweb,foodweb$predator.names)
+# sapply(trial.list,nrow)
 ## need predators as columns, herbivores as rows
 foodweb.cast <- cast(data=foodweb,formula=Prey.species~predator.names,value="eaten.numeric",fun.aggregate=sum)
 
@@ -75,4 +78,7 @@ visweb(labsize=0.4,
 
 ```
 
+```{r}
+
+```
 
