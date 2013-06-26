@@ -114,4 +114,4 @@ measured.lept$Prey.species <- factor(prey.mes)
 
 ### at this point, the "measured.lept" dataset contains all the data required for analysis.
 
-write.csv(measured.lept,file="../feeding.rearing/reorganized.feeding.trial.data.csv")
+write.csv(measured.lept,file="../data/reorganized_data/reorganized.feeding.trial.data.csv")

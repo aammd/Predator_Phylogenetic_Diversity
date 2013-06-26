@@ -21,3 +21,7 @@ MS/*.blg
 MS/*.log
 MS/*.synctex.gz
 MS/*-concordance.tex
+MS/figure/*
+MS/predatordiversity_figs.html
+MS/predatordiversity_figs.md
+
