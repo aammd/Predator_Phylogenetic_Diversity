@@ -152,10 +152,10 @@
 	"buffers":
 	[
 		{
-			"file": "predatordiversity_source.Rmd",
+			"file": "predatordiversity_figs.Rmd",
 			"settings":
 			{
-				"buffer_size": 3000,
+				"buffer_size": 165,
 				"line_ending": "Unix"
 			}
 		},
@@ -168,10 +168,24 @@
 			}
 		},
 		{
+			"contents": "## read in a merge all the dataframes used in this experiment\n\n## Read in the datasets\nlvs<-read.csv(\"~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/leaves.csv\")\ncoarse<-read.csv(\"~/Dropbox/PhD/Brazil2011/data/detritus/paperbags.csv\")\nfine <- read.csv(\"~/Dropbox/PhD/Brazil2011/data/detritus/filters.csv\")\npd<-read.csv(\"~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/cages.csv\")\nn15<-read.csv(\"~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/n15.csv\")\nemerg<-read.csv(\"~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/emerg.csv\")\nsurv <- read.csv(\"~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/survived.csv\",comment.char=\"#\")\nsamp <- read.table(\"~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/Samples.csv\",comment.char=\"#\",sep=\",\",flush=TRUE,header=TRUE)\n\n## correctly order the treatment factor\npd$treatment<-factor(pd$treatment,\n	levels=c('control','andro','elong','tabanid','leech',\n	'elong + andro','elong + tab','elong + leech')\n	)\n\n#############################################\n#                 GROWTH\n\n## Calculate the growth of each bromeliad\nlvs$growth<-with(lvs,final.length-length)\n\n## average all the leaves per bromeliad\n## this is the only variable which requires to be AVERAGED before being combined.\ngrowth<-with(lvs,tapply(growth,bromeliad,mean,na.rm=T))\n\n##growth<-with(lvs,aggregate(growth,by=list(bromeliad=bromeliad),mean,na.rm=T))\n\ngrowth<-data.frame(bromeliad=names(growth),growth=growth)\n\n## combine with the data on treatment!\npd<-merge(growth,pd)\nrm(growth)\n\n#############################################\n#              COARSE DETRITUS\n\ncoarse$leaf.mass<-with(coarse,full-empty)\n\n## how many are less than zero?\n##coarse$leaf[!is.na(coarse$leaf.mass)&coarse$leaf.mass<0,]\n## these should probably be considered as zero  \n## anyway they're all e , meaning they are extra (ie not our leaves)\n\n## c is material that is only coarse, so only this stuff should be subtracted from what was put in.\nfinal.leaf.mass<-with(subset(coarse,experiment==\"pred.div\"&coarse.or.extra==\"c\"),\n                      tapply(leaf.mass,eu,sum,na.rm=T))\n\n## combining the final mass data with the full dataset (pd)!\nleaf.mass<-data.frame(eu=names(final.leaf.mass),leaf.mass=final.leaf.mass)\npd<-merge(leaf.mass,pd)\nrm(leaf.mass)\nrm(final.leaf.mass)\n\n## combining original mass of leaves with the full dataset (pd)\npd<-merge(pd,n15)\n\n## calculating percent decomposition\npd$decomp<-with(pd,(mass.g.-leaf.mass)/mass.g.)\n\n\n#############################################\n#              FINE DETRITUS\n\nfine$fine.mass<-with(fine,full-empty)\n\nfine.mass<-with(subset(fine,experiment==\"pred.div\"),\n                tapply(fine.mass,eu,sum,na.rm=T))\n#cleans it a bit\nfine.mass <- fine.mass[!is.na(fine.mass)]\n\n## combining the final mass data with the full dataset (pd)!\nfine.mass<-data.frame(eu=names(fine.mass),fine=fine.mass)\npd<-merge(fine.mass,pd)\nrm(fine.mass)\n\n#############################################\n#                 EMERGENCE\n\nemerged<-with(emerg,tapply(number,eu,sum))\nemerged<-data.frame(eu=names(emerged),emerged=emerged)\npd<-merge(emerged,pd,all=TRUE)\n\n# calculate how many emerged of each species group\nemerg.by.sp <- with(emerg,tapply(number,list(eu,species),sum,na.rm=TRUE))\nemerg.by.sp[is.na(emerg.by.sp)] <- 0\nemerg.by.sp <- data.frame(eu=rownames(emerg.by.sp),emerg.by.sp)\n\n## necessary to fill in NAs since they actually represent no emergence\n## and therefore true zeros.\npd$emerged[is.na(pd$emerged)] <- 0\n#with(pd,plot(emerged~treatment))\nrm(emerged)\n\n#############################################\n#               SURVIVAL\n\n#add in survived ones\n## subtracting oligochaetes, identified chironomids (because they are often underestimates) and the eu column\ninsect.species.used.in.survival <- c(\"chiromids\",\"Psychodid\",\n                                     \"Scirtes.sp.A\",\"Culex\",\"Tipulid\")\n\n##surv.total<-data.frame(eu=surv$eu,\n##                       surv=rowSums(surv[,insect.species.used.in.survival]))\n\nsurv.by.sp <- data.frame(eu=surv$eu,\n                       surv[,insect.species.used.in.survival])\n\n\n##pd <- merge(surv.total,pd)\n#with(pd,plot(surv~treatment))\n##pd$total.surv <- pd$surv+pd$emerged\n##rm(surv.total)\n\n#############################################\n## Calculate the totals of each species which survived\nhead(emerg.by.sp)\nhead(surv.by.sp)\nall.surv <- merge(surv.by.sp,emerg.by.sp,by.x=\"eu\",by.y=\"eu\",all.x=TRUE) #weirdly\n                                        #this doesn't work the other\n                                        #way around\nsurvival <- data.frame(\n              eu=all.surv[,\"eu\"],\n              Culicidae=rowSums(all.surv[,c(\"Culex\",\"culicid\")],na.rm=TRUE),\n              Chironomidae=rowSums(all.surv[,c(\"chiromids\",\"midge\")],na.rm=TRUE),\n              Tipulidae=rowSums(all.surv[,c(\"Tipulid\",\"tipulid\")],na.rm=TRUE),\n              Psychodidae=rowSums(all.surv[,c(\"Psychodid\",\"psychodid\")],na.rm=TRUE),\n              Scirtidae=rowSums(all.surv[,c(\"Scirtes.sp.A\",\"scirtes\")],na.rm=TRUE)\n              )\n\nwhich(survival[,\"Culicidae\"]>4) #none\nwhich(survival[,\"Chironomidae\"]>16) #none\nexcess.P <- which(survival[,\"Psychodidae\"]>1) #8 !!\nexcess.S <- which(survival[,\"Scirtidae\"]>5) #7 !!\nexcess.T <- which(survival[,\"Tipulidae\"]>1) #5 !!\n\nsurvival[excess.P,\"Psychodidae\"] <- 1\nsurvival[excess.S,\"Scirtidae\"] <- 5\nsurvival[excess.T,\"Tipulidae\"] <- 1\n\nsurvival$total.surv <- rowSums(survival[,-1])\n\npd <- merge(pd,survival)\n\n\n\n##############################################\n###  DUMMY VARIABLES\n\npd$leech <- as.numeric(pd$treatment==\"leech\"|pd$treatment==\"elong + leech\")\npd$andro <- as.numeric(pd$treatment==\"andro\"|pd$treatment==\"elong + andro\")\npd$tab <- as.numeric(pd$treatment==\"tabanid\"|pd$treatment==\"elong + tab\")\npd$elong <- as.numeric(pd$treatment==\"elong\"|\n                       pd$treatment==\"elong + leech\"|\n                       pd$treatment==\"elong + andro\"|\n                       pd$treatment==\"elong + tab\")\n\n## N work\nhead(samp)\nhead(pd)\nsamp$eu <- as.numeric(sub(\"EU\",\"\",samp$Id))  # two rows (1A and 2A) are lost by\n                                  # this process.  I don't know what\n                                  # they are!\npd <- merge(samp,pd)\n\nstr(pd)\n\n\nrm(lvs,coarse,fine,n15,emerg,surv,samp)\n\nwrite.csv(pd,file=\"~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/pd_exp_cleaned_data.csv\",\n  row.names=FALSE)",
 			"file": "/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/experimental_data_collate_cleanup.R",
+			"file_size": 6312,
+			"file_write_time": 1372190093000000,
 			"settings":
 			{
-				"buffer_size": 6212,
+				"buffer_size": 6341,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "# R scripts for pd paper \n\n* `experimental_data_collate_cleanup.R` is for combining all the different datasets, and cleaning them.  It produces `pd_exp_cleaned_data.csv` which ",
+			"file": "/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/README_rscripts.md",
+			"file_size": 144,
+			"file_write_time": 1372189791000000,
+			"settings":
+			{
+				"buffer_size": 176,
 				"line_ending": "Unix"
 			}
 		},
@@ -180,6 +194,14 @@
 			"settings":
 			{
 				"buffer_size": 5604,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "predatordiversity_source.Rmd",
+			"settings":
+			{
+				"buffer_size": 4795,
 				"line_ending": "Unix"
 			}
 		}
@@ -356,6 +378,11 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.Rmd",
+		"/home/andrew/Dropbox/PhD/Brazil2011/data/predator.div.experiment/Rplots.pdf",
+		"/home/andrew/Dropbox/PhD/Brazil2011/data/predator.div.experiment/.Rhistory",
+		"/home/andrew/Dropbox/PhD/Brazil2011/data/predator.div.experiment/pd_exp_cleaned_data.csv",
+		"/home/andrew/Dropbox/PhD/Brazil2011/data/predator.div.experiment/random.figs.pdf",
 		"/home/andrew/test.md",
 		"/home/andrew/Dropbox/nestedness.paper/metacommunity.str.R",
 		"/home/andrew/Dropbox/nestedness.paper/.gitignore",
@@ -551,30 +578,28 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 5,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "predatordiversity_source.Rmd",
+					"file": "predatordiversity_figs.Rmd",
 					"settings":
 					{
-						"buffer_size": 3000,
+						"buffer_size": 165,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								333,
-								333
+								77,
+								77
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/MarkdownBuild/MultiMarkdown.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/Rx/Rmarkdown.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -613,15 +638,15 @@
 					"file": "/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/experimental_data_collate_cleanup.R",
 					"settings":
 					{
-						"buffer_size": 6212,
+						"buffer_size": 6341,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								61,
-								61
+								5955,
+								5955
 							]
 						],
 						"settings":
@@ -631,13 +656,39 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 1520.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 3,
+					"file": "/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/README_rscripts.md",
+					"settings":
+					{
+						"buffer_size": 176,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								168,
+								168
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
 					"file": "/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/foodweb.R",
 					"settings":
 					{
@@ -661,12 +712,35 @@
 						"zoom_level": 1.0
 					},
 					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "predatordiversity_source.Rmd",
+					"settings":
+					{
+						"buffer_size": 4795,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3752,
+								3752
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rx/Rmarkdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1311.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
 				}
-			]
-		},
-		{
-			"sheets":
-			[
 			]
 		}
 	],
@@ -687,18 +761,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.696085800041,
 			1.0
 		],
 		"rows":
@@ -741,6 +808,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 416.0,
+	"side_bar_width": 304.0,
 	"status_bar_visible": true
 }

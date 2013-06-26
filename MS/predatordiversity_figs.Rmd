@@ -1,7 +1,9 @@
 ## Figures
 
 ```{r data_clean,echo=FALSE,message=FALSE}
-source("~/Dropbox/PhD/")
+## set chunk options
 opts_chunk$set(dev="pdf",results='hide',message=FALSE,warning=FALSE,echo=FALSE)
+## load in data
+
 ```
 

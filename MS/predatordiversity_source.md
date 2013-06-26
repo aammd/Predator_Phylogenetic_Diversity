@@ -1,15 +1,8 @@
 %Predator phylogenetic diversity decreases predation rate via antagonistic interactions
 %A. Andrew M. MacDonald, Diane S. Srivastava, Gustavo Q. Romero
 
-```{r message=FALSE, echo=FALSE}
-## load libraries
-library(picante)
 
-## load phylogenetic data:
-predtree <- read.tree("../data/TreeData/predators.arbit.ultrametric.phy")
-pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
 
-```
 
 ## Methods
 
@@ -36,12 +29,12 @@ this procedure contained no insects.
 
 Each bromeliad was supplied with dried leaves, simulating natural
 detritus inputs from the canopy.  We enriched these leaves with N-15
-by fertilizing five (Jabuticaba, *Plinia cauliflora*) plants with
+by fertilizing five (Jabuticaba, **Plinia cauliflora**) plants with
 40ml/pot/day of 5g/L ammonium sulphate containing 10 percent atom
 excess of N15. *duration*. started on 27/1/2011
 Whole leaves were then picked from plants and air-dried until constant
 weight, and then soaked for three days and the water discarded.  About
-1.5 g of leaves were placed in each bromeliad (`r mean(pd$mass.g.)` ± `r sd(pd$mass.g.)`). 
+1.5 g of leaves were placed in each bromeliad (1.5006±0.0248). 
 
 Each bromeliad was stocked with a representative insect community.
 The densities of each prey taxon were calculated from a 2008

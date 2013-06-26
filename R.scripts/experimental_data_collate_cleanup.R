@@ -165,6 +165,10 @@ samp$eu <- as.numeric(sub("EU","",samp$Id))  # two rows (1A and 2A) are lost by
                                   # they are!
 pd <- merge(samp,pd)
 
+str(pd)
+
+
 rm(lvs,coarse,fine,n15,emerg,surv,samp)
 
-write.csv(pd,file="~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/pd_exp_cleaned_data.csv")
+write.csv(pd,file="~/Dropbox/PhD/Brazil2011/data/reorganized_data/pd_exp_cleaned_data.csv",
+  row.names=FALSE)
