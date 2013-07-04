@@ -14,6 +14,17 @@ Frankly, I'm not sure which is best.  **what do you think?**
 ```{r message=FALSE}
 library(picante)
 ```
+## 'taxonomic' trees
+
+This approach is simple: build a phylogeny which groups the predators by taxonomy.  The resulting distance matrix would just organize species as "far" or "not very far" from each other.
+
+```{r}
+predators_in_exp_ultrametric <- "(((Leptagrion.andromache,Leptagrion.elongatum),Tabanidae.spA),Hirudinidae);"
+pred_exp_ultrametric.tree <- read.tree(text=predators_in_exp_ultrametric)
+plot(pred_exp_ultrametric.tree)
+```
+
+
 
 ```{r}
 
@@ -24,5 +35,6 @@ predators_in_exp <- paste0("(((Leptagrion.andromache:",15,",Leptagrion.elongatum
 
 
 pred_exp_phylo <- read.tree(text=predators_in_exp)
+plot(pred_exp_phylo)
 ```
 
