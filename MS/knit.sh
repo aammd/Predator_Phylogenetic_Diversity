@@ -17,7 +17,7 @@ pdfunite predatordiversity_source.pdf predatordiversity_figs.pdf predatordiversi
 rm predatordiversity_source.pdf
 rm predatordiversity_figs.pdf
 rm *.html
-rm *.md
+#rm *.md
 
 #pandoc -H margins.sty --bibliography git_ms.bib --csl plos.csl git_manuscript.md -o git_manuscript.tex
 #pandoc -H margins.sty list_of_figures.md -o list_of_figures.tex

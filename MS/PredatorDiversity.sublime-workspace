@@ -155,7 +155,7 @@
 			"file": "predatordiversity_figs.Rmd",
 			"settings":
 			{
-				"buffer_size": 2185,
+				"buffer_size": 2898,
 				"line_ending": "Unix"
 			}
 		},
@@ -187,7 +187,15 @@
 			"file": "knit.sh",
 			"settings":
 			{
-				"buffer_size": 1066,
+				"buffer_size": 1067,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "/home/andrew/Dropbox/PhD/Brazil2011/README.md",
+			"settings":
+			{
+				"buffer_size": 1086,
 				"line_ending": "Unix"
 			}
 		},
@@ -203,7 +211,7 @@
 			"file": "predator diversity.bib",
 			"settings":
 			{
-				"buffer_size": 15447,
+				"buffer_size": 17028,
 				"line_ending": "Unix"
 			}
 		}
@@ -596,15 +604,15 @@
 					"file": "predatordiversity_figs.Rmd",
 					"settings":
 					{
-						"buffer_size": 2185,
+						"buffer_size": 2898,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								156,
-								156
+								0,
+								0
 							]
 						],
 						"settings":
@@ -702,15 +710,15 @@
 					"file": "knit.sh",
 					"settings":
 					{
-						"buffer_size": 1066,
+						"buffer_size": 1067,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								843,
-								843
+								826,
+								826
 							]
 						],
 						"settings":
@@ -725,6 +733,32 @@
 				},
 				{
 					"buffer": 5,
+					"file": "/home/andrew/Dropbox/PhD/Brazil2011/README.md",
+					"settings":
+					{
+						"buffer_size": 1086,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								472,
+								472
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
 					"file": "/home/andrew/Dropbox/PhD/Brazil2011/data/TreeData/predators.arbit.ultrametric.phy",
 					"settings":
 					{
@@ -750,11 +784,11 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 7,
 					"file": "predator diversity.bib",
 					"settings":
 					{
-						"buffer_size": 15447,
+						"buffer_size": 17028,
 						"regions":
 						{
 						},
