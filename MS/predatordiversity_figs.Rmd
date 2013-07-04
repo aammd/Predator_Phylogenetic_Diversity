@@ -56,7 +56,7 @@ dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
 foodweb.matrix <- foodweb.matrix[,-ncol(foodweb.matrix)]  ## last column was an NA predator.
 
 distances <- vegdist(t(foodweb.matrix),method='jaccard')
-phylodist <- cophenetic(pred_exp_phylo)
+phylodist <- cophenetic(predtree)
 #dimnames(phylodist)[[1]]
 #distances
 aligns <- c(11,14,1,3,2,12,13)
