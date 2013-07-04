@@ -2,7 +2,7 @@
 
 ```{r data_clean,echo=FALSE,message=FALSE}
 ## set chunk options
-opts_chunk$set(results='hide',message=FALSE,warning=FALSE,echo=FALSE)#dev="pdf",
+opts_chunk$set(results='hide',message=FALSE,warning=FALSE,echo=FALSE)#,dev="pdf",)
 
 ## load packages
 library(ggplot2)
@@ -22,6 +22,27 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
 source("../R.scripts/foodweb.fn.R")
 ```
 
+
+```{r}
+## just the predators in the experiment:
+str(predtree)
+## define based on just a simple text string
+
+## get the files with timetree info
+list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE)
+
+insects_to_leeches <- mean(read.csv("../data/TreeData//insects.to.leeches.csv")$Time)
+odonata_tabanid <- mean(read.csv("../data/TreeData/odonata-Tabanidae.csv")$Time)
+
+predators_in_exp <- paste0("(((Leptagrion.andromache:",10,",Leptagrion.elongatum:",10,"):",odonata_tabanid-10,",Tabanidae.spA:",odonata_tabanid,"):",insects_to_leeches-odonata_tabanid,",Hirudinidae:",insects_to_leeches,");")
+
+
+pred_exp_phylo <- read.tree(text=predators_in_exp)
+# plot(pred_exp_phylo)
+# str(pred_exp_phylo)
+```
+
+
 ```{r}
 # 
 # trial.list <- split(foodweb,foodweb$predator.names)
@@ -35,7 +56,7 @@ dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
 foodweb.matrix <- foodweb.matrix[,-ncol(foodweb.matrix)]  ## last column was an NA predator.
 
 distances <- vegdist(t(foodweb.matrix),method='jaccard')
-phylodist <- cophenetic(predtree)
+phylodist <- cophenetic(pred_exp_phylo)
 #dimnames(phylodist)[[1]]
 #distances
 aligns <- c(11,14,1,3,2,12,13)
@@ -45,19 +66,19 @@ dist.mat <- as.matrix(distances)
 dist.mat.nosmall <- dist.mat[-5,-5]
 
 plot(1:12,rep(c(1,0),times=6),ylim=c(-0.1,1.1),type="n",
-     xlab="distance on tree",
-     ylab="similarity in diet")
+    xlab="distance on tree",
+    ylab="similarity in diet")
 beanplot(dist.mat.nosmall[lower.tri(dist.mat.nosmall)]~phylo.selected[lower.tri(phylo.selected)],
-         cut=1,add=TRUE,at=c(1,10,12),axes=FALSE)
+        cut=1,add=TRUE,at=c(1,10,12),axes=FALSE)
 
 ```
 
 ```{r}
-visweb(foodweb.matrix)
+#visweb(foodweb.matrix)
 ```
 
 ```{r}
-plotweb(foodweb.matrix)
+ plotweb(foodweb.matrix)
 ```
 
 ```{r}
@@ -65,20 +86,16 @@ plotweb(foodweb.matrix)
 dimnames(foodweb.matrix)[[1]][c(1,2,3,5,7,8,9,9,11,12,14)]
 dimnames(foodweb.matrix)[[2]][c(1,2,3,4)]
 
-par(cex=0.8)
 plotweb(y.width.low=0.05,y.width.high=0.05,ybig=1,
         foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
 ```
 
 ```{r}
-## the PROBLEM is that there are 0s and there are NAs and I want to have a means
+# the PROBLEM is that there are 0s and there are NAs and I want to have a means
 ## of displaying each
-visweb(labsize=0.4,
-       foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
+#visweb(labsize=0.4,
+#       foodweb.matrix[c(1,2,3,5,7,8,9,9,11,12,14),c(1,2,3,4)])
 
 ```
 
-```{r}
-
-```
 

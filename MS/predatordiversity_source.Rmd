@@ -11,6 +11,18 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
 
 ```
 
+## Introduction
+
+How do predators respond in different combinations?
+
+There have been many studies of predator combinations, and many of the effects of phylogenetic diversity on the functioning of food webs.  No study has shown results from a direct manipulation of predator phylogenetic diversity.  
+
+Decreasing predator richness has been shown to increase herbivory [@Byrnes2006] in a three-level kelp food web.  As these authors point out, the effect of diversity on ecosystem functioning is better known for lower tropic levels, rather than predators.   
+
+Predator combinations can have many different outcomes.  From the perspective of ecosystem function it is important to consider whether these result in more or less top-down control.  Predator effects can be direct via changes in consumption, indirect via non-consumptive effects.  in other words, it can be via the effects of predators on each other, or on their prey, and directly or indirectly.  Therefore, in our experiment we tracked both predator and prey survival to the end of the experiment
+
+for example, predators can kill each other, or decrease feeding rates.
+
 ## Methods
 
 We combined predators together in species pairs that represented a
