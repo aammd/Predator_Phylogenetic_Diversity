@@ -1,4 +1,4 @@
-# Techique for phylogenetic trees
+# What's the best way to show phylogenetic relationships among predators?
 
 The central concept of this paper is the _phylogenetic diversity_ of predators.  We want to test whether several traits of different predator species (diet similarity, coexistence, effect on the ecosystem, etc) are correlated with phylogenetic distance.
 
@@ -30,7 +30,9 @@ plot(pred_exp_ultrametric.tree)
 ![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2.png) 
 
 
+## trees with 'real' branch lengths
 
+There are estimates of divergence times available at [TimeTree](http://www.timetree.org/).  I downloaded some data from there as .csv files, took the average, and assinged them to branches in the tree.  Thanks so much to all the [friendly commenters](https://www.zoology.ubc.ca/~macdonald/curious_interactions/taxonomy-tree/) who suggested this resource.  Here's the result:
 
 
 ```r
@@ -50,4 +52,8 @@ plot(pred_exp_phylo)
 
 ![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3.png) 
 
+
+The only taxa for which TimeTree *doesn't* help are my two species of congeneric damselflies (*Leptagrion* sp.).  Yet, if the other edges have a length, these should too, right?  So, I set it at 15 Mya, the estimated age of the genus [*Enallagma*](http://www.enallagma.com/phylogeny.php).  I figured that choosing a "deeper" split like he origin of a whole genus makes the phylogeny more conservative, because it places the common ancestor of *Leptagrion* closer to the other. 
+
+What do you think?  Utter fantasy or useful hack?
 
