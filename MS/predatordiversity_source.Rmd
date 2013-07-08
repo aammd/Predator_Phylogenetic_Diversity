@@ -94,6 +94,8 @@ Our phylogenetic relatedness in our community was very different -- it ranged fr
 
 All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality, however these did not reduce predator survivorship.
 
+
+
 Predator diet breadth is quite similar.  To test diet similarity, we compared the similarity in feeding trials between predators who were offered the same prey.  This was a lower number for the leech-damselfly comparison than for the damselfly-damselfly comparison.  We have data from **NUMBER** feeding trials. (a table, with similarity in diet in each cell and the number of species tested in brackets, with predators along the top and side (lower diagonal only) -- how to format this in R?)  by calculating a similarity matrix and converting to character, using paste to include sample sizes.
 
 All predators showed a broad diet overlap.  The system appears quite nested -- but this is possibly due to the difficulty in observing predation by leeches in the lab.

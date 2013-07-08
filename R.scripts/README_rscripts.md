@@ -4,4 +4,4 @@
 
 * `foodweb_merge_cleanup.R` handles all the feeding trial data, and merges it with the leptagrion data.  the output is saved in `data/reorganized_data/reorganized.feeding.trial.data.csv`
 
-* 
+* `cleanup_organization_for_graphing_analysis.R` is for reorganizing, collating all the data from all the sources -- basically, getting the numbers ready for the publication. After this, the stats happen in the MS and the graphing in the figures.
