@@ -1,4 +1,5 @@
-## this 
+## this file takes all the FINISHED datasets and prepares them for publication
+## in other words, the combined tree data, the community data, the experiment data and simulation results etc.
 
 ## load packages
 library(ggplot2)
@@ -10,7 +11,8 @@ library(picante)
 library(beanplot)
 
 ## load in data
-foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/reorganized.feeding.trial.data.csv",stringsAsFactors=FALSE)
+foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/reorganized.feeding.trial.data.csv",
+                    stringsAsFactors=FALSE)
 predtree <- read.tree("../data/TreeData/predators.arbit.ultrametric.phy")
 pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
 
@@ -26,12 +28,6 @@ culicidae_chironomidae <- mean(read.csv("../data/TreeData/CulicidaetoChironomida
 empid_dolicho <- mean(read.csv("../data/TreeData/empididaeDolichopodidae.csv")$Time)
 dolicho_tabanid <- mean(read.csv("../data/TreeData/dolicho_tabanid.csv")$Time)
 diptera <- mean(read.csv("../data/TreeData/tabanidae_culidicae_ie_Diptera.csv")$Time)
-
-predators_in_exp <- paste0("(((Leptagrion.andromache:",15,",Leptagrion.elongatum:",15,"):",odonata_tabanid-15,",Tabanidae.spA:",odonata_tabanid,"):",insects_to_leeches-odonata_tabanid,",Hirudinidae:",insects_to_leeches,");")
-
-# 
-pred_exp_phylo <- read.tree(text=predators_in_exp)
- plot(pred_exp_phylo)
 
 plot(predtree)
 # str(pred_exp_phylo)
