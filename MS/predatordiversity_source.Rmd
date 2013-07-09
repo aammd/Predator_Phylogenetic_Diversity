@@ -4,11 +4,12 @@
 ```{r message=FALSE, echo=FALSE}
 ## load libraries
 library(picante)
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
 
 ## load phylogenetic data:
 predtree <- read.tree("../data/TreeData/predators.arbit.ultrametric.phy")
 pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
-
+source("../R.scripts/cleanup_organization_for_graphing_analysis.R")
 ```
 
 ## Introduction
@@ -87,6 +88,12 @@ with a mesh cage and checked daily for emergence of adults.
 
 Our central hypothesis is that the phylogenetic relationships among predatory taxa in this system can be used to interpret their ecology.  Specifically, we test the hypothesis that phylogenetic relatedness is negatively correlated with probability of co-occurance, positively with diet similarity.  Consequently, we might predict that ecosystem function peaks at some intermediate level of phylogenetic diversity -- where predators occur but where their similarity creates complementarity.
 
+```{r}
+diet_sim_phylo <- lm(dist.mat[lower.tri(dist.mat)]~phylodist[lower.tri(phylodist)])
+diet_phylo_summary <- summary(diet_sim_phylo)
+```
+
+Phylogenetic distance was not correlated with similarity in diet (F~`r diet_phylo_summary$fstatistic[["numdf"]]`,`r diet_phylo_summary$fstatistic[["dendf"]]`~=`r diet_phylo_summary$fstatistic[["value"]]`,P=`r pf(diet_phylo_summary$fstatistic[1],diet_phylo_summary$fstatistic[2],diet_phylo_summary$fstatistic[3],lower.tail=FALSE)`).
 
 ### phylogenetic distance
 

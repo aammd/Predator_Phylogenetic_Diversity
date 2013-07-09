@@ -5,10 +5,7 @@
 
 
 
-
-
-
-![FALSE](figure/unnamed-chunk-2.pdf) 
+![FALSE](figure/unnamed-chunk-1.pdf) 
 
 ## Figure 1
 similarity between predators in diet composition in food web trials, as predicted by phylogenetic distance. 
@@ -17,10 +14,10 @@ similarity between predators in diet composition in food web trials, as predicte
 
 
 
+![FALSE](figure/unnamed-chunk-3.pdf) 
+
+
 ![FALSE](figure/unnamed-chunk-4.pdf) 
-
-
-![FALSE](figure/unnamed-chunk-5.pdf) 
 
 
 
