@@ -15,6 +15,9 @@ library(beanplot)
 source("../R.scripts/cleanup_organization_for_graphing_analysis.R")
 ```
 
+```{r}
+plot(predtree_timetree_ages)
+```
 
 
 ```{r}

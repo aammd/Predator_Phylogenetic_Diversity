@@ -2,9 +2,6 @@
 %A. Andrew M. MacDonald, Diane S. Srivastava, Gustavo Q. Romero
 
 
-```
-## Error: object 'pts_chunk' not found
-```
 
 
 ## Introduction
@@ -84,10 +81,6 @@ with a mesh cage and checked daily for emergence of adults.
 Our central hypothesis is that the phylogenetic relationships among predatory taxa in this system can be used to interpret their ecology.  Specifically, we test the hypothesis that phylogenetic relatedness is negatively correlated with probability of co-occurance, positively with diet similarity.  Consequently, we might predict that ecosystem function peaks at some intermediate level of phylogenetic diversity -- where predators occur but where their similarity creates complementarity.
 
 
-```r
-diet_sim_phylo <- lm(dist.mat[lower.tri(dist.mat)] ~ phylodist[lower.tri(phylodist)])
-diet_phylo_summary <- summary(diet_sim_phylo)
-```
 
 
 Phylogenetic distance was not correlated with similarity in diet (F~1,4~=0.0681,P=0.8071).
