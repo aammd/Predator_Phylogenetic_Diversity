@@ -2,7 +2,7 @@
 
 ```{r data_clean,echo=FALSE,message=FALSE}
 ## set chunk options
-opts_chunk$set(results='hide',message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
+opts_chunk$set(results='hide',message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="pdf")
 
 ## load packages
 library(ggplot2)
