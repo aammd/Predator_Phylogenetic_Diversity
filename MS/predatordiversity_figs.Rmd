@@ -15,12 +15,12 @@ library(beanplot)
 source("../R.scripts/cleanup_organization_for_graphing_analysis.R")
 ```
 
-```{r}
+```{r phyloimage}
 plot(predtree_timetree_ages)
 ```
 
 
-```{r}
+```{r diet_similarity}
 plot(dist.mat[lower.tri(dist.mat)]~phylodist[lower.tri(phylodist)],
      xlab="phylogenetic distance (Mya)",ylab="similarity in diet (jaccard index)")
 ```
