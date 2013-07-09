@@ -16,10 +16,10 @@ similarity between predators in diet composition in food web trials, as predicte
 
 
 
-![FALSE](figure/unnamed-chunk-2.png) 
+![FALSE](figure/foodweb_full.png) 
 
 
-![FALSE](figure/unnamed-chunk-3.png) 
+![FALSE](figure/foodweb_expermental.png) 
 
 
 

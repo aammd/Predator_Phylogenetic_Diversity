@@ -32,11 +32,11 @@ similarity between predators in diet composition in food web trials, as predicte
 #visweb(foodweb.matrix)
 ```
 
-```{r}
+```{r foodweb_full}
  plotweb(foodweb.matrix)
 ```
 
-```{r}
+```{r foodweb_expermental}
 ## should display only those which are in the experiment:
 dimnames(foodweb.matrix)[[1]][c(1,2,3,5,7,8,9,9,11,12,14)]
 dimnames(foodweb.matrix)[[2]][c(1,2,3,4)]
