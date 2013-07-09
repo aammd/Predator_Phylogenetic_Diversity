@@ -1,7 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
-.pdf
+
 *.svg
 *.ps
 *~
@@ -23,4 +23,4 @@ MS/*.synctex.gz
 MS/*-concordance.tex
 MS/predatordiversity_figs.html
 
-
+figures/*
