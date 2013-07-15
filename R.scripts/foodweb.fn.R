@@ -1,3 +1,16 @@
+## functions for graphing and analyzing the predator-diversity and ecosystem function experiment
+
+## phylogenetic data can be subsetted to give just those in the experiment
+prune_predators <- function(names_predators=c("Leptagrion.andromache","Leptagrion.elongatum",
+                                              "Tabanidae.spA","Hirudinidae"),
+                            .predtree_timetree_ages=predtree_timetree_ages){
+  mat <- matrix(1,nrow=4)
+  rownames(mat) <- names_predators
+  prune.sample(phylo=.predtree_timetree_ages,samp=t(mat))
+}
+
+
+## graphs the foodweb
 picture <- function(preds,spread=2)
   {
     prey.list <- levels(preds$Prey)
@@ -62,3 +75,4 @@ picture <- function(preds,spread=2)
     }
 
   }
+

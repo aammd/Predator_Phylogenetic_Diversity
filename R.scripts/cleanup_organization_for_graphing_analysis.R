@@ -1,6 +1,8 @@
 ## this file takes all the FINISHED datasets and prepares them for publication
 ## in other words, the combined tree data, the community data, the experiment data and simulation results etc.
 
+
+# loading packages and data -----------------------------------------------
 ## load packages
 library(ggplot2)
 library(bipartite)
@@ -22,11 +24,14 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
 ## load in functions
 source("../R.scripts/foodweb.fn.R")
 
-## phylogenetic data can be subsetted to give just those in the experiment
-mat <- matrix(1,nrow=4)
-rownames(mat) <- c("Leptagrion.andromache","Leptagrion.elongatum","Tabanidae.spA","Hirudinidae")
-predators.in.exp <- prune.sample(phylo=predtree_timetree_ages,samp=t(mat))
-rm(mat)
+
+# occurrence data ----------------------------------------------------------
+
+
+
+###############################################
+#       organization for analysis 
+
 
 # trial.list <- split(foodweb,foodweb$predator.names)
 # sapply(trial.list,nrow)

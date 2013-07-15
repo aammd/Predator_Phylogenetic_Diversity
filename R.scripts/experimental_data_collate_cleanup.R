@@ -1,6 +1,10 @@
-## read in a merge all the dataframes used in this experiment
+## PD-EF experiment data is stored in several smaller datasets.  
+## This file reads them all together, merges them, prepares them for analysis
+## Andrew MacDonald, 2013
 
-## Read in the datasets
+
+# read in the datasets ----------------------------------------------------
+
 lvs<-read.csv("~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/leaves.csv")
 coarse<-read.csv("~/Dropbox/PhD/Brazil2011/data/detritus/paperbags.csv")
 fine <- read.csv("~/Dropbox/PhD/Brazil2011/data/detritus/filters.csv")
@@ -16,27 +20,27 @@ pd$treatment<-factor(pd$treatment,
 	'elong + andro','elong + tab','elong + leech')
 	)
 
-#############################################
-#                 GROWTH
+
+# GROWTH ------------------------------------------------------------------
 
 ## Calculate the growth of each bromeliad
 lvs$growth<-with(lvs,final.length-length)
 
 ## average all the leaves per bromeliad
 ## this is the only variable which requires to be AVERAGED before being combined.
-growth<-with(lvs,tapply(growth,bromeliad,mean,na.rm=T))
-
-##growth<-with(lvs,aggregate(growth,by=list(bromeliad=bromeliad),mean,na.rm=T))
-
+growth<-with(lvs,tapply(growth,bromeliad,mean,na.rm=TRUE)) # is a vector
+## make vector a dataframe:
 growth<-data.frame(bromeliad=names(growth),growth=growth)
 
 ## combine with the data on treatment!
 pd<-merge(growth,pd)
+## remove growth dataframe
 rm(growth)
 
-#############################################
-#              COARSE DETRITUS
 
+# COARSE DETRITUS ---------------------------------------------------------
+
+## find detritus mass by subtracting the full and empty mass of the bags:
 coarse$leaf.mass<-with(coarse,full-empty)
 
 ## how many are less than zero?
@@ -51,6 +55,7 @@ final.leaf.mass<-with(subset(coarse,experiment=="pred.div"&coarse.or.extra=="c")
 ## combining the final mass data with the full dataset (pd)!
 leaf.mass<-data.frame(eu=names(final.leaf.mass),leaf.mass=final.leaf.mass)
 pd<-merge(leaf.mass,pd)
+## remove intermediate datasets.
 rm(leaf.mass)
 rm(final.leaf.mass)
 
@@ -61,8 +66,7 @@ pd<-merge(pd,n15)
 pd$decomp<-with(pd,(mass.g.-leaf.mass)/mass.g.)
 
 
-#############################################
-#              FINE DETRITUS
+# FINE DETRITUS -----------------------------------------------------------
 
 fine$fine.mass<-with(fine,full-empty)
 
@@ -76,8 +80,9 @@ fine.mass<-data.frame(eu=names(fine.mass),fine=fine.mass)
 pd<-merge(fine.mass,pd)
 rm(fine.mass)
 
-#############################################
-#                 EMERGENCE
+
+# EMERGENCE ---------------------------------------------------------------
+
 
 emerged<-with(emerg,tapply(number,eu,sum))
 emerged<-data.frame(eu=names(emerged),emerged=emerged)
@@ -93,14 +98,16 @@ emerg.by.sp <- data.frame(eu=rownames(emerg.by.sp),emerg.by.sp)
 pd$emerged[is.na(pd$emerged)] <- 0
 #with(pd,plot(emerged~treatment))
 rm(emerged)
+## note that some of this will be used later:
 
-#############################################
-#               SURVIVAL
+# SURVIVAL (combines w emergence) ----------------------------------------
 
 #add in survived ones
 ## subtracting oligochaetes, identified chironomids (because they are often underestimates) and the eu column
 insect.species.used.in.survival <- c("chiromids","Psychodid",
                                      "Scirtes.sp.A","Culex","Tipulid")
+
+
 
 ##surv.total<-data.frame(eu=surv$eu,
 ##                       surv=rowSums(surv[,insect.species.used.in.survival]))
@@ -114,7 +121,6 @@ surv.by.sp <- data.frame(eu=surv$eu,
 ##pd$total.surv <- pd$surv+pd$emerged
 ##rm(surv.total)
 
-#############################################
 ## Calculate the totals of each species which survived
 head(emerg.by.sp)
 head(surv.by.sp)
@@ -136,6 +142,7 @@ excess.P <- which(survival[,"Psychodidae"]>1) #8 !!
 excess.S <- which(survival[,"Scirtidae"]>5) #7 !!
 excess.T <- which(survival[,"Tipulidae"]>1) #5 !!
 
+## set all survivorship of those groups which *increased* (which should be impossible!) to 100%
 survival[excess.P,"Psychodidae"] <- 1
 survival[excess.S,"Scirtidae"] <- 5
 survival[excess.T,"Tipulidae"] <- 1
@@ -144,10 +151,11 @@ survival$total.surv <- rowSums(survival[,-1])
 
 pd <- merge(pd,survival)
 
+rm(list=c("all.surv","emerg.by.sp","survival","surv.by.sp",
+          "excess.P","excess.S","excess.T","insect.species.used.in.survival"))
 
+# DUMMY VARIABLES ---------------------------------------------------------
 
-##############################################
-###  DUMMY VARIABLES
 
 pd$leech <- as.numeric(pd$treatment=="leech"|pd$treatment=="elong + leech")
 pd$andro <- as.numeric(pd$treatment=="andro"|pd$treatment=="elong + andro")
@@ -157,18 +165,25 @@ pd$elong <- as.numeric(pd$treatment=="elong"|
                        pd$treatment=="elong + andro"|
                        pd$treatment=="elong + tab")
 
-## N work
-head(samp)
-head(pd)
-samp$eu <- as.numeric(sub("EU","",samp$Id))  # two rows (1A and 2A) are lost by
-                                  # this process.  I don't know what
-                                  # they are!
+
+# N15 samples -------------------------------------------------------------
+
+## Samples 1A and 2A are the enriched leaves. remove em.
+enriched <- droplevels(samp[samp$Id==c("1A","2A"),])
+samp <- droplevels(samp[samp$Id!=c("1A","2A"),])
+
+## make 'eu', for combining with pd
+samp$eu <- as.numeric(sub("EU","",samp$Id))
+
 pd <- merge(samp,pd)
-
-str(pd)
-
 
 rm(lvs,coarse,fine,n15,emerg,surv,samp)
 
+#### write data out ####
+## experimental data
 write.csv(pd,file="~/Dropbox/PhD/Brazil2011/data/reorganized_data/pd_exp_cleaned_data.csv",
   row.names=FALSE)
+## enriched leaves
+write.csv(enriched,file="~/Dropbox/PhD/Brazil2011/data/reorganized_data/enriched_leaves.csv",
+          row.names=FALSE)
+
