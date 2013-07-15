@@ -65,4 +65,4 @@ predtree_timetree_ages <- change_edgelength(desc_name_regex="Pterygota",ancest_n
 predtree_timetree_ages <- change_edgelength(desc_name_regex="Hirudinidae",ancest_name_regex="Protostomia",age=insects_to_leeches,tree=predtree_timetree_ages)
 
 ## kill all the node ages, leaving only the predtree and predtree_timetree_ages
-rm(list=ls()[!grepl("pred.",ls())])
+rm(list=c("cerato_chiro","change_edgelength","culicidae_chironomidae","diptera","dolicho_tabanid","empid_dolicho","insects_to_leeches","odonata_tabanid"))
