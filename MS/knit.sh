@@ -3,7 +3,7 @@ cp ~/Documents/Mendeley_reference_lists/predator\ diversity.bib .
 # Make the figure
 # Make the manuscript
 Rscript -e "library(knitr); knit('predatordiversity_source.Rmd')"
-pandoc -s -S --bibliography=predator\ diversity.bib predatordiversity_source.md -o predatordiversity_source.pdf --latex-engine=xelatex
+pandoc -H format.sty -V fontsize=12pt -s -S --bibliography=predator\ diversity.bib predatordiversity_source.md -o predatordiversity_source.pdf --latex-engine=xelatex
 #pandoc -s -S predatordiversity-knitr.md -o predatordiversity-knitr.pdf
 
 ## make the figures
@@ -13,7 +13,7 @@ pandoc -s -S predatordiversity_figs.md -o predatordiversity_figs.pdf
 
 # Combine the two 
 pdfunite predatordiversity_source.pdf predatordiversity_figs.pdf predatordiversity_MS.pdf
-# Remove duplicate files and rename concated one to original name
+# Remove un-needed files
 rm predatordiversity_source.pdf
 rm predatordiversity_figs.pdf
 rm *.html
