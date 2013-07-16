@@ -14,4 +14,4 @@
 
 * `pred.div.R` applies the functions of `pd.functions.R` to the experimental data.  should probably be reworked and added to the main document.
 
-* `predator.cooccurance.R` measures the probability of predators co-occuring as a function of their phylogenetic distance.
+* `predator.cooccurance.R` organizes co-occurrence data from the working group.  produces.  the probability of predators co-occuring as a function of their phylogenetic distance. 

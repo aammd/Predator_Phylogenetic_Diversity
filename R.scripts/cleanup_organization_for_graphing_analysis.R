@@ -13,20 +13,26 @@ library(beanplot)
 
 ## load in data
 # phylogenetic data
-source("../R.scripts/phylogeny.R") #NB clears workspace
+source("../R.scripts/phylogeny.R") 
 # feeding trial data
 foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/reorganized.feeding.trial.data.csv",
                     stringsAsFactors=FALSE)
 # experimental data
 pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
-
+# enriched leaves
+enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv")
 
 ## load in functions
 source("../R.scripts/foodweb.fn.R")
 
-
 # occurrence data ----------------------------------------------------------
 
+
+
+# feeding trials ----------------------------------------------------------
+
+
+# ecosystem function ------------------------------------------------------
 
 
 ###############################################

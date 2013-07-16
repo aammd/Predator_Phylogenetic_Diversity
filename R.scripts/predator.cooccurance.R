@@ -1,9 +1,4 @@
-## R code for calculating the co-occurance of predators
-
-library(picante)
-library(beanplot)
-
-predtree <- read.tree("../TreeData/predators.arbit.ultrametric.phy")
+## R code for organizing predator co-occurrence data
 
 data <-
   read.table("../../../CommunityAnalysis/Analyses/data.05dec2012/species/cardoso_2008_speciesname.txt",
