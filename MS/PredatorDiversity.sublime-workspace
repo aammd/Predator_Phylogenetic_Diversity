@@ -152,10 +152,19 @@
 	"buffers":
 	[
 		{
-			"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
+			"file": "notes",
 			"settings":
 			{
-				"buffer_size": 26314,
+				"buffer_size": 204,
+				"line_ending": "Unix",
+				"name": "# methodnotes"
+			}
+		},
+		{
+			"file": "predatordiversity_source.Rmd",
+			"settings":
+			{
+				"buffer_size": 7843,
 				"line_ending": "Unix"
 			}
 		}
@@ -332,15 +341,18 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
+		"/home/andrew/Dropbox/PhD/Brazil2011/.gitignore",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/format.sty",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/knit.sh",
+		"/home/andrew/Documents/CoffeeCoop/R/do_accounts_database.md",
+		"/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/predator.cooccurance.R",
 		"/home/andrew/Dropbox/nestedness.paper/R.scripts/README_rscripts.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/README_rscripts.md",
 		"/home/andrew/Dropbox/PhD/brazil2013/experiments/README.md",
-		"/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_figs.Rmd",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.Rmd",
 		"/home/andrew/devtools.wiki/Performance.md",
-		"/home/andrew/Dropbox/PhD/Brazil2011/MS/knit.sh",
-		"/home/andrew/Dropbox/PhD/Brazil2011/.gitignore",
 		"/home/andrew/Dropbox/PhD/Brazil2011/README.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predator diversity.bib",
 		"/home/andrew/Dropbox/PhD/Brazil2011/data/TreeData/predators.arbit.ultrametric.phy",
@@ -385,7 +397,6 @@
 		"/home/andrew/.config/sublime-text-2/Packages/Table Editor/README.md",
 		"/home/andrew/Desktop/lab",
 		"/home/andrew/Documents/CoffeeCoop/signup/notice.md",
-		"/home/andrew/Documents/CoffeeCoop/R/do_accounts_database.md",
 		"/home/andrew/Documents/CoffeeCoop/R/do_accounts_database.",
 		"/home/andrew/Desktop/angiethurs",
 		"/home/andrew/Dropbox/Public/FieldEcologistWorkflow/presentation/workflow-field-ecology.Rmd",
@@ -549,31 +560,60 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
+					"file": "notes",
 					"settings":
 					{
-						"buffer_size": 26314,
+						"buffer_size": 204,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								204,
+								204
 							]
 						],
 						"settings":
 						{
+							"auto_name": "# methodnotes",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
-						"translation.y": 399.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "predatordiversity_source.Rmd",
+					"settings":
+					{
+						"buffer_size": 7843,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1361,
+								1361
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rx/Rmarkdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

@@ -1,5 +1,9 @@
 ## R code for organizing predator co-occurrence data
 
+
+# read in relevant BWG data -----------------------------------------------
+
+
 data <-
   read.table("../../../CommunityAnalysis/Analyses/data.05dec2012/species/cardoso_2008_speciesname.txt",
              sep="\t",header=TRUE,stringsAsFactors=FALSE)
@@ -8,53 +12,44 @@ data <-
 trait.data <- read.table("../../../CommunityAnalysis/Analyses/data.05dec2012/nicknames.FGs.csv",sep=",",
                          na.strings=c("NA","?"),header=TRUE,stringsAsFactors=FALSE)
 
-## check the tree
-#summary(predtree)
-#predtree$edge
-#predtree$edge.length
 
-pdf("../figures/predatorPhylogenyCardoso2008.pdf")
-plot(predtree)
-dev.off()
+# selecting predators -----------------------------------------------------
 
-## calculate taxonomic distance matrix:
-dist.tip.matrix <- cophenetic.phylo(predtree)
-class(dist.tip.matrix)
-rownames(dist.tip.matrix)
-
-
-## select only the predators:
 ## first get the cardoso taxa
 func.group <- trait.data[["predator.prey"]][match(data[["name"]],trait.data[["nickname"]])]
 
 ## then attach to our data
 data.fg <- cbind(func.group,data)
 
+## finally, select only the predators:
 predator.matrix <- data.fg[which(data.fg[["func.group"]]=="predator"),]
+### note that several taxa are listed as NA, which is not a problem because they are either rare or 
+### definitely not predators.
 
-## calculate correlations
+# combining morphospecies and cleaning data -------------------------------
 
-dim(predator.matrix)
+## delete the unused columns:
+predator.matrix.sxs <- predator.matrix[,!names(predator.matrix)%in%c("func.group","name","realm")]
+### (sxs because it is now a nice species x site matrix)
 
-## first we must reorder the matrix so that it corresponds to the
-## phylogeny:
-
-predator.matrix[["X"]]
-predtree$tip.label
-
-## remove character columns all but the nicknames from the predator 
-predator.matrix.nameonly <- predator.matrix[,!names(predator.matrix)%in%c("func.group","name","realm")]
-
+## combine corethrellids
 ## combine the corethrellids:
-Corethr.spp <- grepl("Corethr*",predator.matrix.nameonly[["X"]])
-no.corethr <- predator.matrix.nameonly[!Corethr.spp,]
-sum.corethr <- colSums(predator.matrix[Corethr.spp,-c(1:4)])
+Corethr.spp <- grepl("Corethr*",predator.matrix.sxs[["X"]])
+predator.matrix.sxs[["X"]][Corethr.spp] <- "Corethrella.sp"
 
-pred.matrix.14spp <- rbind(no.corethr,c("Corethrella",sum.corethr))
+## the "=" causes grief:
 
-cbind(predtree$tip.label,pred.matrix.14spp[["X"]])
+predator.matrix.sxs[["X"]] <- gsub(pattern="=",replacement="",x=predator.matrix.sxs[["X"]])
 
-alignments <- c(7,13,8,9,2,1,14,4,3,5,10,11,12,6)
+## using plyr, combine Corethrellids:
+library(plyr)
+
+predator.mat <- ddply(.data=predator.matrix.sxs,
+                      .variables=.(X),.fun=colwise(sum))
+
+write.csv(x=predator.mat,file="../data/reorganized_data/predator.cooccur.txt",row.names=FALSE)
+
+# calculate correlations --------------------------------------------------
 
 ## for checking alignments
 #write.csv(cbind(predtree$tip.label,pred.matrix.14spp[["X"]][alignments]),file="testtaxa.txt")
