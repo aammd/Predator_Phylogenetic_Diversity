@@ -14,12 +14,16 @@ library(beanplot)
 ## load in data
 # phylogenetic data
 source("../R.scripts/phylogeny.R") 
+
+# occurrance data
+occur <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/predator.cooccur.txt",stringsAsFactor=FALSE)
+
 # feeding trial data
 foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/reorganized.feeding.trial.data.csv",
                     stringsAsFactors=FALSE)
 # experimental data
 pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
-# enriched leaves
+# enriched leaves -- ie just the N data for the detritus we put in.
 enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv")
 
 ## load in functions
@@ -27,16 +31,10 @@ source("../R.scripts/foodweb.fn.R")
 
 # occurrence data ----------------------------------------------------------
 
-
+## there are FOUR datasets to combine.  it seems reasonable to give them all the same names.
+## the names used in the phylogeny are simple.  Better to combine using those.
 
 # feeding trials ----------------------------------------------------------
-
-
-# ecosystem function ------------------------------------------------------
-
-
-###############################################
-#       organization for analysis 
 
 
 # trial.list <- split(foodweb,foodweb$predator.names)
@@ -68,3 +66,8 @@ experiment_pred_diet_reordered <- experiment_predators_diet[match(rownames(exper
 distances <- vegdist(experiment_pred_diet_reordered,method='jaccard',diag=TRUE)
 ## make a distance matrix so lower.tri subsetting works
 dist.mat <- as.matrix(distances)
+
+# ecosystem function ------------------------------------------------------
+
+
+

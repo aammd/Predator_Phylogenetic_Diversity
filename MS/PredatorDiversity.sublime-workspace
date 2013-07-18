@@ -151,23 +151,6 @@
 	},
 	"buffers":
 	[
-		{
-			"file": "notes",
-			"settings":
-			{
-				"buffer_size": 204,
-				"line_ending": "Unix",
-				"name": "# methodnotes"
-			}
-		},
-		{
-			"file": "predatordiversity_source.Rmd",
-			"settings":
-			{
-				"buffer_size": 7843,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "Packages/MarkdownBuild/Markdown.sublime-build",
 	"command_palette":
@@ -341,6 +324,9 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/notes",
+		"/home/andrew/Dropbox/rainfall.randomization/RainRandomizations.Rmd",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.Rmd",
 		"/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
 		"/home/andrew/Dropbox/PhD/Brazil2011/.gitignore",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/format.sty",
@@ -351,7 +337,6 @@
 		"/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/README_rscripts.md",
 		"/home/andrew/Dropbox/PhD/brazil2013/experiments/README.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_figs.Rmd",
-		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.Rmd",
 		"/home/andrew/devtools.wiki/Performance.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/README.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predator diversity.bib",
@@ -443,7 +428,6 @@
 		"/home/andrew/knitr-examples/083-ggplot2-reference.Rmd",
 		"/home/andrew/knitr-examples/k",
 		"/home/andrew/Dropbox/PhD/brazil2013/experiments/MS/references.bib",
-		"/home/andrew/Dropbox/rainfall.randomization/RainRandomizations.Rmd",
 		"/etc/apt/sources.list",
 		"/usr/share/applications/sublime.desktop",
 		"/home/andrew/sublime.projects/habitat_experiment.sublime-project",
@@ -478,6 +462,7 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"read.tab",
 			"..",
 			"habitat_organism_size",
 			"markdown",
@@ -560,64 +545,8 @@
 	"groups":
 	[
 		{
-			"selected": 1,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "notes",
-					"settings":
-					{
-						"buffer_size": 204,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								204,
-								204
-							]
-						],
-						"settings":
-						{
-							"auto_name": "# methodnotes",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "predatordiversity_source.Rmd",
-					"settings":
-					{
-						"buffer_size": 7843,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1361,
-								1361
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Rx/Rmarkdown.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				}
 			]
 		}
 	],

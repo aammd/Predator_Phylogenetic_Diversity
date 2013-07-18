@@ -47,49 +47,47 @@ library(plyr)
 predator.mat <- ddply(.data=predator.matrix.sxs,
                       .variables=.(X),.fun=colwise(sum))
 
+## renaming, using names from phylogeny, for proper merging in `cleanup.R`
+## here is a vector of the tip labels from the phylogeny.  They're ordered to match the rows of predator.mat
+rename.rows <- c("Bezzia.sp1", "Bezzia.sp2", "Corethrella", "Dolichopodidae", 
+                 "Empididae.sp1", "Empididae.sp2", "Hirudinidae", "Leptagrion.andromache", 
+                 "Leptagrion.elongatum", "Leptagrion.tan", "Monopelopia", "Tabanidae.spA", 
+                 "Tabanidae.spB", "Tabanidae.spC")
+## this line (not run) shows that they do, in fact, match.
+## cbind(rename.rows,predator.mat[["X"]])
+predator.mat[["X"]] <- rename.rows
+
+## write to a file in /data/reorganized_data
 write.csv(x=predator.mat,file="../data/reorganized_data/predator.cooccur.txt",row.names=FALSE)
 
 # calculate correlations --------------------------------------------------
-
-## for checking alignments
-#write.csv(cbind(predtree$tip.label,pred.matrix.14spp[["X"]][alignments]),file="testtaxa.txt")
-
-pred.matrix.14spp <- pred.matrix.14spp[alignments,-1]
-
-## remove the long typed names and replace with tip labels:
-rownames(pred.matrix.14spp) <- predtree$tip.label
-
-str(pred.matrix.14spp)
-
-## write and read to get numbers back!
-write.csv(pred.matrix.14spp,file="predator.matrix.csv")
-
-predator.matrix.numeric <- read.csv("predator.matrix.csv",row.names=1)
-
-transpose.predator.matrix <- t(predator.matrix.numeric)
-
-pred.abd.distance <- vegdist(predator.matrix.numeric,method="euclid")
-
-
-pred.abd.cor <- cor(transpose.predator.matrix)
-
-pdf("../figures/correlation_predator_dist.pdf")
-plot(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)],pch="_")
-lines(lowess(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)]))
-dev.off()
-
-pdf("../figures/euclid_predator_dist.pdf")
-plot(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)])
-lines(lowess(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)],delta=5))
-dev.off()
-
-pdf("../figures/beanplot_correlation_predator_dist.pdf")
-beanplot(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)],pch="_")
-#lines(lowess(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)]))
-dev.off()
-
-pdf("../figures/beanplot_euclid_predator_dist.pdf")
-beanplot(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)])
-#lines(lowess(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)],delta=5))
-dev.off()
-
+# 
+# 
+# 
+# transpose.predator.matrix <- t(predator.matrix.numeric)
+# 
+# pred.abd.distance <- vegdist(predator.matrix.numeric,method="euclid")
+# 
+# 
+# pred.abd.cor <- cor(transpose.predator.matrix)
+# 
+# pdf("../figures/correlation_predator_dist.pdf")
+# plot(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)],pch="_")
+# lines(lowess(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)]))
+# dev.off()
+# 
+# pdf("../figures/euclid_predator_dist.pdf")
+# plot(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)])
+# lines(lowess(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)],delta=5))
+# dev.off()
+# 
+# pdf("../figures/beanplot_correlation_predator_dist.pdf")
+# beanplot(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)],pch="_")
+# #lines(lowess(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)]))
+# dev.off()
+# 
+# pdf("../figures/beanplot_euclid_predator_dist.pdf")
+# beanplot(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)])
+# #lines(lowess(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)],delta=5))
+# dev.off()
+# 
