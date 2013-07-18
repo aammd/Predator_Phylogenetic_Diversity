@@ -24,6 +24,9 @@ lepts2 <- with(lepts,
 # rename the awkward column
 names(measured)[which(names(measured)=="Eaten.or.not..1...eaten")] <- "eaten"
 
+
+# merge dataframes --------------------------------------------------------
+
 ## keep all measured predators, but merge in the information from 'lepts'
 measured.lept <- merge(measured,lepts2,all.x=TRUE)
 
@@ -62,20 +65,34 @@ measured.lept[measured.lept$predator=="L218","predator.names"] <- NA
 measured.lept[measured.lept$predator=="L220","predator.names"] <- NA
 measured.lept[measured.lept$predator=="L4","predator.names"] <- "elongatum"
 
-## Next eliminate duplicate names
+
+
+# combine duplicate predator names ------------------------------------------------
+
 unique(measured.lept$predator.names)
 
-measured.lept$predator.names[which(measured.lept$predator.names=="1 Leech "|measured.lept$predator.names=="leech")] <- "Leech"
+measured.lept$predator.names[which(measured.lept$predator.names=="1 Leech "|
+                                     measured.lept$predator.names=="leech")] <- "Hirudinidae"
 
-measured.lept$predator.names[which(measured.lept$predator.names=="elongatum"|measured.lept$predator.names=="Leptagrion elongatum "|measured.lept$predator.names=="leptagrion elongatum")] <- "Leptagrion elongatum"
+measured.lept$predator.names[which(measured.lept$predator.names=="elongatum"|
+                                     measured.lept$predator.names=="Leptagrion elongatum "|
+                                     measured.lept$predator.names=="Leptagrion elongatum"|                                     
+                                     measured.lept$predator.names=="leptagrion elongatum")] <- "Leptagrion.elongatum"
 
-measured.lept$predator.names[which(measured.lept$predator.names=="andromache")] <- "Leptagrion andromache"
+measured.lept$predator.names[which(measured.lept$predator.names=="andromache"|
+                                     measured.lept$predator.names=="Leptagrion andromache")] <- "Leptagrion.andromache"
 
-measured.lept$predator.names[which(measured.lept$predator.names=="tan")] <- "Leptagrion 'tan'"
+measured.lept$predator.names[which(measured.lept$predator.names=="tan")] <- "Leptagrion.tan"
+measured.lept$predator.names[which(measured.lept$predator.names=="small")] <- "Leptagrion.small"
 
-measured.lept$predator.names[which(measured.lept$predator.names=="small")] <- "Leptagrion small"
+measured.lept$predator.names[which(measured.lept$predator.names=="green Tabanid"|
+                                     measured.lept$predator.names=="tabanid"|
+                                     measured.lept$predator.names=="Green Tabanid")] <- "Tabanidae.spA"
 
-measured.lept$predator.names[which(measured.lept$predator.names=="green Tabanid"|measured.lept$predator.names=="tabanid")] <- "Green Tabanid"
+measured.lept$predator.names[which(measured.lept$predator.names=="red tabanid")] <- "Tabanidae.spB"
+
+measured.lept$predator.names[which(measured.lept$predator.names=="white tabanid")] <- "Tabanidae.spC"
+
 
 unique(measured.lept$predator.names)
 
@@ -91,7 +108,7 @@ prey.mes <- measured.lept$Prey
 prey.mes[which(prey.mes=="1 Tipulid "|prey.mes=="tipulid"|prey.mes=="1 Tipulid")] <- "Tipulid"
 prey.mes[which(prey.mes=="1 polypedilum 2")] <- "1 Polypedilum 2"
 prey.mes[which(prey.mes=="1 Scirtes A"|prey.mes=="scirtid A")] <- "Scirtes A"
-prey.mes[which(prey.mes=="Leptagrion elongatum ")] <- "Leptagrion elongatum"
+prey.mes[which(prey.mes=="Leptagrion elongatum ")] <- "Leptagrion.elongatum"
 prey.mes[which(prey.mes=="1 Psychodid "|prey.mes=="1 psychodid ")] <- "Psychodid"
 prey.mes[which(prey.mes=="1 Polypedilum 2")] <- "Polypedilum 2"
 prey.mes[which(prey.mes=="1 Monopelopia "|prey.mes=="1 Monopelopia")] <- "Monopelopia"
@@ -99,7 +116,7 @@ prey.mes[which(prey.mes=="1 Chironomus detriticula")] <- "Chironomus detriticula
 prey.mes[which(prey.mes=="1 Trichoptera")] <- "Phylloicus bromeliarum"
 prey.mes[which(prey.mes=="1 Scirtes B")] <- "Scirtes B"
 prey.mes[which(prey.mes=="1 Polypedilum 1")] <- "Polypedilum 1"
-prey.mes[which(prey.mes=="1 Leech")] <- "Leech"
+prey.mes[which(prey.mes=="1 Leech")] <- "Hirudinidae"
 prey.mes[which(prey.mes=="1 Culex")] <- "Culex"
 prey.mes[which(prey.mes=="ostracod"|prey.mes=="5 Ostracoda")] <- "Ostracod"
 
@@ -111,7 +128,16 @@ cbind(prey.mes,measured.lept$Prey)
 ## add to the dataframe
 measured.lept$Prey.species <- factor(prey.mes)
 
+## (not run) 
+## confirm that is the same as phylogeny
+source("../R.scripts/phylogeny.R")
+## how many taxa are in the tree?
+length(predtree$tip.label)
+## what taxa are shared?
+sharedtaxa <- intersect(unique(measured.lept$predator.names),predtree$tip.label)
+## what taxa *aren't* in the tree?
+unique(measured.lept$predator.names)[!unique(measured.lept$predator.names)%in%sharedtaxa]
 
 ### at this point, the "measured.lept" dataset contains all the data required for analysis.
 
-write.csv(measured.lept,file="../data/reorganized_data/reorganized.feeding.trial.data.csv")
+#write.csv(measured.lept,file="../data/reorganized_data/reorganized.feeding.trial.data.csv")
