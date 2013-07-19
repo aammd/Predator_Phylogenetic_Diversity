@@ -26,16 +26,41 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
 # enriched leaves -- ie just the N data for the detritus we put in.
 enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv")
 
+# phylogeny data
+source("../R.scripts/phylogeny.R")
+
 ## load in functions
 source("../R.scripts/foodweb.fn.R")
 
 # occurrence data ----------------------------------------------------------
 
-## there are FOUR datasets to combine.  it seems reasonable to give them all the same names.
-## the names used in the phylogeny are simple.  Better to combine using those.
+## combine by names, then do distances:
+## occur matrix
+occur.matrix <- occur[-1]
+dimnames(occur.matrix)[[1]] <- occur[,1]
+pred.abd.distance <- vegdist(occur.matrix>0,method="euclid")
+pred_abd_matrix <- as.matrix(pred.abd.distance)
+#occurdist_allpred <- data.frame(X=rownames(pred_abd_matrix),pred_abd_matrix)
+
+## phylogeny matrix
+allpred.distance.matrix <- cophenetic(predtree_timetree_ages)
+where_in_phylo <- match(rownames(pred_abd_matrix),rownames(allpred.distance.matrix))
+pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo,where_in_phylo]
+
+
+plot(pred_abd_matrix[lower.tri(pred_abd_matrix)]~jitter(pred_phylo_matrix[lower.tri(pred_abd_matrix)],amount=50))
+summary(lm(pred_abd_matrix[lower.tri(pred_abd_matrix)]~pred_phylo_matrix[lower.tri(pred_abd_matrix)]))
+
+
+mantel.test(pred_phylo_matrix,pred_abd_matrix)
+
+# total biomass per bromeliad
+
+mantel.test(allpred.distance.matrix,predator.occur.matrix,nperm=500)
 
 # feeding trials ----------------------------------------------------------
 
+# Check for TRUE ZEROS in cast matrix.
 
 # trial.list <- split(foodweb,foodweb$predator.names)
 # sapply(trial.list,nrow)
@@ -54,12 +79,6 @@ experiment_predators_diet <- t(foodweb.matrix[,location_exp_predators])
 ## better to rename and reorder to resemble output of cophenetic
 ## phylogenetic distances:
 phylodist <- cophenetic(predators.in.exp)
-## first rename experiment predators names
-rownames(experiment_predators_diet)[rownames(experiment_predators_diet)=="Green Tabanid"] <- "Tabanidae.spA"
-rownames(experiment_predators_diet)[rownames(experiment_predators_diet)=="Leech"] <- "Hirudinidae"
-rownames(experiment_predators_diet)[rownames(experiment_predators_diet)=="Leptagrion andromache"] <- "Leptagrion.andromache"
-rownames(experiment_predators_diet)[rownames(experiment_predators_diet)=="Leptagrion elongatum"] <- "Leptagrion.elongatum"
-
 ## they should also be in the same sequence:
 experiment_pred_diet_reordered <- experiment_predators_diet[match(rownames(experiment_predators_diet),rownames(phylodist)),]
 ## finally, calculate distance

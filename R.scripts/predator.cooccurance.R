@@ -8,6 +8,10 @@ data <-
   read.table("../../../CommunityAnalysis/Analyses/data.05dec2012/species/cardoso_2008_speciesname.txt",
              sep="\t",header=TRUE,stringsAsFactors=FALSE)
 
+data2 <-
+  read.table("../../../CommunityAnalysis/Data/Cardoso.2008_bromeliad_closed/Analyses/data.05dec2012/species/cardoso_2008_species.txt",
+             sep="\t",header=TRUE,stringsAsFactors=FALSE)
+
 
 trait.data <- read.table("../../../CommunityAnalysis/Analyses/data.05dec2012/nicknames.FGs.csv",sep=",",
                          na.strings=c("NA","?"),header=TRUE,stringsAsFactors=FALSE)

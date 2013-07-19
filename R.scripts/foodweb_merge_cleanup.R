@@ -129,15 +129,15 @@ cbind(prey.mes,measured.lept$Prey)
 measured.lept$Prey.species <- factor(prey.mes)
 
 ## (not run) 
-## confirm that is the same as phylogeny
-source("../R.scripts/phylogeny.R")
-## how many taxa are in the tree?
-length(predtree$tip.label)
-## what taxa are shared?
-sharedtaxa <- intersect(unique(measured.lept$predator.names),predtree$tip.label)
-## what taxa *aren't* in the tree?
-unique(measured.lept$predator.names)[!unique(measured.lept$predator.names)%in%sharedtaxa]
+# ## confirm that is the same as phylogeny
+# source("../R.scripts/phylogeny.R")
+# ## how many taxa are in the tree?
+# length(predtree$tip.label)
+# ## what taxa are shared?
+# sharedtaxa <- intersect(unique(measured.lept$predator.names),predtree$tip.label)
+# ## what taxa *aren't* in the tree?
+# unique(measured.lept$predator.names)[!unique(measured.lept$predator.names)%in%sharedtaxa]
 
 ### at this point, the "measured.lept" dataset contains all the data required for analysis.
 
-#write.csv(measured.lept,file="../data/reorganized_data/reorganized.feeding.trial.data.csv")
+write.csv(measured.lept,file="../data/reorganized_data/reorganized.feeding.trial.data.csv")
