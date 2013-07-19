@@ -1,6 +1,13 @@
-to do for this project:
-Rearrange data into a data folder
-Add notes describing which of the many copies of data are valid -- put these in their own folders.
-Convert document to Markdown?
+One R file for each data type: so four: 
 
-make a 'cleaned data' directory, to separate edited data from unedited data.
+* phylogeny
+* occurrence
+* feeding
+* experiment
+
+NOTE there may be some inconsistencies in which tabanid species is called what.  worth checking carefully.  ie in occurrence matrix it is "green" and Tabanid B, but in phylogeny I think I called it A.  Or maybe in feeding trial data.  should'nt matter?
+
+
+
+
+
