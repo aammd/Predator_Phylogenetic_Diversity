@@ -151,6 +151,14 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/MS/references.bib",
+			"settings":
+			{
+				"buffer_size": 3970,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/MarkdownBuild/Markdown.sublime-build",
 	"command_palette":
@@ -324,13 +332,21 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/devtools.wiki/Functions.md",
+		"/home/andrew/Dropbox/organization/someday.md",
+		"/home/andrew/Dropbox/organization/todo.md",
+		"/home/andrew/Dropbox/organization/projects.md",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/knit.sh",
+		"/home/andrew/Dropbox/PhD/Brazil2011/data/predator.size.decision/predsize.R",
+		"/home/andrew/Dropbox/PhD/Brazil2011/data/occur_by_size/Cardoso2008_WGformat_correct.txt",
+		"/home/andrew/Dropbox/PhD/Brazil2011/to do for this project:",
+		"/home/andrew/Esteban/OFL.txt",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/notes",
 		"/home/andrew/Dropbox/rainfall.randomization/RainRandomizations.Rmd",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.Rmd",
 		"/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
 		"/home/andrew/Dropbox/PhD/Brazil2011/.gitignore",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/format.sty",
-		"/home/andrew/Dropbox/PhD/Brazil2011/MS/knit.sh",
 		"/home/andrew/Documents/CoffeeCoop/R/do_accounts_database.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/predator.cooccurance.R",
 		"/home/andrew/Dropbox/nestedness.paper/R.scripts/README_rscripts.md",
@@ -361,7 +377,6 @@
 		"/home/andrew/Dropbox/PhD/brazil2013/experiments/MS/habitat_organism_size.Rmd",
 		"/home/andrew/.config/sublime-text-2/Packages/Default/Default (Linux).sublime-keymap",
 		"/home/andrew/Dropbox/keys/tweetdeck",
-		"/home/andrew/Dropbox/PhD/Brazil2011/to do for this project:",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predator.div.tex",
 		"/home/andrew/.config/sublime-text-2/Packages/Rx/Rx.sublime-settings",
 		"/home/andrew/.config/sublime-text-2/Packages/SublimeREPL/SublimeREPL.sublime-settings",
@@ -547,6 +562,32 @@
 		{
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/MS/references.bib",
+					"settings":
+					{
+						"buffer_size": 3970,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/LaTeX/Bibtex.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -614,6 +655,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 337.0,
+	"side_bar_width": 298.0,
 	"status_bar_visible": true
 }

@@ -17,6 +17,7 @@ source("../R.scripts/phylogeny.R")
 
 # occurrance data
 occur <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/predator.cooccur.txt",stringsAsFactor=FALSE)
+metabolic  <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/predator.cooccur.metabolic.txt",stringsAsFactor=FALSE)
 
 # feeding trial data
 foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/reorganized.feeding.trial.data.csv",
@@ -32,27 +33,48 @@ source("../R.scripts/phylogeny.R")
 ## load in functions
 source("../R.scripts/foodweb.fn.R")
 
-# occurrence data ----------------------------------------------------------
+# distance matrix calculation ----------------------------------------------------------
 
 ## combine by names, then do distances:
-## occur matrix
-occur.matrix <- occur[-1]
-dimnames(occur.matrix)[[1]] <- occur[,1]
-pred.abd.distance <- vegdist(occur.matrix>0,method="euclid")
+## metabolic matrix
+metabolic.matrix <- metabolic[-1]
+dimnames(metabolic.matrix)[[1]] <- metabolic[,1]
+pred.abd.distance <- vegdist(metabolic.matrix,method="euclid")
 pred_abd_matrix <- as.matrix(pred.abd.distance)
 #occurdist_allpred <- data.frame(X=rownames(pred_abd_matrix),pred_abd_matrix)
+metabolic_mat <- as.matrix(metabolic.matrix)
+pred_cor_matrix <- cor(t(metabolic_mat))
 
 ## phylogeny matrix
 allpred.distance.matrix <- cophenetic(predtree_timetree_ages)
 where_in_phylo <- match(rownames(pred_abd_matrix),rownames(allpred.distance.matrix))
 pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo,where_in_phylo]
 
+#Xlab <- expression(paste("Phylogenetic distance (mean age of common ancestor,10"^"6",")"))
 
-plot(pred_abd_matrix[lower.tri(pred_abd_matrix)]~jitter(pred_phylo_matrix[lower.tri(pred_abd_matrix)],amount=50))
-summary(lm(pred_abd_matrix[lower.tri(pred_abd_matrix)]~pred_phylo_matrix[lower.tri(pred_abd_matrix)]))
+#pdf("euclid_metabolic.pdf")
+plot(pred_abd_matrix[lower.tri(pred_abd_matrix)]~jitter(pred_phylo_matrix[lower.tri(pred_phylo_matrix)],amount=5),
+     xlab="phylogenetic distance",ylab="euclidian distance between total metabolic capacity")
+#dev.off()
+
+## phylogeny matrix
+allpred.distance.matrix <- cophenetic(predtree_timetree_ages)
+where_in_phylo <- match(rownames(pred_cor_matrix),rownames(allpred.distance.matrix))
+pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo,where_in_phylo]
+
+#Xlab <- expression(paste("Phylogenetic distance (mean age of common ancestor,10"^"6",")"))
+
+#pdf("cor_metabolic.pdf")
+plot(pred_cor_matrix[lower.tri(pred_cor_matrix)]~jitter(pred_phylo_matrix[lower.tri(pred_phylo_matrix)],amount=10),
+     xlab="phylogenetic distance",ylab="correlation between total metabolic capacity")
+#dev.off()
+
+summary(lm(pred_cor_matrix[lower.tri(pred_cor_matrix)]~pred_phylo_matrix[lower.tri(pred_abd_matrix)]))
 
 
-mantel.test(pred_phylo_matrix,pred_abd_matrix)
+mantel.test(pred_phylo_matrix,pred_cor_matrix)
+
+
 
 # total biomass per bromeliad
 

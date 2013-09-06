@@ -9,9 +9,9 @@ pandoc -H format.sty -V fontsize=12pt -s -S --bibliography=predator\ diversity.b
 ## make the figures
 Rscript -e "library(knitr); knit('predatordiversity_figs.Rmd')"
 pandoc -s -S predatordiversity_figs.md -o predatordiversity_figs.pdf
+Combine
 
-
-# Combine the two 
+#  the two 
 pdfunite predatordiversity_source.pdf predatordiversity_figs.pdf predatordiversity_MS.pdf
 # Remove un-needed files
 rm predatordiversity_source.pdf

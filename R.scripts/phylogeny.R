@@ -66,3 +66,6 @@ predtree_timetree_ages <- change_edgelength(desc_name_regex="Hirudinidae",ancest
 
 ## kill all the node ages, leaving only the predtree and predtree_timetree_ages
 rm(list=c("cerato_chiro","change_edgelength","culicidae_chironomidae","diptera","dolicho_tabanid","empid_dolicho","insects_to_leeches","odonata_tabanid"))
+
+## export tree with all the new node ages
+write.tree(phy=predtree_timetree_ages,file="../data/reorganized_data/predator_tree_time.newick")

@@ -1,5 +1,13 @@
 ## R code for organizing predator co-occurrence data
+## this file reads in the relevant Bromeliad working group observational data
+## and calculates co-occurance metrics for the predators.
+## there are two calculations: one based on abundance, the other on metabolic capacity
 
+
+
+# load packages -----------------------------------------------------------
+
+library(plyr)
 
 # read in relevant BWG data -----------------------------------------------
 
@@ -26,7 +34,7 @@ biomass_animals <- data_biomass[grepl(pattern="Brom.",x=names(data_biomass))]*da
 ## add back the species IDs (Taxa)
 biomass_animals <- cbind(Taxa=data_biomass$Taxa,biomass_animals)
 ## finally, sum over Taxa
-library(plyr)
+
 biomass_by_spp <- ddply(.data=biomass_animals,.variables=.(Taxa),colwise(sum,is.numeric))
 ## additionally, because I'm pretty sure we raise the biomass to the power first
 metabolic_capacity <- function(x){
@@ -34,7 +42,11 @@ metabolic_capacity <- function(x){
 }
 metabolic_cap_spp <- ddply(.data=biomass_animals,.variables=.(Taxa),colwise(metabolic_capacity,is.numeric))
 
-## how does this new datasheet(s) compare to the abundance matrix?
+
+# renaming taxa -----------------------------------------------------------
+## in this section I do lots of intense renaming so that all datasets use the same species names.
+
+## how does metabolic_cap_spp compare to the abundance matrix?
 #data[1:5,1:6]
 #metabolic_cap_spp[1:5,1:6]
 ## close but not quite!  try this:
@@ -108,7 +120,6 @@ predator.matrix.sxs[["X"]][Corethr.spp] <- "Corethrella.sp"
 predator.matrix.sxs[["X"]] <- gsub(pattern="=",replacement="",x=predator.matrix.sxs[["X"]])
 
 ## using plyr, combine Corethrellids:
-library(plyr)
 
 predator.mat <- ddply(.data=predator.matrix.sxs,
                       .variables=.(X),.fun=colwise(sum))
@@ -157,7 +168,6 @@ predator.matrix.sxs_meta[["Taxa"]][Corethr.spp_meta] <- "Corethrella.sp"
 predator.matrix.sxs_meta[["Taxa"]] <- gsub(pattern="=",replacement="",x=predator.matrix.sxs_meta[["Taxa"]])
 
 ## using plyr, combine Corethrellids:
-library(plyr)
 
 predator.mat_meta <- ddply(.data=predator.matrix.sxs_meta,
                       .variables=.(Taxa),.fun=numcolwise(sum))

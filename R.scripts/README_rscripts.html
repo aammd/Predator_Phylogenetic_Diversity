@@ -143,15 +143,38 @@ hr {
 <body>
 <h1>R scripts for pd paper</h1>
 
+<p>It would be ideal to have <strong>one R script per dataset</strong>, showing how the dataset is taken from source material and brought into a final form.  This would describe all the process of transforming the data from raw to polished &ndash; including all decisons, such as which rows to merge, renaming, etc.  Then, in the .Rmd document that forms the basis of the paper, only modelling and summarizing need to occur.  There could even be a &#39;head&#39; R file that is sourced in at the beginning to make it all possible, and to standardize between the figures and the main paper.</p>
+
+<h2>R scripts that output data</h2>
+
+<p>These .R files are run once, and output data to <code>data/reorganized_data</code>.  They document the process of going from raw numbers to final dataset.  </p>
+
 <ul>
+<li><p><code>foodweb_merge_cleanup.R</code> handles all the feeding trial data, and merges it with the leptagrion data.  the output is saved in <code>data/reorganized_data/reorganized.feeding.trial.data.csv</code>.  ADD RENAMING</p></li>
 <li><p><code>experimental_data_collate_cleanup.R</code> is for combining all the different datasets relevant to the <strong>whole bromeliad experiment</strong>, and cleaning them.  It produces <code>pd_exp_cleaned_data.csv</code> which contains <em>all</em> the data relevant to the experiment in 2011</p></li>
-<li><p><code>foodweb_merge_cleanup.R</code> handles all the feeding trial data, and merges it with the leptagrion data.  the output is saved in <code>data/reorganized_data/reorganized.feeding.trial.data.csv</code></p></li>
-<li><p><code>cleanup_organization_for_graphing_analysis.R</code> is for reorganizing, collating all the data from all the sources &ndash; basically, getting the numbers ready for the publication. After this, the stats happen in the MS and the graphing in the figures.</p></li>
-<li><p><code>foodweb.fn.R</code> is only a single function, <code>picture()</code>, which is good for making a picture of the foodweb</p></li>
+<li><p><code>phylogeny.R</code> reads in a newick tree (arbitrarily ultrametric, or taxonomy tree) and adds branchlengths from data downloaded from <a href="timetree.org">TimeTree</a>.  exports tree with ages added to nodes to <code>data/reorganized_data/predator_tree_time.newick</code></p></li>
+<li><p><code>predator.cooccurance.R</code> organizes co-occurrence data from the working group.  Outputs <code>../data/reorganized_data/predator.cooccur.metabolic.txt</code> and <code>../data/reorganized_data/predator.cooccur.txt</code>.  The former is based on abundance and biomass<sup>0.69,</sup> the latter just abundance.</p></li>
+</ul>
+
+<h2>organizational file</h2>
+
+<ul>
+<li><code>cleanup_organization_for_graphing_analysis.R</code> is for reorganizing, collating all the data from all the sources &ndash; basically, getting the numbers ready for the publication. After this, the stats happen in the MS and the graphing in the figures.</li>
+</ul>
+
+<h2>useful functions</h2>
+
+<p>These .R files contain the functions used to analyze and graph the experiment</p>
+
+<ul>
+<li><p><code>foodweb.fn.R</code> contains functions.  They are used in the analyses presented in the paper.  They are <code>picture()</code>, which is good for making a picture of the foodweb, and <code>prune_predators()</code>, which is a wrapper for prune.sample from <code>picante</code></p></li>
 <li><p><code>pd.functions.R</code> contains functions for analyzing the experiment, specifically the randomization tests.</p></li>
-<li><p><code>phylogeny.R</code> reads in a newick tree (arbitrarily ultrametric, or taxonomy tree) and adds branchlengths from data downloaded from <a href="timetree.org">TimeTree</a></p></li>
-<li><p><code>pred.div.R</code> applies the functions of <code>pd.functions.R</code> to the experimental data.  should probably be reworked and added to the main document.</p></li>
-<li><p><code>predator.cooccurance.R</code> measures the probability of predators co-occuring as a function of their phylogenetic distance.</p></li>
+</ul>
+
+<h2>Misc files</h2>
+
+<ul>
+<li><code>pred.div.R</code> applies the functions of <code>pd.functions.R</code> to the experimental data.  should probably be reworked and added to the main document.  I&#39;ll delete after that.</li>
 </ul>
 
 </body>
