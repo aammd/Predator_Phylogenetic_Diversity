@@ -3,17 +3,7 @@
 
 
 # loading packages and data -----------------------------------------------
-## load packages
-library(ggplot2)
-library(bipartite)
-library(reshape)
-library(vegan)
-library(picante)
-library(beanplot)
-
-## load in data
-# phylogenetic data
-source("../R.scripts/phylogeny.R") 
+## packages are loaded in predatordiversity_figs.Rmd
 
 # occurrance data
 occur <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/predator.cooccur.txt",stringsAsFactor=FALSE)
@@ -28,7 +18,7 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
 enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv")
 
 # phylogeny data
-source("../R.scripts/phylogeny.R")
+predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
 
 ## load in functions
 source("../R.scripts/foodweb.fn.R")
@@ -52,10 +42,7 @@ pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo,where_in_phylo]
 
 #Xlab <- expression(paste("Phylogenetic distance (mean age of common ancestor,10"^"6",")"))
 
-#pdf("euclid_metabolic.pdf")
-plot(pred_abd_matrix[lower.tri(pred_abd_matrix)]~jitter(pred_phylo_matrix[lower.tri(pred_phylo_matrix)],amount=5),
-     xlab="phylogenetic distance",ylab="euclidian distance between total metabolic capacity")
-#dev.off()
+
 
 ## phylogeny matrix
 allpred.distance.matrix <- cophenetic(predtree_timetree_ages)
@@ -64,10 +51,7 @@ pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo,where_in_phylo]
 
 #Xlab <- expression(paste("Phylogenetic distance (mean age of common ancestor,10"^"6",")"))
 
-#pdf("cor_metabolic.pdf")
-plot(pred_cor_matrix[lower.tri(pred_cor_matrix)]~jitter(pred_phylo_matrix[lower.tri(pred_phylo_matrix)],amount=10),
-     xlab="phylogenetic distance",ylab="correlation between total metabolic capacity")
-#dev.off()
+
 
 summary(lm(pred_cor_matrix[lower.tri(pred_cor_matrix)]~pred_phylo_matrix[lower.tri(pred_abd_matrix)]))
 
@@ -78,7 +62,7 @@ mantel.test(pred_phylo_matrix,pred_cor_matrix)
 
 # total biomass per bromeliad
 
-mantel.test(allpred.distance.matrix,predator.occur.matrix,nperm=500)
+#mantel.test(allpred.distance.matrix,predator.occur.matrix,nperm=500)
 
 # feeding trials ----------------------------------------------------------
 

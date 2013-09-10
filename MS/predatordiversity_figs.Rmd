@@ -2,37 +2,37 @@
 
 ```{r data_clean,echo=FALSE,message=FALSE,results='markup'}
 ## set chunk options
-opts_chunk$set(results='markup',message=TRUE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="pdf")
+opts_chunk$set(results='markup',message=TRUE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
 
 ## load packages
 library(ggplot2)
 library(bipartite)
-library(reshape)
+library(reshape2)
 library(vegan)
-
 library(picante)
 library(beanplot)
+
 source("../R.scripts/cleanup_organization_for_graphing_analysis.R")
 
 
 
 ```
 
-Statistics on euclidian distance results:
+<!-- Statistics on euclidian distance results: -->
 ```{r euclidian}
-summary(lm(pred_abd_matrix[lower.tri(pred_abd_matrix)]~pred_phylo_matrix[lower.tri(pred_phylo_matrix)]))
+#summary(lm(pred_abd_matrix[lower.tri(pred_abd_matrix)]~pred_phylo_matrix[lower.tri(pred_phylo_matrix)]))
 
 
-mantel.test(pred_phylo_matrix,pred_abd_matrix)
+#mantel.test(pred_phylo_matrix,pred_abd_matrix)
 ```
 
-Statistics on correlation results:
+<!-- Statistics on correlation results: -->
 
 ```{r correlation statistics}
-summary(lm(pred_cor_matrix[lower.tri(pred_cor_matrix)]~pred_phylo_matrix[lower.tri(pred_phylo_matrix)]))
+#summary(lm(pred_cor_matrix[lower.tri(pred_cor_matrix)]~pred_phylo_matrix[lower.tri(pred_phylo_matrix)]))
 
 
-mantel.test(pred_phylo_matrix,pred_cor_matrix)
+#mantel.test(pred_phylo_matrix,pred_cor_matrix)
 ```
 
 
@@ -79,4 +79,16 @@ similarity between predators in diet composition in food web trials, as predicte
 
 ```
 
+```{r}
+#pdf("euclid_metabolic.pdf")
+#plot(pred_abd_matrix[lower.tri(pred_abd_matrix)]~jitter(pred_phylo_matrix[lower.tri(pred_phylo_matrix)],amount=5),
+#     xlab="phylogenetic distance",ylab="euclidian distance between total metabolic capacity")
+#dev.off()
+```
 
+```{r}
+# #pdf("cor_metabolic.pdf")
+# plot(pred_cor_matrix[lower.tri(pred_cor_matrix)]~jitter(pred_phylo_matrix[lower.tri(pred_phylo_matrix)],amount=10),
+#      xlab="phylogenetic distance",ylab="correlation between total metabolic capacity")
+# #dev.off()
+```
