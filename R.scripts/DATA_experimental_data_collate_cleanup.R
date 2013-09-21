@@ -2,6 +2,10 @@
 ## This file reads them all together, merges them, prepares them for analysis
 ## Andrew MacDonald, 2013
 
+## outputs:
+##        ~/../data/reorganized_data/pd_exp_cleaned_data.csv
+##        ~/../data/reorganized_data/enriched_leaves.csv
+
 
 # read in the datasets ----------------------------------------------------
 
