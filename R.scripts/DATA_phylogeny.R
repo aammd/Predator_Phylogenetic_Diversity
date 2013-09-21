@@ -1,3 +1,7 @@
+## Code for processing the phylogeny of insects in the experiment
+## outputs:
+##       ../data/reorganized_data/predator_tree_time.newick
+
 library(picante)
 
 ## read in the "arbitrairly ultrametric" tree which I stuck together in Mesquite, which represents the taxonomic relationships of these predators
