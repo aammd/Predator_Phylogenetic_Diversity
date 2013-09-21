@@ -31,7 +31,7 @@ randomz.diff <- function(sp.1,sp.2,combo,resp,runs=10)
   
   ## then apply diffs to each row
   apply(subscript.matrix,1,diffs,resp=resp)
- 
+  
 }
 
 
@@ -43,20 +43,20 @@ randomize.resp  <- function(resp.var,runs)
   ## this function is a wrapper for randomz.diff
   ## it provides the non-additive effect for each predator combination
   ## leaves the choice of resp.var and runs
-
+  
   ## resp.var = response variable
   ## runs = n simulations
 {
   el <-data.frame(diffs=randomz.diff("leech","elong",
-                 "elong + leech",resp=resp.var,runs=runs),
-             trt='elong + leech')
+                                     "elong + leech",resp=resp.var,runs=runs),
+                  trt='elong + leech')
   et <-data.frame(diffs=randomz.diff("tabanid","elong",
-               "elong + tab",resp=resp.var,runs=runs),
-             trt='elong + tab')
-
+                                     "elong + tab",resp=resp.var,runs=runs),
+                  trt='elong + tab')
+  
   ea <- data.frame(diffs=randomz.diff("andro","elong",
-                "elong + andro",resp=resp.var,runs=runs),
-              trt='elong + andro')
+                                      "elong + andro",resp=resp.var,runs=runs),
+                   trt='elong + andro')
   outs <- rbind(el,et,ea)
   outs
 }
@@ -73,15 +73,15 @@ responses <- function(runs)
   decomp=randomize.resp(resp.var="decomp",runs=runs)
   growth=randomize.resp(resp.var="growth",runs=runs)
   data.frame(survival=survival[,1],
-        fine=fine[,1],
-        decomp=decomp[,1],
-        growth=growth[,1],
-        sp.pair=growth$trt)
+             fine=fine[,1],
+             decomp=decomp[,1],
+             growth=growth[,1],
+             sp.pair=growth$trt)
 }
 
 
-######################################################################
-######################################################################
+# analyze the means -------------------------------------------------------
+
 ## at this point, Diane and I decided to change the analysis.  We
 ## chose instead to take the average of each group after randomizing,
 ## and _then_ to take the subtraction.  This seems logical since we
@@ -99,22 +99,22 @@ randomz.diff.means <- function(sp.1,sp.2,combo,resp,runs=10)
   sp.A <- which(pd$treatment==sp.1)
   sp.B <- which(pd$treatment==sp.2)
   poly <- which(pd$treatment==combo)
-
+  
   outs <- numeric(length=runs)
   for (i in 1:runs)
-    {
-      ##make a matrix of randomized subscripts
-      subs.mat <- cbind(sample(sp.A,5,replace=T),
-                            sample(sp.B,5,replace=T),
-                            sample(poly,5,replace=T))
-      ## take the mean of each group,
-      ## then the mean of both groups (the additive combination)
-      ## then substraction of the polyculture mean
-      outs[i] <- mean(
-                   mean(pd[subs.mat[,1],resp],na.rm=T),
-                   mean(pd[subs.mat[,2],resp],na.rm=T)
-                   )-mean(pd[subs.mat[,3],resp],na.rm=T)
-    }
+  {
+    ##make a matrix of randomized subscripts
+    subs.mat <- cbind(sample(sp.A,5,replace=T),
+                      sample(sp.B,5,replace=T),
+                      sample(poly,5,replace=T))
+    ## take the mean of each group,
+    ## then the mean of both groups (the additive combination)
+    ## then substraction of the polyculture mean
+    outs[i] <- mean(
+      mean(pd[subs.mat[,1],resp],na.rm=T),
+      mean(pd[subs.mat[,2],resp],na.rm=T)
+    )-mean(pd[subs.mat[,3],resp],na.rm=T)
+  }
   outs
 }
 
@@ -122,15 +122,15 @@ randomz.diff.means <- function(sp.1,sp.2,combo,resp,runs=10)
 randomize.resp.means  <- function(resp.var,runs)
 {
   el <-data.frame(diffs=randomz.diff.means("leech","elong",
-                 "elong + leech",resp=resp.var,runs=runs),
-             trt='elong + leech')
+                                           "elong + leech",resp=resp.var,runs=runs),
+                  trt='elong + leech')
   et <-data.frame(diffs=randomz.diff.means("tabanid","elong",
-               "elong + tab",resp=resp.var,runs=runs),
-             trt='elong + tab')
-
+                                           "elong + tab",resp=resp.var,runs=runs),
+                  trt='elong + tab')
+  
   ea <- data.frame(diffs=randomz.diff.means("andro","elong",
-                "elong + andro",resp=resp.var,runs=runs),
-              trt='elong + andro')
+                                            "elong + andro",resp=resp.var,runs=runs),
+                   trt='elong + andro')
   outs <- rbind(el,et,ea)
   outs
 }
@@ -157,10 +157,7 @@ responses.means <- function(runs)
 
 
 
-
-##---------------------------------------------------------------------------
-##-------- graphing functions
-##---------------------------------------------------------------------------
+# graphing functions ------------------------------------------------------
 
 
 ci.resp <- function(n,sim.data=rand.means,
@@ -170,7 +167,7 @@ ci.resp <- function(n,sim.data=rand.means,
   ## is made especially to run on the output of responses.means IF YOU
   ## CHANGE responses.means THIS FUNCTION WILL NOT WORK and will need
   ## to be fixed!
-
+  
   ## n = is the column of sim.data that has the variable of interest
   ## sim.data = the output of responses.means.  it is set to what I
   ## called this output in the master file.
@@ -184,7 +181,7 @@ ci.resp <- function(n,sim.data=rand.means,
   high <- aggregate(sim.data[,2:6],
                     by=list(sp.pair=sim.data$sp.pair),quantile,
                     probs=0.975,na.rm=T)
-#  browser()
+  #  browser()
   plotCI(means[,n],ui=high[,n],li=low[,n],
          ylab=Ylab,
          main=NULL,xaxt="n",xlab="treatment")
@@ -202,17 +199,17 @@ three.pt <- function(x){
   plot(total.surv.mean,decomp.mean,type='n',
        ylim=c(0.2,0.5),xlim=c(0,25),ylab="",xlab="",
        yaxt=yaxis[1])
-
+  
   segments(x0=total.surv.mean-total.surv.ci,
            y0=decomp.mean,
            x1=total.surv.mean+total.surv.ci,
            y1=decomp.mean
-           )
+  )
   segments(x0=total.surv.mean,
            y0=decomp.mean-decomp.ci,
            x1=total.surv.mean,
            y1=decomp.mean+decomp.ci
-           )
+  )
   points(total.surv.mean,decomp.mean,
          pch=pchs,
          bg=colours,
@@ -226,44 +223,44 @@ pred.graph <- function(resp.x="total.surv",resp.y="decomp"){
   ## plot, showing how the non-additive effects of the predators
   ## effect emergence and decomposition simultandously collect the
   ## numbers
-
+  
   pd.means <-
-  aggregate(pd[,c(resp.x,resp.y)],by=pd["treatment"],FUN=mean,na.rm=TRUE)
+    aggregate(pd[,c(resp.x,resp.y)],by=pd["treatment"],FUN=mean,na.rm=TRUE)
   
   pd.ci <- aggregate(pd[,c(resp.x,resp.y)],
                      by=pd["treatment"],FUN=function(x)
-                     sd(x,na.rm=TRUE)/sqrt(sum(!is.na(x)))) #removes
-                                        #na values, counts all the
-                                        #non-NA numbers for sample
-                                        #size.
+                       sd(x,na.rm=TRUE)/sqrt(sum(!is.na(x)))) #removes
+  #na values, counts all the
+  #non-NA numbers for sample
+  #size.
   ## means and ci for each treatment - all in one dataframe
   
   pd.plot <- merge(pd.means,pd.ci,by.x="treatment",by.y="treatment",
-    suffixes=c(".mean",".ci"))
-
+                   suffixes=c(".mean",".ci"))
+  
   ## assign colours to dots
-
+  
   pd.plot$colours <-
-  c("grey","grey39","white","black","black","black","grey","grey")
+    c("grey","grey39","white","black","black","black","grey","grey")
   pd.plot$pchs <- c(21,22,21,21,21,21,23,24)
-
+  
   trts <- list(c("control","elong","andro","elong + andro"),
                c("control","elong","tabanid","elong + tab"),
                c("control","elong","leech","elong + leech") )
   
   ##creates a list, each entry is a dataframe with the data for a
   ##separate part of the plant.
-
+  
   pd.plot.groups <- lapply(trts,function(x)
-                         pd.plot[match(x,pd.plot$treatment),])
-
+    pd.plot[match(x,pd.plot$treatment),])
+  
   ## controlling the presence of the y-axis? rather crude, but hey.
   pd.plot.groups[[1]]$yaxis <- rep("s",4)
   pd.plot.groups[[2]]$yaxis <- rep("n",4)
   pd.plot.groups[[3]]$yaxis <- rep("n",4)
-
+  
   par(mfrow=c(1,3),oma=c(2,5,0,2),mar=c(5.1,0,4.1,0.5),bty="l")
-                                        #,pin=c(6,4))
+  #,pin=c(6,4))
   lapply(pd.plot.groups,three.pt)
   mtext("mean detritivore survivorship",1,line=-1,outer=TRUE)
   mtext("mean decomposition (%)",side=2,line=3,outer=TRUE)
@@ -275,7 +272,7 @@ effect.2d <-  function(combo,sim.data=rand.means,xvar,yvar){
   ## is made especially to run on the output of responses.means IF YOU
   ## CHANGE responses.means THIS FUNCTION WILL NOT WORK and will need
   ## to be fixed!
-
+  
   ## n = is the column of sim.data that has the variable of interest
   ## sim.data = the output of responses.means.  it is set to what I
   ## called this output in the master file.
@@ -289,33 +286,33 @@ effect.2d <-  function(combo,sim.data=rand.means,xvar,yvar){
   high <- aggregate(sim.data[,2:6],
                     by=list(sp.pair=sim.data$sp.pair),quantile,
                     probs=0.975,na.rm=T)
-
+  
   trt <- which(means[,1]==combo)
   
   xm <- means[trt,xvar]
   xl <- low[trt,xvar]
   xu <- high[trt,xvar]
-
+  
   ym <- means[trt,yvar]
   yl <- low[trt,yvar]
   yu <- high[trt,yvar]
-
+  
   ##browser()
   plot(x=xm,y=ym,type='n',ylim=c(-15,5),xlim=c(-0.2,0.2),ylab="",xlab="")
-
+  
   abline(h=0,lty=2,col="gray")
   abline(v=0,lty=2,col="gray")
-         
+  
   segments(x0=xl,
            y0=ym,
            x1=xu,
            y1=ym
-           )
+  )
   segments(x0=xm,
            y0=yl,
            x1=xm,
            y1=yu
-           )
+  )
   
   points(xm,
          ym,
@@ -326,7 +323,7 @@ effect.2d <-  function(combo,sim.data=rand.means,xvar,yvar){
 
 bivar.graph <- function(xvar.lab="decomposition (%)",yvar.lab="detritivore survivorship",Yvar,Xvar){
   par(mfrow=c(1,3),oma=c(2,5,0,2),mar=c(5.1,0,4.1,0.5),bty="l")
-#  par(cex=3)
+  #  par(cex=3)
   effect.2d("elong + andro",xvar=Xvar,yvar=Yvar)
   par(yaxt='n')
   grps <- c("elong + tab","elong + leech")
@@ -335,3 +332,82 @@ bivar.graph <- function(xvar.lab="decomposition (%)",yvar.lab="detritivore survi
   mtext(text=yvar.lab,side=2,line=3,outer=TRUE)#,cex=3)
   
 }
+
+## functions for graphing and analyzing the predator-diversity and ecosystem function experiment
+
+## phylogenetic data can be subsetted to give just those in the experiment
+prune_predators <- function(names_predators=c("Leptagrion.andromache","Leptagrion.elongatum",
+                                              "Tabanidae.spA","Hirudinidae"),
+                            .predtree_timetree_ages=predtree_timetree_ages){
+  mat <- matrix(1,nrow=4)
+  rownames(mat) <- names_predators
+  prune.sample(phylo=.predtree_timetree_ages,samp=t(mat))
+}
+
+
+## graphs the foodweb
+picture <- function(preds,spread=2)
+{
+  prey.list <- levels(preds$Prey)
+  pred.list <- levels(preds$Predator)
+  
+  pred.list.range <- 1:length(pred.list)+(length(prey.list)-length(pred.list))/2
+  
+  pred.list.range <- (pred.list.range - median(pred.list.range)) * spread + median(pred.list.range)
+  
+  
+  with(preds,plot(x=c(rep(1,length(prey.list)),rep(2,length(pred.list))),
+                  y=c(1:length(prey.list),pred.list.range),
+                  type="n",
+                  xlim=c(-2,5),
+                  xlab="",
+                  ylab="",
+                  axes=FALSE
+  )
+  )
+  
+  with(preds,text(x=rep(1,length(prey.list)),
+                  y=1:length(prey.list),
+                  labels=prey.list,
+                  pos=2
+  )
+  )
+  
+  with(preds,text(x=rep(3,length(pred.list)),
+                  y=pred.list.range,
+                  labels=pred.list,
+                  pos=4
+  )
+  )
+  
+  #all the combinations
+  for(i in 1:dim(preds)[1]){
+    
+    with(preds,arrows(x0=1,
+                      y0=which(prey.list==preds[i,"Prey"]),
+                      x1=3,
+                      y1=pred.list.range[which(pred.list==preds[i,"Predator"])],
+                      col='grey',
+                      lwd=1,
+                      length=0.1,
+                      lty=2
+    )
+    )
+  }
+  
+  # all the combinations where there was eating!
+  for(i in 1:dim(preds)[1]){
+    
+    with(preds,arrows(x0=1,
+                      y0=which(prey.list==preds[i,"Prey"]),
+                      x1=3,
+                      y1=pred.list.range[which(pred.list==preds[i,"Predator"])],
+                      col='black',
+                      lwd=5*(preds[i,"eaten"]),
+                      length=0.1
+    )
+    )
+  }
+  
+}
+
