@@ -1,6 +1,8 @@
 ## Foodweb data reorganization
 ## by Andrew MacDonald
 ## based on foodweb data collected by Aline Nishi, Alathea Letaw, Robin Lecraw and Andrew MacDonald
+## OUTPUT
+##        ../data/reorganized_data/reorganized.feeding.trial.data.csv
 
 # read in data, functions, packages ---------------------------------------
 
