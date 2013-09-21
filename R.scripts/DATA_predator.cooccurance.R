@@ -2,7 +2,9 @@
 ## this file reads in the relevant Bromeliad working group observational data
 ## and calculates co-occurance metrics for the predators.
 ## there are two calculations: one based on abundance, the other on metabolic capacity
-
+##  OUTPUTS
+##        ../data/reorganized_data/predator.cooccur.metabolic.txt
+##        ../data/reorganized_data/predator.cooccur.txt
 
 
 # load packages -----------------------------------------------------------
