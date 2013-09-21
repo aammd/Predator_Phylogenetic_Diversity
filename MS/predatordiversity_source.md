@@ -6,18 +6,28 @@
 
 ## Introduction
 
-How do predators respond in different combinations?
 
-There have been many studies of predator combinations, and many of the effects of phylogenetic diversity on the functioning of food webs.  No study has shown results from a direct manipulation of predator phylogenetic diversity.  
-
+<!-- 
+Predators are present in most ecosystems, and are important functional groups in determining ecosystem function.  While predator-prey relationships have been studied for a long time, we understand little of the effects of predator diversity on whole communites and ecosystems.  Phylogenetic diversity of plants may correlates well with community level variables, but as yet studies of predator combinations rarely use measures of predator phylogenetic diversity.  In our study we present results from patterns of predator co-occurance, feeding trials, finally a community-level experiment in which we directly manipulated phylogenetic diversity of predators.  In each we ask if the phylogenetic distance between predators is related to similarity, or if diversity is correlated with effect on ecosystem function
+.
 Decreasing predator richness has been shown to increase herbivory [@Byrnes2006] in a three-level kelp food web.  As these authors point out, the effect of diversity on ecosystem functioning is better known for lower tropic levels, rather than predators.   
-
 Predator combinations can have many different outcomes.  From the perspective of ecosystem function it is important to consider whether these result in more or less top-down control.  Predator effects can be direct via changes in consumption, indirect via non-consumptive effects.  in other words, it can be via the effects of predators on each other, or on their prey, and directly or indirectly.  Therefore, in our experiment we tracked both predator and prey survival to the end of the experiment
 
-for example, predators can kill each other, or decrease feeding rates.
+for example, predators can kill each other, or decrease feeding rates. 
+-->
+
+We test three related hypotheses: 
+
+1. *species co-occurance*: closely-related predators occur together more frequently than less-related predators, due to their similar habitat requirements.  Additionally, very closely related species never co-occur because they are  too similar.
+
+2. *diet similarity*: similarity in diet (as measured by feeding trials) decreases with phylogenetic distance.
+
+3. *ecosystem-level effects*: similarity in the effect of predators on whole ecosystems declines with phylogenetic distance.  Additionally, the non-additive effect of predators will have a greater absolute value when their phylogenetic diversity is larger.
+
 
 ## Methods
 
+<!-- 
 We combined predators together in species pairs that represented a
 range of relatedness: congeners (two congeneric damselflies,
 *Leptagrion andromache* and *Leptagrion elongatum*), two
@@ -74,34 +84,76 @@ time.
 \end{table}
 
 After addition of the prey community, all bromeliads were enclosed
-with a mesh cage and checked daily for emergence of adults.
+with a mesh cage and checked daily for emergence of adults. 
+
+-->
+
+<!-- Our central hypothesis is that the phylogenetic relationships among predatory taxa in this system can be used to interpret their ecology.  Specifically, we test the hypothesis that phylogenetic relatedness is negatively correlated with probability of co-occurance, positively with diet similarity.  Consequently, we might predict that ecosystem function peaks at some intermediate level of phylogenetic diversity -- where predators occur but where their similarity creates complementarity. -->
 
 ## Results
 
-Our central hypothesis is that the phylogenetic relationships among predatory taxa in this system can be used to interpret their ecology.  Specifically, we test the hypothesis that phylogenetic relatedness is negatively correlated with probability of co-occurance, positively with diet similarity.  Consequently, we might predict that ecosystem function peaks at some intermediate level of phylogenetic diversity -- where predators occur but where their similarity creates complementarity.
+### metabolic capacity and phylogenetic distance
 
 
 
 
-Phylogenetic distance was not correlated with similarity in diet (F~1,4~=0.0681,P=0.8071).
-
-### phylogenetic distance
-
-Our phylogenetic relatedness in our community was very different -- it ranged from very related organisms -- congeneric leptagrion Larvae, which can barely be distinguished -- to profound differences between a leech and a damselfly.  
-
-All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality, however these did not reduce predator survivorship.
 
 
 
-Predator diet breadth is quite similar.  To test diet similarity, we compared the similarity in feeding trials between predators who were offered the same prey.  This was a lower number for the leech-damselfly comparison than for the damselfly-damselfly comparison.  We have data from **NUMBER** feeding trials. (a table, with similarity in diet in each cell and the number of species tested in brackets, with predators along the top and side (lower diagonal only) -- how to format this in R?)  by calculating a similarity matrix and converting to character, using paste to include sample sizes.
 
-All predators showed a broad diet overlap.  The system appears quite nested -- but this is possibly due to the difficulty in observing predation by leeches in the lab.
 
-Predator co-occurance was unrelated to predator phylogenetic distance, as well.
+Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.
+
+### diet similarity and phylogenetic distance
+
+
+
+
+
+
+Phylogenetic distance was not correlated with similarity in diet (F~1,4~=0.2807,P=0.6243).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.
+
+### Ecosystem-level effects and phylogenetic distance
+
+All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality; however, these did not reduce predator survivorship.
+
+
+
+### Figures
+
+![FALSE](figure/metabolic_cap_fig.png) 
+
+
+
+![FALSE](figure/unnamed-chunk-1.png) 
+
+
+### Tables
+#### Table 1: phylogenetic distance effects on the correlation of metabolic capacity among predators.
+
+----------------------------------------------------------
+    &nbsp;       Df   Sum Sq   Mean Sq   F value   Pr(>F) 
+--------------- ---- -------- --------- --------- --------
+    **PD**       1    0.3631   0.3631     3.938   0.05028 
+
+ **Residuals**   89   8.205    0.0922                     
+----------------------------------------------------------
+
+
+
+#### Table2: 
+
+----------------------------------------------------------
+    &nbsp;       Df   Sum Sq   Mean Sq   F value   Pr(>F) 
+--------------- ---- -------- --------- --------- --------
+    **PD**       1   0.002891 0.002891   0.2807    0.6243 
+
+ **Residuals**   4    0.0412   0.0103                     
+----------------------------------------------------------
+
+
 
 ## Discussion
-
-
 
 
 

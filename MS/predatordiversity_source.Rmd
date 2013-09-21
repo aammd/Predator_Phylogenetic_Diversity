@@ -1,25 +1,52 @@
 %Predator phylogenetic diversity decreases predation rate via antagonistic interactions
 %A. Andrew M. MacDonald, Diane S. Srivastava, Gustavo Q. Romero
 
-```{r message=FALSE, echo=FALSE}
-## load libraries
-library(picante)
+```{r options_packages_data, message=FALSE, echo=FALSE}
+## set chunk options
 opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
 
-## load phylogenetic data:
-predtree <- read.tree("../data/TreeData/predators.arbit.ultrametric.phy")
-pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv")
-source("../R.scripts/cleanup_organization_for_graphing_analysis.R")
+## load packages
+library(ggplot2)
+library(bipartite)
+library(reshape2)
+library(vegan)
+library(picante)
+library(beanplot)
+library(pander)
+
+# occurrance data -- abundance
+occur <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/predator.cooccur.txt",
+                  stringsAsFactor=FALSE)
+# occurrance data -- metabolic capacity
+metabolic  <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/predator.cooccur.metabolic.txt",
+                       stringsAsFactor=FALSE)
+# feeding trial data
+foodweb <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/reorganized.feeding.trial.data.csv",
+                    stringsAsFactors=FALSE)
+# experimental data
+pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",stringsAsFactors=FALSE)
+# enriched leaves -- ie just the N data for the detritus we put in.
+enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",stringsAsFactors=FALSE)
+# phylogeny data
+predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
+
+## load in functions
+source("../R.scripts/foodweb.fn.R")
+
+#source("../R.scripts/cleanup_organization_for_graphing_analysis.R")
 ```
 
 ## Introduction
 
+
+<!-- 
 Predators are present in most ecosystems, and are important functional groups in determining ecosystem function.  While predator-prey relationships have been studied for a long time, we understand little of the effects of predator diversity on whole communites and ecosystems.  Phylogenetic diversity of plants may correlates well with community level variables, but as yet studies of predator combinations rarely use measures of predator phylogenetic diversity.  In our study we present results from patterns of predator co-occurance, feeding trials, finally a community-level experiment in which we directly manipulated phylogenetic diversity of predators.  In each we ask if the phylogenetic distance between predators is related to similarity, or if diversity is correlated with effect on ecosystem function
 .
 Decreasing predator richness has been shown to increase herbivory [@Byrnes2006] in a three-level kelp food web.  As these authors point out, the effect of diversity on ecosystem functioning is better known for lower tropic levels, rather than predators.   
 Predator combinations can have many different outcomes.  From the perspective of ecosystem function it is important to consider whether these result in more or less top-down control.  Predator effects can be direct via changes in consumption, indirect via non-consumptive effects.  in other words, it can be via the effects of predators on each other, or on their prey, and directly or indirectly.  Therefore, in our experiment we tracked both predator and prey survival to the end of the experiment
 
-for example, predators can kill each other, or decrease feeding rates.
+for example, predators can kill each other, or decrease feeding rates. 
+-->
 
 We test three related hypotheses: 
 
@@ -32,6 +59,7 @@ We test three related hypotheses:
 
 ## Methods
 
+<!-- 
 We combined predators together in species pairs that represented a
 range of relatedness: congeners (two congeneric damselflies,
 *Leptagrion andromache* and *Leptagrion elongatum*), two
@@ -88,36 +116,124 @@ time.
 \end{table}
 
 After addition of the prey community, all bromeliads were enclosed
-with a mesh cage and checked daily for emergence of adults.
+with a mesh cage and checked daily for emergence of adults. 
+
+-->
+
+<!-- Our central hypothesis is that the phylogenetic relationships among predatory taxa in this system can be used to interpret their ecology.  Specifically, we test the hypothesis that phylogenetic relatedness is negatively correlated with probability of co-occurance, positively with diet similarity.  Consequently, we might predict that ecosystem function peaks at some intermediate level of phylogenetic diversity -- where predators occur but where their similarity creates complementarity. -->
 
 ## Results
 
-Our central hypothesis is that the phylogenetic relationships among predatory taxa in this system can be used to interpret their ecology.  Specifically, we test the hypothesis that phylogenetic relatedness is negatively correlated with probability of co-occurance, positively with diet similarity.  Consequently, we might predict that ecosystem function peaks at some intermediate level of phylogenetic diversity -- where predators occur but where their similarity creates complementarity.
+### metabolic capacity and phylogenetic distance
 
-```{r}
-diet_sim_phylo <- lm(dist.mat[lower.tri(dist.mat)]~phylodist[lower.tri(phylodist)])
+```{r distance_matrix_calculation}
+
+## combine by names, then do distances:
+## metabolic matrix
+metabolic.matrix <- metabolic[-1]
+dimnames(metabolic.matrix)[[1]] <- metabolic[,1]
+pred.abd.distance <- vegdist(metabolic.matrix,method="euclid")
+pred_abd_matrix <- as.matrix(pred.abd.distance)
+#occurdist_allpred <- data.frame(X=rownames(pred_abd_matrix),pred_abd_matrix)
+metabolic_mat <- as.matrix(metabolic.matrix)
+# reordered metabolic distance matrix
+pred_cor_occurance_metabolic <- cor(t(metabolic_mat))
+
+## phylogeny matrix
+allpred.distance.matrix <- cophenetic(predtree_timetree_ages)
+where_in_phylo <- match(rownames(pred_abd_matrix),rownames(allpred.distance.matrix))
+
+## reordered phylogenetic distance matrix
+pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo,where_in_phylo]
+
+#Xlab <- expression(paste("Phylogenetic distance (mean age of common ancestor,10"^"6",")"))
+
+```
+
+
+
+```{r test_metabolic~phylo,results='asis'}
+PD <- pred_phylo_matrix[lower.tri(pred_phylo_matrix)]
+occurance_phylo_lm <- lm(pred_cor_occurance_metabolic[lower.tri(pred_cor_occurance_metabolic)]~PD)
+#mantel.test(pred_phylo_matrix,pred_cor_matrix)
+```
+
+Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.
+
+### diet similarity and phylogenetic distance
+```{r diet_similarity_calculation}
+# Check for TRUE ZEROS in cast matrix.
+
+# trial.list <- split(foodweb,foodweb$predator.names)
+# sapply(trial.list,nrow)
+## need predators as columns, herbivores as rows
+foodweb.cast <- dcast(data=foodweb,formula=Prey.species~predator.names,value.var="eaten.numeric",fun.aggregate=sum)
+# remove species names
+foodweb.matrix <- as.matrix(foodweb.cast[,-1])
+# have better names
+dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
+foodweb.matrix <- foodweb.matrix[,-ncol(foodweb.matrix)]  ## last column was an NA predator.
+# make the distance matrix -- with the jaccard index?
+## start by getting the predators from the foodweb data that are actually in the experiment:
+location_exp_predators <- which(dimnames(foodweb.matrix)[[2]]%in%c("Tabanidae.spA","Hirudinidae","Leptagrion.andromache","Leptagrion.elongatum"))
+## vegdist will calculate differences among rows, so transpose
+experiment_predators_diet <- t(foodweb.matrix[,location_exp_predators])
+## better to rename and reorder to resemble output of cophenetic
+## phylogenetic distances:
+predators.in.exp <- prune_predators()
+phylodist <- cophenetic(predators.in.exp)
+## they should also be in the same sequence:
+experiment_pred_diet_reordered <- experiment_predators_diet[match(rownames(experiment_predators_diet),rownames(phylodist)),]
+## finally, calculate distance
+distances <- vegdist(experiment_pred_diet_reordered,method='jaccard',diag=TRUE)
+## make a distance matrix so lower.tri subsetting works
+dist.mat <- as.matrix(distances)
+
+```
+
+```{r TEST_diet-sim~PD}
+PD <- phylodist[lower.tri(phylodist)]
+diet_sim_phylo <- lm(dist.mat[lower.tri(dist.mat)]~PD)
 diet_phylo_summary <- summary(diet_sim_phylo)
 ```
 
-Phylogenetic distance was not correlated with similarity in diet (F~`r diet_phylo_summary$fstatistic[["numdf"]]`,`r diet_phylo_summary$fstatistic[["dendf"]]`~=`r diet_phylo_summary$fstatistic[["value"]]`,P=`r pf(diet_phylo_summary$fstatistic[1],diet_phylo_summary$fstatistic[2],diet_phylo_summary$fstatistic[3],lower.tail=FALSE)`).
+Phylogenetic distance was not correlated with similarity in diet (F~`r diet_phylo_summary$fstatistic[["numdf"]]`,`r diet_phylo_summary$fstatistic[["dendf"]]`~=`r diet_phylo_summary$fstatistic[["value"]]`,P=`r pf(diet_phylo_summary$fstatistic[1],diet_phylo_summary$fstatistic[2],diet_phylo_summary$fstatistic[3],lower.tail=FALSE)`).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.
 
-### phylogenetic distance
+### Ecosystem-level effects and phylogenetic distance
 
-Our phylogenetic relatedness in our community was very different -- it ranged from very related organisms -- congeneric leptagrion Larvae, which can barely be distinguished -- to profound differences between a leech and a damselfly.  
-
-All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality, however these did not reduce predator survivorship.
+All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality; however, these did not reduce predator survivorship.
 
 
 
-Predator diet breadth is quite similar.  To test diet similarity, we compared the similarity in feeding trials between predators who were offered the same prey.  This was a lower number for the leech-damselfly comparison than for the damselfly-damselfly comparison.  We have data from **NUMBER** feeding trials. (a table, with similarity in diet in each cell and the number of species tested in brackets, with predators along the top and side (lower diagonal only) -- how to format this in R?)  by calculating a similarity matrix and converting to character, using paste to include sample sizes.
+### Figures
 
-All predators showed a broad diet overlap.  The system appears quite nested -- but this is possibly due to the difficulty in observing predation by leeches in the lab.
+```{r metabolic_cap_fig}
+plot(pred_abd_matrix[lower.tri(pred_abd_matrix)]~
+       jitter(pred_phylo_matrix[lower.tri(pred_phylo_matrix)],amount=5),
+     xlab="phylogenetic distance",ylab="euclidian distance between total metabolic capacity")
+```
 
-Predator co-occurance was unrelated to predator phylogenetic distance, as well.
+
+```{r }
+plot(dist.mat[lower.tri(dist.mat)]~
+       jitter(phylodist[lower.tri(phylodist)],amount=10),
+     xlab="phylogenetic distance",ylab="jaccard distance between feeding trials")
+```
+
+### Tables
+#### Table 1: phylogenetic distance effects on the correlation of metabolic capacity among predators.
+```{r TABLE_metabol~phylo,results='asis'}
+pander(aov(occurance_phylo_lm),caption="")   
+```
+
+
+#### Table2: 
+```{r TABLE:diet~PD, results='asis'}
+pander(aov(diet_sim_phylo),caption="")
+```
+
 
 ## Discussion
-
-
 
 
 

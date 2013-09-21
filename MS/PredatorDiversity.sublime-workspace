@@ -152,10 +152,26 @@
 	"buffers":
 	[
 		{
-			"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/MS/references.bib",
+			"file": "predatordiversity_source.Rmd",
 			"settings":
 			{
-				"buffer_size": 3970,
+				"buffer_size": 11575,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "forDiane.sh",
+			"settings":
+			{
+				"buffer_size": 641,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "predatordiversity_source.md",
+			"settings":
+			{
+				"buffer_size": 7333,
 				"line_ending": "Unix"
 			}
 		}
@@ -332,6 +348,8 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/.bashrc",
+		"/home/andrew/Dropbox/PhD/brazil2013/experiments/MS/references.bib",
 		"/home/andrew/devtools.wiki/Functions.md",
 		"/home/andrew/Dropbox/organization/someday.md",
 		"/home/andrew/Dropbox/organization/todo.md",
@@ -442,7 +460,6 @@
 		"/home/andrew/Dropbox/CommunityAnalysis/Brazil/Macae.2013/Ins Cons Div - Figure 1 Script - Analysis+Graphs.R",
 		"/home/andrew/knitr-examples/083-ggplot2-reference.Rmd",
 		"/home/andrew/knitr-examples/k",
-		"/home/andrew/Dropbox/PhD/brazil2013/experiments/MS/references.bib",
 		"/etc/apt/sources.list",
 		"/usr/share/applications/sublime.desktop",
 		"/home/andrew/sublime.projects/habitat_experiment.sublime-project",
@@ -458,8 +475,7 @@
 		"/home/andrew/.config/sublime-text-2/Packages/Package Control/Package Control.sublime-settings",
 		"/home/andrew/Dropbox/rainfall.randomization/RainRandomizations.md",
 		"/home/andrew/Dropbox/PhD/Brazil2012/experiments/detritus/detritus.txt",
-		"/home/andrew/Dropbox/PhD/Brazil2012/experiments/detritus/test.txt",
-		"/home/andrew/Dropbox/PhD/Brazil2012/experiments/lxl2012/lxl2012.R"
+		"/home/andrew/Dropbox/PhD/Brazil2012/experiments/detritus/test.txt"
 	],
 	"find":
 	{
@@ -560,14 +576,15 @@
 	"groups":
 	[
 		{
+			"selected": 2,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/MS/references.bib",
+					"file": "predatordiversity_source.Rmd",
 					"settings":
 					{
-						"buffer_size": 3970,
+						"buffer_size": 11575,
 						"regions":
 						{
 						},
@@ -580,10 +597,66 @@
 						],
 						"settings":
 						{
-							"syntax": "Packages/LaTeX/Bibtex.tmLanguage"
+							"syntax": "Packages/Rx/Rmarkdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "forDiane.sh",
+					"settings":
+					{
+						"buffer_size": 641,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								416,
+								416
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "predatordiversity_source.md",
+					"settings":
+					{
+						"buffer_size": 7333,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5176,
+								5176
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1890.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"

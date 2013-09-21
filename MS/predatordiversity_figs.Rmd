@@ -1,6 +1,8 @@
 ## Figures
 
 ```{r data_clean,echo=FALSE,message=FALSE,results='markup'}
+
+
 ## set chunk options
 opts_chunk$set(results='markup',message=TRUE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
 
