@@ -3,7 +3,7 @@
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
-opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
+#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
 
 ## load packages
 library(ggplot2)
@@ -13,6 +13,7 @@ library(vegan)
 library(picante)
 library(beanplot)
 library(pander)
+library(gplots)
 
 # occurrance data -- abundance
 occur <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/predator.cooccur.txt",
@@ -32,8 +33,18 @@ predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time
 
 ## load in functions
 source("../R.scripts/foodweb.fn.R")
+source("../R.scripts/pd.functions.R")
 
 #source("../R.scripts/cleanup_organization_for_graphing_analysis.R")
+```
+
+```{r cleaning the pd data}
+#dropping a record that seems to have been 90% decomposed!
+pd[which(pd$decomp>0.7),'decomp'] <- NA
+## just to make sure:
+with(pd,table(treatment))
+head(pd)
+
 ```
 
 ## Introduction
@@ -150,6 +161,26 @@ pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo,where_in_phylo]
 
 ```
 
+```{r experiment-randomization-test}
+### ---- group means ####
+
+
+##go2 <- responses.means(1000)
+#write.csv(go2,"randomizations.group.means.csv")
+rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.means.csv")
+rand.means$sp.pair <- factor(rand.means$sp.pair,
+                             levels=c('elong + andro','elong + tab',
+                               'elong + leech')
+                             )
+rand.means <- rand.means[,-1]
+
+### supplementary figure  ####
+meansMelt <- melt(rand.means)
+#densityplot(~growth+survival+fine+decomp,groups=sp.pair,data=go)
+ggplot(data=meansMelt,aes(x=value,colour=sp.pair))+geom_histogram()+facet_wrap(~variable)
+
+
+```
 
 
 ```{r test_metabolic~phylo,results='asis'}
