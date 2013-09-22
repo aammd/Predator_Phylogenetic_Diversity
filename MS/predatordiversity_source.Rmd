@@ -3,7 +3,7 @@
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
-#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
 
 ## load packages
 library(ggplot2)
@@ -14,6 +14,7 @@ library(picante)
 library(beanplot)
 library(pander)
 library(gplots)
+library(plyr)
 
 # occurrance data -- abundance
 occur <- read.csv("~/Dropbox/PhD/Brazil2011/data/reorganized_data/predator.cooccur.txt",
@@ -32,13 +33,12 @@ enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",stringsAsFac
 predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
 
 ## load in functions
-source("../R.scripts/foodweb.fn.R")
-source("../R.scripts/pd.functions.R")
+source("../R.scripts/FUNCTIONS_predator_diversity.R")
 
 #source("../R.scripts/cleanup_organization_for_graphing_analysis.R")
 ```
 
-```{r cleaning the pd data}
+```{r experiment_data_postprocess}
 #dropping a record that seems to have been 90% decomposed!
 pd[which(pd$decomp>0.7),'decomp'] <- NA
 ## just to make sure:
@@ -150,46 +150,52 @@ metabolic_mat <- as.matrix(metabolic.matrix)
 # reordered metabolic distance matrix
 pred_cor_occurance_metabolic <- cor(t(metabolic_mat))
 
-## phylogeny matrix
+####### phylogeny matrix ####
+## Calculate distances
 allpred.distance.matrix <- cophenetic(predtree_timetree_ages)
+## match to abundance matrix names
 where_in_phylo <- match(rownames(pred_abd_matrix),rownames(allpred.distance.matrix))
-
-## reordered phylogenetic distance matrix
+## reorder phylogenetic distance matrix
 pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo,where_in_phylo]
 
 #Xlab <- expression(paste("Phylogenetic distance (mean age of common ancestor,10"^"6",")"))
-
+#### #### 
 ```
 
 ```{r experiment-randomization-test}
 ### ---- group means ####
-
-
 ##go2 <- responses.means(1000)
 #write.csv(go2,"randomizations.group.means.csv")
 rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.means.csv")
+## order these correctly
 rand.means$sp.pair <- factor(rand.means$sp.pair,
                              levels=c('elong + andro','elong + tab',
                                'elong + leech')
                              )
+## remove the X column
 rand.means <- rand.means[,-1]
 
-### supplementary figure  ####
+### supplementary figure?  ####
 meansMelt <- melt(rand.means)
-#densityplot(~growth+survival+fine+decomp,groups=sp.pair,data=go)
-ggplot(data=meansMelt,aes(x=value,colour=sp.pair))+geom_histogram()+facet_wrap(~variable)
+# #densityplot(~growth+survival+fine+decomp,groups=sp.pair,data=go)
+# ggplot(data=meansMelt,aes(x=value,colour=sp.pair))+geom_histogram()+facet_wrap(~variable)
 
-
+## summarize the randomizations 
+summarize_randoms <- ddply(.data=meansMelt,.variables=.(sp.pair,variable),summarize,
+                       mean=mean(value),lower=quantile(value,probs=c(0.025)),
+                       upper=quantile(value,probs=c(0.975))
+                       )
 ```
 
 
 ```{r test_metabolic~phylo,results='asis'}
 PD <- pred_phylo_matrix[lower.tri(pred_phylo_matrix)]
 occurance_phylo_lm <- lm(pred_cor_occurance_metabolic[lower.tri(pred_cor_occurance_metabolic)]~PD)
+occur_phylo_summary <- summary(occurance_phylo_lm)
 #mantel.test(pred_phylo_matrix,pred_cor_matrix)
 ```
 
-Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.
+Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~`r occur_phylo_summary$fstatistic[["numdf"]]`,`r occur_phylo_summary$fstatistic[["dendf"]]`~=`r occur_phylo_summary$fstatistic[["value"]]`,P=`r pf(occur_phylo_summary$fstatistic[1],occur_phylo_summary$fstatistic[2],occur_phylo_summary$fstatistic[3],lower.tail=FALSE)`).
 
 ### diet similarity and phylogenetic distance
 ```{r diet_similarity_calculation}
@@ -232,7 +238,7 @@ Phylogenetic distance was not correlated with similarity in diet (F~`r diet_phyl
 
 ### Ecosystem-level effects and phylogenetic distance
 
-All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality; however, these did not reduce predator survivorship.
+All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality.
 
 
 
@@ -245,23 +251,23 @@ plot(pred_abd_matrix[lower.tri(pred_abd_matrix)]~
 ```
 
 
-```{r }
+```{r feeding_trial}
 plot(dist.mat[lower.tri(dist.mat)]~
        jitter(phylodist[lower.tri(phylodist)],amount=10),
      xlab="phylogenetic distance",ylab="jaccard distance between feeding trials")
 ```
 
-### Tables
-#### Table 1: phylogenetic distance effects on the correlation of metabolic capacity among predators.
-```{r TABLE_metabol~phylo,results='asis'}
-pander(aov(occurance_phylo_lm),caption="")   
+```{r FIG_PD_experiment}
+# distances of L. elongatum to everything:
+Le_distances <- sort(phylodist["Leptagrion.elongatum",])
+lkup <- data.frame(sp.pair=levels(summarize_randoms$sp.pair),Time=Le_distances[-1])
+summarize_randoms_phylo <- merge(summarize_randoms,lkup)
+ggplot(subset(summarize_randoms_phylo,summarize_randoms_phylo$variable=="survival"),
+       aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")
 ```
 
 
-#### Table2: 
-```{r TABLE:diet~PD, results='asis'}
-pander(aov(diet_sim_phylo),caption="")
-```
+
 
 
 ## Discussion
