@@ -3,20 +3,20 @@ cp ~/Documents/Mendeley_reference_lists/predator\ diversity.bib .
 # Make the figure
 # Make the manuscript
 Rscript -e "library(knitr); knit('predatordiversity_source.Rmd')"
-pandoc -H format.sty -V fontsize=12pt -s -S --bibliography=predator\ diversity.bib predatordiversity_source.md -o predatordiversity_source.pdf --latex-engine=xelatex
+~/.cabal/bin/pandoc -H format.sty -V fontsize=12pt -s -S --bibliography=predator\ diversity.bib predatordiversity_source.md -o predatordiversity_source.pdf --latex-engine=xelatex
 #pandoc -s -S predatordiversity-knitr.md -o predatordiversity-knitr.pdf
 
 ## make the figures
-Rscript -e "library(knitr); knit('predatordiversity_figs.Rmd')"
-pandoc -s -S predatordiversity_figs.md -o predatordiversity_figs.pdf
-Combine
+#Rscript -e "library(knitr); knit('predatordiversity_figs.Rmd')"
+#pandoc -s -S predatordiversity_figs.md -o predatordiversity_figs.pdf
+#Combine
 
 #  the two 
-pdfunite predatordiversity_source.pdf predatordiversity_figs.pdf predatordiversity_MS.pdf
+#pdfunite predatordiversity_source.pdf predatordiversity_figs.pdf predatordiversity_MS.pdf
 # Remove un-needed files
-rm predatordiversity_source.pdf
-rm predatordiversity_figs.pdf
-rm *.html
+#rm predatordiversity_source.pdf
+#rm predatordiversity_figs.pdf
+#rm *.html
 #rm *.md
 
 #pandoc -H margins.sty --bibliography git_ms.bib --csl plos.csl git_manuscript.md -o git_manuscript.tex

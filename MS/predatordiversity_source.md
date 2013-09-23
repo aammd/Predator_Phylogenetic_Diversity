@@ -5,23 +5,12 @@
 
 
 
-```r
-# dropping a record that seems to have been 90% decomposed!
-pd[which(pd$decomp > 0.7), "decomp"] <- NA
-## just to make sure:
-with(pd, table(treatment))
-```
-
 ```
 ## treatment
 ##         andro       control         elong elong + andro elong + leech 
 ##             5             5             5             5             5 
 ##   elong + tab         leech       tabanid 
 ##             5             5             5
-```
-
-```r
-head(pd)
 ```
 
 ```
@@ -147,194 +136,45 @@ with a mesh cage and checked daily for emergence of adults.
 ### metabolic capacity and phylogenetic distance
 
 
-```r
-
-## combine by names, then do distances: metabolic matrix
-metabolic.matrix <- metabolic[-1]
-dimnames(metabolic.matrix)[[1]] <- metabolic[, 1]
-pred.abd.distance <- vegdist(metabolic.matrix, method = "euclid")
-pred_abd_matrix <- as.matrix(pred.abd.distance)
-# occurdist_allpred <-
-# data.frame(X=rownames(pred_abd_matrix),pred_abd_matrix)
-metabolic_mat <- as.matrix(metabolic.matrix)
-# reordered metabolic distance matrix
-pred_cor_occurance_metabolic <- cor(t(metabolic_mat))
-
-####### phylogeny matrix #### Calculate distances
-allpred.distance.matrix <- cophenetic(predtree_timetree_ages)
-## match to abundance matrix names
-where_in_phylo <- match(rownames(pred_abd_matrix), rownames(allpred.distance.matrix))
-## reorder phylogenetic distance matrix
-pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo, where_in_phylo]
-
-# Xlab <- expression(paste('Phylogenetic distance (mean age of common
-# ancestor,10'^'6',')')) ####
-```
-
-
-
-```r
-### ---- group means #### go2 <- responses.means(1000)
-### write.csv(go2,'randomizations.group.means.csv')
-rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.means.csv")
-## order these correctly
-rand.means$sp.pair <- factor(rand.means$sp.pair, levels = c("elong + andro", 
-    "elong + tab", "elong + leech"))
-## remove the X column
-rand.means <- rand.means[, -1]
-
-### supplementary figure?  ####
-meansMelt <- melt(rand.means)
-```
-
-```
-## Using sp.pair as id variables
-```
-
-```r
-# #densityplot(~growth+survival+fine+decomp,groups=sp.pair,data=go)
-# ggplot(data=meansMelt,aes(x=value,colour=sp.pair))+geom_histogram()+facet_wrap(~variable)
-
-## summarize the randomizations
-summarize_randoms <- ddply(.data = meansMelt, .variables = .(sp.pair, variable), 
-    summarize, mean = mean(value), lower = quantile(value, probs = c(0.025)), 
-    upper = quantile(value, probs = c(0.975)))
-```
 
 
 
 
-```r
-PD <- pred_phylo_matrix[lower.tri(pred_phylo_matrix)]
-occurance_phylo_lm <- lm(pred_cor_occurance_metabolic[lower.tri(pred_cor_occurance_metabolic)] ~ 
-    PD)
-occur_phylo_summary <- summary(occurance_phylo_lm)
-# mantel.test(pred_phylo_matrix,pred_cor_matrix)
-```
+
+
+
 
 
 Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~1,89~=3.9381,P=0.0503).
 
 ### diet similarity and phylogenetic distance
 
-```r
-# Check for TRUE ZEROS in cast matrix.
-
-# trial.list <- split(foodweb,foodweb$predator.names)
-# sapply(trial.list,nrow) need predators as columns, herbivores as rows
-foodweb.cast <- dcast(data = foodweb, formula = Prey.species ~ predator.names, 
-    value.var = "eaten.numeric", fun.aggregate = sum)
-# remove species names
-foodweb.matrix <- as.matrix(foodweb.cast[, -1])
-# have better names
-dimnames(foodweb.matrix) <- list(foodweb.cast[[1]], names(foodweb.cast)[-1])
-foodweb.matrix <- foodweb.matrix[, -ncol(foodweb.matrix)]  ## last column was an NA predator.
-# make the distance matrix -- with the jaccard index?  start by getting
-# the predators from the foodweb data that are actually in the experiment:
-location_exp_predators <- which(dimnames(foodweb.matrix)[[2]] %in% c("Tabanidae.spA", 
-    "Hirudinidae", "Leptagrion.andromache", "Leptagrion.elongatum"))
-## vegdist will calculate differences among rows, so transpose
-experiment_predators_diet <- t(foodweb.matrix[, location_exp_predators])
-## better to rename and reorder to resemble output of cophenetic
-## phylogenetic distances:
-predators.in.exp <- prune_predators()
-phylodist <- cophenetic(predators.in.exp)
-## they should also be in the same sequence:
-experiment_pred_diet_reordered <- experiment_predators_diet[match(rownames(experiment_predators_diet), 
-    rownames(phylodist)), ]
-## finally, calculate distance
-distances <- vegdist(experiment_pred_diet_reordered, method = "jaccard", diag = TRUE)
-## make a distance matrix so lower.tri subsetting works
-dist.mat <- as.matrix(distances)
-```
 
 
 
-```r
-PD <- phylodist[lower.tri(phylodist)]
-diet_sim_phylo <- lm(dist.mat[lower.tri(dist.mat)] ~ PD)
-diet_phylo_summary <- summary(diet_sim_phylo)
-```
 
 
 Phylogenetic distance was not correlated with similarity in diet (F~1,4~=0.2807,P=0.6243).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.
 
 ### Ecosystem-level effects and phylogenetic distance
 
-All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality; however, these did not reduce predator survivorship.
+All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality.
 
 
 
 ### Figures
 
-
-```r
-plot(pred_abd_matrix[lower.tri(pred_abd_matrix)] ~ jitter(pred_phylo_matrix[lower.tri(pred_phylo_matrix)], 
-    amount = 5), xlab = "phylogenetic distance", ylab = "euclidian distance between total metabolic capacity")
-```
-
-![plot of chunk metabolic_cap_fig](figure/metabolic_cap_fig.png) 
+![FALSE](figure/metabolic_cap_fig.png) 
 
 
 
+![FALSE](figure/feeding_trial.png) 
 
-```r
-plot(dist.mat[lower.tri(dist.mat)] ~ jitter(phylodist[lower.tri(phylodist)], 
-    amount = 10), xlab = "phylogenetic distance", ylab = "jaccard distance between feeding trials")
-```
 
-![plot of chunk feeding_trial](figure/feeding_trial.png) 
+![FALSE](figure/FIG_PD_experiment.png) 
 
 
 
-```r
-# distances of L. elongatum to everything:
-Le_distances <- sort(phylodist["Leptagrion.elongatum", ])
-lkup <- data.frame(sp.pair = levels(summarize_randoms$sp.pair), Time = Le_distances[-1])
-summarize_randoms_phylo <- merge(summarize_randoms, lkup)
-ggplot(subset(summarize_randoms_phylo, summarize_randoms_phylo$variable == "survival"), 
-    aes(x = Time, y = mean)) + geom_errorbar(aes(ymin = lower, ymax = upper), 
-    width = 0) + geom_point(size = 3) + ylab("Mean treatment difference, Control-Treatment") + 
-    xlab("Time (Mya)")
-```
-
-![plot of chunk FIG_PD_experiment](figure/FIG_PD_experiment.png) 
-
-
-
-
-### Tables
-#### Table 1: phylogenetic distance effects on the correlation of metabolic capacity among predators.
-
-```r
-pander(aov(occurance_phylo_lm), caption = "")
-```
-
-
-----------------------------------------------------------
-    &nbsp;       Df   Sum Sq   Mean Sq   F value   Pr(>F) 
---------------- ---- -------- --------- --------- --------
-    **PD**       1    0.3631   0.3631     3.938   0.05028 
-
- **Residuals**   89   8.205    0.0922                     
-----------------------------------------------------------
-
-
-
-#### Table2: 
-
-```r
-pander(aov(diet_sim_phylo), caption = "")
-```
-
-
-----------------------------------------------------------
-    &nbsp;       Df   Sum Sq   Mean Sq   F value   Pr(>F) 
---------------- ---- -------- --------- --------- --------
-    **PD**       1   0.002891 0.002891   0.2807    0.6243 
-
- **Residuals**   4    0.0412   0.0103                     
-----------------------------------------------------------
 
 
 
