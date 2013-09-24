@@ -189,18 +189,8 @@ foodweb.matrix <- as.matrix(foodweb.cast[,-1])
 dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
 foodweb.matrix <- foodweb.matrix[,-ncol(foodweb.matrix)]  ## last column was an NA predator.
 # make the distance matrix -- with the jaccard index?
-## start by getting the predators from the foodweb data that are actually in the experiment:
-location_exp_predators <- which(dimnames(foodweb.matrix)[[2]]%in%c("Tabanidae.spA","Hirudinidae","Leptagrion.andromache","Leptagrion.elongatum"))
-## vegdist will calculate differences among rows, so transpose
-experiment_predators_diet <- t(foodweb.matrix[,location_exp_predators])
-## better to rename and reorder to resemble output of cophenetic
-## phylogenetic distances:
-predators.in.exp <- prune_predators()
-phylodist <- cophenetic(predators.in.exp)
-## they should also be in the same sequence:
-experiment_pred_diet_reordered <- experiment_predators_diet[match(rownames(experiment_predators_diet),rownames(phylodist)),]
 ## finally, calculate distance
-distances <- vegdist(experiment_pred_diet_reordered,method='jaccard',diag=TRUE)
+distances <- vegdist(foodweb.matrix,method='jaccard',diag=TRUE)
 ## make a distance matrix so lower.tri subsetting works
 dist.mat <- as.matrix(distances)
 
