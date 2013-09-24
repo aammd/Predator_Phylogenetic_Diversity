@@ -163,7 +163,7 @@ pred_cor_occurance_metabolic <- cor(t(metabolic_mat))
 
 ####### phylogeny matrix ####
 ## Calculate distances
-allpred.distance.matrix <- cophenetic(predtree_timetree_ages)
+allpred_phylodist <- cophenetic(predtree_timetree_ages)
 
 # allpred.distance.matrix
 # ## match to abundance matrix names
@@ -238,36 +238,36 @@ summarize_randoms <- ddply(.data=meansMelt,.variables=.(sp.pair,variable),summar
 ## diet similarity + predator phylogenetic distance
 ## experiment randomization results + predator phylogenetic distance
 
+## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
 #### metabolic occurance ####
 metabolic_cor_df <- melt(pred_cor_occurance_metabolic)[melt(upper.tri(pred_cor_occurance_metabolic))$value,]
 names(metabolic_cor_df) <- c("metapred1", "metapred2", "metadistance")
 metabolic_cor_df$sp.pair <- paste(metabolic_cor_df$metapred1,metabolic_cor_df$metapred2,sep="_")
 
-## to merge with the phylogenetic distance
-allpred.distance_df <- melt(allpred.distance.matrix)[melt(upper.tri(allpred.distance.matrix))$value,]
-names(allpred.distance_df) <- c("phylopred1", "phylopred2", "phylodistance")
-allpred.distance_df$sp.pair <- paste(allpred.distance_df$phylopred1,
-                                     allpred.distance_df$phylopred2,sep="_")
+## Phylogenetic distance ####
+allpred_phylodist_df <- melt(allpred_phylodist)[melt(upper.tri(allpred_phylodist))$value,]
+names(allpred_phylodist_df) <- c("phylopred1", "phylopred2", "phylodistance")
+allpred_phylodist_df$sp.pair <- paste(allpred_phylodist_df$phylopred1, allpred_phylodist_df$phylopred2,sep="_")
 
-## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
-
-## merge them
-dataset <- merge(allpred.distance_df,metabolic_cor_df)
-ggplot(dataset,aes(x=phylodistance,metadistance))+geom_point()+stat_smooth(method="lm", se=FALSE)
-#### diet similarity ####
+## Diet similarity ####
 diet_df <- melt(dist.mat)[melt(upper.tri(dist.mat))$value,]
 names(diet_df) <- c("dietpred1", "dietpred2", "dietdistance")
 diet_df$sp.pair <- paste(diet_df$dietpred1,diet_df$dietpred2,sep="_")
-
-## merge(diet_df,allpred.distance_df)
 
 #### randomization results ####
 # distances of L. elongatum to everything:
 Le_distances <- sort(phylodist["Leptagrion.elongatum",])
 ## a lookup table to pair spp leves with time-since-divergence
 lkup <- data.frame(sp.pair=levels(summarize_randoms$sp.pair),Time=Le_distances[-1])
-## merge these together
+
+#### merging ####
+## metabolic occurance + predator phylogenetic distance
+metabolic_occur_phylo <- merge(metabolic_cor_df,allpred_phylodist_df)
+## diet similarity + predator phylogenetic distance
+diet_similarity_phylo <- merge(diet_df,allpred_phylodist_df)
+ ## experiment randomization results + predator phylogenetic distance
 summarize_randoms_phylo <- merge(summarize_randoms,lkup)
+
 #####
 ```
 
@@ -301,9 +301,7 @@ All increases in predator phylogenetic diversity beyond damselflies resulted in 
 ### Figures
 
 ```{r FIG_metabolic_occurance~phylo}
-plot(pred_abd_matrix[lower.tri(pred_abd_matrix)]~
-       jitter(pred_phylo_matrix[lower.tri(pred_phylo_matrix)],amount=5),
-     xlab="phylogenetic distance",ylab="euclidian distance between total metabolic capacity")
+ggplot(dataset,aes(x=phylodistance,metadistance))+geom_point()+stat_smooth(method="lm", se=FALSE)+xlab("phylogenetic distance")+ylab("correlation between total metabolic capacity")
 ```
 
 
