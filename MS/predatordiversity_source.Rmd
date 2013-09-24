@@ -192,7 +192,7 @@ emptyRow <- which(rowSums(foodweb.matrix)==0)
 foodweb.matrix <- foodweb.matrix[-emptyRow,]
 # make the distance matrix -- with the jaccard index?
 ## finally, calculate distance
-distances <- vegdist(foodweb.matrix,method='jaccard',diag=TRUE)
+distances <- vegdist(t(foodweb.matrix),method='jaccard',diag=TRUE)
 ## make a distance matrix so lower.tri subsetting works
 diet_dist_mat <- as.matrix(distances)
 
@@ -258,7 +258,7 @@ lkup <- data.frame(sp.pair=levels(summarize_randoms$sp.pair),
 metabolic_occur_phylo <- merge(metabolic_cor_df,allpred_phylodist_df)
 ## diet similarity + predator phylogenetic distance
 diet_similarity_phylo <- merge(diet_df,allpred_phylodist_df)
- ## experiment randomization results + predator phylogenetic distance
+## experiment randomization results + predator phylogenetic distance
 summarize_randoms_phylo <- merge(summarize_randoms,lkup)
 
 #####
@@ -266,10 +266,8 @@ summarize_randoms_phylo <- merge(summarize_randoms,lkup)
 
 
 ```{r test_metabolic~phylo,results='asis'}
-PD <- pred_phylo_matrix[lower.tri(pred_phylo_matrix)]
-occurance_phylo_lm <- lm(pred_cor_occurance_metabolic[lower.tri(pred_cor_occurance_metabolic)]~PD)
-occur_phylo_summary <- summary(occurance_phylo_lm)
-#mantel.test(pred_phylo_matrix,pred_cor_matrix)
+meta_phylo_lm <- with(metabolic_occur_phylo,lm(metadistance~phylodistance))
+summary(meta_phylo_lm)
 ```
 
 Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~`r occur_phylo_summary$fstatistic[["numdf"]]`,`r occur_phylo_summary$fstatistic[["dendf"]]`~=`r occur_phylo_summary$fstatistic[["value"]]`,P=`r pf(occur_phylo_summary$fstatistic[1],occur_phylo_summary$fstatistic[2],occur_phylo_summary$fstatistic[3],lower.tail=FALSE)`).
@@ -294,7 +292,7 @@ All increases in predator phylogenetic diversity beyond damselflies resulted in 
 ### Figures
 
 ```{r FIG_metabolic_occurance~phylo}
-ggplot(dataset,aes(x=phylodistance,metadistance))+geom_point()+stat_smooth(method="lm", se=FALSE)+xlab("phylogenetic distance")+ylab("correlation between total metabolic capacity")
+ggplot(metabolic_occur_phylo,aes(x=phylodistance,y=metadistance))+geom_point()+stat_smooth(method="lm", se=FALSE)+xlab("phylogenetic distance")+ylab("correlation between total metabolic capacity")
 ```
 
 
