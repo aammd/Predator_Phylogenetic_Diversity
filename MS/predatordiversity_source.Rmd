@@ -188,11 +188,13 @@ foodweb.matrix <- as.matrix(foodweb.cast[,-1])
 # have better names
 dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
 foodweb.matrix <- foodweb.matrix[,-ncol(foodweb.matrix)]  ## last column was an NA predator.
+emptyRow <- which(rowSums(foodweb.matrix)==0)
+foodweb.matrix <- foodweb.matrix[-emptyRow,]
 # make the distance matrix -- with the jaccard index?
 ## finally, calculate distance
 distances <- vegdist(foodweb.matrix,method='jaccard',diag=TRUE)
 ## make a distance matrix so lower.tri subsetting works
-dist.mat <- as.matrix(distances)
+diet_dist_mat <- as.matrix(distances)
 
 ```
 
@@ -240,15 +242,16 @@ names(allpred_phylodist_df) <- c("phylopred1", "phylopred2", "phylodistance")
 allpred_phylodist_df$sp.pair <- paste(allpred_phylodist_df$phylopred1, allpred_phylodist_df$phylopred2,sep="_")
 
 ## Diet similarity ####
-diet_df <- melt(dist.mat)[melt(upper.tri(dist.mat))$value,]
+diet_df <- melt(diet_dist_mat)[melt(upper.tri(diet_dist_mat))$value,]
 names(diet_df) <- c("dietpred1", "dietpred2", "dietdistance")
 diet_df$sp.pair <- paste(diet_df$dietpred1,diet_df$dietpred2,sep="_")
 
 #### randomization results ####
 # distances of L. elongatum to everything:
-Le_distances <- sort(phylodist["Leptagrion.elongatum",])
+Le_distances <- sort(allpred_phylodist["Leptagrion.elongatum",])
 ## a lookup table to pair spp leves with time-since-divergence
-lkup <- data.frame(sp.pair=levels(summarize_randoms$sp.pair),Time=Le_distances[-1])
+lkup <- data.frame(sp.pair=levels(summarize_randoms$sp.pair),
+                   Time=Le_distances[c("Leptagrion.andromache","Tabanidae.spA","Hirudinidae")])
 
 #### merging ####
 ## metabolic occurance + predator phylogenetic distance
