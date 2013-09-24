@@ -164,7 +164,16 @@ All increases in predator phylogenetic diversity beyond damselflies resulted in 
 
 ### Figures
 
-![FALSE](figure/metabolic_cap_fig.png) 
+
+```
+## Error: object 'x' not found
+```
+
+```
+## Error: object 'm' not found
+```
+
+![FALSE](figure/FIG_metabolic_occurance~phylo.png) 
 
 
 
