@@ -134,6 +134,43 @@ hr {
 
 </style>
 
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: rgb(88, 72, 246)
+   }
+
+   pre .number {
+     color: rgb(0, 0, 205);
+   }
+
+   pre .comment {
+     color: rgb(76, 136, 107);
+   }
+
+   pre .keyword {
+     color: rgb(0, 0, 255);
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: rgb(3, 106, 7);
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
 
 
 
@@ -141,41 +178,9 @@ hr {
 </head>
 
 <body>
-<pre><code>## treatment
-##         andro       control         elong elong + andro elong + leech 
-##             5             5             5             5             5 
-##   elong + tab         leech       tabanid 
-##             5             5             5
-</code></pre>
-
-<pre><code>##   eu  Id  wt            name    N   X15N d15N emerged   fine n15.leaves
-## 1  1 EU1 5.8              B1 46.9 0.3653 -2.8       0 0.5783         31
-## 2  2 EU2 6.2              B6 82.2 0.3713 13.6       0 0.6755         26
-## 3  3 EU3 6.2              B7 46.8 0.3694  8.4       0 0.1966          6
-## 4  4 EU4 6.2              D6 34.4 0.3714 13.9       1 1.3413          4
-## 5  5 EU5 5.9 Romero_Tray1_A1 51.4 0.3700 10.1       4 0.8255         11
-## 6  6 EU6 5.8              D7 59.6 0.3733 19.1       2 0.4996         40
-##   leaf.mass bromeliad growth     treatment fine.detritus mass.g. decomp
-## 1    0.9677         6   5.06         andro             1   1.514 0.3608
-## 2    0.9127         9   5.58       tabanid            10   1.498 0.3908
-## 3    1.0063        12   6.48       tabanid            18   1.506 0.3319
-## 4    1.0193         3   3.50 elong + andro            33   1.504 0.3221
-## 5    0.9035        10   3.34       control            20   1.502 0.3985
-## 6    0.9469         8  -1.12 elong + andro             8   1.514 0.3748
-##   Culicidae Chironomidae Tipulidae Psychodidae Scirtidae total.surv leech
-## 1         0            1         1           0         0          2     0
-## 2         0            0         0           0         5          5     0
-## 3         1            1         0           0         3          5     0
-## 4         0            2         1           1         3          7     0
-## 5         3           13         1           1         2         20     0
-## 6         0            0         1           0         0          1     0
-##   andro tab elong
-## 1     1   0     0
-## 2     0   1     0
-## 3     0   1     0
-## 4     1   0     1
-## 5     0   0     0
-## 6     1   0     1
+<pre><code class="r"># dropping a record that seems to have been 90% decomposed!
+pd[which(pd$decomp &gt; 0.7), &quot;decomp&quot;] &lt;- NA
+## just to make sure: with(pd,table(treatment)) head(pd)
 </code></pre>
 
 <h2>Introduction</h2>
@@ -266,11 +271,196 @@ with a mesh cage and checked daily for emergence of adults.
 
 <h3>metabolic capacity and phylogenetic distance</h3>
 
-<p>Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~1,89~=3.9381,P=0.0503).</p>
+<pre><code class="r">####### metabolic matrix #### we need to calculate two distance matrices:
+####### 1) metabolic capacity distance 2) phylogenetic distance
+
+## metabolic matrix -- the &#39;distance&#39; between predator co-occurance,
+## measured as metabolism remove the first column -- it&#39;s species names
+metabolic.matrix &lt;- metabolic[-1]
+## put that name column as dimnames
+dimnames(metabolic.matrix)[[1]] &lt;- metabolic[, 1]
+
+## now that metabolic capacity is set up, there are several ways for us to
+## go forward: euclidian distance, or maybe correlations?
+
+## euclidian distance between metabolic densities
+pred.abd.distance &lt;- vegdist(metabolic.matrix, method = &quot;euclid&quot;)
+pred_abd_matrix &lt;- as.matrix(pred.abd.distance)  # convert to matrix
+# occurdist_allpred &lt;-
+# data.frame(X=rownames(pred_abd_matrix),pred_abd_matrix)
+
+## correlations between metabolic densities
+metabolic_mat &lt;- as.matrix(metabolic.matrix)
+# reordered metabolic distance matrix
+pred_cor_occurance_metabolic &lt;- cor(t(metabolic_mat))
+
+####### phylogeny matrix #### Calculate distances
+allpred_phylodist &lt;- cophenetic(predtree_timetree_ages)
+
+# allpred.distance.matrix ## match to abundance matrix names
+# where_in_phylo &lt;-
+# match(rownames(pred_abd_matrix),rownames(allpred.distance.matrix)) ##
+# reorder phylogenetic distance matrix pred_phylo_matrix &lt;-
+# allpred.distance.matrix[where_in_phylo,where_in_phylo]
+
+# Xlab &lt;- expression(paste(&#39;Phylogenetic distance (mean age of common
+# ancestor,10&#39;^&#39;6&#39;,&#39;)&#39;))
+</code></pre>
+
+<pre><code class="r"># Check for TRUE ZEROS in cast matrix.
+
+# trial.list &lt;- split(foodweb,foodweb$predator.names)
+# sapply(trial.list,nrow) need predators as columns, herbivores as rows
+foodweb.cast &lt;- dcast(data = foodweb, formula = Prey.species ~ predator.names, 
+    value.var = &quot;eaten.numeric&quot;, fun.aggregate = sum)
+# remove species names
+foodweb.matrix &lt;- as.matrix(foodweb.cast[, -1])
+# have better names
+dimnames(foodweb.matrix) &lt;- list(foodweb.cast[[1]], names(foodweb.cast)[-1])
+foodweb.matrix &lt;- foodweb.matrix[, -ncol(foodweb.matrix)]  ## last column was an NA predator.
+emptyRow &lt;- which(rowSums(foodweb.matrix) == 0)
+foodweb.matrix &lt;- foodweb.matrix[-emptyRow, ]
+# make the distance matrix -- with the jaccard index?  finally, calculate
+# distance
+distances &lt;- vegdist(t(foodweb.matrix), method = &quot;jaccard&quot;, diag = TRUE)
+## make a distance matrix so lower.tri subsetting works
+diet_dist_mat &lt;- as.matrix(distances)
+</code></pre>
+
+<pre><code class="r">### ---- group means #### go2 &lt;- responses.means(1000)
+### write.csv(go2,&#39;randomizations.group.means.csv&#39;)
+rand.means &lt;- read.csv(&quot;../data/predator.div.experiment/randomizations.group.means.csv&quot;)
+## order these correctly
+rand.means$sp.pair &lt;- factor(rand.means$sp.pair, levels = c(&quot;elong + andro&quot;, 
+    &quot;elong + tab&quot;, &quot;elong + leech&quot;))
+## remove the X column
+rand.means &lt;- rand.means[, -1]
+
+### supplementary figure?  ####
+meansMelt &lt;- melt(rand.means)
+</code></pre>
+
+<pre><code>## Using sp.pair as id variables
+</code></pre>
+
+<pre><code class="r"># #densityplot(~growth+survival+fine+decomp,groups=sp.pair,data=go)
+# ggplot(data=meansMelt,aes(x=value,colour=sp.pair))+geom_histogram()+facet_wrap(~variable)
+
+## summarize the randomizations
+summarize_randoms &lt;- ddply(.data = meansMelt, .variables = .(sp.pair, variable), 
+    summarize, mean = mean(value), lower = quantile(value, probs = c(0.025)), 
+    upper = quantile(value, probs = c(0.975)))
+#####
+</code></pre>
+
+<pre><code class="r">## we need to merge together several matrices: metabolic occurance +
+## predator phylogenetic distance diet similarity + predator phylogenetic
+## distance experiment randomization results + predator phylogenetic
+## distance
+
+## note that the nomeclature of the columns keeps `sp.pair` as the only
+## shared name among columns.  metabolic occurance ####
+metabolic_cor_df &lt;- melt(pred_cor_occurance_metabolic)[melt(upper.tri(pred_cor_occurance_metabolic))$value, 
+    ]
+names(metabolic_cor_df) &lt;- c(&quot;metapred1&quot;, &quot;metapred2&quot;, &quot;metadistance&quot;)
+metabolic_cor_df$sp.pair &lt;- paste(metabolic_cor_df$metapred1, metabolic_cor_df$metapred2, 
+    sep = &quot;_&quot;)
+
+## Phylogenetic distance ####
+allpred_phylodist_df &lt;- melt(allpred_phylodist)[melt(upper.tri(allpred_phylodist))$value, 
+    ]
+names(allpred_phylodist_df) &lt;- c(&quot;phylopred1&quot;, &quot;phylopred2&quot;, &quot;phylodistance&quot;)
+allpred_phylodist_df$sp.pair &lt;- paste(allpred_phylodist_df$phylopred1, allpred_phylodist_df$phylopred2, 
+    sep = &quot;_&quot;)
+
+## Diet similarity ####
+diet_df &lt;- melt(diet_dist_mat)[melt(upper.tri(diet_dist_mat))$value, ]
+names(diet_df) &lt;- c(&quot;dietpred1&quot;, &quot;dietpred2&quot;, &quot;dietdistance&quot;)
+diet_df$sp.pair &lt;- paste(diet_df$dietpred1, diet_df$dietpred2, sep = &quot;_&quot;)
+
+#### randomization results #### distances of L. elongatum to everything:
+Le_distances &lt;- sort(allpred_phylodist[&quot;Leptagrion.elongatum&quot;, ])
+## a lookup table to pair spp leves with time-since-divergence
+lkup &lt;- data.frame(sp.pair = levels(summarize_randoms$sp.pair), Time = Le_distances[c(&quot;Leptagrion.andromache&quot;, 
+    &quot;Tabanidae.spA&quot;, &quot;Hirudinidae&quot;)])
+
+#### merging #### metabolic occurance + predator phylogenetic distance
+metabolic_occur_phylo &lt;- merge(metabolic_cor_df, allpred_phylodist_df)
+## diet similarity + predator phylogenetic distance
+diet_similarity_phylo &lt;- merge(diet_df, allpred_phylodist_df)
+## experiment randomization results + predator phylogenetic distance
+summarize_randoms_phylo &lt;- merge(summarize_randoms, lkup)
+
+#####
+</code></pre>
+
+<pre><code class="r">meta_phylo_lm &lt;- with(metabolic_occur_phylo, lm(metadistance ~ phylodistance))
+meta_phylo_lm_summary &lt;- summary(meta_phylo_lm)
+</code></pre>
+
+<p>Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~1,<code>rmeta_phylo_lm_summary$fstatistic[[&quot;dendf&quot;]]</code>~=<code>rmeta_phylo_lm_summary$fstatistic[[&quot;value&quot;]]</code>,P=</p>
+
+<pre><code>
+Error in pf(meta_phylo_lm$fstatistic[1], meta_phylo_lm_summary$fstatistic[2],  : 
+  Non-numeric argument to mathematical function
+
+</code></pre>
+
+<p>).</p>
 
 <h3>diet similarity and phylogenetic distance</h3>
 
-<p>Phylogenetic distance was not correlated with similarity in diet (F~1,4~=0.2807,P=0.6243).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.</p>
+<pre><code class="r">PD &lt;- phylodist[lower.tri(phylodist)]
+</code></pre>
+
+<pre><code>## Error: object &#39;phylodist&#39; not found
+</code></pre>
+
+<pre><code class="r">diet_sim_phylo &lt;- lm(dist.mat[lower.tri(dist.mat)] ~ PD)
+</code></pre>
+
+<pre><code>## Error: object &#39;dist.mat&#39; not found
+</code></pre>
+
+<pre><code class="r">diet_phylo_summary &lt;- summary(diet_sim_phylo)
+</code></pre>
+
+<pre><code>## Error: object &#39;diet_sim_phylo&#39; not found
+</code></pre>
+
+<p>Phylogenetic distance was not correlated with similarity in diet (F~</p>
+
+<pre><code>
+Error in eval(expr, envir, enclos) : 
+  object &#39;diet_phylo_summary&#39; not found
+
+</code></pre>
+
+<p>,</p>
+
+<pre><code>
+Error in eval(expr, envir, enclos) : 
+  object &#39;diet_phylo_summary&#39; not found
+
+</code></pre>
+
+<p>~=</p>
+
+<pre><code>
+Error in eval(expr, envir, enclos) : 
+  object &#39;diet_phylo_summary&#39; not found
+
+</code></pre>
+
+<p>,P=</p>
+
+<pre><code>
+Error in pf(diet_phylo_summary$fstatistic[1], diet_phylo_summary$fstatistic[2],  : 
+  object &#39;diet_phylo_summary&#39; not found
+
+</code></pre>
+
+<p>).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.</p>
 
 <h3>Ecosystem-level effects and phylogenetic distance</h3>
 
@@ -278,17 +468,33 @@ with a mesh cage and checked daily for emergence of adults.
 
 <h3>Figures</h3>
 
-<pre><code>## Error: object &#39;x&#39; not found
+<pre><code class="r">ggplot(metabolic_occur_phylo, aes(x = phylodistance, y = metadistance)) + geom_point() + 
+    stat_smooth(method = &quot;lm&quot;, se = FALSE) + xlab(&quot;phylogenetic distance&quot;) + 
+    ylab(&quot;correlation between total metabolic capacity&quot;)
 </code></pre>
 
-<pre><code>## Error: object &#39;m&#39; not found
+<p><img src="figure/FIG_metabolic_occurance%7Ephylo.png" alt="plot of chunk FIG_metabolic_occurance~phylo"/> </p>
+
+<pre><code class="r">plot(dist.mat[lower.tri(dist.mat)] ~ jitter(phylodist[lower.tri(phylodist)], 
+    amount = 10), xlab = &quot;phylogenetic distance&quot;, ylab = &quot;jaccard distance between feeding trials&quot;)
 </code></pre>
 
-<p><img src="figure/FIG_metabolic_occurance%7Ephylo.png" alt="FALSE"/> </p>
+<pre><code>## Error: object &#39;dist.mat&#39; not found
+</code></pre>
 
-<p><img src="data:image/png;base64,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" alt="FALSE"/> </p>
+<pre><code class="r">ggplot(subset(summarize_randoms_phylo, summarize_randoms_phylo$variable == &quot;survival&quot;), 
+    aes(x = Time, y = mean)) + geom_errorbar(aes(ymin = lower, ymax = upper), 
+    width = 0) + geom_point(size = 3) + ylab(&quot;Mean treatment difference, Control-Treatment&quot;) + 
+    xlab(&quot;Time (Mya)&quot;)
+</code></pre>
 
-<p><img src="data:image/png;base64,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" alt="FALSE"/> </p>
+<p><img src="data:image/png;base64,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" alt="plot of chunk FIG_PD_experiment"/> </p>
+
+<pre><code class="r"># ggplot(summarize_randoms_phylo,
+# aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower,
+# ymax=upper),width=0)+geom_point(size=3)+ylab(&#39;Mean treatment difference,
+# Control-Treatment&#39;)+xlab(&#39;Time (Mya)&#39;)+facet_wrap(~variable)
+</code></pre>
 
 <h2>Discussion</h2>
 

@@ -267,10 +267,10 @@ summarize_randoms_phylo <- merge(summarize_randoms,lkup)
 
 ```{r test_metabolic~phylo,results='asis'}
 meta_phylo_lm <- with(metabolic_occur_phylo,lm(metadistance~phylodistance))
-summary(meta_phylo_lm)
+meta_phylo_lm_summary <- summary(meta_phylo_lm)
 ```
 
-Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~`r occur_phylo_summary$fstatistic[["numdf"]]`,`r occur_phylo_summary$fstatistic[["dendf"]]`~=`r occur_phylo_summary$fstatistic[["value"]]`,P=`r pf(occur_phylo_summary$fstatistic[1],occur_phylo_summary$fstatistic[2],occur_phylo_summary$fstatistic[3],lower.tail=FALSE)`).
+Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`,P=`r pf(meta_phylo_lm$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)`).
 
 ### diet similarity and phylogenetic distance
 
