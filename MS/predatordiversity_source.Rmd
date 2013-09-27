@@ -3,7 +3,7 @@
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
-#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
+#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="pdf")
 
 ## load packages
 library(ggplot2)
@@ -15,6 +15,7 @@ library(beanplot)
 library(pander)
 library(gplots)
 library(plyr)
+library(gridExtra)
 
 # occurrance data -- abundance
 occur <- read.csv("../data/reorganized_data/predator.cooccur.txt",stringsAsFactor=FALSE)
@@ -153,25 +154,17 @@ dimnames(metabolic.matrix)[[1]] <- metabolic[,1]
 
 ## euclidian distance between metabolic densities
 pred.abd.distance <- vegdist(metabolic.matrix,method="euclid")
-pred_abd_matrix <- as.matrix(pred.abd.distance) # convert to matrix
-#occurdist_allpred <- data.frame(X=rownames(pred_abd_matrix),pred_abd_matrix)
+occur_matrix <- as.matrix(pred.abd.distance) # convert to matrix
 
 ## correlations between metabolic densities
 metabolic_mat <- as.matrix(metabolic.matrix)
 # reordered metabolic distance matrix
-pred_cor_occurance_metabolic <- cor(t(metabolic_mat))
+#occur_matrix <- cor(t(metabolic_mat))
 
 ####### phylogeny matrix ####
 ## Calculate distances
 allpred_phylodist <- cophenetic(predtree_timetree_ages)
 
-# allpred.distance.matrix
-# ## match to abundance matrix names
-# where_in_phylo <- match(rownames(pred_abd_matrix),rownames(allpred.distance.matrix))
-# ## reorder phylogenetic distance matrix
-# pred_phylo_matrix <- allpred.distance.matrix[where_in_phylo,where_in_phylo]
-
-#Xlab <- expression(paste("Phylogenetic distance (mean age of common ancestor,10"^"6",")"))
 ######## 
 ```
 
@@ -232,9 +225,9 @@ summarize_randoms <- ddply(.data=meansMelt,.variables=.(sp.pair,variable),summar
 
 ## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
 #### metabolic occurance ####
-metabolic_cor_df <- melt(pred_cor_occurance_metabolic)[melt(upper.tri(pred_cor_occurance_metabolic))$value,]
-names(metabolic_cor_df) <- c("metapred1", "metapred2", "metadistance")
-metabolic_cor_df$sp.pair <- paste(metabolic_cor_df$metapred1,metabolic_cor_df$metapred2,sep="_")
+metabolic_df <- melt(occur_matrix)[melt(upper.tri(occur_matrix))$value,]
+names(metabolic_df) <- c("metapred1", "metapred2", "metadistance")
+metabolic_df$sp.pair <- paste(metabolic_df$metapred1,metabolic_df$metapred2,sep="_")
 
 ## Phylogenetic distance ####
 allpred_phylodist_df <- melt(allpred_phylodist)[melt(upper.tri(allpred_phylodist))$value,]
@@ -255,7 +248,7 @@ lkup <- data.frame(sp.pair=levels(summarize_randoms$sp.pair),
 
 #### merging ####
 ## metabolic occurance + predator phylogenetic distance
-metabolic_occur_phylo <- merge(metabolic_cor_df,allpred_phylodist_df)
+metabolic_occur_phylo <- merge(metabolic_df,allpred_phylodist_df)
 ## diet similarity + predator phylogenetic distance
 diet_similarity_phylo <- merge(diet_df,allpred_phylodist_df)
 ## experiment randomization results + predator phylogenetic distance
@@ -276,12 +269,12 @@ Predators which are closer in the phylogeny are more likely to occur in the same
 
 
 ```{r TEST_diet-sim~PD}
-PD <- phylodist[lower.tri(phylodist)]
-diet_sim_phylo <- lm(dist.mat[lower.tri(dist.mat)]~PD)
-diet_phylo_summary <- summary(diet_sim_phylo)
+#diet_phylo_summary <- summary(diet_sim_phylo)
 ```
 
+<!-- 
 Phylogenetic distance was not correlated with similarity in diet (F~`r diet_phylo_summary$fstatistic[["numdf"]]`,`r diet_phylo_summary$fstatistic[["dendf"]]`~=`r diet_phylo_summary$fstatistic[["value"]]`,P=`r pf(diet_phylo_summary$fstatistic[1],diet_phylo_summary$fstatistic[2],diet_phylo_summary$fstatistic[3],lower.tail=FALSE)`).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.
+-->
 
 ### Ecosystem-level effects and phylogenetic distance
 
@@ -291,18 +284,18 @@ All increases in predator phylogenetic diversity beyond damselflies resulted in 
 
 ### Figures
 
-```{r FIG_metabolic_occurance~phylo}
+```{r FIG_metabolic_occurance_as_phylo}
 ggplot(metabolic_occur_phylo,aes(x=phylodistance,y=metadistance))+geom_point()+stat_smooth(method="lm", se=FALSE)+xlab("phylogenetic distance")+ylab("correlation between total metabolic capacity")
 ```
 
 
-```{r feeding_trial}
-plot(dist.mat[lower.tri(dist.mat)]~
-       jitter(phylodist[lower.tri(phylodist)],amount=10),
-     xlab="phylogenetic distance",ylab="jaccard distance between feeding trials")
+```{r FIG_feeding_trial_as_phylo}
+# plot(dist.mat[lower.tri(dist.mat)]~
+#        jitter(phylodist[lower.tri(phylodist)],amount=10),
+#      xlab="phylogenetic distance",ylab="jaccard distance between feeding trials")
 ```
 
-```{r FIG_PD_experiment}
+```{r FIG_PD_experiment_nonadditive}
 ggplot(subset(summarize_randoms_phylo,summarize_randoms_phylo$variable=="survival"),
        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")
 # 
@@ -311,6 +304,20 @@ ggplot(subset(summarize_randoms_phylo,summarize_randoms_phylo$variable=="surviva
 ```
 
 
+```{r FIG_experiment_responses}
+pd_long <- melt(pd[names(pd)%in%c("treatment","total.surv","fine","decomp","growth","N")],id.vars="treatment")
+
+plotmaker <- function(resp,kill_trtnames=TRUE,label){
+ggplot(pd_long,aes(y=value,x=treatment))+stat_summary(fun.y = mean, fun.ymin = min, fun.ymax = max,geom="pointrange",subset=.(variable==resp))+geom_hline(x=0,colour="grey")+ylab(label)+coord_flip()+if(kill_trtnames) theme(axis.text.y = element_blank(), axis.title.y=element_blank())
+}
+
+surv <- plotmaker(resp="total.surv",kill_trtnames=FALSE,label="prey survival")
+N <- plotmaker("N",label="Nitrogen")
+growth <- plotmaker("growth",label="growth (mm)")
+decomp <- plotmaker("decomp",label="decomposition (g)")
+fine <- plotmaker("fine",label="production of fine detritus (g)")
+grid.arrange(surv,N,growth,decomp,fine,nrow=1)
+```
 
 
 

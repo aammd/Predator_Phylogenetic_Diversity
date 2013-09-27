@@ -118,26 +118,17 @@ dimnames(metabolic.matrix)[[1]] <- metabolic[, 1]
 
 ## euclidian distance between metabolic densities
 pred.abd.distance <- vegdist(metabolic.matrix, method = "euclid")
-pred_abd_matrix <- as.matrix(pred.abd.distance)  # convert to matrix
-# occurdist_allpred <-
-# data.frame(X=rownames(pred_abd_matrix),pred_abd_matrix)
+occur_matrix <- as.matrix(pred.abd.distance)  # convert to matrix
 
 ## correlations between metabolic densities
 metabolic_mat <- as.matrix(metabolic.matrix)
-# reordered metabolic distance matrix
-pred_cor_occurance_metabolic <- cor(t(metabolic_mat))
+# reordered metabolic distance matrix occur_matrix <-
+# cor(t(metabolic_mat))
 
 ####### phylogeny matrix #### Calculate distances
 allpred_phylodist <- cophenetic(predtree_timetree_ages)
 
-# allpred.distance.matrix ## match to abundance matrix names
-# where_in_phylo <-
-# match(rownames(pred_abd_matrix),rownames(allpred.distance.matrix)) ##
-# reorder phylogenetic distance matrix pred_phylo_matrix <-
-# allpred.distance.matrix[where_in_phylo,where_in_phylo]
-
-# Xlab <- expression(paste('Phylogenetic distance (mean age of common
-# ancestor,10'^'6',')'))
+########
 ```
 
 
@@ -205,10 +196,9 @@ summarize_randoms <- ddply(.data = meansMelt, .variables = .(sp.pair, variable),
 
 ## note that the nomeclature of the columns keeps `sp.pair` as the only
 ## shared name among columns.  metabolic occurance ####
-metabolic_cor_df <- melt(pred_cor_occurance_metabolic)[melt(upper.tri(pred_cor_occurance_metabolic))$value, 
-    ]
-names(metabolic_cor_df) <- c("metapred1", "metapred2", "metadistance")
-metabolic_cor_df$sp.pair <- paste(metabolic_cor_df$metapred1, metabolic_cor_df$metapred2, 
+metabolic_df <- melt(occur_matrix)[melt(upper.tri(occur_matrix))$value, ]
+names(metabolic_df) <- c("metapred1", "metapred2", "metadistance")
+metabolic_df$sp.pair <- paste(metabolic_df$metapred1, metabolic_df$metapred2, 
     sep = "_")
 
 ## Phylogenetic distance ####
@@ -230,7 +220,7 @@ lkup <- data.frame(sp.pair = levels(summarize_randoms$sp.pair), Time = Le_distan
     "Tabanidae.spA", "Hirudinidae")])
 
 #### merging #### metabolic occurance + predator phylogenetic distance
-metabolic_occur_phylo <- merge(metabolic_cor_df, allpred_phylodist_df)
+metabolic_occur_phylo <- merge(metabolic_df, allpred_phylodist_df)
 ## diet similarity + predator phylogenetic distance
 diet_similarity_phylo <- merge(diet_df, allpred_phylodist_df)
 ## experiment randomization results + predator phylogenetic distance
@@ -248,7 +238,7 @@ meta_phylo_lm_summary <- summary(meta_phylo_lm)
 ```
 
 
-Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~1,`rmeta_phylo_lm_summary$fstatistic[["dendf"]]`~=`rmeta_phylo_lm_summary$fstatistic[["value"]]`,P=
+Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~1,53~=0.7394,P=
 
 ```
 
@@ -264,30 +254,11 @@ Error in pf(meta_phylo_lm$fstatistic[1], meta_phylo_lm_summary$fstatistic[2],  :
 
 
 ```r
-PD <- phylodist[lower.tri(phylodist)]
-```
-
-```
-## Error: object 'phylodist' not found
-```
-
-```r
-diet_sim_phylo <- lm(dist.mat[lower.tri(dist.mat)] ~ PD)
-```
-
-```
-## Error: object 'dist.mat' not found
-```
-
-```r
-diet_phylo_summary <- summary(diet_sim_phylo)
-```
-
-```
-## Error: object 'diet_sim_phylo' not found
+# diet_phylo_summary <- summary(diet_sim_phylo)
 ```
 
 
+<!-- 
 Phylogenetic distance was not correlated with similarity in diet (F~
 
 ```
@@ -325,6 +296,7 @@ Error in pf(diet_phylo_summary$fstatistic[1], diet_phylo_summary$fstatistic[2], 
 ```
 
 ).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.
+-->
 
 ### Ecosystem-level effects and phylogenetic distance
 
@@ -341,18 +313,15 @@ ggplot(metabolic_occur_phylo, aes(x = phylodistance, y = metadistance)) + geom_p
     ylab("correlation between total metabolic capacity")
 ```
 
-![plot of chunk FIG_metabolic_occurance~phylo](figure/FIG_metabolic_occurance~phylo.png) 
+![plot of chunk FIG_metabolic_occurance_as_phylo](figure/FIG_metabolic_occurance_as_phylo.png) 
 
 
 
 
 ```r
-plot(dist.mat[lower.tri(dist.mat)] ~ jitter(phylodist[lower.tri(phylodist)], 
-    amount = 10), xlab = "phylogenetic distance", ylab = "jaccard distance between feeding trials")
-```
-
-```
-## Error: object 'dist.mat' not found
+# plot(dist.mat[lower.tri(dist.mat)]~
+# jitter(phylodist[lower.tri(phylodist)],amount=10), xlab='phylogenetic
+# distance',ylab='jaccard distance between feeding trials')
 ```
 
 
@@ -364,7 +333,7 @@ ggplot(subset(summarize_randoms_phylo, summarize_randoms_phylo$variable == "surv
     xlab("Time (Mya)")
 ```
 
-![plot of chunk FIG_PD_experiment](figure/FIG_PD_experiment.png) 
+![plot of chunk FIG_PD_experiment_nonadditive](figure/FIG_PD_experiment_nonadditive.png) 
 
 ```r
 # ggplot(summarize_randoms_phylo,
@@ -374,6 +343,37 @@ ggplot(subset(summarize_randoms_phylo, summarize_randoms_phylo$variable == "surv
 ```
 
 
+
+
+```r
+pd_long <- melt(pd[names(pd) %in% c("treatment", "total.surv", "fine", "decomp", 
+    "growth", "N")], id.vars = "treatment")
+
+plotmaker <- function(resp, kill_trtnames = TRUE, label) {
+    ggplot(pd_long, aes(y = value, x = treatment)) + stat_summary(fun.y = mean, 
+        fun.ymin = min, fun.ymax = max, geom = "pointrange", subset = .(variable == 
+            resp)) + geom_hline(x = 0, colour = "grey") + ylab(label) + coord_flip() + 
+        if (kill_trtnames) 
+            theme(axis.text.y = element_blank(), axis.title.y = element_blank())
+}
+
+surv <- plotmaker(resp = "total.surv", kill_trtnames = FALSE, label = "prey survival")
+N <- plotmaker("N", label = "Nitrogen")
+growth <- plotmaker("growth", label = "growth (mm)")
+decomp <- plotmaker("decomp", label = "decomposition (g)")
+fine <- plotmaker("fine", label = "production of fine detritus (g)")
+grid.arrange(surv, N, growth, decomp, fine, nrow = 1)
+```
+
+```
+## Warning: Removed 1 rows containing missing values (stat_summary).
+```
+
+```
+## Warning: Removed 1 rows containing missing values (stat_summary).
+```
+
+![plot of chunk FIG_experiment_responses](figure/FIG_experiment_responses.png) 
 
 
 
