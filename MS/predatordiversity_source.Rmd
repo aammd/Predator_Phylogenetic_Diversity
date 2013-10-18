@@ -278,6 +278,14 @@ meta_phylo_lm <- with(metabolic_occur_phylo,lm(metadistance~phylodistance))
 meta_phylo_lm_summary <- summary(meta_phylo_lm)
 ```
 
+```{r}
+datas <- lapply(list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE),read.csv)
+#sapply(datas,nrow)
+n.nodes <- length(datas)
+```
+
+We identified `r length(predtree_timetree_ages$tip.label)` in the 2008 dataset as predators. These predators vary in taxonomic relatedness: from congeners (_Bezzia_ sp. (Diptera:Ceratopogonidae) with two species, _Leptagrion_ sp. (Odonata:Coenagrionidae) with three) to confamilials (three species of Tabanidae and two of Empididae, all Diptera). Three families of Diptera are represented by a single species each: Dolichopodidae, Corethrellidae and Chironomidae. The deepest taxonomic divide is between all insects present and a species of leech (Annelida:Hirudinidae).
+Say something about the what do you call it -- the metabolic capacity -- how many we found in a plant.  what was the range, etc.
 Predators which are closer in the phylogeny are not more likely to occur in the same bromeliads (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`,P=`r pf(meta_phylo_lm_summary$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)`).
 
 ### diet similarity and phylogenetic distance
