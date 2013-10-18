@@ -3,7 +3,7 @@
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
-#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="pdf")
+#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
 
 ## load packages
 library(ggplot2)
@@ -135,8 +135,6 @@ with a mesh cage and checked daily for emergence of adults.
 
 ## Results
 
-### metabolic capacity and phylogenetic distance
-
 ```{r CALC_distance_matrices}
 ####### metabolic matrix ####
 ## we need to calculate two distance matrices:
@@ -167,7 +165,6 @@ allpred_phylodist <- cophenetic(predtree_timetree_ages)
 
 ######## 
 ```
-
 
 ```{r CALC_diet_similarity}
 # Check for TRUE ZEROS in cast matrix.
@@ -229,15 +226,24 @@ metabolic_df <- melt(occur_matrix)[melt(upper.tri(occur_matrix))$value,]
 names(metabolic_df) <- c("metapred1", "metapred2", "metadistance")
 metabolic_df$sp.pair <- paste(metabolic_df$metapred1,metabolic_df$metapred2,sep="_")
 
+
 ## Phylogenetic distance ####
 allpred_phylodist_df <- melt(allpred_phylodist)[melt(upper.tri(allpred_phylodist))$value,]
 names(allpred_phylodist_df) <- c("phylopred1", "phylopred2", "phylodistance")
-allpred_phylodist_df$sp.pair <- paste(allpred_phylodist_df$phylopred1, allpred_phylodist_df$phylopred2,sep="_")
+allpred_phylodist_df_RH <- allpred_phylodist_df
+allpred_phylodist_df_LH <- allpred_phylodist_df
+allpred_phylodist_df_RH$sp.pair <- paste(allpred_phylodist_df_RH$phylopred1, allpred_phylodist_df_RH$phylopred2,sep="_")
+allpred_phylodist_df_LH$sp.pair <- paste(allpred_phylodist_df_LH$phylopred2, allpred_phylodist_df_LH$phylopred1,sep="_")
 
 ## Diet similarity ####
 diet_df <- melt(diet_dist_mat)[melt(upper.tri(diet_dist_mat))$value,]
 names(diet_df) <- c("dietpred1", "dietpred2", "dietdistance")
 diet_df$sp.pair <- paste(diet_df$dietpred1,diet_df$dietpred2,sep="_")
+## we also need to know how many trials each predator has in common:
+incommon <- t(foodweb.matrix>0)%*%(foodweb.matrix>0)
+incommon_df <- melt(incommon)[melt(upper.tri(incommon))$value,]
+names(incommon_df) <- c("commonpred1", "commonpred2", "Ncommon")
+incommon_df$sp.pair <- paste(incommon_df$commonpred1,incommon_df$commonpred2,sep="_")
 
 #### randomization results ####
 # distances of L. elongatum to everything:
@@ -248,29 +254,43 @@ lkup <- data.frame(sp.pair=levels(summarize_randoms$sp.pair),
 
 #### merging ####
 ## metabolic occurance + predator phylogenetic distance
-metabolic_occur_phylo <- merge(metabolic_df,allpred_phylodist_df)
+metabolic_occur_phylo1 <- merge(metabolic_df,allpred_phylodist_df_LH)
+metabolic_occur_phylo2 <- merge(metabolic_df,allpred_phylodist_df_RH)
+metabolic_occur_phylo <- rbind(metabolic_occur_phylo1,metabolic_occur_phylo2)
 ## diet similarity + predator phylogenetic distance
-diet_similarity_phylo <- merge(diet_df,allpred_phylodist_df)
+diet_df1 <- merge(diet_df,incommon_df)
+
+diet_similarity_phylo1 <- merge(diet_df1,allpred_phylodist_df_LH)
+diet_similarity_phylo2 <- merge(diet_df1,allpred_phylodist_df_RH)
+diet_similarity_phylo <- rbind(diet_similarity_phylo1,diet_similarity_phylo2)
 ## experiment randomization results + predator phylogenetic distance
+#diet_df1$sp.pair[!diet_df1$sp.pair%in%diet_similarity_phylo$sp.pair]
+## as this code shows, small lepts are not in the running yet
 summarize_randoms_phylo <- merge(summarize_randoms,lkup)
 
 #####
 ```
 
+### metabolic capacity and phylogenetic distance
 
-```{r test_metabolic~phylo,results='asis'}
+```{r TEST_metabolic~phylo,results='asis'}
 meta_phylo_lm <- with(metabolic_occur_phylo,lm(metadistance~phylodistance))
 meta_phylo_lm_summary <- summary(meta_phylo_lm)
 ```
 
-Predators which are closer in the phylogeny are more likely to occur in the same bromeliads, and to do so with a similar overall metabolic capacity.(F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`,P=`r pf(meta_phylo_lm$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)`).
+Predators which are closer in the phylogeny are not more likely to occur in the same bromeliads (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`,P=`r pf(meta_phylo_lm_summary$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)`).
 
 ### diet similarity and phylogenetic distance
 
 
-```{r TEST_diet-sim~PD}
-#diet_phylo_summary <- summary(diet_sim_phylo)
+```{r TEST_diet-sim_as_PD}
+diet_phylo_lm <- with(diet_similarity_phylo,lm(dietdistance~phylodistance,weights=Ncommon))
+diet_phylo_lm_summary <- summary(diet_phylo_lm)
+## test a squared term with 
 ```
+
+All predators showed a very generalist diet breadth.  However, more phylogenetically distinct predators preferred slightly more distant prey, as measured by euclidian distance between feeding trial outcomes (F~`r diet_phylo_lm_summary $fstatistic[["numdf"]]`,`r diet_phylo_lm_summary $fstatistic[["dendf"]]`~=`r diet_phylo_lm_summary $fstatistic[["value"]]`,P=`r pf(diet_phylo_lm_summary $fstatistic[1],diet_phylo_lm_summary $fstatistic[2],diet_phylo_lm_summary $fstatistic[3],lower.tail=FALSE)`)  Regression was weighted by the number of trials conducted.
+
 
 <!-- 
 Phylogenetic distance was not correlated with similarity in diet (F~`r diet_phylo_summary$fstatistic[["numdf"]]`,`r diet_phylo_summary$fstatistic[["dendf"]]`~=`r diet_phylo_summary$fstatistic[["value"]]`,P=`r pf(diet_phylo_summary$fstatistic[1],diet_phylo_summary$fstatistic[2],diet_phylo_summary$fstatistic[3],lower.tail=FALSE)`).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.
@@ -279,6 +299,8 @@ Phylogenetic distance was not correlated with similarity in diet (F~`r diet_phyl
 ### Ecosystem-level effects and phylogenetic distance
 
 All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality.
+
+predator addition treatments did not differ strongly from predator-free controls. We did not find significant differences for FPOM, decompositon, or bromeliad growth. However, we did find results for N15 uptake into bromeliads. Our strongest differences were in insect survivorship, which decreased in all predator treatments relative to control. 
 
 
 
@@ -290,6 +312,7 @@ ggplot(metabolic_occur_phylo,aes(x=phylodistance,y=metadistance))+geom_point()+s
 
 
 ```{r FIG_feeding_trial_as_phylo}
+ggplot(data=diet_similarity_phylo,aes(y=dietdistance,x=phylodistance,size=Ncommon))+geom_point()+scale_size(range=c(2,6))+ylab("Euclidian distance between feeding trials")+xlab("phylogenetic distance")+stat_smooth(method="lm", aes(weight=Ncommon))
 # plot(dist.mat[lower.tri(dist.mat)]~
 #        jitter(phylodist[lower.tri(phylodist)],amount=10),
 #      xlab="phylogenetic distance",ylab="jaccard distance between feeding trials")
@@ -314,10 +337,15 @@ ggplot(pd_long,aes(y=value,x=treatment))+stat_summary(fun.y = mean, fun.ymin = m
 surv <- plotmaker(resp="total.surv",kill_trtnames=FALSE,label="prey survival")
 N <- plotmaker("N",label="Nitrogen")
 growth <- plotmaker("growth",label="growth (mm)")
-decomp <- plotmaker("decomp",label="decomposition (g)")
-fine <- plotmaker("fine",label="production of fine detritus (g)")
-grid.arrange(surv,N,growth,decomp,fine,nrow=1)
+decomp <- plotmaker("decomp",label="decomposition \n (g)")
+fine <- plotmaker("fine",label="production of \n FPOM (g)")
+grid.arrange(surv,N,growth,decomp,fine,ncol=5,widths=unit(c(2,rep(1, 4)), "null"))
+
+
 ```
+
+
+controls not really differen
 
 
 

@@ -151,6 +151,22 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "predatordiversity_source.Rmd",
+			"settings":
+			{
+				"buffer_size": 17696,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "predatordiversity_source.md",
+			"settings":
+			{
+				"buffer_size": 7631,
+				"line_ending": "Unix"
+			}
+		}
 	],
 	"build_system": "Packages/MarkdownBuild/Markdown.sublime-build",
 	"command_palette":
@@ -324,9 +340,10 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/Documents/Writing/Progress/writing.progress.txt",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/forDiane.sh",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.Rmd",
-		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.md",
 		"/home/andrew/Dropbox/Predator_Phylogenetic_Diversity/MS/TreeTechnique.md",
 		"/home/andrew/Dropbox/Predator_Phylogenetic_Diversity/MS/forDiane.sh",
 		"/home/andrew/.bashrc",
@@ -450,8 +467,7 @@
 		"/home/andrew/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
 		"/home/andrew/Dropbox/PhD/brazil2013/ideas for work/Macae.project",
 		"/home/andrew/Dropbox/PhD/brazil2013/ideas for work/mtgDiane25Feb.txt",
-		"/home/andrew/.config/sublime-text-2/Packages/User/SublimeREPL.sublime-settings",
-		"/home/andrew/.config/sublime-text-2/Packages/User/R.sublime-build"
+		"/home/andrew/.config/sublime-text-2/Packages/User/SublimeREPL.sublime-settings"
 	],
 	"find":
 	{
@@ -552,8 +568,65 @@
 	"groups":
 	[
 		{
+			"selected": 0,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "predatordiversity_source.Rmd",
+					"settings":
+					{
+						"buffer_size": 17696,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								8234,
+								8234
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Rx/Rmarkdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3075.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "predatordiversity_source.md",
+					"settings":
+					{
+						"buffer_size": 7631,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								3623,
+								3623
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 3366.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
