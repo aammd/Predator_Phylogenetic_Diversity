@@ -3,7 +3,7 @@
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
-#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="pdf")
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="pdf")
 
 ## load packages
 library(ggplot2)
@@ -293,11 +293,19 @@ In 2008, insects were counted and measured in an observational study of `r ncol(
 
 ### diet similarity and phylogenetic distance
 ```{r dietcalc}
+foodweb_len <- dcast(data=foodweb,formula=Prey.species~predator.names,value.var="eaten.numeric",fun.aggregate=length)
+# remove species names
+foodweb_len_mat <- as.matrix(foodweb_len[,-1])
+# have better names
+dimnames(foodweb_len_mat) <- list(foodweb_len[[1]],names(foodweb_len)[-1])
+foodweb_len_mat <- foodweb_len_mat[,-ncol(foodweb_len_mat)]  ## last column was an NA predator.
 
-length(unique(foodweb$))
+## what percentage of total trials resulted in predation?
+percentpredation <- round(colMeans(foodweb.matrix/foodweb_len_mat,na.rm=TRUE),digits=2)
+
 ```
 
-We conducted `r nrow(foodweb)` feeding trials; these included `r length(unique(foodweb$predator.sp.))` predator taxa tested on `r length(unique(foodweb$Prey.species))` prey taxa.
+We conducted `r sum(foodweb_len_mat)` feeding trials; these included `r ncol(foodweb.matrix)` predator taxa tested on `r nrow(foodweb.matrix)` prey taxa.  However, due to the rarity of many taxa many predator-prey pairs were not possible.  We tested `r sum(foodweb_len_mat>0)` pairwise combinations.  Most trials were replicated at least 5 times, but the number of replicates for various combinations ranged from `r min(foodweb_len_mat[foodweb_len_mat>0])` to `r max(foodweb_len_mat[foodweb_len_mat>0])`.  Two damselflies, _Leptagrion andromache_ and _Leptagrion elongatum_, showed the higest rates of prey consumption (prey consumed in `r percentpredation[["Leptagrion.andromache""]]*100`% and `r percentpredation[["Leptagrion.elongatum""]]*100`% of trials, respectively). 
 
 ```{r TEST_diet-sim_as_PD}
 diet_phylo_lm <- with(diet_similarity_phylo,lm(dietdistance~phylodistance,weights=Ncommon))
@@ -305,12 +313,7 @@ diet_phylo_lm_summary <- summary(diet_phylo_lm)
 ## test a squared term with 
 ```
 
-All predators showed a very generalist diet breadth.  However, more phylogenetically distinct predators preferred slightly more distant prey, as measured by euclidian distance between feeding trial outcomes (F~`r diet_phylo_lm_summary $fstatistic[["numdf"]]`,`r diet_phylo_lm_summary $fstatistic[["dendf"]]`~=`r diet_phylo_lm_summary $fstatistic[["value"]]`,P=`r pf(diet_phylo_lm_summary $fstatistic[1],diet_phylo_lm_summary $fstatistic[2],diet_phylo_lm_summary $fstatistic[3],lower.tail=FALSE)`)  Regression was weighted by the number of trials conducted.
-
-
-<!-- 
-Phylogenetic distance was not correlated with similarity in diet (F~`r diet_phylo_summary$fstatistic[["numdf"]]`,`r diet_phylo_summary$fstatistic[["dendf"]]`~=`r diet_phylo_summary$fstatistic[["value"]]`,P=`r pf(diet_phylo_summary$fstatistic[1],diet_phylo_summary$fstatistic[2],diet_phylo_summary$fstatistic[3],lower.tail=FALSE)`).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.
--->
+All predators showed a very generalist diet breadth, consuming nearly 100% of all prey offered to them.  However, more phylogenetically distant predators preferred slightly different diets, as measured by euclidian distance between feeding trial outcomes (F~`r diet_phylo_lm_summary $fstatistic[["numdf"]]`,`r diet_phylo_lm_summary $fstatistic[["dendf"]]`~=`r diet_phylo_lm_summary $fstatistic[["value"]]`,P=`r pf(diet_phylo_lm_summary $fstatistic[1],diet_phylo_lm_summary $fstatistic[2],diet_phylo_lm_summary $fstatistic[3],lower.tail=FALSE)`)  Regression was weighted by the number of trials conducted.
 
 ### Ecosystem-level effects and phylogenetic distance
 
