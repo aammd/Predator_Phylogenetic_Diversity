@@ -113,69 +113,30 @@ with a mesh cage and checked daily for emergence of adults.
 
 
 
-```
-## [1] "insects.to.leeches.csv"            
-## [2] "odonata-Tabanidae.csv"             
-## [3] "tabanidae_culidicae_ie_Diptera.csv"
-```
 
 
 We identified 14 in the 2008 dataset as predators. These predators vary in taxonomic relatedness: from congeners (_Bezzia_ sp. (Diptera:Ceratopogonidae) with two species, _Leptagrion_ sp. (Odonata:Coenagrionidae) with three) to confamilials (three species of Tabanidae and two of Empididae, all Diptera). Three families of Diptera are represented by a single species each: Dolichopodidae, Corethrellidae and Chironomidae. The deepest taxonomic divide is between all insects present and a species of leech (Annelida:Hirudinidae). Node age data was available for all but the shallowest nodes of the tree, where either a lack of taxonomic information (e.g. Tabanidae) or a lack of phylogenetic studies (e.g. _Leptagrion_) prevented more information from being included.  These branches were left as polytomies, and were all assigned identical, arbitrary and short branch lengths (15 Mya).
 
 We obtained node age estimates for all 7 internal nodes of the tree.  These were usually provided by only a single study, with more studies available for deeper nodes: Insecta--Hirudina (n=5, 543 to 700 Mya), Odonata--Tabanidae (n=4, 151 to 543 Mya) and Tabanidae--Diptera (n=7, 151 to 543 Mya).  We used the median estimate of age for these nodes.
 
-In 2008, insects were counted and measured in an observational study of 25 bromeliads. Across all bromeliads, predator species differed widely in metabolic capacity, from 0.0062 for a species of Empidid, to 0.4804 for the abundant predator _Leptagrion andromache_.  Predators often co-occured in bromeliads ($3.52 \pm 3.1107$ per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~1,89~=1.5558,P=0.2155).
+In 2008, insects were counted and measured in an observational study of 25 bromeliads. Across all bromeliads, predator species differed widely in metabolic capacity, from 0.0062 for a species of Empididae, to 0.4804 for the abundant predator _Leptagrion andromache_.  Predators often co-occured in bromeliads ($3.52 \pm 3.1107$ species per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~1,89~=1.5558,P=0.2155).
 
 ### diet similarity and phylogenetic distance
 
 
 
+We conducted 237 feeding trials; these included 8 predator taxa tested on 14 prey taxa.  However, due to the rarity of many taxa many predator-prey pairs were not possible.  We tested 46 pairwise combinations.  Most trials were replicated at least 5 times, but the number of replicates for various combinations ranged from 1 to 11.  Two damselflies, _Leptagrion andromache_ and _Leptagrion elongatum_, showed the higest rates of prey consumption (prey consumed in 94% and 67% of trials, respectively). 
 
 
-All predators showed a very generalist diet breadth.  However, more phylogenetically distinct predators preferred slightly more distant prey, as measured by euclidian distance between feeding trial outcomes (F~1,19~=5.1641,P=0.0349)  Regression was weighted by the number of trials conducted.
 
 
-<!-- 
-Phylogenetic distance was not correlated with similarity in diet (F~
-
-```
-
-Error in eval(expr, envir, enclos) : 
-  object 'diet_phylo_summary' not found
-
-```
-
-,
-
-```
-
-Error in eval(expr, envir, enclos) : 
-  object 'diet_phylo_summary' not found
-
-```
-
-~=
-
-```
-
-Error in eval(expr, envir, enclos) : 
-  object 'diet_phylo_summary' not found
-
-```
-
-,P=
-
-```
-
-Error in pf(diet_phylo_summary$fstatistic[1], diet_phylo_summary$fstatistic[2],  : 
-  object 'diet_phylo_summary' not found
-
-```
-
-).  Indeed, all predators in this system appeared to feed readily on a wide range of prey species.
--->
+All predators showed a very generalist diet breadth, consuming nearly 100% of all prey offered to them.  However, more phylogenetically distant predators preferred slightly different diets, as measured by euclidian distance between feeding trial outcomes (F~1,19~=5.1641,P=0.0349)  Regression was weighted by the number of trials conducted.
 
 ### Ecosystem-level effects and phylogenetic distance
+
+
+
+
 
 All increases in predator phylogenetic diversity beyond damselflies resulted in a reduction of prey mortality.
 
