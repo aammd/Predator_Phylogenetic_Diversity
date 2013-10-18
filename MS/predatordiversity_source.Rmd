@@ -3,7 +3,7 @@
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
-#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
+#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="pdf")
 
 ## load packages
 library(ggplot2)
@@ -178,8 +178,7 @@ foodweb.matrix <- as.matrix(foodweb.cast[,-1])
 # have better names
 dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
 foodweb.matrix <- foodweb.matrix[,-ncol(foodweb.matrix)]  ## last column was an NA predator.
-emptyRow <- which(rowSums(foodweb.matrix)==0)
-foodweb.matrix <- foodweb.matrix[-emptyRow,]
+
 # make the distance matrix -- with the jaccard index?
 ## finally, calculate distance
 distances <- vegdist(t(foodweb.matrix),method='jaccard',diag=TRUE)
@@ -290,10 +289,15 @@ We identified `r length(predtree_timetree_ages$tip.label)` in the 2008 dataset a
 
 We obtained node age estimates for all `r n.nodes` internal nodes of the tree.  These were usually provided by only a single study, with more studies available for deeper nodes: Insecta--Hirudina (n=`r nstudies[["insects.to.leeches.csv"]]`, `r paste(range(nodeages[["insects.to.leeches.csv"]]$Time),collapse=" to ")` Mya), Odonata--Tabanidae (n=`r nstudies[["odonata-Tabanidae.csv"]]`, `r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya) and Tabanidae--Diptera (n=`r nstudies[["tabanidae_culidicae_ie_Diptera.csv"]]`, `r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya).  We used the median estimate of age for these nodes.
 
-In 2008, insects were counted and measured in an observational study of `r ncol(metabolic.matrix)` bromeliads. Across all bromeliads, predator species differed widely in metabolic capacity, from `r min(rowSums(metabolic.matrix))` for a species of Empidid, to `r max(rowSums(metabolic.matrix))` for the abundant predator _Leptagrion andromache_.  Predators often co-occured in bromeliads ($`r mean(colSums(metabolic.matrix>0))` \pm `r sd(colSums(metabolic.matrix>0))`$ per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`,P=`r pf(meta_phylo_lm_summary$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)`).
+In 2008, insects were counted and measured in an observational study of `r ncol(metabolic.matrix)` bromeliads. Across all bromeliads, predator species differed widely in metabolic capacity, from `r min(rowSums(metabolic.matrix))` for a species of Empididae, to `r max(rowSums(metabolic.matrix))` for the abundant predator _Leptagrion andromache_.  Predators often co-occured in bromeliads ($`r mean(colSums(metabolic.matrix>0))` \pm `r sd(colSums(metabolic.matrix>0))`$ species per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`,P=`r pf(meta_phylo_lm_summary$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)`).
 
 ### diet similarity and phylogenetic distance
+```{r dietcalc}
 
+length(unique(foodweb$))
+```
+
+We conducted `r nrow(foodweb)` feeding trials; these included `r length(unique(foodweb$predator.sp.))` predator taxa tested on `r length(unique(foodweb$Prey.species))` prey taxa.
 
 ```{r TEST_diet-sim_as_PD}
 diet_phylo_lm <- with(diet_similarity_phylo,lm(dietdistance~phylodistance,weights=Ncommon))

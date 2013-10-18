@@ -111,6 +111,7 @@ prey.mes[which(prey.mes=="1 Tipulid "|prey.mes=="tipulid"|prey.mes=="1 Tipulid")
 prey.mes[which(prey.mes=="1 polypedilum 2")] <- "1 Polypedilum 2"
 prey.mes[which(prey.mes=="1 Scirtes A"|prey.mes=="scirtid A")] <- "Scirtes A"
 prey.mes[which(prey.mes=="Leptagrion elongatum ")] <- "Leptagrion.elongatum"
+prey.mes[which(prey.mes=="Leptagrion elongatum")] <- "Leptagrion.elongatum"
 prey.mes[which(prey.mes=="1 Psychodid "|prey.mes=="1 psychodid ")] <- "Psychodid"
 prey.mes[which(prey.mes=="1 Polypedilum 2")] <- "Polypedilum 2"
 prey.mes[which(prey.mes=="1 Monopelopia "|prey.mes=="1 Monopelopia")] <- "Monopelopia"
