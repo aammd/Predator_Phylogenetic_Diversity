@@ -8,13 +8,13 @@ library(picante)
 predtree <- read.tree("../data/TreeData/predators.arbit.ultrametric.phy")
 
 ## read in all data 
-insects_to_leeches <- mean(read.csv("../data/TreeData//insects.to.leeches.csv")$Time)
-odonata_tabanid <- mean(read.csv("../data/TreeData/odonata-Tabanidae.csv")$Time)
-cerato_chiro <- mean(read.csv("../data/TreeData/Ceratopogonidae_Chironomidae.csv")$Time)
-culicidae_chironomidae <- mean(read.csv("../data/TreeData/CulicidaetoChironomidae.csv")$Time)
-empid_dolicho <- mean(read.csv("../data/TreeData/empididaeDolichopodidae.csv")$Time)
-dolicho_tabanid <- mean(read.csv("../data/TreeData/dolicho_tabanid.csv")$Time)
-diptera <- mean(read.csv("../data/TreeData/tabanidae_culidicae_ie_Diptera.csv")$Time)
+insects_to_leeches <- median(read.csv("../data/TreeData//insects.to.leeches.csv")$Time)
+odonata_tabanid <- median(read.csv("../data/TreeData/odonata-Tabanidae.csv")$Time)
+cerato_chiro <- median(read.csv("../data/TreeData/Ceratopogonidae_Chironomidae.csv")$Time)
+culicidae_chironomidae <- median(read.csv("../data/TreeData/CulicidaetoChironomidae.csv")$Time)
+empid_dolicho <- median(read.csv("../data/TreeData/empididaeDolichopodidae.csv")$Time)
+dolicho_tabanid <- median(read.csv("../data/TreeData/dolicho_tabanid.csv")$Time)
+diptera <- median(read.csv("../data/TreeData/tabanidae_culidicae_ie_Diptera.csv")$Time)
 
 ## now a phylogenetic tree for all predators in the experiment
 ## create a new tree to modify with branchlenghts:

@@ -278,15 +278,19 @@ meta_phylo_lm <- with(metabolic_occur_phylo,lm(metadistance~phylodistance))
 meta_phylo_lm_summary <- summary(meta_phylo_lm)
 ```
 
-```{r}
-datas <- lapply(list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE),read.csv)
-#sapply(datas,nrow)
-n.nodes <- length(datas)
+```{r nodecalc}
+nodeages <- lapply(list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE),read.csv)
+names(nodeages) <- list.files(path="../data/TreeData/",pattern="*.csv")
+nstudies <- sapply(nodeages,nrow)
+names(nodeages)[which(nstudies>1)]
+n.nodes <- length(nodeages)
 ```
 
-We identified `r length(predtree_timetree_ages$tip.label)` in the 2008 dataset as predators. These predators vary in taxonomic relatedness: from congeners (_Bezzia_ sp. (Diptera:Ceratopogonidae) with two species, _Leptagrion_ sp. (Odonata:Coenagrionidae) with three) to confamilials (three species of Tabanidae and two of Empididae, all Diptera). Three families of Diptera are represented by a single species each: Dolichopodidae, Corethrellidae and Chironomidae. The deepest taxonomic divide is between all insects present and a species of leech (Annelida:Hirudinidae).
-Say something about the what do you call it -- the metabolic capacity -- how many we found in a plant.  what was the range, etc.
-Predators which are closer in the phylogeny are not more likely to occur in the same bromeliads (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`,P=`r pf(meta_phylo_lm_summary$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)`).
+We identified `r length(predtree_timetree_ages$tip.label)` in the 2008 dataset as predators. These predators vary in taxonomic relatedness: from congeners (_Bezzia_ sp. (Diptera:Ceratopogonidae) with two species, _Leptagrion_ sp. (Odonata:Coenagrionidae) with three) to confamilials (three species of Tabanidae and two of Empididae, all Diptera). Three families of Diptera are represented by a single species each: Dolichopodidae, Corethrellidae and Chironomidae. The deepest taxonomic divide is between all insects present and a species of leech (Annelida:Hirudinidae). Node age data was available for all but the shallowest nodes of the tree, where either a lack of taxonomic information (e.g. Tabanidae) or a lack of phylogenetic studies (e.g. _Leptagrion_) prevented more information from being included.  These branches were left as polytomies, and were all assigned identical, arbitrary and short branch lengths (15 Mya).
+
+We obtained node age estimates for all `r n.nodes` internal nodes of the tree.  These were usually provided by only a single study, with more studies available for deeper nodes: Insecta--Hirudina (n=`r nstudies[["insects.to.leeches.csv"]]`, `r paste(range(nodeages[["insects.to.leeches.csv"]]$Time),collapse=" to ")` Mya), Odonata--Tabanidae (n=`r nstudies[["odonata-Tabanidae.csv"]]`, `r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya) and Tabanidae--Diptera (n=`r nstudies[["tabanidae_culidicae_ie_Diptera.csv"]]`, `r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya).  We used the median estimate of age for these nodes.
+
+In 2008, insects were counted and measured in an observational study of `r ncol(metabolic.matrix)` bromeliads. Across all bromeliads, predator species differed widely in metabolic capacity, from `r min(rowSums(metabolic.matrix))` for a species of Empidid, to `r max(rowSums(metabolic.matrix))` for the abundant predator _Leptagrion andromache_.  Predators often co-occured in bromeliads ($`r mean(colSums(metabolic.matrix>0))` \pm `r sd(colSums(metabolic.matrix>0))`$ per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`,P=`r pf(meta_phylo_lm_summary$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)`).
 
 ### diet similarity and phylogenetic distance
 
@@ -315,7 +319,7 @@ predator addition treatments did not differ strongly from predator-free controls
 ### Figures
 
 ```{r FIG_metabolic_occurance_as_phylo}
-ggplot(metabolic_occur_phylo,aes(x=phylodistance,y=metadistance))+geom_point()+stat_smooth(method="lm", se=FALSE)+xlab("phylogenetic distance")+ylab("correlation between total metabolic capacity")
+ggplot(metabolic_occur_phylo,aes(x=phylodistance,y=metadistance))+geom_point()+stat_smooth(method="lm", se=FALSE)+xlab("phylogenetic distance")+ylab("euclidian distance between total metabolic capacity")
 ```
 
 
