@@ -3,7 +3,7 @@
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
-opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="pdf")
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
 
 ## load packages
 library(ggplot2)
@@ -31,6 +31,8 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",stringsAsFacto
 enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",stringsAsFactors=FALSE)
 # phylogeny data
 predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
+# randomization tests
+rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.means.csv")
 
 ## load in functions
 source("../R.scripts/FUNCTIONS_predator_diversity.R")
@@ -191,7 +193,6 @@ diet_dist_mat <- as.matrix(distances)
 ### ---- group means ####
 ##go2 <- responses.means(1000)
 #write.csv(go2,"randomizations.group.means.csv")
-rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.means.csv")
 ## order these correctly
 rand.means$sp.pair <- factor(rand.means$sp.pair,
                              levels=c('elong + andro','elong + tab',
@@ -285,11 +286,11 @@ nstudies <- sapply(nodeages,nrow)
 n.nodes <- length(nodeages)
 ```
 
-We identified `r length(predtree_timetree_ages$tip.label)` in the 2008 dataset as predators. These predators vary in taxonomic relatedness: from congeners (_Bezzia_ sp. (Diptera:Ceratopogonidae) with two species, _Leptagrion_ sp. (Odonata:Coenagrionidae) with three) to confamilials (three species of Tabanidae and two of Empididae, all Diptera). Three families of Diptera are represented by a single species each: Dolichopodidae, Corethrellidae and Chironomidae. The deepest taxonomic divide is between all insects present and a species of leech (Annelida:Hirudinidae). Node age data was available for all but the shallowest nodes of the tree, where either a lack of taxonomic information (e.g. Tabanidae) or a lack of phylogenetic studies (e.g. _Leptagrion_) prevented more information from being included.  These branches were left as polytomies, and were all assigned identical, arbitrary and short branch lengths (15 Mya).
+Within the 2008 observational dataset, we identified `r length(predtree_timetree_ages$tip.label)` species as predators. These predators vary in taxonomic relatedness: from congeners -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp. (Odonata:Coenagrionidae) with three --  to confamilials (three species of Tabanidae and two of Empididae, all Diptera). Three families of Diptera are represented by a single species each: Dolichopodidae, Corethrellidae and Chironomidae. The deepest taxonomic divide is between all insects present and a species of leech (Annelida:Hirudinidae). Node age data was available for all but the shallowest nodes of the tree, where either a lack of taxonomic information (e.g. Tabanidae) or a lack of phylogenetic study (e.g. _Leptagrion_) prevented more information from being included.  These branches were left as polytomies, and were all assigned identical, arbitrary and short branch lengths (15 Mya).
 
 We obtained node age estimates for all `r n.nodes` internal nodes of the tree.  These were usually provided by only a single study, with more studies available for deeper nodes: Insecta--Hirudina (`r paste(range(nodeages[["insects.to.leeches.csv"]]$Time),collapse=" to ")` Mya, n=`r nstudies[["insects.to.leeches.csv"]]` studies), Odonata--Tabanidae (`r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya, n=`r nstudies[["odonata-Tabanidae.csv"]]` studies) and Tabanidae--Diptera (`r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya, n=`r nstudies[["tabanidae_culidicae_ie_Diptera.csv"]]` studies).  We used the median estimate of age for these nodes.
 
-In 2008, insects were counted and measured in an observational study of `r ncol(metabolic.matrix)` bromeliads. Across all bromeliads, predator species differed widely in metabolic capacity, from `r min(rowSums(metabolic.matrix))` for a species of Empididae, to `r max(rowSums(metabolic.matrix))` for the abundant predator _Leptagrion andromache_.  Predators often co-occured in bromeliads ($`r mean(colSums(metabolic.matrix>0))` \pm `r sd(colSums(metabolic.matrix>0))`$ species per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`,P=`r pf(meta_phylo_lm_summary$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)`).
+In 2008, insects were counted and measured in an observational study of `r ncol(metabolic.matrix)` bromeliads. Across all bromeliads, predator species differed widely in metabolic capacity, from `r min(rowSums(metabolic.matrix))` for a species of Empididae, to `r max(rowSums(metabolic.matrix))` for the abundant predator _Leptagrion andromache_.  Predators often co-occured in bromeliads ($`r mean(colSums(metabolic.matrix>0))` \pm `r round(sd(colSums(metabolic.matrix>0)),digits=2)`$ species per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`, p=`r round(pf(meta_phylo_lm_summary$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE),digits=2)`).
 
 ### diet similarity and phylogenetic distance
 ```{r dietcalc}
@@ -305,7 +306,7 @@ percentpredation <- round(colMeans(foodweb.matrix/foodweb_len_mat,na.rm=TRUE),di
 
 ```
 
-We conducted `r sum(foodweb_len_mat)` feeding trials; these included `r ncol(foodweb.matrix)` predator taxa tested on `r nrow(foodweb.matrix)` prey taxa.  However, due to the rarity of some taxa many predator-prey pairs were not possible; we tested `r sum(foodweb_len_mat>0)` pairwise combinations.  Most trials were replicated at least 5 times, but the number of replicates for various combinations ranged from `r min(foodweb_len_mat[foodweb_len_mat>0])` to `r max(foodweb_len_mat[foodweb_len_mat>0])`.  Two damselflies, _Leptagrion andromache_ and _Leptagrion elongatum_, showed the higest rates of prey consumption (prey consumed in `r percentpredation[["Leptagrion.andromache"]]*100`% and `r percentpredation[["Leptagrion.elongatum"]]*100`% of trials, respectively). 
+We conducted `r sum(foodweb_len_mat)` feeding trials of `r ncol(foodweb.matrix)` predator taxa fed `r nrow(foodweb.matrix)` prey taxa.  However, due to the rarity of some taxa many predator-prey pairs were not possible; we tested `r sum(foodweb_len_mat>0)` pairwise combinations.  Most trials were replicated at least 5 times, but the number of replicates for various combinations ranged from `r min(foodweb_len_mat[foodweb_len_mat>0])` to `r max(foodweb_len_mat[foodweb_len_mat>0])`.  Two damselflies, _Leptagrion andromache_ and _Leptagrion elongatum_, showed the higest rates of prey consumption (prey consumed in `r percentpredation[["Leptagrion.andromache"]]*100`% and `r percentpredation[["Leptagrion.elongatum"]]*100`% of trials, respectively). 
 
 ```{r TEST_diet-sim_as_PD}
 diet_phylo_lm <- with(diet_similarity_phylo,lm(dietdistance~phylodistance,weights=Ncommon))
@@ -313,15 +314,11 @@ diet_phylo_lm_summary <- summary(diet_phylo_lm)
 ## test a squared term with 
 ```
 
-All predators showed a very generalist diet breadth, consuming nearly 100% of all prey offered to them.  However, more phylogenetically distant predators preferred slightly different diets, as measured by euclidian distance between feeding trial outcomes (F~`r diet_phylo_lm_summary $fstatistic[["numdf"]]`,`r diet_phylo_lm_summary $fstatistic[["dendf"]]`~=`r diet_phylo_lm_summary $fstatistic[["value"]]`,P=`r pf(diet_phylo_lm_summary $fstatistic[1],diet_phylo_lm_summary $fstatistic[2],diet_phylo_lm_summary $fstatistic[3],lower.tail=FALSE)`)  Regression was weighted by the number of trials conducted.
+All predators showed a very generalist diet breadth, consuming nearly all species offered to them.  However, more phylogenetically distant predators preferred slightly different diets, as measured by euclidian distance between feeding trial outcomes (F~`r diet_phylo_lm_summary $fstatistic[["numdf"]]`,`r diet_phylo_lm_summary $fstatistic[["dendf"]]`~=`r round(diet_phylo_lm_summary $fstatistic[["value"]],2)`, p=`r round(pf(diet_phylo_lm_summary $fstatistic[1],diet_phylo_lm_summary $fstatistic[2],diet_phylo_lm_summary $fstatistic[3],lower.tail=FALSE),digits=3)`)  Regression was weighted by the number of trials conducted.
 
 ### Ecosystem-level effects and phylogenetic distance
 
 ```{r experimentsummary}
-(mean(pd$total.surv[pd$treatment!="control"])-mean(pd$total.surv[pd$treatment=="control"]))/sd(pd$total.surv)
-
-preddiff <- (mean(pd$total.surv[pd$treatment!="control"])-mean(pd$total.surv[pd$treatment=="control"]))/mean(pd$total.surv[pd$treatment=="control"])
-
 predeffect <- function(resp="total.surv"){
   diffeffect <- (mean(pd[[resp]][pd$treatment!="control"],na.rm=TRUE)-mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE))/mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE)
   round(diffeffect,digits=2)*100
@@ -333,21 +330,25 @@ predeffect <- function(resp="total.surv"){
 # mean(rowSums(pd[c("Culicidae","Chironomidae","Tipulidae","Scirtidae")])
 ```
 
-Predators had a large effect on prey survivorship -- all predator treatments combined reduced prey survivorship by `r abs(predeffect())`% relative to the predator-free control.  Nitrogen transport to bromeliad leaves was slightly decreased relative to controls (`r predeffect("N")`%), and was only higher than the control in treatments including Tabanid predators.  We found a similar pattern for plant growth: on average, predators had a `r predeffect("growth")`% effect on growth of bromeliad leaves (mm), though Tabanids seemed to create a slight increase. The decomposition of coarse detritus and production of fine organic matter showed no obvious pattern related to the mere presence of predators.
+In our manipulative experiment, we placed a standardized prey community into bromeliads and measured five response variables: the total survivorship (both emerged during experiment and found as larvae at the end) of all prey, the %N15 which was transferred into bromeliad tissue, bromeliad growth, coarse detritus decomposition and fine organic matter production.  Predators had a large effect on prey survivorship: on average all predator treatments showed `r abs(predeffect())`% lower prey emerging or surviving as larvae relative to the predator-free control.  Nitrogen transport to bromeliad leaves was slightly decreased relative to controls (`r predeffect("N")`%), and was only higher than the control in treatments including Tabanid predators.  We found a similar pattern for plant growth: on average, predators had a `r predeffect("growth")`% effect on growth of bromeliad leaves (mm), though Tabanids seemed to create a slight increase. The decomposition of coarse detritus and production of fine organic matter showed no obvious pattern related to the mere presence of predators.
 
+```{r polysummary}
+polyeffect <- function(resp="total.surv"){
+  diffeffect <- (mean(pd[[resp]][pd$treatment%in%c("elong + andro","elong + leech","elong + tab")],na.rm=TRUE)-mean(pd[[resp]][pd$treatment%in%c("andro","tabanid","leech","elong")],na.rm=TRUE))/mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE)
+  round(diffeffect,digits=2)*100
+  }
 
-<!--
-How do individual predator treatments differ from each other?
+```
 
-How do monocultures and polycultures differ?
+Predator combinations tended to have an increased effect on our response variables relative to predators alone.  Approximately `r polyeffect()`% more prey survived in polyculture, on average,  compared to all monocultures.  Effects were smaller for Nitrogen (`r polyeffect("N")`%) and bromeliad growth (`r polyeffect("growth")`%). Fine particulate organic matter was produced `r polyeffect("fine")`% more when predators were present in combination.
 
-Finally, most importantly: how to non-additive effects change with phylogenetic diversity?
--->
+Our experimental design allows us to estimate the non-additive effect of predator species pairs on whole communities of prey, and the functioning of the bromeliad ecosystem.  We used randomization tests to test the hypothesis that increased phylogenetic distance between members of a predator pair results in a greater magnitude of nonadditive effect.  We contrasted the differences of the mean individual predator treatments from the control with the mean difference of their pairwise combination from the control.  We found the greatest effect for prey survival: while effects of _L. andromache_ and _L. elongatum_ in combination were quite similar to the effect of either alone, when _L. elongatum_ was placed in the same plant as either a Tabanid larva or leeches, on average 5 more prey (18% of total prey community) survived till the end of the experiment (Fig 3).  This effect was smaller among the other variables, most of which showed confidence intervals from the randomization test which overlap 0.
+
 
 ### Figures
 
 ```{r FIG_metabolic_occurance_as_phylo}
-ggplot(metabolic_occur_phylo,aes(x=phylodistance,y=metadistance))+geom_point()+stat_smooth(method="lm", se=FALSE)+xlab("phylogenetic distance")+ylab("euclidian distance between total metabolic capacity")
+ggplot(metabolic_occur_phylo,aes(x=phylodistance,y=metadistance))+geom_point()+xlab("phylogenetic distance")+ylab("euclidian distance between total metabolic capacity")
 ```
 
 
@@ -381,7 +382,7 @@ decomp <- plotmaker("decomp",label="decomposition \n (g)")
 fine <- plotmaker("fine",label="production of \n FPOM (g)")
 grid.arrange(surv,N,growth,decomp,fine,ncol=5,widths=unit(c(2,rep(1, 4)), "null"))
 
-
+##  ADD COLOUR FOR THE TYPE: CONTROL (LARGER, BLACK), SINGLE AND POLY.  NO LEGEND. 
 ```
 
 

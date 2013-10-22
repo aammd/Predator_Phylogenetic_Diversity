@@ -1,0 +1,8 @@
+bibliography: predator diversity.bib
+standalone:
+toc:
+
+format: latex
+latex-engine: xelatex
+number-sections:
+output: predatordiversity.pdf

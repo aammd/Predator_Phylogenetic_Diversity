@@ -155,7 +155,7 @@
 			"file": "predatordiversity_source.Rmd",
 			"settings":
 			{
-				"buffer_size": 17696,
+				"buffer_size": 24111,
 				"line_ending": "Unix"
 			}
 		},
@@ -163,7 +163,7 @@
 			"file": "predatordiversity_source.md",
 			"settings":
 			{
-				"buffer_size": 7631,
+				"buffer_size": 11198,
 				"line_ending": "Unix"
 			}
 		}
@@ -576,15 +576,15 @@
 					"file": "predatordiversity_source.Rmd",
 					"settings":
 					{
-						"buffer_size": 17696,
+						"buffer_size": 24111,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								8234,
-								8234
+								0,
+								0
 							]
 						],
 						"settings":
@@ -594,7 +594,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3075.0,
+						"translation.y": 3273.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -604,15 +604,15 @@
 					"file": "predatordiversity_source.md",
 					"settings":
 					{
-						"buffer_size": 7631,
+						"buffer_size": 11198,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3623,
-								3623
+								0,
+								0
 							]
 						],
 						"settings":
