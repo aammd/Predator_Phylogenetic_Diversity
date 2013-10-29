@@ -1,9 +1,10 @@
-%Predator phylogenetic diversity decreases predation rate via antagonistic interactions
-%A. Andrew M. MacDonald, Diane S. Srivastava, Gustavo Q. Romero
+% Predator phylogenetic diversity decreases predation rate via antagonistic interactions
+% A. Andrew M. MacDonald; Diane S. Srivastava; Gustavo Q. Romero
+%
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
-#opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
 
 ## load packages
 library(ggplot2)
@@ -89,28 +90,27 @@ the effect of each predator species from monoculture treatments, as
 well as the detection of non-additive effects in predator
 combinations. 
 
-In Feburary 2011, bromeliads between 90 and 200ml were collected,
-thoroughly washed and soaked for 12 hours in a tub of water.  They
-were then hung for 48 hours to dry.  One bromeliad dissected after
-this procedure contained no insects.
+In Feburary 2011, bromeliads between 90 and 200ml were collected, thoroughly
+washed and soaked for 12 hours in a tub of water.  They were then hung for 48
+hours to dry.  One bromeliad dissected after this procedure contained no
+insects.
 
-Each bromeliad was supplied with dried leaves, simulating natural
-detritus inputs from the canopy.  We enriched these leaves with N-15
-by fertilizing five (Jabuticaba, *Plinia cauliflora*) plants with
-40ml/pot/day of 5g/L ammonium sulphate containing 10 percent atom
-excess of N15. *duration*. started on 27/1/2011
-Whole leaves were then picked from plants and air-dried until constant
-weight, and then soaked for three days and the water discarded.  About
-1.5 g of leaves were placed in each bromeliad (`r mean(pd$mass.g.)` ± `r sd(pd$mass.g.)`). 
+Each bromeliad was supplied with dried leaves, simulating natural detritus
+inputs from the canopy.  We enriched these leaves with N-15 by fertilizing
+five (Jabuticaba, *Plinia cauliflora*) plants with 40ml/pot/day of 5g/L
+ammonium sulphate containing 10 percent atom excess of N15. *duration*.
+started on 27/1/2011 Whole leaves were then picked from plants and air-dried
+until constant weight, and then soaked for three days and the water discarded.
+About 1.5 g of leaves were placed in each bromeliad (`r mean(pd$mass.g.)` ± `r
+sd(pd$mass.g.)`).
 
-Each bromeliad was stocked with a representative insect community.
-The densities of each prey taxon were calculated from a 2008
-observational dataset, using data from bromeliads of similar size to
-those in our experiment (DS Srivastava, upub. data).  All densities
-used were within the range of these calculated abundances, and all
-experimental bromeliads received the same insect community.  Halfway
-through the experiment, insects were added to bromeliads a second
-time.
+Each bromeliad was stocked with a representative insect community. The
+densities of each prey taxon were calculated from a 2008 observational
+dataset, using data from bromeliads of similar size to those in our experiment
+(DS Srivastava, upub. data).  All densities used were within the range of
+these calculated abundances, and all experimental bromeliads received the same
+insect community.  Halfway through the experiment, insects were added to
+bromeliads a second time.
 
 \begin{table}
   \centering
@@ -133,7 +133,13 @@ with a mesh cage and checked daily for emergence of adults.
 
 -->
 
-<!-- Our central hypothesis is that the phylogenetic relationships among predatory taxa in this system can be used to interpret their ecology.  Specifically, we test the hypothesis that phylogenetic relatedness is negatively correlated with probability of co-occurance, positively with diet similarity.  Consequently, we might predict that ecosystem function peaks at some intermediate level of phylogenetic diversity -- where predators occur but where their similarity creates complementarity. -->
+<!--    Our central hypothesis is that the phylogenetic relationships among
+predatory taxa in this system can be used to interpret their ecology.
+Specifically, we test the hypothesis that phylogenetic relatedness is
+negatively correlated with probability of co-occurance, positively with diet
+similarity.  Consequently, we might predict that ecosystem function peaks at
+some intermediate level of phylogenetic diversity -- where predators occur but
+where their similarity creates complementarity.  -->
 
 ## Results
 

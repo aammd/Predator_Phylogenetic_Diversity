@@ -5,3 +5,7 @@ format: latex
 latex-engine: xelatex
 output: predatordiversity.pdf
 include-in-header: format.sty
+
+format: docx
+output: predatordiversity.docx
+reference-docx: reference.docx
