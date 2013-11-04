@@ -152,18 +152,26 @@
 	"buffers":
 	[
 		{
-			"file": "predatordiversity_source.Rmd",
+			"file": "predatordiversity.Rmd",
 			"settings":
 			{
-				"buffer_size": 24111,
+				"buffer_size": 28436,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "predatordiversity_source.md",
+			"file": "forDiane.sh",
 			"settings":
 			{
-				"buffer_size": 11198,
+				"buffer_size": 736,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "predatordiversity.md",
+			"settings":
+			{
+				"buffer_size": 14852,
 				"line_ending": "Unix"
 			}
 		}
@@ -174,6 +182,14 @@
 		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"dis",
+				"Table Editor: Disable for current view"
+			],
+			[
+				"table",
+				"Table Editor: Set table syntax 'Pandoc' for current view"
+			],
 			[
 				"enab",
 				"Table Editor: Enable for current syntax"
@@ -215,10 +231,6 @@
 				"Package Control: Install Package"
 			],
 			[
-				"table",
-				"Table Editor: Set table syntax 'MultiMarkdown' for current view"
-			],
-			[
 				"ena",
 				"Table Editor: Enable for current syntax"
 			],
@@ -229,10 +241,6 @@
 			[
 				"enable",
 				"Package Control: Enable Package"
-			],
-			[
-				"dis",
-				"Table Editor: Disable for current syntax"
 			],
 			[
 				"disa",
@@ -323,7 +331,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 588.0
+		"width": 633.0
 	},
 	"console":
 	{
@@ -340,10 +348,14 @@
 	},
 	"file_history":
 	[
-		"/home/andrew/Documents/Writing/Progress/writing.progress.txt",
+		"/home/andrew/.config/sublime-text-2/Packages/User/Rmarkdown.sublime-settings",
+		"/home/andrew/Documents/Mendeley_reference_lists/pdpaper.bib",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predator diversity.bib",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.md",
-		"/home/andrew/Dropbox/PhD/Brazil2011/MS/forDiane.sh",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.Rmd",
+		"/home/andrew/Documents/Writing/Progress/writing.progress.txt",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/forDiane.sh",
 		"/home/andrew/Dropbox/Predator_Phylogenetic_Diversity/MS/TreeTechnique.md",
 		"/home/andrew/Dropbox/Predator_Phylogenetic_Diversity/MS/forDiane.sh",
 		"/home/andrew/.bashrc",
@@ -370,7 +382,6 @@
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_figs.Rmd",
 		"/home/andrew/devtools.wiki/Performance.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/README.md",
-		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predator diversity.bib",
 		"/home/andrew/Dropbox/PhD/Brazil2011/data/TreeData/predators.arbit.ultrametric.phy",
 		"/home/andrew/Dropbox/PhD/Brazil2011/R.scripts/foodweb_merge_cleanup.R",
 		"/home/andrew/Dropbox/PhD/Brazil2011/data/TreeData/predators.in.experiment.phy",
@@ -464,10 +475,7 @@
 		"/home/andrew/Desktop/handyshellcommands.txt",
 		"/home/andrew/.config/sublime-text-2/Packages/SublimeREPL/README.md",
 		"/home/andrew/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
-		"/home/andrew/.config/sublime-text-2/Packages/User/Preferences.sublime-settings",
-		"/home/andrew/Dropbox/PhD/brazil2013/ideas for work/Macae.project",
-		"/home/andrew/Dropbox/PhD/brazil2013/ideas for work/mtgDiane25Feb.txt",
-		"/home/andrew/.config/sublime-text-2/Packages/User/SublimeREPL.sublime-settings"
+		"/home/andrew/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
 	],
 	"find":
 	{
@@ -485,6 +493,10 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"^",
+			"functional benefits",
+			"wilby",
+			"capacity",
 			"read.tab",
 			"..",
 			"habitat_organism_size",
@@ -573,38 +585,66 @@
 			[
 				{
 					"buffer": 0,
-					"file": "predatordiversity_source.Rmd",
+					"file": "predatordiversity.Rmd",
 					"settings":
 					{
-						"buffer_size": 24111,
+						"buffer_size": 28436,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								11226,
+								11226
 							]
 						],
 						"settings":
 						{
+							"enable_table_editor": false,
 							"syntax": "Packages/Rx/Rmarkdown.tmLanguage",
 							"tab_size": 2,
+							"table_editor_syntax": "Pandoc",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3273.0,
+						"translation.y": 2268.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "predatordiversity_source.md",
+					"file": "forDiane.sh",
 					"settings":
 					{
-						"buffer_size": 11198,
+						"buffer_size": 736,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								683,
+								683
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "predatordiversity.md",
+					"settings":
+					{
+						"buffer_size": 14852,
 						"regions":
 						{
 						},
@@ -622,7 +662,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 3366.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -694,6 +734,6 @@
 	"show_open_files": true,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 298.0,
+	"side_bar_width": 285.0,
 	"status_bar_visible": true
 }
