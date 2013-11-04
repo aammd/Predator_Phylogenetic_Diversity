@@ -258,18 +258,19 @@ Our experimental design allows us to estimate the non-additive effect of predato
 
 ### Figures
 
-![FALSE](figure/FIG_metabolic_occurance_as_phylo.png) 
+![Figure 1: Phylogenetic distance and predator co-occurance.  Each point represents a pair of predator species.  We caluclated total metabolic capacity for each predator species in each bromeliad, and then calculated co-occurance between two predators as the euclidian distance between total metabolic capacity of two species.](figure/FIG_metabolic_occurance_as_phylo.png) 
 
 
 
-![FALSE](figure/FIG_feeding_trial_as_phylo.png) 
-
-
-![FALSE](figure/FIG_PD_experiment_nonadditive.png) 
+![Figure 2: Phylogenetic distance and diet similarity.  We performed 237 feeding trials with the 8 major predator taxa found in this system.  We found that more distantly-related predators consume more dissimiliar prey.  We measured diet similarity as euclidian distance among feeding trial outcomes; this measure includes information about the number of predation events in each predator-prey pairing.  Regression was weighted by the sample size of the predator-prey pair.](figure/FIG_feeding_trial_as_phylo.png) 
 
 
 
-![Figure 3](figure/FIG_experiment_responses.png) 
+![Figure 3: Treatment responses for the manipulative experiment.  Points are means, and horizontal lines represent minimum and maximum values for each response.  n=5 for all means.](figure/FIG_experiment_responses.png) 
+
+
+
+![Figure 4: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore 0 indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation](figure/FIG_PD_experiment_nonadditive.png) 
 
 
 
