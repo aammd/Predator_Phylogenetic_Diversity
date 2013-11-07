@@ -52,6 +52,26 @@ pd[which(pd$decomp>0.7),'decomp'] <- NA
 
 ## Introduction
 
+predators are important for ecosystem processes, and for species co-occurrance.  
+
+predators doi predators all eat the same things?  compare the prey which survived to a random sample of prey types.  
+
+Is there an equation for the amount of predation we should see if there is complementarity, etc?
+
+parameters --- related to phylogenetic distance?  
+
+predators are important to the functioning of ecosystems, yet are under threat from many sources.
+
+Phylogenetic information can provide predictive insight beyond a system, and also can allow us to make comparisons between partly-overlapping or nested sets of species interactions, by supplying a common x-axis
+
+co-occurrance: oviposition decisions and spatail variation within foodwebs.  Spatial variations in metacommunities
+- spatial variation in foodwebs is related to predator preferences, etc.  
+
+diet similarity among all predators in a system -- what kind of distribution do we expect in diet-overlap among all predators in a system?
+- The structure of a food web is often determined by the degree of omivory or generalism in it, and so structure is important
+- the structure of a foodweb determines how it will respond to changes in diversity
+- the diet preferences of predators might predict how they interact when combined in groups.
+
 
 <!--  Predators are present in most ecosystems, and are important functional
 groups in determining ecosystem function.  While predator-prey relationships
@@ -497,6 +517,53 @@ ggplot(subset(summarize_randoms_phylo,summarize_randoms_phylo$variable=="surviva
 
 
 ## Discussion
+
+### co-occurrance
+predators didnt' show a strong relationship between distance and co-occurrance. 
+predators appear to be generalist with regard to their habitat preference.  this is encouraging, since it indicates that predator combinations realized in the experiment were not unnattural.
+
+might be due to structure of bromeliad preventing direct interactions at smaller spatial scales (diane's work on leaves in tubes, and other papers about physical structure and species interactions)
+
+### diet similarity
+all orders which we experimet with are known to contain generalists (references for each category)
+
+In a community, we expect a certain variation in teh amount of generalism.
+
+in this community, the farther apart species are, the less they share in diet similaryin as measured by feeding trials.  
+
+why? relate this to different predator groups: leeches, flies and leptagrion.  What do they normally eat?
+
+Feeding mode is also important: Tabanids and leeches are peircing predators, while Leptagrion is gape-limited.  These effects might only be present at one stage of the life cycle.  
+
+Was there a difference in feeding rate among the different predators?  I think so -- I think Leptagrion ate much more of their prey than did leeches.  
+
+In fact, a better analysis for taht data might be to compare the relative probability of eatin a certain prey species for leeches, and compare to same for Leptagrion.  In other words: if Leptagrion, leeches, and tabanids had eaten the same number as they had originally, but these were randomly distributed among all prey -- would we see the same pattern which we found?  or a stronger or weaker one?
+
+In our feeding trials, predators differ in diet breadth and feeding rate, becoming increasingly different across the phylogeny.  This is probably because of differences in species traits -- gape size, and metabolic rate (check literature).
+
+What are the consequences of diet breatch for food webs?
+
+Predators do not occur in all parts of the platns equally.  Why?
+
+The study of predator negative association should probably be done via Alathea's c-score technique, now that I think of it. Can her c-score technique be rated by the metabolic capacity?  
+
+Every null model -- recalculate my metabolic distance phylogenetic slope
+
+Can phylogenetic diversity and metabolic distance be combined somehow?
+
+relate feeding trails also to metabolic distance.  This would correct for different feeding trial rates AND generate a nice consistency among all parts of the paper, drawing 'metabolic capacity' along with phylogeny into the whole.
+
+weighting feeding-trial regression by the metabolic capacity of predators, rather than sample size?  Does it correlate with feeding rate?  marginal distribution / rank-abd plot showing variation in metabolic capacity among predators?
+
+A mechanistic model for the effects on the whole community, elegantly tied together with the results of the previous sections -- the differences in feeding rate, diet breadth, but no difference in habitat preference.  
+
+Metacommunity theory does not necessarying assume this degree of heterogeniety among patches in terms of the prefernce, perfoamance of predators -- not every predator is found everywhere.  Not every predator *can* eat every prey.  This variation modifies the tradtional patch-dynamic or mass-effect models of metacommunity structure.  If females are able to select suitable bromeliads for oviposition, they may have a much more complex, contigent landscape than previously thought.
+
+### community experiment
+
+the non-additive effect
+
+N did not go into our leaves -- perhaps because insects are not as important in the decomposition of this community as they are in other systems, such as Costa Rica where Jackie did her work.
 
 
 

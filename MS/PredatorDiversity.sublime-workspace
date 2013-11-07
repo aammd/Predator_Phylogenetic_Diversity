@@ -155,8 +155,17 @@
 			"file": "predatordiversity.Rmd",
 			"settings":
 			{
-				"buffer_size": 28436,
+				"buffer_size": 34985,
 				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "## notes on pd-ef writing\n\nCan mechanisitc models be fit to this data as well? For example, models which desccribe how the probabilitites of co-occurance change \n\nmore phylo distance == saturating dissimilarity in diet.  How dissimmilar might diets GET in this ecosystem? \n\nWhat if phylogenetic information about the prey animals is somehow helpful?",
+			"settings":
+			{
+				"buffer_size": 349,
+				"line_ending": "Unix",
+				"name": "## notes on pd-ef writing"
 			}
 		},
 		{
@@ -164,14 +173,6 @@
 			"settings":
 			{
 				"buffer_size": 736,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "predatordiversity.md",
-			"settings":
-			{
-				"buffer_size": 14852,
 				"line_ending": "Unix"
 			}
 		}
@@ -182,6 +183,10 @@
 		"height": 375.0,
 		"selected_items":
 		[
+			[
+				"pack",
+				"Package Control: Install Package"
+			],
 			[
 				"dis",
 				"Table Editor: Disable for current view"
@@ -225,10 +230,6 @@
 			[
 				"brow",
 				"Preferences: Browse Packages"
-			],
-			[
-				"pack",
-				"Package Control: Install Package"
 			],
 			[
 				"ena",
@@ -348,10 +349,15 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/knitr-examples/107-inline-linebreak.md",
+		"/home/andrew/knitr-examples/107-inline-linebreak.Rmd",
+		"/home/andrew/knitr/vignettes/docco-classic.Rmd",
+		"/home/andrew/knitr/vignettes/docco-classic.Rmd.Rmd",
+		"/home/andrew/knitr/vignettes/knit_expand.Rmd",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity.md",
 		"/home/andrew/.config/sublime-text-2/Packages/User/Rmarkdown.sublime-settings",
 		"/home/andrew/Documents/Mendeley_reference_lists/pdpaper.bib",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predator diversity.bib",
-		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.Rmd",
 		"/home/andrew/Documents/Writing/Progress/writing.progress.txt",
@@ -470,12 +476,7 @@
 		"/home/andrew/knitr-examples/k",
 		"/etc/apt/sources.list",
 		"/usr/share/applications/sublime.desktop",
-		"/home/andrew/sublime.projects/habitat_experiment.sublime-project",
-		"/home/andrew/Dropbox/PhD/brazil2013/experiments/MS/HabitatOrganismSize.tex",
-		"/home/andrew/Desktop/handyshellcommands.txt",
-		"/home/andrew/.config/sublime-text-2/Packages/SublimeREPL/README.md",
-		"/home/andrew/.config/sublime-text-2/Packages/Default/Preferences.sublime-settings",
-		"/home/andrew/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
+		"/home/andrew/sublime.projects/habitat_experiment.sublime-project"
 	],
 	"find":
 	{
@@ -588,15 +589,15 @@
 					"file": "predatordiversity.Rmd",
 					"settings":
 					{
-						"buffer_size": 28436,
+						"buffer_size": 34985,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11226,
-								11226
+								34970,
+								34970
 							]
 						],
 						"settings":
@@ -608,13 +609,39 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 2268.0,
+						"translation.y": 11911.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"settings":
+					{
+						"buffer_size": 349,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								349,
+								349
+							]
+						],
+						"settings":
+						{
+							"auto_name": "## notes on pd-ef writing",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
 					"file": "forDiane.sh",
 					"settings":
 					{
@@ -632,34 +659,6 @@
 						"settings":
 						{
 							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "predatordiversity.md",
-					"settings":
-					{
-						"buffer_size": 14852,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
