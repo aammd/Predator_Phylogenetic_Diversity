@@ -155,15 +155,43 @@
 			"file": "predatordiversity.Rmd",
 			"settings":
 			{
-				"buffer_size": 34985,
+				"buffer_size": 35408,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "## notes on pd-ef writing\n\nCan mechanisitc models be fit to this data as well? For example, models which desccribe how the probabilitites of co-occurance change \n\nmore phylo distance == saturating dissimilarity in diet.  How dissimmilar might diets GET in this ecosystem? \n\nWhat if phylogenetic information about the prey animals is somehow helpful?",
+			"file": "/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2006_speciesname.txt",
 			"settings":
 			{
-				"buffer_size": 349,
+				"buffer_size": 10766,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2007_speciesname.txt",
+			"settings":
+			{
+				"buffer_size": 6047,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "speciesl pool across all years ",
+			"settings":
+			{
+				"buffer_size": 31,
+				"line_ending": "Unix",
+				"name": "speciesl pool across all years"
+			}
+		},
+		{
+			"contents": "## notes on pd-ef writing\n\nCan mechanisitc models be fit to this data as well? For example, models which desccribe how the probabilitites of co-occurance change \n\nmore phylo distance == saturating dissimilarity in diet.  How dissimmilar might diets GET in this ecosystem? \n\nWhat if phylogenetic information about the prey animals is somehow helpful?\n\npredators all eat the same things?  compare the prey which survived to a random sample of prey types.  \n\nIs there an equation for the amount of predation we should see if there is complementarity, etc?\n\nparameters --- related to phylogenetic distance?  \n\n\nco-occurrance: oviposition decisions and spatail variation within foodwebs.  Spatial variations in metacommunities\n- spatial variation in foodwebs is related to predator preferences, etc.  \n\nassembly in a metacommunity with non-consumptive effects.  How to priority effects change in a such a system?  do we get surprising or counterintuitive food chain lengths emerging?  What does that do to ecosystem function: standing stocks, energy fluxes, etc? ",
+			"file": "## notes on pd-ef writing",
+			"file_size": 854,
+			"file_write_time": 1383844885000000,
+			"settings":
+			{
+				"buffer_size": 1058,
 				"line_ending": "Unix",
 				"name": "## notes on pd-ef writing"
 			}
@@ -173,6 +201,14 @@
 			"settings":
 			{
 				"buffer_size": 736,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "predatordiversity.md",
+			"settings":
+			{
+				"buffer_size": 19617,
 				"line_ending": "Unix"
 			}
 		}
@@ -349,6 +385,12 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/Dropbox/CommunityStructure/Data/size/Honduras_2007_size.txt",
+		"/home/andrew/Dropbox/CommunityStructure/Data/size/Honduras_2006_size.txt",
+		"/home/andrew/Dropbox/CommunityStructure/Data/size/cardoso_2011_open_diane_sites.txt",
+		"/home/andrew/Dropbox/CommunityStructure/Data/size/cardoso_2008_sites.txt",
+		"/home/andrew/Dropbox/CommunityStructure/Data/size/Colombia_Sisga_2000_size.txt",
+		"/home/andrew/Dropbox/CommunityStructure/Data/size/Colombia_Aguasca_size.txt",
 		"/home/andrew/knitr-examples/107-inline-linebreak.md",
 		"/home/andrew/knitr-examples/107-inline-linebreak.Rmd",
 		"/home/andrew/knitr/vignettes/docco-classic.Rmd",
@@ -470,13 +512,7 @@
 		"/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.txt",
 		"/home/andrew/knitr-examples/readme.md",
 		"/home/andrew/Desktop/emails/limnoblog.txt",
-		"/home/andrew/Dropbox/CommunityAnalysis/Brazil/Macae.2013/macae2013-README.txt",
-		"/home/andrew/Dropbox/CommunityAnalysis/Brazil/Macae.2013/Ins Cons Div - Figure 1 Script - Analysis+Graphs.R",
-		"/home/andrew/knitr-examples/083-ggplot2-reference.Rmd",
-		"/home/andrew/knitr-examples/k",
-		"/etc/apt/sources.list",
-		"/usr/share/applications/sublime.desktop",
-		"/home/andrew/sublime.projects/habitat_experiment.sublime-project"
+		"/home/andrew/Dropbox/CommunityAnalysis/Brazil/Macae.2013/macae2013-README.txt"
 	],
 	"find":
 	{
@@ -494,6 +530,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			",",
+			"#",
+			" ",
+			"#",
+			"H",
 			"^",
 			"functional benefits",
 			"wilby",
@@ -557,6 +598,10 @@
 		"regex": true,
 		"replace_history":
 		[
+			".",
+			"",
+			".",
+			"",
 			"\\t",
 			"expBlock",
 			"\\t",
@@ -581,7 +626,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -589,15 +634,15 @@
 					"file": "predatordiversity.Rmd",
 					"settings":
 					{
-						"buffer_size": 34985,
+						"buffer_size": 35408,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								34970,
-								34970
+								21484,
+								21484
 							]
 						],
 						"settings":
@@ -609,24 +654,103 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 11911.0,
+						"translation.y": 7650.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
+					"file": "/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2006_speciesname.txt",
 					"settings":
 					{
-						"buffer_size": 349,
+						"buffer_size": 10766,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								349,
-								349
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2007_speciesname.txt",
+					"settings":
+					{
+						"buffer_size": 6047,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"settings":
+					{
+						"buffer_size": 31,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								31,
+								31
+							]
+						],
+						"settings":
+						{
+							"auto_name": "speciesl pool across all years",
+							"syntax": "Packages/Text/Plain text.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "## notes on pd-ef writing",
+					"settings":
+					{
+						"buffer_size": 1058,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1058,
+								1058
 							]
 						],
 						"settings":
@@ -641,7 +765,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 5,
 					"file": "forDiane.sh",
 					"settings":
 					{
@@ -652,13 +776,41 @@
 						"selection":
 						[
 							[
-								683,
-								683
+								206,
+								206
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "predatordiversity.md",
+					"settings":
+					{
+						"buffer_size": 19617,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11299,
+								11299
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Markdown/Markdown.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,

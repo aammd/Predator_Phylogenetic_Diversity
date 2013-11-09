@@ -10,26 +10,22 @@
 
 ## Introduction
 
-predators are important for ecosystem processes, and for species co-occurrance.  
+* A large literature documents the various effects of predators on one another, and the consequences of these interaction for communities; meanwhile studies which measure (and occasionally manipulate) phylogenetic diversity of producers are increasingly common -- yet we know very little about the ecosystem-level effects of predator phylogenetic diversity.
 
-predators doi predators all eat the same things?  compare the prey which survived to a random sample of prey types.  
+* predators are important for ecosystem processes, and for the diversity and abundance of their prey species; mecahanisms of predator diversity effect include complementarity, intra-guild predation, competition.
 
-Is there an equation for the amount of predation we should see if there is complementarity, etc?
+* Phylogenetic methods have been useful in understanding the effects of species combinations in experiments with other functional groups; a similar approach might help to synthesize the diverse literature on predator diversity effects.
 
-parameters --- related to phylogenetic distance?  
+* Phylogenetic information can provide predictive insight beyond a system, and also can allow us to make comparisons between partly-overlapping or nested sets of species interactions, by supplying a common measure of dissimilarity between a wide range of species
 
-predators are important to the functioning of ecosystems, yet are under threat from many sources.
+* Observational datasets can provide clues to negative associations o-occurrance; phylogenetic diversity has proven espeically useful in these cases 
 
-Phylogenetic information can provide predictive insight beyond a system, and also can allow us to make comparisons between partly-overlapping or nested sets of species interactions, by supplying a common x-axis
+* The phylogenetic diversity of a foodweb might reflect niche conservatism among predators -- that is, closely related predators might eat similar diets. 
 
-co-occurrance: oviposition decisions and spatail variation within foodwebs.  Spatial variations in metacommunities
-- spatial variation in foodwebs is related to predator preferences, etc.  
+<!-- Additionally, the structure of a foodweb determines how it will respond to changes in diversity
+-->
 
-diet similarity among all predators in a system -- what kind of distribution do we expect in diet-overlap among all predators in a system?
-- The structure of a food web is often determined by the degree of omivory or generalism in it, and so structure is important
-- the structure of a foodweb determines how it will respond to changes in diversity
-- the diet preferences of predators might predict how they interact when combined in groups.
-
+* The top-down effects of predators, alone and in combinations, can be measured at the scale of an entire ecosystem by using mesocosm experiments.
 
 <!--  Predators are present in most ecosystems, and are important functional
 groups in determining ecosystem function.  While predator-prey relationships
@@ -56,9 +52,9 @@ survival to the end of the experiment
 for example, predators can kill each other, or decrease feeding rates. 
 
 
- Our central hypothesis is that the phylogenetic relationships among predatory
-taxa in this system can be used to interpret their ecology. Specifically, we
-test the hypothesis that phylogenetic relatedness is negatively correlated with
+We hypothesize that the phylogenetic relationships among predatory taxa in this
+system can be used to interpret their ecology. Specifically, we test the
+hypothesis that phylogenetic relatedness is negatively correlated with
 probability of co-occurance, positively with diet similarity.  Consequently, we
 might predict that ecosystem function peaks at some intermediate level of
 phylogenetic diversity -- where predators occur but where their similarity
@@ -66,7 +62,7 @@ creates complementarity.
 
 -->
 
-We test three related hypotheses: 
+* We test three related hypotheses concerning co-occurance patterns, diet similarity and top-down ecosystem effects of diverse predators, using a natural mesocosm: the community of invertebrates living within bromeliads. 
 
 1. *species co-occurance*: closely-related predators occur together more
 frequently than less-related predators, due to their similar habitat
@@ -246,112 +242,35 @@ the shallowest nodes of the tree, where either a lack of taxonomic information
 more information from being included.  These branches were left as polytomies,
 and were all assigned identical, arbitrary and short branch lengths (15 Mya).
 
-We obtained node age estimates for all 7 internal nodes of the tree.
-These were usually provided by only a single study, with more studies available
-for deeper nodes: Insecta--Hirudina (`r
-paste(range(nodeages[["insects.to.leeches.csv"]]$Time),collapse=" to ")` Mya,
-n=5 studies), Odonata--Tabanidae (`r
-paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya,
-n=4 studies) and Tabanidae--Diptera (`r
-paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya,
-n=7 studies).  We used the
-median estimate of age for these nodes.
+We obtained node age estimates for all 7 internal nodes of the tree.  These were usually provided by only a single study, with more studies available for deeper nodes: Insecta--Hirudina (543 to 700 Mya, n=5 studies), Odonata--Tabanidae (151 to 543 Mya, n=4 studies) and Tabanidae--Diptera (151 to 543 Mya, n=7 studies).  We used the median estimate of age for these nodes.
 
-In 2008, insects were counted and measured in an observational study of `r
-ncol(metabolic.matrix)` bromeliads. Across all bromeliads, predator species
-differed widely in metabolic capacity, from 0.0062
-for a species of Empididae, to 0.4804 for the
-abundant predator _Leptagrion andromache_.  Predators often co-occured in
-bromeliads ($3.52 \pm `r
-round(sd(colSums(metabolic.matrix>0)),digits=2)`$ species per plant).  However,
-the euclidian distance between the total metabolic capacity of two predators did
-not show any relationship with phylogenetic distance between them (F~`r
-meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r
-meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r
-meta_phylo_lm_summary$fstatistic[["value"]]`, p=
-
-```
-
-Error in base::parse(text = code, srcfile = NULL) : 
-  2:1: unexpected symbol
-1: round(pf(meta_phylo_lm_summar
-2: y
-   ^
-
-```
-
-).
+In 2008, insects were counted and measured in an observational study of 25 bromeliads. Across all bromeliads, predator species differed widely in metabolic capacity, from 0.0062 for a species of Empididae, to 0.4804 for the abundant predator _Leptagrion andromache_.  Predators often co-occured in bromeliads ($3.52 \pm 3.11$ species per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~1,89~=1.5558, p=0.22).
 
 ### diet similarity and phylogenetic distance
 
 
 
-We conducted 237 feeding trials of 8
-predator taxa fed 14 prey taxa.  However, due to the
-rarity of some taxa many predator-prey pairs were not possible; we tested `r
-sum(foodweb_len_mat>0)` pairwise combinations.  Most trials were replicated at
-least 5 times, but the number of replicates for various combinations ranged from
-1 to `r
-max(foodweb_len_mat[foodweb_len_mat>0])`.  Two damselflies, _Leptagrion
-andromache_ and _Leptagrion elongatum_, showed the higest rates of prey
-consumption (prey consumed in `r
-percentpredation[["Leptagrion.andromache"]]*100`% and `r
-percentpredation[["Leptagrion.elongatum"]]*100`% of trials, respectively).
+We conducted 237 feeding trials of 8 predator taxa fed 14 prey taxa.  However, due to the rarity of some taxa many predator-prey pairs were not possible; we tested 46 pairwise combinations.  Most trials were replicated at least 5 times, but the number of replicates for various combinations ranged from 1 to 11.  Two damselflies, _Leptagrion andromache_ and _Leptagrion elongatum_, showed the higest rates of prey consumption (prey consumed in 94% and 67% of trials, respectively). 
 
 
 
 
-All predators showed a very generalist diet breadth, consuming nearly all
-species offered to them.  However, more phylogenetically distant predators
-preferred slightly different diets, as measured by euclidian distance between
-feeding trial outcomes (F~1,`r
-diet_phylo_lm_summary $fstatistic[["dendf"]]`~=5.16, p=0.035)  Regression was weighted by the
-number of trials conducted.
+All predators showed a very generalist diet breadth, consuming nearly all species offered to them.  However, more phylogenetically distant predators preferred slightly different diets, as measured by euclidian distance between feeding trial outcomes (F~1,
+19~=5.16, p=0.035)  Regression was weighted by the number of trials conducted.
 
 ### Ecosystem-level effects and phylogenetic distance
 
 
 
 
-In our manipulative experiment, we placed a standardized prey community into
-bromeliads and measured five response variables: the total survivorship (both
-emerged during experiment and found as larvae at the end) of all prey, the %N15
-which was transferred into bromeliad tissue, bromeliad growth, coarse detritus
-decomposition and fine organic matter production.  Predators had a large effect
-on prey survivorship: on average all predator treatments showed `r
-abs(predeffect())`% lower prey emerging or surviving as larvae relative to the
-predator-free control.  Nitrogen transport to bromeliad leaves was slightly
-decreased relative to controls (-11%), and was only higher than
-the control in treatments including Tabanid predators.  We found a similar
-pattern for plant growth: on average, predators had a -18%
-effect on growth of bromeliad leaves (mm), though Tabanids seemed to create a
-slight increase. The decomposition of coarse detritus and production of fine
-organic matter showed no obvious pattern related to the mere presence of
-predators.
+In our manipulative experiment, we placed a standardized prey community into bromeliads and measured five response variables: the total survivorship (both emerged during experiment and found as larvae at the end) of all prey, the %N15 which was transferred into bromeliad tissue, bromeliad growth, coarse detritus decomposition and fine organic matter production.  Predators had a large effect on prey survivorship: on average all predator treatments showed 51% lower prey emerging or surviving as larvae relative to the predator-free control.  Nitrogen transport to bromeliad leaves was slightly decreased relative to controls (-11%), and was only higher than the control in treatments including Tabanid predators.  We found a similar pattern for plant growth: on average, predators had a -18% effect on growth of bromeliad leaves (mm), though Tabanids seemed to create a slight increase. The decomposition of coarse detritus and production of fine organic matter showed no obvious pattern related to the mere presence of predators.
 
 
 
 
-Predator combinations tended to have an increased effect on our response
-variables relative to predators alone.  Approximately 14% more
-prey survived in polyculture, on average,  compared to all monocultures.
-Effects were smaller for Nitrogen (8%) and bromeliad growth
-(11%). Fine particulate organic matter was produced `r
-polyeffect("fine")`% more when predators were present in combination.
+Predator combinations tended to have an increased effect on our response variables relative to predators alone.  Approximately 14% more prey survived in polyculture, on average,  compared to all monocultures.  Effects were smaller for Nitrogen (8%) and bromeliad growth (11%). Fine particulate organic matter was produced 29% more when predators were present in combination.
 
-Our experimental design allows us to estimate the non-additive effect of
-predator species pairs on whole communities of prey, and the functioning of the
-bromeliad ecosystem.  We used randomization tests to test the hypothesis that
-increased phylogenetic distance between members of a predator pair results in a
-greater magnitude of nonadditive effect.  We contrasted the differences of the
-mean individual predator treatments from the control with the mean difference of
-their pairwise combination from the control.  We found the greatest effect for
-prey survival: while effects of _L. andromache_ and _L. elongatum_ in
-combination were quite similar to the effect of either alone, when _L.
-elongatum_ was placed in the same plant as either a Tabanid larva or leeches, on
-average 5 more prey (18% of total prey community) survived till the end of the
-experiment (Fig 3).  This effect was smaller among the other variables, most of
-which showed confidence intervals from the randomization test which overlap 0.
+Our experimental design allows us to estimate the non-additive effect of predator species pairs on whole communities of prey, and the functioning of the bromeliad ecosystem.  We used randomization tests to test the hypothesis that increased phylogenetic distance between members of a predator pair results in a greater magnitude of nonadditive effect.  We contrasted the differences of the mean individual predator treatments from the control with the mean difference of their pairwise combination from the control.  We found the greatest effect for prey survival: while effects of _L. andromache_ and _L. elongatum_ in combination were quite similar to the effect of either alone, when _L. elongatum_ was placed in the same plant as either a Tabanid larva or leeches, on average 5 more prey (18% of total prey community) survived till the end of the experiment (Fig 3).  This effect was smaller among the other variables, most of which showed confidence intervals from the randomization test which overlap 0.
 
 
 ### Figures
@@ -375,13 +294,28 @@ which showed confidence intervals from the randomization test which overlap 0.
 ## Discussion
 
 ### co-occurrance
-predators didnt' show a strong relationship between distance and co-occurrance. 
-predators appear to be generalist with regard to their habitat preference.  this is encouraging, since it indicates that predator combinations realized in the experiment were not unnattural.
+* Predators appear to be generalist with regard to their habitat preference; indicating that prey face a heterogeneous landscape of predator risks, and demonstrating that our experimental design captures natural variation in predator composition.
 
-might be due to structure of bromeliad preventing direct interactions at smaller spatial scales (diane's work on leaves in tubes, and other papers about physical structure and species interactions)
+* Predators occuring together at smaller spatial scales (i.e. within the same plant) may have limited direct interactions due to habitat structure, for example via the physical obstructions caused by detritus
 
 ### diet similarity
-all orders which we experimet with are known to contain generalists (references for each category)
+* We demonstrate a slight but important decrease in feeding preferences with phylogenetic distance, indicating that food web structure itself might vary with phylogenetic diversity, becoming more compartmentalized when predators are more dissimilar.
 
+* The differences in predation rates and diet breadth among our predators represents important trait differences between the groups involved, including differences in metabolic rate and feeding mode. (_for example, Tabanids and leeches are peircing predators, while Leptagrion is gape-limited._)
+
+<!--In fact, a better analysis for taht data might be to compare the relative probability of eatin a certain prey species for leeches, and compare to same for Leptagrion.  In other words: if Leptagrion, leeches, and tabanids had eaten the same number as they had originally, but these were randomly distributed among all prey -- would we see the same pattern which we found?  or a stronger or weaker one?
+
+weighting feeding-trial regression by the metabolic capacity of predators, rather than sample size?  Does it correlate with feeding rate?  marginal distribution / rank-abd plot showing variation in metabolic capacity among predators?
+
+A mechanistic model for the effects on the whole community, elegantly tied together with the results of the previous sections -- the differences in feeding rate, diet breadth, but no difference in habitat preference.  
+-->
+
+* Feeding differences between predators, combined with their patchy but unpredictable distribution among bromeliads, creates a large variation in food web structure and total amount of predation per patch within this bromeliad metacommunity 
+
+### community experiment
+
+* Phylogenetically diverse predator assemblages showed more prey survivorship (i.e. less predation) than expected; this may be to strong trait-mediated indirect effects on the feeding rate of _Leptagrion elongatum_ when in the presence of other non-damselfly predators.
+
+* In response to predator manipulations we observed less transfer of Nitrogen into bromeliad tissue than did Ngai and Srivastava (2006); this may be due to a greater role for bacterial decomposition in this system (cite?).
 
 ## References
