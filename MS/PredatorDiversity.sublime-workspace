@@ -155,33 +155,24 @@
 			"file": "predatordiversity.Rmd",
 			"settings":
 			{
-				"buffer_size": 35408,
+				"buffer_size": 35641,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2006_speciesname.txt",
+			"contents": "\n\n\nWhat affects the balance between stochastic and deterministic factors?\n\nwhat was the distribution of habitat size?\n\nspecies composition -- predators can affect how stochastic communities are - does that vary?\n\n**beautiful** graphs!  ggplot2?\n\ntype of habitat regulates stochastic/deterministic --- but of course we knew that!\n\n",
 			"settings":
 			{
-				"buffer_size": 10766,
-				"line_ending": "Windows"
+				"buffer_size": 330,
+				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2007_speciesname.txt",
+			"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
 			"settings":
 			{
-				"buffer_size": 6047,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"contents": "speciesl pool across all years ",
-			"settings":
-			{
-				"buffer_size": 31,
-				"line_ending": "Unix",
-				"name": "speciesl pool across all years"
+				"buffer_size": 26314,
+				"line_ending": "Unix"
 			}
 		},
 		{
@@ -208,7 +199,7 @@
 			"file": "predatordiversity.md",
 			"settings":
 			{
-				"buffer_size": 19617,
+				"buffer_size": 21421,
 				"line_ending": "Unix"
 			}
 		}
@@ -385,6 +376,8 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2006_speciesname.txt",
+		"/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2007_speciesname.txt",
 		"/home/andrew/Dropbox/CommunityStructure/Data/size/Honduras_2007_size.txt",
 		"/home/andrew/Dropbox/CommunityStructure/Data/size/Honduras_2006_size.txt",
 		"/home/andrew/Dropbox/CommunityStructure/Data/size/cardoso_2011_open_diane_sites.txt",
@@ -510,9 +503,7 @@
 		"/home/andrew/Desktop/emails/diane03may",
 		"/home/andrew/markdownscience/markdown_science/examples/basic/document.md",
 		"/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.txt",
-		"/home/andrew/knitr-examples/readme.md",
-		"/home/andrew/Desktop/emails/limnoblog.txt",
-		"/home/andrew/Dropbox/CommunityAnalysis/Brazil/Macae.2013/macae2013-README.txt"
+		"/home/andrew/knitr-examples/readme.md"
 	],
 	"find":
 	{
@@ -530,6 +521,11 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"`r\n",
+			"`r\np",
+			"`r ",
+			"`r \\n",
+			"`r ",
 			",",
 			"#",
 			" ",
@@ -626,7 +622,7 @@
 	"groups":
 	[
 		{
-			"selected": 2,
+			"selected": 0,
 			"sheets":
 			[
 				{
@@ -634,15 +630,15 @@
 					"file": "predatordiversity.Rmd",
 					"settings":
 					{
-						"buffer_size": 35408,
+						"buffer_size": 35641,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								21484,
-								21484
+								347,
+								347
 							]
 						],
 						"settings":
@@ -654,29 +650,29 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 7650.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2006_speciesname.txt",
 					"settings":
 					{
-						"buffer_size": 10766,
+						"buffer_size": 330,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								330,
+								330
 							]
 						],
 						"settings":
 						{
+							"auto_name": "",
 							"syntax": "Packages/Text/Plain text.tmLanguage"
 						},
 						"translation.x": 0.0,
@@ -687,10 +683,10 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2007_speciesname.txt",
+					"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
 					"settings":
 					{
-						"buffer_size": 6047,
+						"buffer_size": 26314,
 						"regions":
 						{
 						},
@@ -713,32 +709,6 @@
 				},
 				{
 					"buffer": 3,
-					"settings":
-					{
-						"buffer_size": 31,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								31,
-								31
-							]
-						],
-						"settings":
-						{
-							"auto_name": "speciesl pool across all years",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "## notes on pd-ef writing",
 					"settings":
 					{
@@ -765,7 +735,7 @@
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 4,
 					"file": "forDiane.sh",
 					"settings":
 					{
@@ -791,19 +761,19 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
+					"buffer": 5,
 					"file": "predatordiversity.md",
 					"settings":
 					{
-						"buffer_size": 19617,
+						"buffer_size": 21421,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11299,
-								11299
+								0,
+								0
 							]
 						],
 						"settings":

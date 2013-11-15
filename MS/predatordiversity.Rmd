@@ -52,6 +52,20 @@ pd[which(pd$decomp>0.7),'decomp'] <- NA
 
 ## Introduction
 
+What are the various mechanisms by which predators can influence communities? There are lots.  They can be broken down by the predictions they make regarding the pattern of co-occurance among predators, and similarity in diet (but what about non-consumptive effects, or IGP???)
+
+We list off the various predator mechanisms, in terms of things we are actually measuring, and then 
+
+What gets eaten, where, and how much.
+
+The primary means by which predators affect communities is by predator-prey interactions -- that is, the primary means by which predators affect nutrient cycling, total biomass, stocks and flows of energy and matter through ecosystems.
+
+However, predators may also interact with each other, via IGP, NCE, or facilitation.  when IGP or NCE reduce the overall *amount* of predation, they will merely reduce the strength of the effects described above.  However, in some circumstances predators may actually cause a shift in each other's diet towards different prey
+
+in other words, there is a non-additive effect on predation RATE, non-additive (interaction) on what is eaten, and also on where predators occur in the landscape.  Taken together, these create the metacommunity pattern of top-down effects on food chains.
+
+
+
 * A large literature documents the various effects of predators on one another, and the consequences of these interaction for communities; meanwhile studies which measure (and occasionally manipulate) phylogenetic diversity of producers are increasingly common -- yet we know very little about the ecosystem-level effects of predator phylogenetic diversity.
 
 * predators are important for ecosystem processes, and for the diversity and abundance of their prey species; mecahanisms of predator diversity effect include complementarity, intra-guild predation, competition.
