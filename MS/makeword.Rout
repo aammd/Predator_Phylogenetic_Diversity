@@ -1,237 +1,0 @@
-
-R version 3.0.1 (2013-05-16) -- "Good Sport"
-Copyright (C) 2013 The R Foundation for Statistical Computing
-Platform: x86_64-pc-linux-gnu (64-bit)
-
-R is free software and comes with ABSOLUTELY NO WARRANTY.
-You are welcome to redistribute it under certain conditions.
-Type 'license()' or 'licence()' for distribution details.
-
-  Natural language support but running in an English locale
-
-R is a collaborative project with many contributors.
-Type 'contributors()' for more information and
-'citation()' on how to cite R or R packages in publications.
-
-Type 'demo()' for some demos, 'help()' for on-line help, or
-'help.start()' for an HTML browser interface to help.
-Type 'q()' to quit R.
-
-       .
-      / \
-      | |
-      |.|
-      |.|
-      |:|      __     Andrew!		
-    ,_|:|_,   /  )    Let us do battle once more
-      (Oo    / _I_    with the demons of statistics
-       +\ \  || __| /
-          \ \||___|
-            \ /.:.\-\
-             |.:. /-----\
-             |___|::oOo::|
-             /   |:<_R_>:|
-            |_____\ ::: /
-             | |  \ \:/
-             | |   | |
-             \ /   | \__
-             / |   \____\
-             `-'
-[Previously saved workspace restored]
-
-> # load knitr
-> 
-> library(knitr)
-> 
-> 
-> # ## first, make a .pdf file:
-> # render_markdown()
-> # opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
-> 
-> ## knit the Rmd to a .md file
-> knit("predatordiversity.Rmd")
-
-
-processing file: predatordiversity.Rmd
-  |                                                                         |                                                                 |   0%  |                                                                         |..                                                               |   3%
-  ordinary text without R code
-
-  |                                                                         |....                                                             |   6%
-label: options_packages_data (with options) 
-List of 2
- $ message: logi FALSE
- $ echo   : logi FALSE
-
-Loading required package: vegan
-Loading required package: permute
-This is vegan 2.0-7
-Loading required package: sna
-sna: Tools for Social Network Analysis
-Version 2.3-1 created on 2013-02-28.
-copyright (c) 2005, Carter T. Butts, University of California-Irvine
- For citation information, type citation("sna").
- Type help(package="sna") to get started.
-
- This is bipartite 2.00
- For latest changes see versionlog in  ?"bipartite-package".
- For citation see: citation("bipartite").
- Have a nice time plotting and analysing two-mode networks.
-
-Loading required package: ape
-
-Attaching package: 'ape'
-
-The following object is masked from 'package:sna':
-
-    consensus
-
-Loading required package: nlme
-
-Attaching package: 'nlme'
-
-The following object is masked from 'package:sna':
-
-    gapply
-
-
-Attaching package: 'pander'
-
-The following object is masked from 'package:knitr':
-
-    pandoc
-
-Loading required package: gtools
-
-Attaching package: 'gtools'
-
-The following object is masked from 'package:permute':
-
-    permute
-
-Loading required package: gdata
-gdata: read.xls support for 'XLS' (Excel 97-2004) files ENABLED.
-
-gdata: read.xls support for 'XLSX' (Excel 2007+) files ENABLED.
-
-Attaching package: 'gdata'
-
-The following object is masked from 'package:stats':
-
-    nobs
-
-The following object is masked from 'package:utils':
-
-    object.size
-
-Loading required package: caTools
-Loading required package: grid
-Loading required package: KernSmooth
-KernSmooth 2.23 loaded
-Copyright M. P. Wand 1997-2009
-Loading required package: MASS
-
-Attaching package: 'gplots'
-
-The following object is masked from 'package:stats':
-
-    lowess
-
-
-Attaching package: 'plyr'
-
-The following object is masked from 'package:bipartite':
-
-    empty
-
-  |                                                                         |......                                                           |   9%
-  ordinary text without R code
-
-  |                                                                         |........                                                         |  12%
-label: experiment_data_postprocess
-  |                                                                         |..........                                                       |  15%
-   inline R code fragments
-
-  |                                                                         |............                                                     |  18%
-label: CALC_distance_matrices
-  |                                                                         |..............                                                   |  21%
-  ordinary text without R code
-
-  |                                                                         |................                                                 |  24%
-label: CALC_diet_similarity
-  |                                                                         |..................                                               |  27%
-  ordinary text without R code
-
-  |                                                                         |....................                                             |  30%
-label: CALC_experiment-randomization_summary
-  |                                                                         |......................                                           |  33%
-  ordinary text without R code
-
-  |                                                                         |........................                                         |  36%
-label: DATA_merge_similarity_matrices
-  |                                                                         |..........................                                       |  39%
-  ordinary text without R code
-
-  |                                                                         |............................                                     |  42%
-label: TEST_metabolic~phylo (with options) 
-List of 1
- $ results: chr "asis"
-
-  |                                                                         |..............................                                   |  45%
-  ordinary text without R code
-
-  |                                                                         |................................                                 |  48%
-label: nodecalc
-  |                                                                         |.................................                                |  52%
-   inline R code fragments
-
-  |                                                                         |...................................                              |  55%
-label: dietcalc
-  |                                                                         |.....................................                            |  58%
-   inline R code fragments
-
-  |                                                                         |.......................................                          |  61%
-label: TEST_diet-sim_as_PD
-  |                                                                         |.........................................                        |  64%
-   inline R code fragments
-
-  |                                                                         |...........................................                      |  67%
-label: experimentsummary
-  |                                                                         |.............................................                    |  70%
-   inline R code fragments
-
-  |                                                                         |...............................................                  |  73%
-label: polysummary
-  |                                                                         |.................................................                |  76%
-   inline R code fragments
-
-  |                                                                         |...................................................              |  79%
-label: FIG_metabolic_occurance_as_phylo
-  |                                                                         |.....................................................            |  82%
-  ordinary text without R code
-
-  |                                                                         |.......................................................          |  85%
-label: FIG_feeding_trial_as_phylo
-  |                                                                         |.........................................................        |  88%
-  ordinary text without R code
-
-  |                                                                         |...........................................................      |  91%
-label: FIG_PD_experiment_nonadditive
-  |                                                                         |.............................................................    |  94%
-  ordinary text without R code
-
-  |                                                                         |...............................................................  |  97%
-label: FIG_experiment_responses
-  |                                                                         |.................................................................| 100%
-  ordinary text without R code
-
-
-output file: predatordiversity.md
-
-[1] "predatordiversity.md"
-> 
-> ## make a .doc file
-> pandoc(input="predatordiversity.md",format="docx",config="predatordiversity.pandoc")
-> 
-> proc.time()
-   user  system elapsed 
-  8.356   0.184  20.180 

@@ -155,31 +155,20 @@
 			"file": "predatordiversity.Rmd",
 			"settings":
 			{
-				"buffer_size": 35641,
+				"buffer_size": 39713,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"contents": "\n\n\nWhat affects the balance between stochastic and deterministic factors?\n\nwhat was the distribution of habitat size?\n\nspecies composition -- predators can affect how stochastic communities are - does that vary?\n\n**beautiful** graphs!  ggplot2?\n\ntype of habitat regulates stochastic/deterministic --- but of course we knew that!\n\n",
+			"contents": "As a result, invertebrates in this system do not eat the leaves directly; rather microinverterbrates (zooplankton) and bacteria do most of the decomposition.  This hypothesis could be tested, for example, by performing bacterial community \"transplants\" from a host bromelid to a sterile bromeliad, which could then be monitored for a decomposition rate similar to the original bromeliad.\n\n\nIn discussion, return to the point about how you ought to think about all the predators, or at least why doing so is awesome\n\n\n\n\n\n\n\neavesdropping on astrophys\n\n\nbullet coffee w 420\n\nemail  Alice to say about the timeline\n\nAngela -- have you read that thing about yoga\n\nWhat if different predator combinations have different effects in different habitats?  It is actually quite plausible.\n\n'triangular\" distrib of organisms feeding preferences (measured in bd size) as a function of body size.  Jensen's inequality, and effect of energy movement.",
 			"settings":
 			{
-				"buffer_size": 330,
+				"buffer_size": 935,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
-			"settings":
-			{
-				"buffer_size": 26314,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"contents": "## notes on pd-ef writing\n\nCan mechanisitc models be fit to this data as well? For example, models which desccribe how the probabilitites of co-occurance change \n\nmore phylo distance == saturating dissimilarity in diet.  How dissimmilar might diets GET in this ecosystem? \n\nWhat if phylogenetic information about the prey animals is somehow helpful?\n\npredators all eat the same things?  compare the prey which survived to a random sample of prey types.  \n\nIs there an equation for the amount of predation we should see if there is complementarity, etc?\n\nparameters --- related to phylogenetic distance?  \n\n\nco-occurrance: oviposition decisions and spatail variation within foodwebs.  Spatial variations in metacommunities\n- spatial variation in foodwebs is related to predator preferences, etc.  \n\nassembly in a metacommunity with non-consumptive effects.  How to priority effects change in a such a system?  do we get surprising or counterintuitive food chain lengths emerging?  What does that do to ecosystem function: standing stocks, energy fluxes, etc? ",
 			"file": "## notes on pd-ef writing",
-			"file_size": 854,
-			"file_write_time": 1383844885000000,
 			"settings":
 			{
 				"buffer_size": 1058,
@@ -188,18 +177,10 @@
 			}
 		},
 		{
-			"file": "forDiane.sh",
-			"settings":
-			{
-				"buffer_size": 736,
-				"line_ending": "Unix"
-			}
-		},
-		{
 			"file": "predatordiversity.md",
 			"settings":
 			{
-				"buffer_size": 21421,
+				"buffer_size": 0,
 				"line_ending": "Unix"
 			}
 		}
@@ -211,16 +192,16 @@
 		"selected_items":
 		[
 			[
+				"table",
+				"Table Editor: Set table syntax 'MultiMarkdown' for current view"
+			],
+			[
 				"pack",
 				"Package Control: Install Package"
 			],
 			[
 				"dis",
 				"Table Editor: Disable for current view"
-			],
-			[
-				"table",
-				"Table Editor: Set table syntax 'Pandoc' for current view"
 			],
 			[
 				"enab",
@@ -376,6 +357,12 @@
 	},
 	"file_history":
 	[
+		"/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
+		"/home/andrew/.config/sublime-text-2/Packages/Table Editor/Default (Linux).sublime-keymap",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/forDiane.sh",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/knit.sh",
+		"/home/andrew/Dropbox/PhD/Brazil2011/MS/pdpaper.bib",
+		"/home/andrew/writetime.sh",
 		"/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2006_speciesname.txt",
 		"/home/andrew/Dropbox/CommunityStructure/Data/species/Honduras_2007_speciesname.txt",
 		"/home/andrew/Dropbox/CommunityStructure/Data/size/Honduras_2007_size.txt",
@@ -396,7 +383,6 @@
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.md",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/predatordiversity_source.Rmd",
 		"/home/andrew/Documents/Writing/Progress/writing.progress.txt",
-		"/home/andrew/Dropbox/PhD/Brazil2011/MS/forDiane.sh",
 		"/home/andrew/Dropbox/Predator_Phylogenetic_Diversity/MS/TreeTechnique.md",
 		"/home/andrew/Dropbox/Predator_Phylogenetic_Diversity/MS/forDiane.sh",
 		"/home/andrew/.bashrc",
@@ -405,14 +391,12 @@
 		"/home/andrew/Dropbox/organization/someday.md",
 		"/home/andrew/Dropbox/organization/todo.md",
 		"/home/andrew/Dropbox/organization/projects.md",
-		"/home/andrew/Dropbox/PhD/Brazil2011/MS/knit.sh",
 		"/home/andrew/Dropbox/PhD/Brazil2011/data/predator.size.decision/predsize.R",
 		"/home/andrew/Dropbox/PhD/Brazil2011/data/occur_by_size/Cardoso2008_WGformat_correct.txt",
 		"/home/andrew/Dropbox/PhD/Brazil2011/to do for this project:",
 		"/home/andrew/Esteban/OFL.txt",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/notes",
 		"/home/andrew/Dropbox/rainfall.randomization/RainRandomizations.Rmd",
-		"/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
 		"/home/andrew/Dropbox/PhD/Brazil2011/.gitignore",
 		"/home/andrew/Dropbox/PhD/Brazil2011/MS/format.sty",
 		"/home/andrew/Documents/CoffeeCoop/R/do_accounts_database.md",
@@ -498,12 +482,9 @@
 		"/home/andrew/knitr-examples/020-for-loop.Rnw",
 		"/home/andrew/knitr-examples/019-fig-caption.Rnw",
 		"/home/andrew/Dropbox/PhD/brazil2013/experiments/R.scripts/habitatExp.R",
-		"/home/andrew/.config/sublime-text-2/Packages/Table Editor/Default (Linux).sublime-keymap",
 		"/home/andrew/.config/sublime-text-2/Packages/User/Default (Linux).sublime-keymap",
 		"/home/andrew/Desktop/emails/diane03may",
-		"/home/andrew/markdownscience/markdown_science/examples/basic/document.md",
-		"/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.txt",
-		"/home/andrew/knitr-examples/readme.md"
+		"/home/andrew/markdownscience/markdown_science/examples/basic/document.md"
 	],
 	"find":
 	{
@@ -521,6 +502,21 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			";",
+			"|\n| ",
+			"|",
+			"row",
+			"1",
+			"*",
+			"Polypedium",
+			"\\\\",
+			"\\emph{",
+			"[",
+			"Bersier2008",
+			"\\[",
+			"[",
+			";",
+			"prey survival",
 			"`r\n",
 			"`r\np",
 			"`r ",
@@ -622,7 +618,7 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
@@ -630,27 +626,27 @@
 					"file": "predatordiversity.Rmd",
 					"settings":
 					{
-						"buffer_size": 35641,
+						"buffer_size": 39713,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								347,
-								347
+								5008,
+								5008
 							]
 						],
 						"settings":
 						{
-							"enable_table_editor": false,
+							"enable_table_editor": true,
 							"syntax": "Packages/Rx/Rmarkdown.tmLanguage",
-							"tab_size": 2,
-							"table_editor_syntax": "Pandoc",
+							"tab_size": 4,
+							"table_editor_syntax": "MultiMarkdown",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 0.0,
+						"translation.y": 918.0,
 						"zoom_level": 1.0
 					},
 					"type": "text"
@@ -659,21 +655,20 @@
 					"buffer": 1,
 					"settings":
 					{
-						"buffer_size": 330,
+						"buffer_size": 935,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								330,
-								330
+								657,
+								657
 							]
 						],
 						"settings":
 						{
-							"auto_name": "",
-							"syntax": "Packages/Text/Plain text.tmLanguage"
+							"syntax": "Packages/Rx/Rmarkdown.tmLanguage"
 						},
 						"translation.x": 0.0,
 						"translation.y": 0.0,
@@ -683,32 +678,6 @@
 				},
 				{
 					"buffer": 2,
-					"file": "/home/andrew/Dropbox/PhD/brazil2013/experiments/data/insect.communities.table.txt",
-					"settings":
-					{
-						"buffer_size": 26314,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								0,
-								0
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Text/Plain text.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 3,
 					"file": "## notes on pd-ef writing",
 					"settings":
 					{
@@ -735,37 +704,11 @@
 					"type": "text"
 				},
 				{
-					"buffer": 4,
-					"file": "forDiane.sh",
-					"settings":
-					{
-						"buffer_size": 736,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								206,
-								206
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/ShellScript/Shell-Unix-Generic.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 5,
+					"buffer": 3,
 					"file": "predatordiversity.md",
 					"settings":
 					{
-						"buffer_size": 21421,
+						"buffer_size": 0,
 						"regions":
 						{
 						},
@@ -778,8 +721,10 @@
 						],
 						"settings":
 						{
+							"parser": "markdown",
 							"syntax": "Packages/Markdown/Markdown.tmLanguage",
-							"tab_size": 2,
+							"tab_size": 4,
+							"target": "disk",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
@@ -854,7 +799,7 @@
 	"show_minimap": true,
 	"show_open_files": true,
 	"show_tabs": true,
-	"side_bar_visible": true,
+	"side_bar_visible": false,
 	"side_bar_width": 285.0,
 	"status_bar_visible": true
 }

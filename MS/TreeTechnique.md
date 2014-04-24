@@ -56,4 +56,3 @@ plot(pred_exp_phylo)
 The only taxa for which TimeTree *doesn't* help are my two species of congeneric damselflies (*Leptagrion* sp.).  Yet, if the other edges have a length, these should too, right?  So, I set it at 15 Mya, the estimated age of the genus [*Enallagma*](http://www.enallagma.com/phylogeny.php).  I figured that choosing a "deeper" split like he origin of a whole genus makes the phylogeny more conservative, because it places the common ancestor of *Leptagrion* closer to the other. 
 
 What do you think?  Utter fantasy or useful hack?
-
