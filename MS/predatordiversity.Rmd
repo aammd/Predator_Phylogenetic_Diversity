@@ -12,11 +12,11 @@ library(bipartite)
 library(reshape2)
 library(vegan)
 library(picante)
-library(beanplot)
 library(pander)
 library(gplots)
 library(plyr)
 library(gridExtra)
+library(dplyr)
 
 # occurrance data -- abundance
 occur <- read.csv("../data/reorganized_data/predator.cooccur.txt",stringsAsFactor=FALSE)
@@ -43,17 +43,14 @@ source("../R.scripts/FUNCTIONS_predator_diversity.R")
 
 ```{r experiment_data_postprocess}
 #dropping a record that seems to have been 90% decomposed!
-pd[which(pd$decomp>0.7),'decomp'] <- NA
-## just to make sure:
-#with(pd,table(treatment))
-#head(pd)
-
+pd <- pd %.%
+  transform(decomp=ifelse(decomp>0.7,NA,decomp))
 ```
 
 ## Introduction
 
 
-Predator assemblages can have strong top-down effects on community structure and ecosystem processes [@Ngai2006;@Srivastava2009] modified by additive or non-additive interactions [@Sih1998a;@Griswold2006;@Nystrom2001]; however, few studies have addressed the entire diversity of predators in a community. Meanwhile phylogenetic diversity measures have provided useful insights into diverse plant communities [@Cadotte2009;@Cadotte2008], and yet have rarely been applied to a trophic group of animals [@Bersier2008;Naisbit]. The community-level effects of the consumer assemblage will be determined by their distribution, individual feeding preference, overall effect on the community, and any non-additive effects between predator species.  By correlating with these properties, measures of phylogenetic diversity may allow us to predict the effect of a predator assemblage on ecosystem functioning. Here we use phylogenetic diversity as a means for comparing predator species in a diverse community of aquatic invertebrates.  
+Predator assemblages can have strong top-down effects on community structure and ecosystem processes [@Ngai2006;@Srivastava2009a] modified by additive or non-additive interactions [@Sih1998a;@Griswold2006;@Nystrom2001]; however, few studies have addressed the entire diversity of predators in a community. Meanwhile phylogenetic diversity measures have provided useful insights into diverse plant communities [@Cadotte2009;@Cadotte2008], and yet have rarely been applied to a trophic group of animals [@Bersier2008;Naisbit]. The community-level effects of the consumer assemblage will be determined by their distribution, individual feeding preference, overall effect on the community, and any non-additive effects between predator species.  By correlating with these properties, measures of phylogenetic diversity may allow us to predict the effect of a predator assemblage on ecosystem functioning. Here we use phylogenetic diversity as a means for comparing predator species in a diverse community of aquatic invertebrates.  
 
 The phylogenetic diversity (here PD) of a predator assemblage may relate to their distribution, diet breadth and species interactions, all of which combine to produce the total top-down effect on the ecosystem. Phylogeny may constrain species distributions when distant relatives have distinct fundamental niches, while close relatives are too similar to co-occur [@Webb2002;@Emerson2008].  In predators, an important component of the niche is prey capture; recent studies have reported a weak correlation with niche differences in Anoles [@Knouft2006], and with morphological differences in warblers [@Bohning-Gaese2003].  However, phylogenetic distance correlates with stinging pattern in wasps (a vital component of their "trophic apparatus", [@Udriene2005]) and with both morphology and diet in treeboas [@Henderson2013]; studies of predator phylogenetic ecology are usually constrained to a taxon rather than a local assemblage of consumers. In studies of whole food webs, phylogenetic diversity is often related to food web structure [@Cattin2004;@Rezende2009] or function [@Maherali2007]. Complex traits that underlie species interactions (particularly "higher-order" interactions *sensu* Sih *et al.* [-@Sih1998a]) may also correlate with phylogeny, leading to a higher correlation with community processes than richness alone [@Cadotte2009]. Srivastava *et al.* [-@Srivastava2012c] reviewed the ways in which phylogenetic diversity might correlate with ecosystem function: assuming that relevant traits are conserved, the PD of a predator assemblage may determine the magnitude of its top-down effect on communities and ecosystems.
 
@@ -146,12 +143,15 @@ among occupied bromeliads.
 
 ### Diet similarity
 ```{r dietcalc}
-foodweb_len <- dcast(data=foodweb,formula=Prey.species~predator.names,value.var="eaten.numeric",fun.aggregate=length)
-# remove species names
-foodweb_len_mat <- as.matrix(foodweb_len[,-1])
-# have better names
-dimnames(foodweb_len_mat) <- list(foodweb_len[[1]],names(foodweb_len)[-1])
-foodweb_len_mat <- foodweb_len_mat[,-ncol(foodweb_len_mat)]  ## last column was an NA predator.
+## how many prey were consumed by predators?  matrix of predator x prey trials
+
+foodweb %.%
+  dcast(formula=Prey.species~predator.names,
+        value.var="eaten.numeric",fun.aggregate=length) %.%
+  data.frame(row.names="Prey.species") %.%
+  select(Hirudinidae:Tabanidae.spC) %.%
+  as.matrix()
+
 ```
 
 We conducted `r sum(foodweb_len_mat)` feeding trials of `r ncol(foodweb.matrix)` predator taxa fed `r nrow(foodweb.matrix)` prey taxa between March and April 2011.  We  covered all potential predator-prey pairs present in the experiment
@@ -232,22 +232,21 @@ indicate a significant nonadditive effect of a predator combination.
 ## 2) phylogenetic distance
 
 ## metabolic matrix -- the "distance" between predator co-occurance, measured as metabolism
-## remove the first column -- it's species names
-metabolic.matrix <- metabolic[,-1]
-## put that name column as dimnames
-dimnames(metabolic.matrix)[[1]] <- metabolic[,1]
 
-## now that metabolic capacity is set up, there are several ways for us to go forward: 
-## euclidian distance, or maybe correlations?
+dist_to_df <- function(matrix_for_df){
+  melt(matrix_for_df)[melt(upper.tri(matrix_for_df))$value,]
+}
 
-## euclidian distance between metabolic densities
-pred.abd.distance <- vegdist(metabolic.matrix,method="euclid")
-occur_matrix <- as.matrix(pred.abd.distance) # convert to matrix
+metabolic %.%
+  data.frame(row.names="Taxa") %.%
+  as.matrix() %.%
+  vegdist(method="euclid") %.%
+  as.matrix() %.%
+  dist_to_df() %.%
+  rename(c("Var1"="metapred1",
+           "Var2"="metapred2",
+           "value"="metadistance"))
 
-## correlations between metabolic densities
-metabolic_mat <- as.matrix(metabolic.matrix)
-# reordered metabolic distance matrix
-#occur_matrix <- cor(t(metabolic_mat))
 
 ####### phylogeny matrix ####
 ## Calculate distances
@@ -259,47 +258,39 @@ allpred_phylodist <- cophenetic(predtree_timetree_ages)
 ```{r CALC_diet_similarity}
 # Check for TRUE ZEROS in cast matrix.
 
-# trial.list <- split(foodweb,foodweb$predator.names)
-# sapply(trial.list,nrow)
-## need predators as columns, herbivores as rows
-foodweb.cast <- dcast(data=foodweb,formula=Prey.species~predator.names,value.var="eaten.numeric",fun.aggregate=sum)
-# remove species names
-foodweb.matrix <- as.matrix(foodweb.cast[,-1])
-# have better names
-dimnames(foodweb.matrix) <- list(foodweb.cast[[1]],names(foodweb.cast)[-1])
-foodweb.matrix <- foodweb.matrix[,-ncol(foodweb.matrix)]  ## last column was an NA predator.
-
-# make the distance matrix -- with the jaccard index?
-## finally, calculate distance
-distances <- vegdist(t(foodweb.matrix),method='jaccard',diag=TRUE)
-## make a distance matrix so lower.tri subsetting works
-diet_dist_mat <- as.matrix(distances)
+foodweb %.%
+  dcast(formula=Prey.species~predator.names,value.var="eaten.numeric",fun.aggregate=sum) %.%
+  data.frame(row.names="Prey.species") %.%
+  select(Hirudinidae:Tabanidae.spC) %.%
+  as.matrix() %.%
+  t() %.%
+  vegdist(method="jaccard") %.%
+  as.matrix() %.%
+  dist_to_df()
 
 ```
 
 ```{r CALC_experiment-randomization_summary}
-### ---- group means ####
-##go2 <- responses.means(1000)
-#write.csv(go2,"randomizations.group.means.csv")
-## order these correctly
-rand.means$sp.pair <- factor(rand.means$sp.pair,
-                             levels=c('elong + andro','elong + tab',
-                               'elong + leech')
-                             )
-## remove the X column
-rand.means <- rand.means[,-1]
+## summarize randomization test results
 
-### supplementary figure?  ####
-meansMelt <- melt(rand.means)
-# #densityplot(~growth+survival+fine+decomp,groups=sp.pair,data=go)
-# ggplot(data=meansMelt,aes(x=value,colour=sp.pair))+geom_histogram()+facet_wrap(~variable)
+summarize_randoms <- rand.means %.%
+  # remove annoying X column
+  select(-X) %.%
+  # sequence of increasing PD
+  mutate(sp.pair=factor(sp.pair,levels=c('elong + andro',
+                                         'elong + tab',
+                                         'elong + leech')
+                        )
+         ) %.%
+  # melt, so that all responses can be summarized at the same time
+  melt(id.vars="sp.pair") %.%
+  group_by(sp.pair,variable) %.%
+  summarise(mean=mean(value),
+            lower=quantile(value,probs=c(0.025)),
+            upper=quantile(value,probs=c(0.975))
+            )
 
-## summarize the randomizations 
-summarize_randoms <- ddply(.data=meansMelt,.variables=.(sp.pair,variable),summarize,
-                       mean=mean(value),lower=quantile(value,probs=c(0.025)),
-                       upper=quantile(value,probs=c(0.975))
-                       )
-#####
+
 ```
 
 ```{r DATA_merge_similarity_matrices}
@@ -481,12 +472,15 @@ ggplot(subset(summarize_randoms_phylo,summarize_randoms_phylo$variable=="surviva
 
 ## Discussion
 
-<!--
-
 ### co-occurrance
-* Predators appear to be generalist with regard to their habitat preference; indicating that prey face a heterogeneous landscape of predator risks, and demonstrating that our experimental design captures natural variation in predator composition.
 
-* Predators occuring together at smaller spatial scales (i.e. within the same plant) may have limited direct interactions due to habitat structure, for example via the physical obstructions caused by detritus
+Predators appear to be generalist with regard to their habitat preference; indicating that prey face a heterogeneous landscape of predator risks, and demonstrating that our experimental design captures natural variation in predator composition
+
+In bromeliads, predators appear to be rather generalist in habitat composition, relative to bromeliad size or the composition of the communities in qhich they are found.  This indicates theat even very hylogenetically distinct predators could similar in tierms of their habitat preference.  For prey species, this means that in any local patch the predator assemblage that they encounter may be very phylogenetically variable, or very homogeneous. 
+
+go and check the doc for comments
+
+* Predators occuring together at smaller spatial scales (i.e. within the same plant) may have limited direct interactions due to habitat structure, for example via the physical obstructions caused by detritus (Diane's paper.)
 
 ### diet similarity
 * We demonstrate a slight but important decrease in feeding preferences with phylogenetic distance, indicating that food web structure itself might vary with phylogenetic diversity, becoming more compartmentalized when predators are more dissimilar.
@@ -531,7 +525,7 @@ It may be that different predators influence the composition of the detrius (ani
 | *Trentepholia sp.*       |  1      |
 
   : Densities of insects used in the experiment.
-  
+
 -->
 
 ## References
