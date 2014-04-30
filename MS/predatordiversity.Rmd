@@ -252,23 +252,22 @@ metabolic_distance <- metabolic %.%
 ```{r}
 ####### phylogeny matrix ####
 ## Calculate distances
+phylogenetic_distance  <- predtree_timetree_ages %.%
+  cophenetic() %.%
+  dist_to_df() %.%
+  rename(c("Var1"="phylopred1",
+           "Var2"="phylopred2",
+           "value"="phylodistance")) %.%
+  mutate(pairs_RH=paste(phylopred1,phylopred2,sep="_"),
+         pairs_LH=paste(phylopred2,phylopred1,sep="_")) %.%
+  melt(,id.vars=c("phylopred1","phylopred2","phylodistance"),value.name="species_pair")
 
-allpred_phylodist <- cophenetic(predtree_timetree_ages)
-
-## Phylogenetic distance ####
-allpred_phylodist_df <- melt(allpred_phylodist)[melt(upper.tri(allpred_phylodist))$value,]
-names(allpred_phylodist_df) <- c("phylopred1", "phylopred2", "phylodistance")
-allpred_phylodist_df_RH <- allpred_phylodist_df
-allpred_phylodist_df_LH <- allpred_phylodist_df
-allpred_phylodist_df_RH$sp.pair <- paste(allpred_phylodist_df_RH$phylopred1, allpred_phylodist_df_RH$phylopred2,sep="_")
-allpred_phylodist_df_LH$sp.pair <- paste(allpred_phylodist_df_LH$phylopred2, allpred_phylodist_df_LH$phylopred1,sep="_")
-######## 
 ```
 
 ```{r CALC_diet_similarity}
 # Check for TRUE ZEROS in cast matrix.
 
-foodweb %.%
+diet_distance <- foodweb %.%
   dcast(formula=Prey.species~predator.names,value.var="eaten.numeric",fun.aggregate=sum) %.%
   data.frame(row.names="Prey.species") %.%
   select(Hirudinidae:Tabanidae.spC) %.%
