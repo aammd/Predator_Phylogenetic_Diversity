@@ -237,7 +237,7 @@ dist_to_df <- function(matrix_for_df){
   melt(matrix_for_df)[melt(upper.tri(matrix_for_df))$value,]
 }
 
-metabolic %.%
+metabolic_distance <- metabolic %.%
   data.frame(row.names="Taxa") %.%
   as.matrix() %.%
   vegdist(method="euclid") %.%
@@ -247,11 +247,21 @@ metabolic %.%
            "Var2"="metapred2",
            "value"="metadistance"))
 
+```
 
+```{r}
 ####### phylogeny matrix ####
 ## Calculate distances
+
 allpred_phylodist <- cophenetic(predtree_timetree_ages)
 
+## Phylogenetic distance ####
+allpred_phylodist_df <- melt(allpred_phylodist)[melt(upper.tri(allpred_phylodist))$value,]
+names(allpred_phylodist_df) <- c("phylopred1", "phylopred2", "phylodistance")
+allpred_phylodist_df_RH <- allpred_phylodist_df
+allpred_phylodist_df_LH <- allpred_phylodist_df
+allpred_phylodist_df_RH$sp.pair <- paste(allpred_phylodist_df_RH$phylopred1, allpred_phylodist_df_RH$phylopred2,sep="_")
+allpred_phylodist_df_LH$sp.pair <- paste(allpred_phylodist_df_LH$phylopred2, allpred_phylodist_df_LH$phylopred1,sep="_")
 ######## 
 ```
 
