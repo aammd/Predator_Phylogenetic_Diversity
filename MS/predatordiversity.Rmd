@@ -96,7 +96,7 @@ occur, such as predatory midges (Chironomidae:Tanypodinae) and Dytiscid beetles.
 
 ### metabolic capacity and phylogenetic distance
 
-```{r nodecalc}
+```{r CALC_nodeages}
 nodeages <- lapply(list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE),read.csv)
 names(nodeages) <- list.files(path="../data/TreeData/",pattern="*.csv")
 nstudies <- sapply(nodeages,nrow)
@@ -250,7 +250,9 @@ phylogenetic_distance  <- predtree_timetree_ages %.%
            "value"="phylodistance")) %.%
   mutate(pairs_RH=paste(phylopred1,phylopred2,sep="_"),
          pairs_LH=paste(phylopred2,phylopred1,sep="_")) %.%
-  melt(,id.vars=c("phylopred1","phylopred2","phylodistance"),value.name="species_pair")
+  melt(id.vars=c("phylopred1","phylopred2","phylodistance"),
+       value.name="species_pair",
+       variable.name="L_or_R") 
 
 ```
 
@@ -299,19 +301,28 @@ diet_distance <- feeding_trials %.%
 summarize_random_test <- rand.means %.%
   # remove annoying X column
   select(-X) %.%
-  # sequence of increasing PD
-  mutate(sp.pair=factor(sp.pair,levels=c('elong + andro',
-                                         'elong + tab',
-                                         'elong + leech')
-                        )
-         ) %.%
   # melt, so that all responses can be summarized at the same time
   melt(id.vars="sp.pair") %.%
   group_by(sp.pair,variable) %.%
   summarise(mean=mean(value),
             lower=quantile(value,probs=c(0.025)),
             upper=quantile(value,probs=c(0.975))
-            )
+            ) %.%
+  # sequence of increasing PD
+  ungroup() %.%
+  mutate(sp.pair.names=factor(sp.pair,levels=c('elong + andro',
+                                         'elong + tab',
+                                         'elong + leech')
+                        ),
+         sp.pair=as.character(sp.pair),
+         sp.pair=ifelse(sp.pair=="elong + andro","Leptagrion.elongatum_Leptagrion.andromache",
+                        sp.pair),
+         sp.pair=ifelse(sp.pair=="elong + tab","Leptagrion.elongatum_Tabanidae.spA",
+                        sp.pair),
+         sp.pair=ifelse(sp.pair=="elong + leech","Leptagrion.elongatum_Hirudinidae",
+                        sp.pair)
+         
+         )
 
 
 ```
@@ -350,6 +361,13 @@ incommon <- feeding_trials %.%
 ## experiment randomization results + predator phylogenetic distance
 
 ## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
+left_join(metabolic_distance,phylogenetic_distance)
+
+left_join(diet_distance,phylogenetic_distance)
+## !!!? what should I do with the small leptagrion!?
+
+foob <- left_join(summarize_random_test,phylogenetic_distance)
+
 
 
 #### randomization results ####
