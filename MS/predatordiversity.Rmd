@@ -143,7 +143,7 @@ among occupied bromeliads.
 
 ### Diet similarity
 ```{r dietcalc}
-## how many prey were consumed by predators?  matrix of predator x prey trials
+##  predator x prey trials
 
 feeding_trials <- foodweb %.%
   group_by(Prey.species,predator.names) %.%
@@ -316,18 +316,9 @@ summarize_randoms <- rand.means %.%
 
 ```
 
-```{r DATA_merge_similarity_matrices}
-## we need to merge together several matrices:
-## metabolic occurance + predator phylogenetic distance
-## diet similarity + predator phylogenetic distance
-## experiment randomization results + predator phylogenetic distance
-
-## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
+```{r CALC_incommon}
 
 ## we also need to know how many trials each predator has in common:]
-
-left_join(diet_distance,phylogenetic_distance,)
-
 columns_in_common <- function(mat){
   t(mat>0)%*%(mat>0)
 }
@@ -349,12 +340,16 @@ incommon <- feeding_trials %.%
 # ungroup(feeding_trials) %.%
 #   group_by(predator.names) %.%
 #   summarize(nt=n())
-
-# incommon_df <- melt(incommon)[melt(upper.tri(incommon))$value,]
-# names(incommon_df) <- c("commonpred1", "commonpred2", "Ncommon")
-# incommon_df$sp.pair <- paste(incommon_df$commonpred1,incommon_df$commonpred2,sep="_")
+```
 
 
+```{r DATA_merge}
+## we need to merge together several matrices:
+## metabolic occurance + predator phylogenetic distance
+## diet similarity + predator phylogenetic distance
+## experiment randomization results + predator phylogenetic distance
+
+## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
 
 
 #### randomization results ####
