@@ -142,7 +142,7 @@ distance measure: the euclidian distance among the total metabolic capacity
 among occupied bromeliads.
 
 ### Diet similarity
-```{r dietcalc}
+```{r CALC_feeding_trials}
 ##  predator x prey trials
 
 feeding_trials <- foodweb %.%
@@ -227,7 +227,7 @@ indicate a significant nonadditive effect of a predator combination.
 
 ## Results
 
-```{r CALC_distance_matrices}
+```{r CALC_phylogenetic_distance}
 ####### metabolic matrix ####
 ## we need to calculate two distance matrices:
 ## 1) metabolic capacity distance
@@ -255,7 +255,7 @@ phylogenetic_distance  <- predtree_timetree_ages %.%
 ```
 
 
-```{r}
+```{r CALC_metabolic_distance}
 metabolic_distance <- metabolic %.%
   data.frame(row.names="Taxa") %.%
   as.matrix() %.%
@@ -269,7 +269,7 @@ metabolic_distance <- metabolic %.%
 
 ```
 
-```{r CALC_diet_similarity}
+```{r CALC_diet_distance}
 # Check for TRUE ZEROS in cast matrix.
 
 ## Fill = 0 !!!? correct ??!!!
@@ -293,10 +293,10 @@ diet_distance <- feeding_trials %.%
 
 ```
 
-```{r CALC_experiment-randomization_summary}
+```{r CALC_summarize_random_test}
 ## summarize randomization test results
 
-summarize_randoms <- rand.means %.%
+summarize_random_test <- rand.means %.%
   # remove annoying X column
   select(-X) %.%
   # sequence of increasing PD
