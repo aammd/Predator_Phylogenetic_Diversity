@@ -232,6 +232,8 @@ indicate a significant nonadditive effect of a predator combination.
 
 ## Results
 
+### patterns of occurance
+
 ```{r CALC_phylogenetic_distance}
 ####### metabolic matrix ####
 ## we need to calculate two distance matrices:
@@ -373,25 +375,43 @@ summarize_randoms_phylo <- left_join(summarize_random_test,phylogenetic_distance
 
 ```
 
-```{r TEST_metabolic~phylo,results='asis'}
-meta_phylo_lm <- with(metabolic_occur_phylo,lm(metadistance~phylodistance))
-meta_phylo_lm_summary <- summary(meta_phylo_lm)
+```{r CALC_metabolic_numbers}
+## numbers for text:
+meta_range <- metabolic %.%
+  melt(id.vars="Taxa") %.%
+  select(-variable) %.%
+  filter(value>0) %.%
+  filter(value%in%range(value)) %.%
+  transform(value=signif(value,2)) %.%
+  unique()
+
+smallsp <- meta_range[1,]
+largesp <- meta_range[2,]
+
+nspp <- metabolic %.%
+  melt(id.vars="Taxa",variable.name="brom") %.%
+  filter(value>0) %.%
+  group_by(brom) %.%
+  summarize(nspp=n()) %.%
+  summarize(meanpred=mean(nspp),
+            sdpred=signif(sd(nspp),2)) 
+
 ```
 
-<!--
-following sentence is unclear : what are the units of metabolic capacity?  What are the results per individual or population or what?  
--->
+```{r TEST_metabolic~phylo}
+meta_phylo_lm <- with(metabolic_occur_phylo,lm(metadistance~phylodistance))
+meta_phylo_lm_summary <- summary(meta_phylo_lm)
 
-Across all bromeliads, predator species differed widely in metabolic capacity, from `r min(rowSums(metabolic.matrix))` for a species of Empididae, to `r max(rowSums(metabolic.matrix))` for the abundant predator _Leptagrion andromache_.  Predators often co-occured in bromeliads ($`r mean(colSums(metabolic.matrix>0))` \pm `r round(sd(colSums(metabolic.matrix>0)),digits=2)`$ species per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`, p=`r round(pf(meta_phylo_lm_summary$fstatistic[1],meta_phylo_lm_summary$fstatistic[2],meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE),digits=2)`).
+## caculate summaries 
+pval_metabol <- round(pf(meta_phylo_lm_summary$fstatistic[1],
+                         meta_phylo_lm_summary$fstatistic[2],
+                         meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)
+                      ,digits=2)
+```
 
+Across all bromeliads, predator species differed widely in metabolic capacity, from `r smallsp$value` for a species of _Monopelopia_, to `r largesp$value` for large predatory flies in the family Tabanidae.  Predators often co-occured in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` species per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`, p=`r pval_metabol`).
 
-<!--
-Clarify the euclidian distance thing in the Methods, and 
--->
-
-
-### diet similarity and phylogenetic distance
-
+### diet similarity
 
 ```{r percentpred}
 ## what percentage of total trials resulted in predation?
