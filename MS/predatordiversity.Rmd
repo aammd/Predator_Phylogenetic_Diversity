@@ -322,7 +322,8 @@ summarize_random_test <- rand.means %.%
          sp.pair=ifelse(sp.pair=="elong + leech","Leptagrion.elongatum_Hirudinidae",
                         sp.pair)
          
-         )
+         ) %.%
+  rename(c("sp.pair"="species_pair"))
 
 
 ```
@@ -361,39 +362,12 @@ incommon <- feeding_trials %.%
 ## experiment randomization results + predator phylogenetic distance
 
 ## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
-left_join(metabolic_distance,phylogenetic_distance)
+metabolic_occur_phylo <- left_join(metabolic_distance,phylogenetic_distance)
 
-left_join(diet_distance,phylogenetic_distance)
-## !!!? what should I do with the small leptagrion!?
+diet_similarity_phylo <- left_join(diet_distance,phylogenetic_distance)
 
-foob <- left_join(summarize_random_test,phylogenetic_distance)
+summarize_randoms_phylo <- left_join(summarize_random_test,phylogenetic_distance)
 
-
-
-#### randomization results ####
-# distances of L. elongatum to everything:
-Le_distances <- sort(allpred_phylodist["Leptagrion.elongatum",])
-## a lookup table to pair spp leves with time-since-divergence
-lkup <- data.frame(sp.pair=levels(summarize_randoms$sp.pair),
-                   Time=Le_distances[c("Leptagrion.andromache","Tabanidae.spA","Hirudinidae")])
-
-#### merging ####
-## metabolic occurance + predator phylogenetic distance
-metabolic_occur_phylo1 <- merge(metabolic_df,allpred_phylodist_df_LH)
-metabolic_occur_phylo2 <- merge(metabolic_df,allpred_phylodist_df_RH)
-metabolic_occur_phylo <- rbind(metabolic_occur_phylo1,metabolic_occur_phylo2)
-## diet similarity + predator phylogenetic distance
-diet_df1 <- merge(diet_df,incommon_df)
-
-diet_similarity_phylo1 <- merge(diet_df1,allpred_phylodist_df_LH)
-diet_similarity_phylo2 <- merge(diet_df1,allpred_phylodist_df_RH)
-diet_similarity_phylo <- rbind(diet_similarity_phylo1,diet_similarity_phylo2)
-## experiment randomization results + predator phylogenetic distance
-#diet_df1$sp.pair[!diet_df1$sp.pair%in%diet_similarity_phylo$sp.pair]
-## as this code shows, small lepts are not in the running yet
-summarize_randoms_phylo <- merge(summarize_randoms,lkup)
-
-#####
 ```
 
 
