@@ -145,12 +145,14 @@ among occupied bromeliads.
 ```{r dietcalc}
 ## how many prey were consumed by predators?  matrix of predator x prey trials
 
-foodweb %.%
-  dcast(formula=Prey.species~predator.names,
-        value.var="eaten.numeric",fun.aggregate=length) %.%
-  data.frame(row.names="Prey.species") %.%
-  select(Hirudinidae:Tabanidae.spC) %.%
-  as.matrix()
+feeding_trials <- foodweb %.%
+  group_by(Prey.species,predator.names) %.%
+  summarize(number.trials=n(),
+            eaten=sum(eaten.numeric)
+            ) %.%
+  filter(!is.na(predator.names))
+  
+  
 
 ```
 
@@ -237,19 +239,7 @@ dist_to_df <- function(matrix_for_df){
   melt(matrix_for_df)[melt(upper.tri(matrix_for_df))$value,]
 }
 
-metabolic_distance <- metabolic %.%
-  data.frame(row.names="Taxa") %.%
-  as.matrix() %.%
-  vegdist(method="euclid") %.%
-  as.matrix() %.%
-  dist_to_df() %.%
-  rename(c("Var1"="metapred1",
-           "Var2"="metapred2",
-           "value"="metadistance"))
 
-```
-
-```{r}
 ####### phylogeny matrix ####
 ## Calculate distances
 phylogenetic_distance  <- predtree_timetree_ages %.%
@@ -264,18 +254,42 @@ phylogenetic_distance  <- predtree_timetree_ages %.%
 
 ```
 
+
+```{r}
+metabolic_distance <- metabolic %.%
+  data.frame(row.names="Taxa") %.%
+  as.matrix() %.%
+  vegdist(method="euclid") %.%
+  as.matrix() %.%
+  dist_to_df() %.%
+  rename(c("Var1"="metapred1",
+           "Var2"="metapred2",
+           "value"="metadistance")) %.%
+  mutate(species_pair=paste0(metapred1,"_",metapred2))
+
+```
+
 ```{r CALC_diet_similarity}
 # Check for TRUE ZEROS in cast matrix.
 
-diet_distance <- foodweb %.%
-  dcast(formula=Prey.species~predator.names,value.var="eaten.numeric",fun.aggregate=sum) %.%
+## Fill = 0 !!!? correct ??!!!
+
+## similarity in diet is about how much they eat
+
+## Should this be the proportion of eating?!?
+
+diet_distance <- feeding_trials %.%
+  dcast(formula=Prey.species~predator.names,value.var="eaten",fill=0) %.%
   data.frame(row.names="Prey.species") %.%
-  select(Hirudinidae:Tabanidae.spC) %.%
   as.matrix() %.%
   t() %.%
   vegdist(method="jaccard") %.%
   as.matrix() %.%
-  dist_to_df()
+  dist_to_df() %.%
+  rename(c("Var1"="dietpred1",
+           "Var2"="dietpred2",
+           "value"="dietdistance")) %.%
+  mutate(species_pair=paste0(dietpred1,"_",dietpred2)) 
 
 ```
 
@@ -309,29 +323,45 @@ summarize_randoms <- rand.means %.%
 ## experiment randomization results + predator phylogenetic distance
 
 ## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
-#### metabolic occurance ####
-metabolic_df <- melt(occur_matrix)[melt(upper.tri(occur_matrix))$value,]
-names(metabolic_df) <- c("metapred1", "metapred2", "metadistance")
-metabolic_df$sp.pair <- paste(metabolic_df$metapred1,metabolic_df$metapred2,sep="_")
+
+## we also need to know how many trials each predator has in common:]
+
+left_join(diet_distance,phylogenetic_distance,)
+
+feeding_trials %.%
+  mutate(species_pair=paste0())
+# ntrials <- trials_count %.%
+#   melt() %.%
+#   rename(c("Var1"="ntrialpred1",
+#            "Var2"="ntrialpred2",
+#            "value"="ntrial")) %.%
+#   filter(ntrial>0) %.%
+#   mutate(species_pair=paste0(ntrialpred1,"_",ntrialpred2)) 
+# 
+# nrow(ntrials)
+# foo <- left_join(ntrials,diet_distance)
+# 
+
+columns_in_common <- function(mat){
+  t(mat>0)%*%(mat>0)
+}
+
+incommon <- feeding_trials %.%
+  dcast(formula=Prey.species~predator.names,value.var="number.trials",fill=0) %.%
+  data.frame(row.names="Prey.species") %.%
+  as.matrix() %.%
+  columns_in_common() %.%
+  dist_to_df() %.%
+  rename(c("Var1"="commonpred1",
+         "Var2"="commonpred2",
+         "value"="Ncommon")) %.%
+  mutate(sp.pair=paste0(commonpred1,"_",commonpred2))
+# incommon_df <- melt(incommon)[melt(upper.tri(incommon))$value,]
+# names(incommon_df) <- c("commonpred1", "commonpred2", "Ncommon")
+# incommon_df$sp.pair <- paste(incommon_df$commonpred1,incommon_df$commonpred2,sep="_")
 
 
-## Phylogenetic distance ####
-allpred_phylodist_df <- melt(allpred_phylodist)[melt(upper.tri(allpred_phylodist))$value,]
-names(allpred_phylodist_df) <- c("phylopred1", "phylopred2", "phylodistance")
-allpred_phylodist_df_RH <- allpred_phylodist_df
-allpred_phylodist_df_LH <- allpred_phylodist_df
-allpred_phylodist_df_RH$sp.pair <- paste(allpred_phylodist_df_RH$phylopred1, allpred_phylodist_df_RH$phylopred2,sep="_")
-allpred_phylodist_df_LH$sp.pair <- paste(allpred_phylodist_df_LH$phylopred2, allpred_phylodist_df_LH$phylopred1,sep="_")
 
-## Diet similarity ####
-diet_df <- melt(diet_dist_mat)[melt(upper.tri(diet_dist_mat))$value,]
-names(diet_df) <- c("dietpred1", "dietpred2", "dietdistance")
-diet_df$sp.pair <- paste(diet_df$dietpred1,diet_df$dietpred2,sep="_")
-## we also need to know how many trials each predator has in common:
-incommon <- t(foodweb.matrix>0)%*%(foodweb.matrix>0)
-incommon_df <- melt(incommon)[melt(upper.tri(incommon))$value,]
-names(incommon_df) <- c("commonpred1", "commonpred2", "Ncommon")
-incommon_df$sp.pair <- paste(incommon_df$commonpred1,incommon_df$commonpred2,sep="_")
 
 #### randomization results ####
 # distances of L. elongatum to everything:
