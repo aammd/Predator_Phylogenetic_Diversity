@@ -150,14 +150,19 @@ feeding_trials <- foodweb %.%
   summarize(number.trials=n(),
             eaten=sum(eaten.numeric)
             ) %.%
-  filter(!is.na(predator.names))
-  
-  
+  filter(!is.na(predator.names)) %.%
+  filter(predator.names!="Leptagrion.small")
 
+## numbers for text
+ntrials <- sum(feeding_trials$number.trials)
+npred <- length(unique(feeding_trials$predator.names))
+nprey <- length(unique(feeding_trials$Prey.species))
+ncombos <- nrow(feeding_trials)
+rep_range <- range(feeding_trials$number.trials)
 ```
 
-We conducted `r sum(foodweb_len_mat)` feeding trials of `r ncol(foodweb.matrix)` predator taxa fed `r nrow(foodweb.matrix)` prey taxa between March and April 2011.  We  covered all potential predator-prey pairs present in the experiment
-(described below), and attempted to perform all other trials whenever possible. However, due to the rarity of some taxa many predator-prey pairs were not possible; we tested `r sum(foodweb_len_mat>0)` pairwise combinations.  Most trials were replicated at least 5 times, but the number of replicates for various combinations ranged from `r min(foodweb_len_mat[foodweb_len_mat>0])` to `r max(foodweb_len_mat[foodweb_len_mat>0])`. We placed
+We conducted `r ntrials` feeding trials of `r npred` predator taxa fed `r nprey` prey taxa between March and April 2011.  We  covered all potential predator-prey pairs present in the experiment
+(described below), and attempted to perform all other trials whenever possible. However, due to the rarity of some taxa many predator-prey pairs were not possible; we tested `r ncombos` pairwise combinations.  Most trials were replicated at least 5 times, but the number of replicates for various combinations ranged from `r rep_range[[1]]` to `r rep_range[[2]]`. We placed
 predators together with prey in a 50ml vial, with a leaf or stick for
 substrate. The only exception was the tabanid larvae, which we
 placed between two vertical surfaces to imitate the narrow space found in
@@ -256,7 +261,6 @@ phylogenetic_distance  <- predtree_timetree_ages %.%
 
 ```
 
-
 ```{r CALC_metabolic_distance}
 metabolic_distance <- metabolic %.%
   data.frame(row.names="Taxa") %.%
@@ -354,7 +358,6 @@ incommon <- feeding_trials %.%
 #   summarize(nt=n())
 ```
 
-
 ```{r DATA_merge}
 ## we need to merge together several matrices:
 ## metabolic occurance + predator phylogenetic distance
@@ -369,7 +372,6 @@ diet_similarity_phylo <- left_join(diet_distance,phylogenetic_distance)
 summarize_randoms_phylo <- left_join(summarize_random_test,phylogenetic_distance)
 
 ```
-
 
 ```{r TEST_metabolic~phylo,results='asis'}
 meta_phylo_lm <- with(metabolic_occur_phylo,lm(metadistance~phylodistance))
