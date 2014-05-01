@@ -328,20 +328,6 @@ summarize_randoms <- rand.means %.%
 
 left_join(diet_distance,phylogenetic_distance,)
 
-feeding_trials %.%
-  mutate(species_pair=paste0())
-# ntrials <- trials_count %.%
-#   melt() %.%
-#   rename(c("Var1"="ntrialpred1",
-#            "Var2"="ntrialpred2",
-#            "value"="ntrial")) %.%
-#   filter(ntrial>0) %.%
-#   mutate(species_pair=paste0(ntrialpred1,"_",ntrialpred2)) 
-# 
-# nrow(ntrials)
-# foo <- left_join(ntrials,diet_distance)
-# 
-
 columns_in_common <- function(mat){
   t(mat>0)%*%(mat>0)
 }
@@ -351,11 +337,19 @@ incommon <- feeding_trials %.%
   data.frame(row.names="Prey.species") %.%
   as.matrix() %.%
   columns_in_common() %.%
+  # note that if you run diag() here, you just get the number of prey spp
+  # tested with each predator
   dist_to_df() %.%
   rename(c("Var1"="commonpred1",
          "Var2"="commonpred2",
          "value"="Ncommon")) %.%
   mutate(sp.pair=paste0(commonpred1,"_",commonpred2))
+
+## how many species were tested with each predator?
+# ungroup(feeding_trials) %.%
+#   group_by(predator.names) %.%
+#   summarize(nt=n())
+
 # incommon_df <- melt(incommon)[melt(upper.tri(incommon))$value,]
 # names(incommon_df) <- c("commonpred1", "commonpred2", "Ncommon")
 # incommon_df$sp.pair <- paste(incommon_df$commonpred1,incommon_df$commonpred2,sep="_")
