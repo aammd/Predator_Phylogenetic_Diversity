@@ -23,4 +23,11 @@ MS/*.synctex.gz
 MS/*-concordance.tex
 MS/predatordiversity_figs.html
 
-figures/*
+/figures/*
+/MS/figure/
+
+/MS/dianeinput/*
+
+/MS/*#
+
+*.Rproj
