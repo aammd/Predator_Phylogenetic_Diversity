@@ -517,25 +517,6 @@ ggplot(data=diet_similarity_phylo,aes(y=dietdistance,x=phylodistance,size=Ncommo
 ```
 
 
-```{r FIG_experiment_responses,fig.cap="Figure 3: Treatment responses for the manipulative experiment.  Points are means, and horizontal lines represent minimum and maximum values for each response.  n=5 for all means.",dev='svg'}
-# pd_long <- pd %.%
-#   select(treatment,total.surv,fine,decomp,growth,N) %.%
-#   melt(id.vars="treatment")
-# 
-# plotmaker <- function(resp,kill_trtnames=TRUE,label){
-# ggplot(pd_long,aes(y=value,x=treatment))+stat_summary(fun.y = mean, fun.ymin = min, fun.ymax = max,geom="pointrange",subset=.(variable==resp))+geom_hline(x=0,colour="grey")+geom_hline(x=mean(subset(pd_long$value,pd_long$treatment=="control"&pd_long$variable==resp),na.rm=TRUE))+ylab(label)+coord_flip()+if(kill_trtnames) theme(axis.text.y = element_blank(), axis.title.y=element_blank())
-# }
-# 
-# surv <- plotmaker(resp="total.surv",kill_trtnames=FALSE,label="prey survival")
-# N <- plotmaker("N",label="Nitrogen")
-# growth <- plotmaker("growth",label="growth (mm)")
-# decomp <- plotmaker("decomp",label="decomposition \n (g)")
-# fine <- plotmaker("fine",label="production of \n FPOM (g)")
-# grid.arrange(surv,N,growth,decomp,fine,ncol=5,widths=unit(c(2,rep(1, 4)), "null"))
-# 
-# ##  ADD COLOUR FOR THE TYPE: CONTROL (LARGER, BLACK), SINGLE AND POLY.  NO LEGEND. 
-```
-
 
 ```{r FIG_PD_experiment_nonadditive,fig.cap="Figure 4: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore 0 indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation",dev='svg'}
 ggplot(subset(summarize_randoms_phylo,summarize_randoms_phylo$variable=="survival"),
