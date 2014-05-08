@@ -1,0 +1,316 @@
+% Predator phylogenetic diversity decreases predation rate via antagonistic interactions
+% A. Andrew M. MacDonald; Diane S. Srivastava; Gustavo Q. Romero
+%
+
+
+
+
+
+
+
+## Introduction
+
+
+Predator assemblages can have strong top-down effects, both on community structure and ecosystem processes (CITE estes interalia).  Detailed studies manipulating predators have identified a great diversity of direct and indirect mechanisms for these effects, related to interspecific variation in habitat selection and interactions with both prey and other predators.  Within a community predators will have widely different preferences for different microhabiats, or behavioural responses to fine-scale environmental variation.  When predators do co-occur, they may feed on different prey species as a result of variation in foraging traits. This means more likely coexistence between predators, but also a more compartmentalized food web with additive predator effects. Predator-predator interactions will further modify the effect of a diverse consumer assemblage, as predators may feed directly on each other (Intra-guild predation) or may modify the behaviour of predators or prey via non-consumptive (ie trait-mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001].  While there are many mechanisms, we lack a means of estimating the importance of each in a community.  Srivastava et al () hypothesized that the phylogenetic diversity of a community or assemblage may correlate with increased ecosystem function, via increases in trait diversity; however this has yet to be tested. Here we quantify phylogenetic diversity (PD) of a diverse invertebrate predator assemblage and ask if PD is associated with variation in habitat preferences, diet composition and intraguild interactions.
+
+how does TMII effect the fflow of nutirents a la McCann?
+
+
+modified by additive or non-additive interactions ; however, few studies have addressed the entire diversity of predators in a community. The community-level effects of the consumer assemblage will be determined by their distribution, individual feeding preference, overall effect on the community, and any non-additive effects between predator species.  By correlating with these properties, measures of phylogenetic diversity may allow us to predict the effect of a predator assemblage on ecosystem functioning. Here we use phylogenetic diversity as a means for comparing predator species in a diverse community of aquatic invertebrates.  
+
+Phylogenetic diversity measures have provided useful insights into diverse plant communities [@Cadotte2009;@Cadotte2008], and yet have rarely been applied to a trophic group of animals [@Bersier2008;Naisbit]. 
+
+The phylogenetic diversity (here PD) of a predator assemblage may relate to their distribution, diet breadth and species interactions, all of which combine to produce the total top-down effect on the ecosystem. Phylogeny may constrain species distributions when distant relatives have distinct fundamental niches, while close relatives are too similar to co-occur [@Webb2002;@Emerson2008].  In predators, an important component of the niche is prey capture; recent studies have reported a weak correlation with niche differences in Anoles [@Knouft2006], and with morphological differences in warblers [@Bohning-Gaese2003].  However, phylogenetic distance correlates with stinging pattern in wasps (a vital component of their "trophic apparatus", [@Udriene2005]) and with both morphology and diet in treeboas [@Henderson2013]; studies of predator phylogenetic ecology are usually constrained to a taxon rather than a local assemblage of consumers. In studies of whole food webs, phylogenetic diversity is often related to food web structure [@Cattin2004;@Rezende2009] or function [@Maherali2007]. Complex traits that underlie species interactions (particularly "higher-order" interactions *sensu* Sih *et al.* [-@Sih1998a]) may also correlate with phylogeny, leading to a higher correlation with community processes than richness alone [@Cadotte2009]. Srivastava *et al.* [-@Srivastava2012c] reviewed the ways in which phylogenetic diversity might correlate with ecosystem function: assuming that relevant traits are conserved, the PD of a predator assemblage may determine the magnitude of its top-down effect on communities and ecosystems.
+
+While the local community may include many predator species any local patch will not contain all, but rather a subset of these; this heterogeneity is the result of variation in habitat requirements [@Chase2003], species interactions and dispersal. This variation is prominent in metacommunities, such as ponds or bromeliads, where local presence/absence of species (and food chain length) is partly determined by species dispersal into patches [@Leibold2004;@Howeth2010a;@Calcagno2011a]. During dispersal, assembly can be nonrandom if predators use cues of habitat suitability or the presence of prey, competitors, or intra-guild predators when colonizing [@Chase2009;@McCauley2008a;@Srivastava2008]. After colonization, patterns of co-occurance may be futher modified by intraguild predation [@Lounibos2008;@Juliano2009] or competition [@Fincke1997], contingent on similarity in predator diets.
+
+When predators co-occur, their feeding mode and diet breadth will determine the species which they eat and the total potential amount of predation that occurs. Some predators are gape-limited, and can swallow any prey smaller than their mouth; these predators broaden their diet as they grow [@Werner1984].  Such ontogenetic changes in diet breadth can radically influence all of food web structure [@Moya-Larano2011]. Odonates (e.g. _Leptagrion_ sp. in our system) are examples of gape-limited predators, while others (Leeches, or Diptera:Tabanidae) are "piercing-sucking" predators [@Bay1974] may be more general consumers at all life stages.  Such broad diet breadths may in fact lead to competition, unless invertebrates which differ so widely in feeding traits are also distinct in their habitat requirements, activity periods, or behaviour.  In some cases broad diets among predators can lead to direct negative interactions when it extends to intraguild predation, which may also have a phylogenetic signal [@Pfennig2000].
+
+Predator interactions are common in many communities, and can lead to nonlinearities or "higher-order interactions" which prevent the inference of predator effect from the additive combination of individual predators [@Sih1998a]. The top-down effect of the highest tropic level on the whole community is difficult to predict.  For example, decreasing predator richness has been shown to increase herbivory [@Byrnes2006] in a three-level kelp food web. The effect of predators on prey may also be non-additive, the result indirect interactions either with prey species or other predators: prey species may respond to the presence of one predator by a behavioural shift that increases the predation by another predator population [@Carey2010a]. The type and magnitude of interactions among predators are difficult to predict; phylogenetic relatedness has been suggested as a possible means of predicting the combined effect of predators [@Naisbit]
+
+We used a series of observations, lab feeding trials, and manipulative field experiments to measure how the phylogenetic diversity of the predator assemblage predicts community composition and ecosystem function.  We test three related hypotheses concerning co-occurance patterns, diet similarity and top-down ecosystem effects of diverse predators, using a natural mesocosm: the community of invertebrates living within bromeliads. 
+
+1. *species co-occurance*: closely-related predators may occur together more
+frequently than less-related predators, due to their similar habitat
+requirements.  Alternatively, very closely related species may never co-occur because
+they occupy too-similar ecological niches.
+
+2. *diet similarity*: similarity in diet (as measured by feeding trials)
+decreases with phylogenetic distance if diet is phylogentically conserved. Alternatively, diet differentiation allows close relatives to coexist.
+
+3. *ecosystem-level effects*: Our experiments at the level of the whole habitat (bromeliad) allows us to examine direct and indirect effects of predator combinations.
+    * monoculture treatments allow us to assess the effect of each predator on a complete prey community and ecosystem function.  Phylogenetic similarity among predators may positively correlate with similarity in these effects
+    * In our predator combination treatments we force pairs of predators to co-occur.  If phylogenetic distance is negatively correlated with similarity in diet, then increasingly divergent pairs should show increased total predation, as they feed on different parts of the prey community.
+    * predator combination treatments also allow the estimation of non-additive effects, by comparison with monocultures.  The magnitude of these non-additive effects may increase with phylogenetic distance.
+
+## Methods
+
+## Site and Species
+
+We conducted all observations and experiments in Parque Estadual da Ilha do
+Cardoso ($25^{\circ} 03^{\prime}$ S, $47^{\circ}53^{\prime}$ W), a 22.5 ha
+island off the south coast of São Paulo state, Brazil. We worked in a closed
+coastal forest (restinga) the understory of which is mostly covered by
+_Quesnelia arvensis_ Mez. (Bromeliaceae), a large terrestrial bromeliad that
+accumulates up to 2.8 L of rainwater in tanks formed by individual leaves. More
+than 47 species of macroinvertebrates are found in these aquatic communities.
+This diversity encompasses an entire foodweb, from detrital shredders
+(Tipulidae, Trichoptera), detrital scrapers (Scirtidae), collectors
+(Chironomidae, Syrphidae, Psychodidae), and filter feeders (Culicidae) to a
+diverse predator assemblage consisting of at least 3 species of _Leptagrion_
+(Zygoptera:Coenagrionidae), 2 species of predatory fly (Tabanidae), and 2
+species of leech (Hirudinidae).  Many other smaller or occasional predators also
+occur, such as predatory midges (Chironomidae:Tanypodinae) and Dytiscid beetles.
+
+### metabolic capacity and phylogenetic distance
+
+
+
+In 2008, insects were counted and measured in an observational study of 25 bromeliads. Within this observational dataset, we
+identified 14 species as predators.
+These predators vary in taxonomic relatedness: from congeners -- _Bezzia_ sp.
+(Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
+(Odonata:Coenagrionidae) with three --  to confamilials (three species of
+Tabanidae and two of Empididae, all Diptera). Three families of Diptera are
+represented by a single species each: Dolichopodidae, Corethrellidae and
+Chironomidae. The deepest taxonomic divide is between all insects present and a
+species of leech (Annelida:Hirudinidae).
+
+We obtained node age estimates for all 7 internal nodes of the tree, using www.timetree.org, an online database of published  molecular time estimates from the literature [@Hedges2006].  Most dates came from only a single study; where multiple dates were found we used the median estimate: Insecta--Hirudina (543 to 700 Mya, n=5 studies), Odonata--Tabanidae (151 to 543 Mya, n=4 studies) and Tabanidae--Diptera (151 to 543 Mya, n=7 studies).  Node age data was available
+for all but the shallowest nodes of the tree, where either a lack of taxonomic
+information (e.g. Tabanidae) or a lack of phylogenetic study (e.g. _Leptagrion_)
+prevented more information from being included.   These branches were left as
+polytomies, and were all assigned identical, arbitrary and short branch lengths
+(15 Mya).
+
+###  Observations of predator co-occurance 
+
+We used an observational dataset collected in 2008 to examine patterns of co-
+occurance among predator taxa.  This dataset was collected by completely
+dissecting bromeliads and washing all leaves to remove invertebrates.  The
+resulting water was filtered through two sieves (250 and 850 µm), which removed
+particulate organic matter without losing any invertebrates.  All invertebrates
+were counted and identified to the lowest taxonomic level possible. The body
+length of all individuals was measured, when possible.
+
+Because predators in this system vary widely in size, we used "metabolic
+capacity", which correlates with predator feeding rate [@Brown2004; @Wilby2005].
+We calculated body mass using allometric equations which related dry biomass to
+body length.   Metabolic capacity is calculated as the sum of individual body
+mass raised to the power of 0.69; this reflects the nonlinearity of feeding rate
+on body size across many invertebrate taxa.  We calculated total metabolic
+capacity of each predator species in each bromeliad by summing estimates for all
+individuals of the same species within a plant. We quantified "coexistence" as a
+distance measure: the euclidian distance among the total metabolic capacity
+among occupied bromeliads.
+
+### Diet similarity
+
+
+
+We conducted 232 feeding trials of 7 predator taxa fed 14 prey taxa between March and April 2011.  We  covered all potential predator-prey pairs present in the experiment
+(described below), and attempted to perform all other trials whenever possible. However, due to the rarity of some taxa many predator-prey pairs were not possible; we tested 41 pairwise combinations.  Most trials were replicated at least 5 times, but the number of replicates for various combinations ranged from 1 to 11. We placed
+predators together with prey in a 50ml vial, with a leaf or stick for
+substrate. The only exception was the tabanid larvae, which we
+placed between two vertical surfaces to imitate the narrow space found in
+bromeliad leaf axils, their preferred microhabitat.  Generally our trials contained a single predator and a
+single prey individual, except in the case of very small prey (_Elpidium_ sp.)
+or predators (_Monopelopia_ sp.) in which case we increased the density.  We
+replicated each combination up to 5 times where possible, and allowed 1 day for
+predation to occur.
+
+### Community effect experiment
+
+<!-- Abundance-based phylogenetic diversity measure : convert to metabolic capacity based?? 
+  [@Cadotte2010] -->
+
+Our experiment was created with two goals in mind: first, to measure the major
+effects of these predators on their prey and second, to estimate the non-
+additive effects of pairwise predator combinations.  The strength of these non
+additive effects can then be related back to the phylogenetic distance between
+each member of a pair of predators.
+
+We selected the most common predators in this system, which also created a range
+of relatedness: two congeneric damselflies (*Leptagrion andromache* and
+*Leptagrion elongatum*), two insects (*L. elongatum* and a Tabanid predatory
+fly), and two invertebrates (*L. elongatum* and leeches).  We used each of the
+pairs of predators just described, as well as each species in monoculture, and a
+predator-free control (8 treatments, n=5).  Combinations were substitutive,
+maintaining the same amount of total predator metabolic capacity to isolate the effects of predator behaviour and traits.  Response
+variables included the rate of decomposition of leaves, bromeliad growth and
+insect emergence.  This experiment allows the estimation of the effect of each
+predator species (monoculture treatments), as well as the detection of non-
+additive effects in predator combinations.
+
+In Feburary 2011, bromeliads between 90 and 200ml were collected, thoroughly
+washed and soaked for 12 hours in a tub of water.  They were then hung for 48
+hours to dry.  One bromeliad dissected after this procedure contained no
+insects.
+
+Each bromeliad was supplied with dried leaves, simulating natural detritus
+inputs from the canopy.  We enriched these leaves with N-15 by fertilizing five
+(Jabuticaba, *Plinia cauliflora*) plants with 40ml pot^-1^ day^-1^ of 5g/L ammonium
+sulphate containing 10% atom excess of N15. *duration*. started on
+27 January 2011 Whole leaves were then picked from plants and air-dried until constant
+weight, and then soaked for three days and the water discarded. About 1.5 g of
+leaves were placed in each bromeliad (1.5006g ± 0.0248).
+
+Each bromeliad was stocked with a representative insect community. The densities
+of each prey taxon were calculated from the 2008 observational dataset, using
+data from bromeliads of similar size to those in our experiment.  All densities
+used were within the range of these calculated abundances, and all experimental
+bromeliads received the same insect community.  Halfway through the experiment,
+insects were added to bromeliads a second time to simulate the continuous
+oviposition that characterizes the system.  After addition of the prey community, all bromeliads were enclosed
+with a mesh cage topped with a malaise trap and checked daily for emergence of
+adults.
+
+In this experiment we measured five response variables: production of fine
+particulate organic matter (FPOM), decomposition of coarse detritus, bromeliad
+growth, cycling of nitrogen into plant tissue, and survival of prey (emerged adults +
+surviving larvae). We analyzed each of these responses with ANOVA.  We
+calculated the non-additive response as follows: the difference between the
+polyculture mean (n=5) and the mean of both monoculture means for each predator
+(n=5 for each monoculture).  We generated bootstrap confidence intervals for
+these nonadditive effects; confidence intervals which do not overlap zero
+indicate a significant nonadditive effect of a predator combination.
+
+
+
+## Results
+
+### patterns of occurance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Across all bromeliads, predator species differed widely in metabolic capacity, from 4.5 &times; 10<sup>-4</sup> for a species of _Monopelopia_ to 0.15 for large predatory flies in the family Tabanidae.  Predators often co-occured in bromeliads (4.4 ± 2.9 species per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~1,89~=1.5558, p=0.22).
+
+### diet similarity
+
+
+
+
+
+
+
+Among the most common predator taxa (i.e. those used in our experiment, described below) the damselflies (_Leptagrion andromache_ and _Leptagrion elongatum_) showed the higest rates of prey consumption (prey consumed in 94.3% and 67.2% of trials, respectively). All predators showed a very generalist diet breadth, consuming nearly all species offered to them.  However, more phylogenetically distant predators preferred slightly different diets, as measured by euclidian distance between feeding trial outcomes (F~1,
+19~=6.01, p=0.024, regression weighted by the number of trials conducted.)
+
+### Ecosystem-level effects and phylogenetic distance
+
+
+
+
+In our manipulative experiment, we placed a standardized prey community into bromeliads and measured five response variables. Predators had a large effect on prey survivorship: on average all predator treatments showed 51% lower prey emerging or surviving as larvae relative to the predator-free control.  Nitrogen transport to bromeliad leaves was slightly decreased relative to controls (-11%), and was only higher than the control in treatments including Tabanid predators.  We found a similar pattern for plant growth: on average, predators had a -18% effect on growth of bromeliad leaves (mm), though Tabanids seemed to create a slight increase. The decomposition of coarse detritus and production of fine organic matter showed no obvious pattern related to the mere presence of predators.
+
+
+<!--
+Add stats to above paragraph: the two "orthogonal" questions of how predators affect communities independently and how they affect them non-additively (in combination)  
+-->
+
+
+
+
+
+<!--
+stats in following paragraph!  
+-->
+
+Predator combinations tended to have a non-additive effect on our response variables, even though we held total metabolic capacity constant amongst all treatments.  Approximately 14% more prey survived in polyculture, on average,  compared to all monocultures.  Nitrogen uptake increased by (8%) and bromeliad growth by (11%). Production of fine particulate organic matter increased by 29% more when predators were present in combination.
+
+Our experimental design allows us to estimate the non-additive effect of predator species pairs on whole communities of prey, and the functioning of the bromeliad ecosystem.  We used randomization tests to test the hypothesis that increased phylogenetic distance between members of a predator pair results in a greater magnitude of nonadditive effect.  We contrasted the differences of the mean individual predator treatments from the control with the mean difference of their pairwise combination from the control.  
+<!-- previous sentence rather complex-sounding. how about an equation? -->
+<!-- need stats for these response variables, too -->
+
+We found the greatest effect for prey survival: while effects of _L. andromache_ and _L. elongatum_ in combination were quite similar to the effect of either alone, when _L. elongatum_ was placed in the same plant as either a Tabanid larva or leeches, on average 5 more prey (18% of total prey community) survived till the end of the experiment (Fig 3).  This effect was smaller among the other variables, most of which showed confidence intervals from the randomization test which overlap 0.
+
+
+### Figures
+
+![Figure 1: Phylogenetic distance and predator co-occurance.  Each point represents a pair of predator species.  We caluclated total metabolic capacity for each predator species in each bromeliad, and then calculated co-occurance between two predators as the euclidian distance between total metabolic capacity of two species.](figure/FIG_metabolic_occurance_as_phylo.png) 
+
+
+
+![Figure 2: Phylogenetic distance and diet similarity.  We performed 237 feeding trials with the 8 major predator taxa found in this system.  We found that more distantly-related predators consume more dissimiliar prey.  We measured diet similarity as euclidian distance among feeding trial outcomes; this measure includes information about the number of predation events in each predator-prey pairing.  Regression was weighted by the sample size of the predator-prey pair.](figure/FIG_feeding_trial_as_phylo.svg) 
+
+
+
+
+
+
+
+![Figure 4: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore 0 indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation](figure/FIG_PD_experiment_nonadditive.svg) 
+
+
+![FALSE](figure/TABLE_communityexperiment.svg) 
+
+
+## Discussion
+
+### co-occurrence
+* Predators appear to be generalist with regard to their habitat preference; indicating that prey face a heterogeneous landscape of predator risks, and demonstrating that our experimental design captures natural variation in predator composition
+    * Predators occurring together at smaller spatial scales (i.e. within the same plant) may have limited direct interactions due to habitat structure, for example via the physical obstructions caused by detritus ()
+
+### diet similarity
+* We demonstrate a slight but important decrease in feeding preferences with phylogenetic distance, indicating that food web structure itself might vary with phylogenetic diversity, becoming more compartmentalized when predators are more dissimilar.
+
+* The differences in predation rates and diet breadth among our predators represents important trait differences between the groups involved, including differences in metabolic rate (physiological literature) and feeding mode. (for example, Tabanids and leeches are peircing predators, while Leptagrion is gape-limited.)
+
+### community experiment
+
+* Phylogenetically diverse predator assemblages showed more prey survivorship (i.e. less predation) than expected; this may be to strong trait-mediated indirect effects on the feeding rate of _Leptagrion elongatum_ when in the presence of other non-damselfly predators.
+
+Trait-mediated indirect effects may be common in nature [@Werner2003]. In our system we observed less predation in predator combinations, perhaps because the damselflies lowered their predation rates when they were exposed to other predators. Trait mediated interactions might be frequent in this system: for example, in close quarters of bromeliads it may be more likely that predators are aware of each other's densities. Physical touch and chemical cues can both be frequent cues for the presence of predators, and can trigger trait-mediated-effects. In bromeliads, a diverse community occurs at a very small spatial scale and diverse predators are quite likely to overlap.  Such predator-induced decreases in feeding might actually be common, although we would not estimate them directly by densities of predators [@Werner2003].
+
+* Feeding differences between predators, combined with their patchy but unpredictable distribution among bromeliads, creates a large variation in food web structure and total amount of predation per patch within this bromeliad metacommunity 
+
+Predators have different feeding rates, feed in different parts of the bromeliad, and have different effects on each other.  The presence of a predator with a low feeding rate may have a strong positive effect on prey survival, if it decreases the predation rate of _Leptagrion_ sp..  This uncouples predation rate and predator biomass, and creates a constantly changing amount of top-down regulation in this system.  These predators might also differ in dispersal rates, and in vulnerability to other predators.  for example, Leptagrion spp are frequent prey for semi-aquatic spiders, but tabanids are likely safe from most large predators because of their position deep in leaf axils.
+
+
+* In response to predator manipulations we observed less transfer of Nitrogen into bromeliad tissue than did Ngai and Srivastava (2006); this may be due to a greater role for bacterial decomposition in this system (cite?).
+
+Insects sometimes can be the major group which determines the speed of decomposition.  However, when substrate is very recalcitrant the insects are only able to break down small amounts of detritus.  In restingas, the leaves are very thick and waxy, a possible adaptation to the poor growing conditions.  As a result, invertebrates in this system do not eat the leaves directly; rather microinverterbrates (zooplankton) and bacteria do most of the decomposition.  This hypothesis could be tested, for example, by performing bacterial community "transplants" from a host bromelid to a sterile bromeliad, which could then be monitored for a decomposition rate similar to the original bromeliad.  Ngai et al hypothesized that their increase in nutrient cycling that they observed was due to increased mortality of insects, and that bromeliads were absorbing N from odonate predator waste.  In our system, a more diverse predator community leaves different kinds of dead prey, and also different dead insects.  Tabanids are primarily sucking predators, which leave the integument of their prey behind.  The waste products of these different predators might also be very different, depending on the physiology and nutrient requirements and efficienty of each predator.  
+
+Leaf decomposition does not show a strong relationship with bromeliad size in Cardoso, even though there is a strong relationship in Costa Rica (Robin)
+
+It may be that different predators influence the composition of the detritus (animal, fecal and leaf), and that this bottom-up effect determines the success of different taxa, as well as rates of nutrient cycling.
+
+## Supplementary
+
+|  Species                 | density |
+|:------------------------:|:-------:|
+| *Chironomus detriticula* |  10     |
+| *Polypedium sp. 1*       |  4      |
+| *Polypedium sp. 2*       |  2      |
+| *Psychodid sp. 1*        |  1      |
+| *Scyrtes sp. A*          |  5      |
+| *Culex spp.*             |  4      |
+| *Trentepholia sp.*       |  1      |
+
+  : Densities of insects used in the experiment.
+
+-->
+
+## References

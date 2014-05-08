@@ -2,6 +2,8 @@
 ## June 2011, Andrew MacDonald
 
 
+
+
 diffs <- function(vec,resp)
 {
   ##calculates mean of two values and subtracts a third
