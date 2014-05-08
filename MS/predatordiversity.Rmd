@@ -611,13 +611,31 @@ grid.table(test,cols=coltext,gpar.colfill=gpar(fill="white",col="white"),
 ## Discussion
 
 ### co-occurrence
-* Predators appear to be generalist with regard to their habitat preference; indicating that prey face a heterogeneous landscape of predator risks, and demonstrating that our experimental design captures natural variation in predator composition
-    * Predators occurring together at smaller spatial scales (i.e. within the same plant) may have limited direct interactions due to habitat structure, for example via the physical obstructions caused by detritus ()
+Predators appear to be generalist with regard to their habitat preference; indicating that prey face a heterogeneous landscape of predator risks, and demonstrating that our experimental design captures natural variation in predator composition
+
+Predators occurring together at smaller spatial scales (i.e. within the same plant) may have limited direct interactions due to habitat structure, for example via the physical obstructions caused by detritus ().  Srivastava found that such habitat complexity within a bromeliad -- specifically the presence of coarse detritus -- reduces the amount of predation by damselflies.  It is not clear how these factors might influence the other predators in this system.  Effects might be similar for leeches, which are also active predators.  Tabanids are sit-and-wait predators, living deep in leaf axils, so it is likely that they are less affected by local patch structural conditions than other predators.  
+
+two important steps -- oviposition decisions and survival -- determine organism coexistence in bromeliad patches.
+
+Predator lifecycles can be quite long in this system, much longer than the lives of invertebrate prey (Robin).  As a result, actively dispersing inverts are probably faced with choices among various predation-risks in patches.  While this is beyond the sope of our work, we report evidence for both strong IGp nonliearities in predation amount, and a broad overlap in predator co-occurance. This indicates that, at the level of the metacommunity, discrete patches have varying amounts of predator biomass, which may not necessarily correlate with the amount of predation pressure they may face.
+
+Habitat selection is difficult to ascertain from observational data.  Especially given that animals in this system have difference lifecycles.  The insects are rapidly changing (smaller insects) while large predators may say or a while,and physical detritus longer still. 
+
+hm.  there's an idea: if there is IGP or TMII among predators, that means composition or biomass of predators can be decoupled from predation rate.  That could lead to strange decisions by insects, with nonintuitive results.
 
 ### diet similarity
 * We demonstrate a slight but important decrease in feeding preferences with phylogenetic distance, indicating that food web structure itself might vary with phylogenetic diversity, becoming more compartmentalized when predators are more dissimilar.
+ 
+calulate predatr's feeding rate nd diet breath simultaneously, and relate this to their phylogenetic distance from each other.
+could be that there is a phylgenetic signal in the prey eaten?  not really our focus here.  in fact we are more interested in whether similar predators have similar effects on communities.  
+
+let Nathan's paper inspire me.  Are there some relevant equations out there?  model the probability of eating a prey species as feeding rate * preference for that species.
+
+
 
 * The differences in predation rates and diet breadth among our predators represents important trait differences between the groups involved, including differences in metabolic rate (physiological literature) and feeding mode. (for example, Tabanids and leeches are peircing predators, while Leptagrion is gape-limited.)
+
+Diet similarity, like occurance, also has two components: predator 
 
 ### community experiment
 
