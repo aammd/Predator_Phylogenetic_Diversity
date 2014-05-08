@@ -539,26 +539,7 @@ exp_summary <- pd %.%
          SE_sig=signif(SE,2),
          meanSE=paste(meanval_sig,"±",SE_sig)) %.%
   dcast(treatment~variable,value.var="meanSE")
-#   transform(treatment=factor(treatment,levels=c("control","andro","elong","leech","tabanid","elong + andro","elong + leech","elong + tab"))) %.%
-#   arrange(treatment) %.%
-#   mutate(treatment=ifelse(treatment=="elong","_L. elongatum_",treatment),
-#          treatment=ifelse(treatment=="andro","_L. andromache_",treatment),
-#          treatment=ifelse(treatment=="elong + andro","_L. elongatum_ + _L. andromache_",treatment),
-#          treatment=ifelse(treatment=="elong + leech","_L. elongatum_ + leech",treatment),
-#          treatment=ifelse(treatment=="elong + tab","_L. elongatum_ + tabanid",treatment)     
-#          )
 
-  
-#   rename(c("total.surv"="surviving insects",
-#            "fine"="production of fine detritus",
-#            "decomp"="decomposition of coarse detritus (g)",
-#            "growth"="bromeliad growth (cm)"))
-
-# kable(exp_summary[c(2,1,3,7,8,4,5,6),],row.names=FALSE,format="pandoc")
-# 
-# xtable(exp_summary[c(2,1,3,7,8,4,5,6),],) %.%
-#   print(type="html")
-  
 test <- exp_summary[c(2,1,3,7,8,4,5,6),] %.%
   data.frame(row.names="treatment") %.%
   rename(c("total.surv"="surviving",
@@ -566,13 +547,7 @@ test <- exp_summary[c(2,1,3,7,8,4,5,6),] %.%
            "decomp"="decomposition",
            "growth"="bromeliad growth"))
 
-#print(xtable(test),type="html")
 
-#kable(test)
-
-#%.%
-#pander(test,style="grid",split.tables="Inf",justify=c("left",rep("centre",5)))
-#grid.newpage(recording=)
 coltext <- expression("surviving insects","fine detritus (g)","leaf decomposition (g)",
                       "bromeliad growth (g)","Nitrogen cycling")
 
@@ -580,13 +555,6 @@ coltext <- expression("surviving insects","fine detritus (g)","leaf decompositio
 grid.table(test,cols=coltext,gpar.colfill=gpar(fill="white",col="white"),
            row.just="left",gp=gpar(cex=0.6),gpar.rowtext=gpar(),show.vlines=TRUE
            )
-# grid.arrange(foo,heights=17)
-# 
-# surv <- glm(data=pd,total.surv~leech+andro+tab+elong,family="poisson")
-# fine <- lm(data=pd,fine~leech+andro+tab+elong)
-# 
-# stargazer(surv,fine, title="Regression Results",
-# dep.var.labels=c("survival","fine"),covariate.labels=,single.row=TRUE,type="text")
 ```
 
 ## Discussion
