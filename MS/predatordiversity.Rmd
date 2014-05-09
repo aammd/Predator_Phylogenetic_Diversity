@@ -22,21 +22,28 @@ library(xtable)
 library(stargazer)
 
 # occurrance data -- abundance
-occur <- read.csv("../data/reorganized_data/predator.cooccur.txt",stringsAsFactor=FALSE)
+occur <- read.csv("../data/reorganized_data/predator.cooccur.txt",stringsAsFactor=FALSE) %.%
+  tbl_df()
 # occurrance data -- metabolic capacity
 metabolic  <- read.csv("../data/reorganized_data/predator.cooccur.metabolic.txt",
-                       stringsAsFactor=FALSE)
+                       stringsAsFactor=FALSE) %.%
+  tbl_df()
 # feeding trial data
 foodweb <- read.csv("../data/reorganized_data/reorganized.feeding.trial.data.csv",
-                    stringsAsFactors=FALSE)
+                    stringsAsFactors=FALSE) %.%
+  tbl_df()
 # experimental data
-pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",stringsAsFactors=FALSE)
+pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",stringsAsFactors=FALSE) %.%
+  tbl_df()
 # enriched leaves -- ie just the N data for the detritus we put in.
-enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",stringsAsFactors=FALSE)
+enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",stringsAsFactors=FALSE) %.%
+  tbl_df()
 # phylogeny data
-predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
+predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick") %.%
+  tbl_df()
 # randomization tests
-rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.means.csv")
+rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.means.csv") %.%
+  tbl_df()
 
 ## load in functions
 source("../R.scripts/FUNCTIONS_predator_diversity.R")
@@ -161,7 +168,8 @@ feeding_trials <- foodweb %.%
             eaten=sum(eaten.numeric)
             ) %.%
   filter(!is.na(predator.names)) %.%
-  filter(predator.names!="Leptagrion.small")
+  filter(predator.names!="Leptagrion.small") %.%
+  ungroup()
 
 ## numbers for text
 ntrials <- sum(feeding_trials$number.trials)
@@ -309,6 +317,40 @@ diet_distance <- feeding_trials %.%
            "value"="dietdistance")) %.%
   mutate(species_pair=paste0(dietpred1,"_",dietpred2)) 
 
+
+
+prop.eaten <- feeding_trials %.%
+  mutate(prop.eaten=eaten/number.trials) %.%
+  dcast(predator.names~Prey.species,value.var="prop.eaten")
+
+
+
+predators <- expand.grid(pred1=unique(feeding_trials$predator.names),
+                         pred2=unique(feeding_trials$predator.names)) %.%
+  filter(pred1!=pred2) %.%
+  transform(pred_pair=paste0(pred1,"_",pred2)) %.%
+  melt(id.vars="pred_pair",value.name="predator.names",variable.name="p") %.%
+  left_join(prop.eaten) %.%
+  select(-p,-predator.names)
+
+pianka <- function(df){
+  mat <- as.matrix(df[,-1])
+  squares <- mat^2
+  prod_sq <- apply(squares,2,prod)
+  sum_prod_sq <- sum(prod_sq)
+  prod <- apply(mat,2,prod)
+  sum_prod <- sum(prod)
+  overlap <- sum_prod/sqrt(sum_prod_sq)
+  nspp <- ncol(mat)
+  data.frame(overlap,nspp)
+}
+
+diet_overlap <- split(predators,predators$pred_pair) %.%
+  lapply(function(x) x[colSums(!is.na(x))>1]) %.%
+  lapply(pianka) %.%
+  ldply() %.%
+  rename(c(".id"="species_pair"))
+
 ```
 
 ```{r CALC_summarize_random_test}
@@ -383,6 +425,8 @@ diet_similarity_phylo <- left_join(diet_distance,phylogenetic_distance) %.%
   left_join(incommon) %.%
   select(-dietpred1,-dietpred2,-commonpred2,-commonpred1,-phylopred1,-phylopred2)
 
+diet_overlap_phylo <- left_join(diet_overlap,phylogenetic_distance)
+
 summarize_randoms_phylo <- left_join(summarize_random_test,phylogenetic_distance)
 
 ```
@@ -453,6 +497,12 @@ elong <- percentpredation %.%
 diet_phylo_lm <- with(diet_similarity_phylo,lm(dietdistance~phylodistance,weights=Ncommon))
 diet_phylo_lm_summary <- summary(diet_phylo_lm)
 ## test a squared term with 
+
+dietoverlap_lm <- with(diet_overlap_phylo,lm(overlap~phylodistance,weights=nspp))
+#summary(dietoverlap_lm)
+
+#ggplot(diet_overlap_phylo,aes(x=phylodistance,y=overlap,size=nspp))+geom_point()
+
 ```
 
 Among the most common predator taxa (i.e. those used in our experiment, described below) the damselflies (_Leptagrion andromache_ and _Leptagrion elongatum_) showed the higest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). All predators showed a very generalist diet breadth, consuming nearly all species offered to them.  However, more phylogenetically distant predators preferred slightly different diets, as measured by euclidian distance between feeding trial outcomes (F~`r diet_phylo_lm_summary $fstatistic[["numdf"]]`,
