@@ -39,8 +39,7 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",stringsAsFacto
 enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",stringsAsFactors=FALSE) %.%
   tbl_df()
 # phylogeny data
-predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick") %.%
-  tbl_df()
+predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
 # randomization tests
 rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.means.csv") %.%
   tbl_df()
@@ -335,12 +334,16 @@ predators <- expand.grid(pred1=unique(feeding_trials$predator.names),
 
 pianka <- function(df){
   mat <- as.matrix(df[,-1])
+  rowtotal <- rowSums(mat)
+  mat <- apply(mat,2,function(x) x/rowtotal)
+
   squares <- mat^2
-  prod_sq <- apply(squares,2,prod)
-  sum_prod_sq <- sum(prod_sq)
+  sum_sq_prod <- prod(rowSums(squares))
+  
   prod <- apply(mat,2,prod)
   sum_prod <- sum(prod)
-  overlap <- sum_prod/sqrt(sum_prod_sq)
+  
+  overlap <- sum_prod/sqrt(sum_sq_prod)
   nspp <- ncol(mat)
   data.frame(overlap,nspp)
 }
@@ -498,10 +501,16 @@ diet_phylo_lm <- with(diet_similarity_phylo,lm(dietdistance~phylodistance,weight
 diet_phylo_lm_summary <- summary(diet_phylo_lm)
 ## test a squared term with 
 
-dietoverlap_lm <- with(diet_overlap_phylo,lm(overlap~phylodistance,weights=nspp))
+diet_overlap_phylo %.%
+  filter(nspp>1) %.%
+  with(lm(overlap~phylodistance,weights=nspp)) %.%
+  summary()
+
 #summary(dietoverlap_lm)
 
-#ggplot(diet_overlap_phylo,aes(x=phylodistance,y=overlap,size=nspp))+geom_point()
+diet_overlap_phylo %.%
+  filter(nspp>1) %.%
+  ggplot(aes(x=phylodistance,y=overlap,size=nspp))+geom_point()+stat_smooth(method="lm")
 
 ```
 
