@@ -332,6 +332,8 @@ predators <- expand.grid(pred1=unique(feeding_trials$predator.names),
   left_join(prop.eaten) %.%
   select(-p,-predator.names)
 
+## both ecopath and ecosim documentation (and those sources derived from them)
+## imply a different formula for Pianka's index.
 pianka <- function(df){
   mat <- as.matrix(df[,-1])
   rowtotal <- rowSums(mat)
