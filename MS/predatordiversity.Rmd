@@ -323,32 +323,30 @@ diet_distance <- feeding_trials %.%
            "value"="dietdistance")) %.%
   mutate(species_pair=paste0(dietpred1,"_",dietpred2)) 
 
-
-
 prop.eaten <- feeding_trials %.%
   mutate(prop.eaten=eaten/number.trials) %.%
   dcast(predator.names~Prey.species,value.var="prop.eaten")
 
-pn <- unique(feeding_trials$predator.names) 
-#names(pn) <- unique(feeding_trials$predator.names)
-prednames <- outer(pn,pn,FUN=paste,sep="_") 
-
-predpairs <- prednames %.%
-  melt(value.name="species_pair") %.%
-  transform(species_pair=as.character(species_pair)) %.%
-  semi_join(
-    {
-      prednames %.%
-        upper.tri() %.%
-        melt(value.name="corner") %.%
-        filter(corner)
-      },
-    by=c("Var1","Var2")
-    ) %.%
-  transform(pred1=unique(feeding_trials$predator.names)[Var1],
-            pred2=unique(feeding_trials$predator.names)[Var2]) %.%
-  select(pred1,pred2,species_pair) %.%
-  arrange(pred1,pred2)
+# pn <- unique(feeding_trials$predator.names) 
+# #names(pn) <- unique(feeding_trials$predator.names)
+# prednames <- outer(pn,pn,FUN=paste,sep="_") 
+# 
+# predpairs <- prednames %.%
+#   melt(value.name="species_pair") %.%
+#   transform(species_pair=as.character(species_pair)) %.%
+#   semi_join(
+#     {
+#       prednames %.%
+#         upper.tri() %.%
+#         melt(value.name="corner") %.%
+#         filter(corner)
+#       },
+#     by=c("Var1","Var2")
+#     ) %.%
+#   transform(pred1=unique(feeding_trials$predator.names)[Var1],
+#             pred2=unique(feeding_trials$predator.names)[Var2]) %.%
+#   select(pred1,pred2,species_pair) %.%
+#   arrange(pred1,pred2)
 
 predators <- expand.grid(pred1=unique(feeding_trials$predator.names),
                          pred2=unique(feeding_trials$predator.names)) %.%
@@ -542,12 +540,12 @@ diet_overlap_phylo %.%
   ggplot(aes(x=phylodistance,y=overlap,size=nspp))+geom_point()+stat_smooth(method="lm")
 
 
-# dietmat <- diet_overlap_phylo %.%
-#   select(-species_pair) %.%
-#   unique() %.%
-#   dcast(phylopred1~phylopred2,value.var="overlap") %.%
-#   data.frame(row.names="phylopred1") %.%
-#   as.matrix()
+dietmat <- diet_overlap_phylo %.%
+  select(-species_pair) %.%
+  unique() %.%
+  dcast(phylopred1~phylopred2,value.var="overlap") %.%
+  data.frame(row.names="phylopred1") %.%
+  as.matrix()
 
 ```
 
