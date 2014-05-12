@@ -639,10 +639,6 @@ hm.  there's an idea: if there is IGP or TMII among predators, that means compos
 calulate predatr's feeding rate nd diet breath simultaneously, and relate this to their phylogenetic distance from each other.
 could be that there is a phylgenetic signal in the prey eaten?  not really our focus here.  in fact we are more interested in whether similar predators have similar effects on communities.  
 
-let Nathan's paper inspire me.  Are there some relevant equations out there?  model the probability of eating a prey species as feeding rate * preference for that species.
-
-
-
 * The differences in predation rates and diet breadth among our predators represents important trait differences between the groups involved, including differences in metabolic rate (physiological literature) and feeding mode. (for example, Tabanids and leeches are peircing predators, while Leptagrion is gape-limited.)
 
 Diet similarity, like occurance, also has two components: predator 
