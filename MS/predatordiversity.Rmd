@@ -539,7 +539,7 @@ diet_overlap_phylo %.%
 
 diet_overlap_phylo %.%
   filter(nspp>1) %.%
-  ggplot(aes(x=phylodistance,y=overlap,size=nspp))+geom_point()+stat_smooth(method="lm")
+  ggplot(aes(x=phylodistance,y=overlap,size=nspp))+geom_point()+stat_smooth(method="lm",size=1)
 
 
 dietmat <- diet_overlap_phylo %.%
