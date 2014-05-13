@@ -59,16 +59,16 @@ pd <- pd %.%
 ## Introduction
 
 
-Predator assemblages can have strong top-down effects, both on community structure and ecosystem processes (CITE estes interalia).  Detailed studies manipulating predators have identified a great diversity of direct and indirect mechanisms for these effects, related to interspecific variation in habitat selection and interactions with both prey and other predators.  Within a community predators will have widely different preferences for different microhabiats, or behavioural responses to fine-scale environmental variation.  When predators do co-occur, they may feed on different prey species as a result of variation in foraging traits. This means more likely coexistence between predators, but also a more compartmentalized food web with additive predator effects. Predator-predator interactions will further modify the effect of a diverse consumer assemblage, as predators may feed directly on each other (Intra-guild predation) or may modify the behaviour of predators or prey via non-consumptive (ie trait-mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001].  While there are many mechanisms, we lack a means of estimating the importance of each in a community.  Srivastava et al () hypothesized that the phylogenetic diversity of a community or assemblage may correlate with increased ecosystem function, via increases in trait diversity; however this has yet to be tested. Here we quantify phylogenetic diversity (PD) of a diverse invertebrate predator assemblage and ask if PD is associated with variation in habitat preferences, diet composition and intraguild interactions.
+Predator assemblages can have strong top-down effects, both on community structure and ecosystem processes [@Estes2011].  Detailed studies manipulating predators have identified a great diversity of direct and indirect mechanisms for these effects, related to interspecific variation in habitat selection and interactions with both prey and other predators.  Within a community predators will have widely different preferences for different microhabitats, or behavioural responses to fine-scale environmental variation.  When predators do co-occur in a local patch, they may feed on different prey species as determined by microhabitat preference, foraging behaviour, and other traits [@Schmitz2007].  Predator-predator interactions will further modify the effect of a diverse consumer assemblage, as predators may feed directly on each other (Intra-guild predation) or may modify the behaviour of predators or prey via non-consumptive (ie trait-mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001].  While there are many mechanisms, we lack a means of estimating the importance of each in a community.  Srivastava et al. [-@Srivastava2012c] hypothesized that the phylogenetic diversity of a community or assemblage may correlate with increased ecosystem function, via increases in trait diversity; however this has yet to be tested. Here we quantify phylogenetic diversity (PD) of a diverse invertebrate predator assemblage and ask if PD is associated with variation in habitat preferences, diet composition and intraguild interactions.
 
-how does TMII effect the fflow of nutirents a la McCann?
+Phylogenetic diversity measures have provided useful insights into diverse plant communities [@Cadotte2009;@Cadotte2008;Godoy2014], and yet have rarely been applied to predators [@Bersier2008;Naisbit]. In particular, many studies of animal phylogenies focus on whole clades of predators which do not co-occur (e.g. Anoles [@Knouft2006], warblers [@Bohning-Gaese2003] and wasps [@Udriene2005])) making it difficult to connect these results to the effect of a diverse local assemblage on ecosystem function. At the level of a local community, the effect of a predator assemblage will depend on both the distribution and trophic interactions of all predator species taken together. By correlating with these properties, measures of phylogenetic diversity may allow us to predict the effect of a predator assemblage on ecosystem functioning. 
+
+Phylogeny may constrain species distributions when distant relatives have distinct fundamental niches, while close relatives are too similar to co-occur [@Webb2002;@Emerson2008]. 
+
+Here we use phylogenetic diversity as a means for comparing predator species in a diverse community of aquatic invertebrates.  
 
 
-modified by additive or non-additive interactions ; however, few studies have addressed the entire diversity of predators in a community. The community-level effects of the consumer assemblage will be determined by their distribution, individual feeding preference, overall effect on the community, and any non-additive effects between predator species.  By correlating with these properties, measures of phylogenetic diversity may allow us to predict the effect of a predator assemblage on ecosystem functioning. Here we use phylogenetic diversity as a means for comparing predator species in a diverse community of aquatic invertebrates.  
-
-Phylogenetic diversity measures have provided useful insights into diverse plant communities [@Cadotte2009;@Cadotte2008], and yet have rarely been applied to a trophic group of animals [@Bersier2008;Naisbit]. 
-
-The phylogenetic diversity (here PD) of a predator assemblage may relate to their distribution, diet breadth and species interactions, all of which combine to produce the total top-down effect on the ecosystem. Phylogeny may constrain species distributions when distant relatives have distinct fundamental niches, while close relatives are too similar to co-occur [@Webb2002;@Emerson2008].  In predators, an important component of the niche is prey capture; recent studies have reported a weak correlation with niche differences in Anoles [@Knouft2006], and with morphological differences in warblers [@Bohning-Gaese2003].  However, phylogenetic distance correlates with stinging pattern in wasps (a vital component of their "trophic apparatus", [@Udriene2005]) and with both morphology and diet in treeboas [@Henderson2013]; studies of predator phylogenetic ecology are usually constrained to a taxon rather than a local assemblage of consumers. In studies of whole food webs, phylogenetic diversity is often related to food web structure [@Cattin2004;@Rezende2009] or function [@Maherali2007]. Complex traits that underlie species interactions (particularly "higher-order" interactions *sensu* Sih *et al.* [-@Sih1998a]) may also correlate with phylogeny, leading to a higher correlation with community processes than richness alone [@Cadotte2009]. Srivastava *et al.* [-@Srivastava2012c] reviewed the ways in which phylogenetic diversity might correlate with ecosystem function: assuming that relevant traits are conserved, the PD of a predator assemblage may determine the magnitude of its top-down effect on communities and ecosystems.
+In predators, an important component of the niche is prey capture; recent studies have reported a weak correlation with niche differences in Anoles [@Knouft2006], and with morphological differences in warblers [@Bohning-Gaese2003].  However, phylogenetic distance correlates with stinging pattern in wasps (a vital component of their "trophic apparatus", [@Udriene2005]) and with both morphology and diet in treeboas [@Henderson2013]; studies of predator phylogenetic ecology are usually constrained to a taxon rather than a local assemblage of consumers. In studies of whole food webs, phylogenetic diversity is often related to food web structure [@Cattin2004;@Rezende2009] or function [@Maherali2007]. Complex traits that underlie species interactions (particularly "higher-order" interactions *sensu* Sih *et al.* [-@Sih1998a]) may also correlate with phylogeny, leading to a higher correlation with community processes than richness alone [@Cadotte2009]. Srivastava *et al.* [-@Srivastava2012c] reviewed the ways in which phylogenetic diversity might correlate with ecosystem function: assuming that relevant traits are conserved, the PD of a predator assemblage may determine the magnitude of its top-down effect on communities and ecosystems.
 
 While the local community may include many predator species any local patch will not contain all, but rather a subset of these; this heterogeneity is the result of variation in habitat requirements [@Chase2003], species interactions and dispersal. This variation is prominent in metacommunities, such as ponds or bromeliads, where local presence/absence of species (and food chain length) is partly determined by species dispersal into patches [@Leibold2004;@Howeth2010a;@Calcagno2011a]. During dispersal, assembly can be nonrandom if predators use cues of habitat suitability or the presence of prey, competitors, or intra-guild predators when colonizing [@Chase2009;@McCauley2008a;@Srivastava2008]. After colonization, patterns of co-occurance may be futher modified by intraguild predation [@Lounibos2008;@Juliano2009] or competition [@Fincke1997], contingent on similarity in predator diets.
 
@@ -537,9 +537,7 @@ diet_overlap_phylo %.%
 
 #summary(dietoverlap_lm)
 
-diet_overlap_phylo %.%
-  filter(nspp>1) %.%
-  ggplot(aes(x=phylodistance,y=overlap,size=nspp))+geom_point()+stat_smooth(method="lm",size=1)
+
 
 
 dietmat <- diet_overlap_phylo %.%
@@ -606,10 +604,15 @@ ggplot(metabolic_occur_phylo,
 
 
 ```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2: Phylogenetic distance and diet similarity.  We performed 237 feeding trials with the 8 major predator taxa found in this system.  We found that more distantly-related predators consume more dissimiliar prey.  We measured diet similarity as euclidian distance among feeding trial outcomes; this measure includes information about the number of predation events in each predator-prey pairing.  Regression was weighted by the sample size of the predator-prey pair.",dev='svg'}
-ggplot(data=diet_similarity_phylo,aes(y=dietdistance,x=phylodistance,size=Ncommon))+geom_point()+scale_size(range=c(2,6))+ylab("Euclidian distance between feeding trials")+xlab("phylogenetic distance")+stat_smooth(method="lm", aes(weight=Ncommon))
-# plot(dist.mat[lower.tri(dist.mat)]~
-#        jitter(phylodist[lower.tri(phylodist)],amount=10),
-#      xlab="phylogenetic distance",ylab="jaccard distance between feeding trials")
+
+diet_overlap_phylo %.%
+  #filter(nspp>1) %.%
+  ggplot(aes(x=phylodistance,y=overlap,size=nspp)) %.%
+  +geom_point() %.%
+  +stat_smooth(method="lm",size=1) %.%
+  +scale_size_continuous(range=c(2,6),name="Number of \n prey spp.") %.%
+  +xlab("phylogenetic distance") + ylab("niche overlap")
+
 ```
 
 
