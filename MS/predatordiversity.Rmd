@@ -190,7 +190,7 @@ predation to occur.
 
 We evaluated overlap in predator diet preference using Pianka (1973 CITE) 's index of niche overlap :
 
-(@pianka) $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
+$O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
 For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of predator $k$ (r $l$) for prey species $i$.  The number of prey species ($n$) is defined as the total number of prey species assayed with both predator taxa, and preference is defined as the proportion of trials for each predator-prey assay that resulted in prey mortality.   
 
@@ -299,7 +299,7 @@ metabolic_distance <- metabolic %.%
 
 ```
 
-```{r CALC_diet_distance}
+```{r CALC_diet_overlap}
 # Check for TRUE ZEROS in cast matrix.
 
 ## Fill = 0 !!!? correct ??!!!
@@ -442,8 +442,8 @@ nspp <- metabolic %.%
 ```
 
 ```{r TEST_metabolic~phylo}
-meta_phylo_lm <- with(metabolic_occur_phylo,lm(metadistance~phylodistance))
-meta_phylo_lm_summary <- summary(meta_phylo_lm)
+meta_phylo_lm_summary <- with(metabolic_occur_phylo,lm(metadistance~phylodistance)) %.%
+  summary()
 
 ## caculate summaries 
 pval_metabol <- round(pf(meta_phylo_lm_summary$fstatistic[1],
@@ -480,17 +480,20 @@ elong <- percentpredation %.%
   
 ```
 
-```{r TEST_diet-sim_as_PD}
+```{r TEST_diet-sim_as_PD,results='asis'}
 ## test a squared term with 
-
-diet_overlap_phylo %.%
-  filter(nspp>1) %.%
-  with(lm(overlap~phylodistance,weights=nspp)) %.%
-  summary()
+# 
+# diet_overlap_phylo %.%
+#   #filter(nspp>1) %.%
+#   with(lm(overlap~phylodistance,weights=nspp)) %.%
+#   pander(caption="Linear model of diet overlap as a function of phylogenetic distance between predators.")
 
 #summary(dietoverlap_lm)
 
-
+diet_phylo_lm_summary <- diet_overlap_phylo %.%
+  #filter(nspp>1) %.%
+  with(lm(overlap~phylodistance,weights=nspp)) %.%
+  summary()
 
 
 dietmat <- diet_overlap_phylo %.%
@@ -502,8 +505,8 @@ dietmat <- diet_overlap_phylo %.%
 
 ```
 
-Among the most common predator taxa (i.e. those used in our experiment, described below) the damselflies (_Leptagrion andromache_ and _Leptagrion elongatum_) showed the higest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). All predators showed a very generalist diet breadth, consuming nearly all species offered to them.  However, more phylogenetically distant predators preferred slightly different diets, as measured by euclidian distance between feeding trial outcomes (F~`r diet_phylo_lm_summary $fstatistic[["numdf"]]`,
-`r diet_phylo_lm_summary $fstatistic[["dendf"]]`~=`r round(diet_phylo_lm_summary $fstatistic[["value"]],2)`, p=`r round(pf(diet_phylo_lm_summary $fstatistic[1],diet_phylo_lm_summary $fstatistic[2],diet_phylo_lm_summary $fstatistic[3],lower.tail=FALSE),digits=3)`, regression weighted by the number of trials conducted.)
+Among the most common predator taxa (i.e. those used in our experiment, described below) the damselflies (_Leptagrion andromache_ and _Leptagrion elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). All predators showed a very generalist diet breadth, consuming nearly all species offered to them.  However, more phylogenetically distant predators differed in their preference of prey species, as measured by the niche overlap index (F~`r diet_phylo_lm_summary$fstatistic[["numdf"]]`,
+`r diet_phylo_lm_summary$fstatistic[["dendf"]]`~=`r round(diet_phylo_lm_summary $fstatistic[["value"]],2)`, p=`r round(pf(diet_phylo_lm_summary $fstatistic[1],diet_phylo_lm_summary $fstatistic[2],diet_phylo_lm_summary $fstatistic[3],lower.tail=FALSE),digits=3)`, regression weighted by the number of prey species assayed.)
 
 ### Ecosystem-level effects and phylogenetic distance
 
@@ -556,7 +559,7 @@ ggplot(metabolic_occur_phylo,
 ```
 
 
-```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2: Phylogenetic distance and diet similarity.  We performed 237 feeding trials with the 8 major predator taxa found in this system.  We found that more distantly-related predators consume more dissimiliar prey.  We measured diet similarity as euclidian distance among feeding trial outcomes; this measure includes information about the number of predation events in each predator-prey pairing.  Regression was weighted by the sample size of the predator-prey pair.",dev='svg'}
+```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2: Phylogenetic distance and diet similarity.  We performed 237 feeding trials with the 8 major predator taxa found in this system.  We found that more distantly-related predators consume more dissimiliar prey.  We measured diet similarity as euclidian distance among feeding trial outcomes; this measure includes information about the number of predation events in each predator-prey pairing.  Regression was weighted by the sample size of the predator-prey pair.",dev='png'}
 
 diet_overlap_phylo %.%
   #filter(nspp>1) %.%
