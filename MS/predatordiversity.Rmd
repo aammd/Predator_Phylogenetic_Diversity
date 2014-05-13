@@ -308,20 +308,6 @@ metabolic_distance <- metabolic %.%
 
 ## Should this be the proportion of eating?!?
 
-
-diet_distance <- feeding_trials %.%
-  dcast(formula=Prey.species~predator.names,value.var="eaten",fill=0) %.%
-  data.frame(row.names="Prey.species") %.%
-  as.matrix() %.%
-  t() %.%
-  vegdist(method="jaccard") %.%
-  as.matrix() %.%
-  dist_to_df() %.%
-  rename(c("Var1"="dietpred1",
-           "Var2"="dietpred2",
-           "value"="dietdistance")) %.%
-  mutate(species_pair=paste0(dietpred1,"_",dietpred2)) 
-
 prop.eaten <- feeding_trials %.%
   mutate(prop.eaten=eaten/number.trials) %.%
   dcast(predator.names~Prey.species,value.var="prop.eaten")
@@ -417,32 +403,6 @@ summarize_random_test <- rand.means %.%
 
 ```
 
-```{r CALC_incommon}
-
-## we also need to know how many trials each predator has in common:]
-columns_in_common <- function(mat){
-  t(mat>0)%*%(mat>0)
-}
-
-incommon <- feeding_trials %.%
-  dcast(formula=Prey.species~predator.names,value.var="number.trials",fill=0) %.%
-  data.frame(row.names="Prey.species") %.%
-  as.matrix() %.%
-  columns_in_common() %.%
-  # note that if you run diag() here, you just get the number of prey spp
-  # tested with each predator
-  dist_to_df() %.%
-  rename(c("Var1"="commonpred1",
-         "Var2"="commonpred2",
-         "value"="Ncommon")) %.%
-  mutate(species_pair=paste0(commonpred1,"_",commonpred2))
-
-## how many species were tested with each predator?
-# ungroup(feeding_trials) %.%
-#   group_by(predator.names) %.%
-#   summarize(nt=n())
-```
-
 ```{r DATA_merge}
 ## we need to merge together several matrices:
 ## metabolic occurance + predator phylogenetic distance
@@ -451,10 +411,6 @@ incommon <- feeding_trials %.%
 
 ## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
 metabolic_occur_phylo <- left_join(metabolic_distance,phylogenetic_distance)
-
-diet_similarity_phylo <- left_join(diet_distance,phylogenetic_distance) %.%
-  left_join(incommon) %.%
-  select(-dietpred1,-dietpred2,-commonpred2,-commonpred1,-phylopred1,-phylopred2)
 
 diet_overlap_phylo <- left_join(diet_overlap,phylogenetic_distance)
 
@@ -525,8 +481,6 @@ elong <- percentpredation %.%
 ```
 
 ```{r TEST_diet-sim_as_PD}
-diet_phylo_lm <- with(diet_similarity_phylo,lm(dietdistance~phylodistance,weights=Ncommon))
-diet_phylo_lm_summary <- summary(diet_phylo_lm)
 ## test a squared term with 
 
 diet_overlap_phylo %.%
