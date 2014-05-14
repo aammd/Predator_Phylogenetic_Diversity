@@ -79,17 +79,11 @@ epiphytic plants native to the Neotropics; many species contain water, detritus
 and a complex insect food web within their leaves; the decomposition of this
 detritus supplies nutrients for the bromeliad [@Benzing2000]. The small size of
 these habitats permits direct manipulations of entire food webs, manipulations
-which would be difficult in most natural systems, and therefore allows us to
-test  species interactions.  Within this aquatic food web, damselfly larvae
-(e.g. \emph{Leptagrion} spp, Odonata:Coenagrionidae) are important predators;
+which would be difficult in most natural systems.  Within this aquatic food web, damselfly larvae
+(e.g. *Leptagrion* spp., Odonata:Coenagrionidae) are important predators;
 their presence dramatically alters community dynamics (e.g. decreasing rates of
-insect emergence \citep{Starzomski2010} and increasing nutrient cycling
-\citep{Ngai2006}).  Additionally, Bromeliads span several orders of magnitude in
-size, from 20-100 ml to well over 5000 ml in volume.  The natural mesocosms
-within leaves of bromeliads are ideal for exploring ecological questions about
-the mechanisms of species bad interactions.  The insect food webs of Brazilian
-bromeliads are the most diverse known, with a high number of species at all
-trophic levels.
+insect emergence [@Starzomski2010] and increasing nutrient cycling
+[@Ngai2006]). 
 
 
 
