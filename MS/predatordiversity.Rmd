@@ -77,27 +77,19 @@ ecosystem effects of diverse predators, using a natural mesocosm: the community
 of invertebrates living within bromeliads. Bromeliads (Bromeliaceae) are
 epiphytic plants native to the Neotropics; many species contain water, detritus
 and a complex insect food web within their leaves; the decomposition of this
-detritus supplies the nitrogen for the bromeliad [@Benzing2000}].They occur
-in a wide variety of habitats from moist forest to dry shrubland, and from
-contiguous rainforest to fragmented patches and islands (\emph{e.g.}, the
-Caribbean). Throughout this wide range there is variation in both the number of
-species in the species pool (\emph{i.e.} species able to live in bromeliads) and
-in environmental variables at the regional (\emph{e.g.} mean amounts and
-variation in rainfall and temperature) and local (\emph{e.g.} mean size of
-bromeliads, shape of bromeliad tanks) scales.  The small size of Bromeliad
-systems permits direct manipulations of entire food webs, manipulations which
-would be difficult in most natural systems, and therefore allow field testing of
-theories about the importance of species interactions within food webs
-\citep{Ngai2006,Starzomski2010}%Srivastava and Bell .  Within this aquatic food
-web, damselfly larvae (e.g. \emph{Leptagrion} spp, Odonata:Coenagrionidae) are
-important predators; their presence dramatically alters community dynamics (e.g.
-decreasing rates of insect emergence \citep{Starzomski2010} and increasing
-nutrient cycling \citep{Ngai2006}).  Additionally, Bromeliads span several
-orders of magnitude in size, from 20-100 ml to well over 5000 ml in volume.  The
-natural mesocosms within leaves of bromeliads are ideal for exploring ecological
-questions about the mechanisms of species bad interactions.  The insect food
-webs of Brazilian bromeliads are the most diverse known, with a high number of
-species at all trophic levels.
+detritus supplies nutrients for the bromeliad [@Benzing2000]. The small size of
+these habitats permits direct manipulations of entire food webs, manipulations
+which would be difficult in most natural systems, and therefore allows us to
+test  species interactions.  Within this aquatic food web, damselfly larvae
+(e.g. \emph{Leptagrion} spp, Odonata:Coenagrionidae) are important predators;
+their presence dramatically alters community dynamics (e.g. decreasing rates of
+insect emergence \citep{Starzomski2010} and increasing nutrient cycling
+\citep{Ngai2006}).  Additionally, Bromeliads span several orders of magnitude in
+size, from 20-100 ml to well over 5000 ml in volume.  The natural mesocosms
+within leaves of bromeliads are ideal for exploring ecological questions about
+the mechanisms of species bad interactions.  The insect food webs of Brazilian
+bromeliads are the most diverse known, with a high number of species at all
+trophic levels.
 
 
 
