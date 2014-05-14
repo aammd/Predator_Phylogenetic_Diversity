@@ -69,9 +69,37 @@ When predators co-occur, their feeding mode, diet breadth and nutritional requir
 
 Predator interactions are common in many communities, and can lead to nonlinearities which prevent the inference of predator effect from the additive combination of individual predators [@Sih1998a]. For example, decreasing predator richness has been shown to increase herbivory in a three-level kelp food web [@Byrnes2006]. The complex traits that underlie such species interactions (particularly "higher-order" interactions *sensu* Sih *et al.* [-@Sih1998a]) may also correlate with phylogeny, leading to a higher correlation with community processes than richness alone [@Cadotte2009]. For example, phylogenetically diverse assemblages of mycorhizzae increased primary productivity more than equally speciose treatments from the same lineage [@Maherali2007]. The effect of predators on prey may also be non-additive, the result of indirect interactions either with prey species or other predators: prey species may respond to the presence of one predator by a behavioural shift that increases the predation by another predator population [@Carey2010a]. These treat-mediated indirect effects [@Werner2003] can be difficult to predict; however phylogenetic relatedness has been suggested as a possible means of predicting the combined effect of predators [@Naisbit2011]
 
-We used a series of observations, lab feeding trials, and manipulative field experiments to measure how the phylogenetic diversity of the predator assemblage predicts community composition and ecosystem function.  We test three related hypotheses concerning co-occurance patterns, diet similarity and top-down ecosystem effects of diverse predators, using a natural mesocosm: the community of invertebrates living within bromeliads. 
+We used a series of observations, lab feeding trials, and manipulative field
+experiments to measure how the phylogenetic diversity of the predator assemblage
+predicts community composition and ecosystem function.  We test three related
+hypotheses concerning co-occurance patterns, diet similarity and top-down
+ecosystem effects of diverse predators, using a natural mesocosm: the community
+of invertebrates living within bromeliads. Bromeliads (Bromeliaceae) are
+epiphytic plants native to the Neotropics; many species contain water, detritus
+and a complex insect food web within their leaves; the decomposition of this
+detritus supplies the nitrogen for the bromeliad [@Benzing2000}].They occur
+in a wide variety of habitats from moist forest to dry shrubland, and from
+contiguous rainforest to fragmented patches and islands (\emph{e.g.}, the
+Caribbean). Throughout this wide range there is variation in both the number of
+species in the species pool (\emph{i.e.} species able to live in bromeliads) and
+in environmental variables at the regional (\emph{e.g.} mean amounts and
+variation in rainfall and temperature) and local (\emph{e.g.} mean size of
+bromeliads, shape of bromeliad tanks) scales.  The small size of Bromeliad
+systems permits direct manipulations of entire food webs, manipulations which
+would be difficult in most natural systems, and therefore allow field testing of
+theories about the importance of species interactions within food webs
+\citep{Ngai2006,Starzomski2010}%Srivastava and Bell .  Within this aquatic food
+web, damselfly larvae (e.g. \emph{Leptagrion} spp, Odonata:Coenagrionidae) are
+important predators; their presence dramatically alters community dynamics (e.g.
+decreasing rates of insect emergence \citep{Starzomski2010} and increasing
+nutrient cycling \citep{Ngai2006}).  Additionally, Bromeliads span several
+orders of magnitude in size, from 20-100 ml to well over 5000 ml in volume.  The
+natural mesocosms within leaves of bromeliads are ideal for exploring ecological
+questions about the mechanisms of species bad interactions.  The insect food
+webs of Brazilian bromeliads are the most diverse known, with a high number of
+species at all trophic levels.
 
-{BROMELIAD INTRO]}
+
 
 1. *species co-occurance*: closely-related predators may occur together more
 frequently than less-related predators, due to their similar habitat
