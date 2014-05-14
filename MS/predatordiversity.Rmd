@@ -59,15 +59,102 @@ pd <- pd %.%
 ## Introduction
 
 
-Predator assemblages can have strong top-down effects, both on community structure and ecosystem processes [@Estes2011].  Detailed studies manipulating predators have identified a great diversity of direct and indirect mechanisms for these effects, related to interspecific variation in habitat selection and interactions with both prey and other predators.  Within a community predators will have widely different preferences for different microhabitats, or behavioural responses to fine-scale environmental variation.  When predators do co-occur in a local patch, they may feed on different prey species as determined by microhabitat preference, foraging behaviour, and other traits [@Schmitz2007].  Predator-predator interactions will further modify the effect of a diverse consumer assemblage, as predators may feed directly on each other (Intra-guild predation) or may modify the behaviour of predators or prey via non-consumptive (ie trait-mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001].  While there are many mechanisms, we lack a means of estimating the importance of each in a community.  Srivastava et al. [-@Srivastava2012c] hypothesized that the phylogenetic diversity of a community or assemblage may correlate with increased ecosystem function, via increases in trait diversity; however this has yet to be tested. Here we quantify phylogenetic diversity (PD) of a diverse invertebrate predator assemblage and ask if PD is associated with variation in habitat preferences, diet composition and intraguild interactions.
+Predator assemblages can have strong top-down effects, both on community
+structure and ecosystem processes [@Estes2011].  Detailed studies manipulating
+predators have identified a great diversity of direct and indirect mechanisms
+for these effects, related to interspecific variation in habitat selection and
+interactions with both prey and other predators.  Within a community predators
+will have widely different preferences for different microhabitats, or
+behavioural responses to fine-scale environmental variation.  When predators do
+co-occur in a local patch, they may feed on different prey species as determined
+by microhabitat preference, foraging behaviour, and other traits [@Schmitz2007].
+Predator-predator interactions will further modify the effect of a diverse
+consumer assemblage, as predators may feed directly on each other (Intra-guild
+predation) or may modify the behaviour of predators or prey via non-consumptive
+(ie trait-mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001].  While
+there are many mechanisms, we lack a means of estimating the importance of each
+in a community.  Srivastava et al. [-@Srivastava2012c] hypothesized that the
+phylogenetic diversity of a community or assemblage may correlate with increased
+ecosystem function, via increases in trait diversity; however this has yet to be
+tested. Here we quantify phylogenetic diversity (PD) of a diverse invertebrate
+predator assemblage and ask if PD is associated with variation in habitat
+preferences, diet composition and intraguild interactions.
 
-Phylogenetic diversity measures have provided useful insights into diverse plant communities [@Cadotte2009;@Cadotte2008;@Godoy2014], and yet have rarely been applied to local assemblages of predators [@Bersier2008;@Naisbit2011]. Many studies of phylogenetic signal in consumer traits focus on whole clades, rather than local assemblages (e.g. *Anolis* lizards [@Knouft2006], warblers [@Bohning-Gaese2003], treeboas [@Henderson2013] and wasps [@Udriene2005]) making it difficult to connect these results to top-down effects at the scale of a local community. While these clade-specific studies often find weak evidence for phylogenetic signal in ecologically-relevant traits, studies at the level of the whole biosphere [@Gomez2010;@Bersier2008] demonstrate that related organisms often have similar interspecific interactions -- i.e. related predators often consume similar prey. At the level of a community, the effect of a predator assemblage will depend on both the distribution and trophic interactions of all predator species. Phylogeny may constrain species distributions when distant relatives have distinct fundamental niches, while close relatives are too similar to co-occur [@Webb2002;@Emerson2008] -- for predators, this means that similar taxa may not be able to occupy the same compartment of a food web [@Rezende2009]. By correlating with these properties, measures of phylogenetic diversity may allow us to predict the effect of a predator assemblage on ecosystem functioning. 
+Phylogenetic diversity measures have provided useful insights into diverse plant
+communities [@Cadotte2009;@Cadotte2008;@Godoy2014], and yet have rarely been
+applied to local assemblages of predators [@Bersier2008;@Naisbit2011]. Many
+studies of phylogenetic signal in consumer traits focus on whole clades, rather
+than local assemblages (e.g. *Anolis* lizards [@Knouft2006], warblers [@Bohning-
+Gaese2003], treeboas [@Henderson2013] and wasps [@Udriene2005]) making it
+difficult to connect these results to top-down effects at the scale of a local
+community. While these clade-specific studies often find weak evidence for
+phylogenetic signal in ecologically-relevant traits, studies at the level of the
+whole biosphere [@Gomez2010;@Bersier2008] demonstrate that related organisms
+often have similar interspecific interactions -- i.e. related predators often
+consume similar prey. At the level of a community, the effect of a predator
+assemblage will depend on both the distribution and trophic interactions of all
+predator species. Phylogeny may constrain species distributions when distant
+relatives have distinct fundamental niches, while close relatives are too
+similar to co-occur [@Webb2002;@Emerson2008] -- for predators, this means that
+similar taxa may not be able to occupy the same compartment of a food web
+[@Rezende2009]. By correlating with these properties, measures of phylogenetic
+diversity may allow us to predict the effect of a predator assemblage on
+ecosystem functioning.
 
-Within predator assemblages, there may be considerable variation in the abundance and distribution of related taxa. If habitat patches are variable, and if the fundamental niche of different organisms varies with relatedness, then we would expect a phylogenetic signal to patterns of occurrence.  Specifically, if related predators share habitat requirements, then we expect to find them in the same patches -- unless their similarity precludes their co-occurrence.  This relationship between relatedness and distribution is he most common way in which phylogenetic information is used in community ecology [@Cavender-Bares2009]. In metacommunities -- i.e. when patches are connected by dispersal -- variation in the composition of a local assemblage is also determined by species dispersal into, and selection among, habitat patches [@Leibold2004;@Howeth2010a;@Calcagno2011a]. The effects of other predators can be important too: during dispersal, assembly can be nonrandom if predators use cues of presence of prey, competitors, or intra-guild predators when colonizing [@Chase2009a;@McCauley2008a;@Srivastava2008]. After colonization, patterns of co-occurrence may be further modified by intraguild predation [@Lounibos2008;@Juliano2009] or competition [@Fincke1997].
+Within predator assemblages, there may be considerable variation in the
+abundance and distribution of related taxa. If habitat patches are variable, and
+if the fundamental niche of different organisms varies with relatedness, then we
+would expect a phylogenetic signal to patterns of occurrence.  Specifically, if
+related predators share habitat requirements, then we expect to find them in the
+same patches -- unless their similarity precludes their co-occurrence.  This
+relationship between relatedness and distribution is he most common way in which
+phylogenetic information is used in community ecology [@Cavender-Bares2009]. In
+metacommunities -- i.e. when patches are connected by dispersal -- variation in
+the composition of a local assemblage is also determined by species dispersal
+into, and selection among, habitat patches
+[@Leibold2004;@Howeth2010a;@Calcagno2011a]. The effects of other predators can
+be important too: during dispersal, assembly can be nonrandom if predators use
+cues of presence of prey, competitors, or intra-guild predators when colonizing
+[@Chase2009a;@McCauley2008a;@Srivastava2008]. After colonization, patterns of
+co-occurrence may be further modified by intraguild predation
+[@Lounibos2008;@Juliano2009] or competition [@Fincke1997].
 
-When predators co-occur, their feeding mode, diet breadth and nutritional requirements of predators will determine which prey they consume and the total potential amount of predation that occurs. Because such morphological traits may well be conserved over evolutionary time, the breadth of differentiation (and hence resource use) may also show a phylogenetic signal; this differentiation in resource use leads to complementarity and greater overall ecosystem function [@Finke2008a]. Among predators, feeding mode is an important trait that is conserved within lineages and determines a large part of diet breadth.  For example, some predators are gape-limited, and can swallow any prey smaller than their mouth; these predators typically broaden their diet as they grow (e.g., larvae of Odonata) [@Werner1984].  Such ontogenetic changes in diet breadth can radically influence all of food web structure [@Moya-Larano2011]. Other predators (e.g. Leeches, or Diptera:Tabanidae) are "piercing-sucking" predators [@Bay1974] and may be more general consumers at all life stages, since they an feed on larger prey individuals even at very early predator life stages.  In some cases, predator diets may extend to include other predators leading to direct negative interactions such as intraguild predation, which may also have a phylogenetic signal [@Pfennig2000].
+When predators co-occur, their feeding mode, diet breadth and nutritional
+requirements of predators will determine which prey they consume and the total
+potential amount of predation that occurs. Because such morphological traits may
+well be conserved over evolutionary time, the breadth of differentiation (and
+hence resource use) may also show a phylogenetic signal; this differentiation in
+resource use leads to complementarity and greater overall ecosystem function
+[@Finke2008a]. Among predators, feeding mode is an important trait that is
+conserved within lineages and determines a large part of diet breadth.  For
+example, some predators are gape-limited, and can swallow any prey smaller than
+their mouth; these predators typically broaden their diet as they grow (e.g.,
+larvae of Odonata) [@Werner1984].  Such ontogenetic changes in diet breadth can
+radically influence all of food web structure [@Moya-Larano2011]. Other
+predators (e.g. Leeches, or Diptera:Tabanidae) are "piercing-sucking" predators
+[@Bay1974] and may be more general consumers at all life stages, since they an
+feed on larger prey individuals even at very early predator life stages.  In
+some cases, predator diets may extend to include other predators leading to
+direct negative interactions such as intraguild predation, which may also have a
+phylogenetic signal [@Pfennig2000].
 
-Predator interactions are common in many communities, and can lead to nonlinearities which prevent the inference of predator effect from the additive combination of individual predators [@Sih1998a]. For example, decreasing predator richness has been shown to increase herbivory in a three-level kelp food web [@Byrnes2006]. The complex traits that underlie such species interactions (particularly "higher-order" interactions *sensu* Sih *et al.* [-@Sih1998a]) may also correlate with phylogeny, leading to a higher correlation with community processes than richness alone [@Cadotte2009]. For example, phylogenetically diverse assemblages of mycorrhizae increased primary productivity more than equally speciose treatments from the same lineage [@Maherali2007]. The effect of predators on prey may also be non-additive, the result of indirect interactions either with prey species or other predators: prey species may respond to the presence of one predator by a behavioural shift that increases the predation by another predator population [@Carey2010a]. These trait-mediated indirect effects [@Werner2003] can be difficult to predict; however phylogenetic relatedness has been suggested as a possible means of predicting the combined effect of predators [@Naisbit2011]
+Predator interactions are common in many communities, and can lead to
+nonlinearities which prevent the inference of predator effect from the additive
+combination of individual predators [@Sih1998a]. For example, decreasing
+predator richness has been shown to increase herbivory in a three-level kelp
+food web [@Byrnes2006]. The complex traits that underlie such species
+interactions (particularly "higher-order" interactions *sensu* Sih *et al.*
+[-@Sih1998a]) may also correlate with phylogeny, leading to a higher correlation
+with community processes than richness alone [@Cadotte2009]. For example,
+phylogenetically diverse assemblages of mycorrhizae increased primary
+productivity more than equally speciose treatments from the same lineage
+[@Maherali2007]. The effect of predators on prey may also be non-additive, the
+result of indirect interactions either with prey species or other predators:
+prey species may respond to the presence of one predator by a behavioural shift
+that increases the predation by another predator population [@Carey2010a]. These
+trait-mediated indirect effects [@Werner2003] can be difficult to predict;
+however phylogenetic relatedness has been suggested as a possible means of
+predicting the combined effect of predators [@Naisbit2011]
 
 We used a series of observations, lab feeding trials, and manipulative field
 experiments to measure how the phylogenetic diversity of the predator assemblage
@@ -79,8 +166,7 @@ epiphytic plants native to the Neotropics; many species contain water, detritus
 and a complex insect food web within their leaves; the decomposition of this
 detritus supplies nutrients for the bromeliad [@Benzing2000]. The small size of
 these habitats permits direct manipulations of entire food webs, manipulations
-which would be difficult in most natural systems.  Within this aquatic food web, damselfly larvae
-(e.g. *Leptagrion* spp., Odonata:Coenagrionidae) are important predators;
+which would be difficult in most natural systems.  Within this aquatic food web, damselfly larvae (e.g. *Leptagrion* spp., Odonata:Coenagrionidae) are important predators;
 their presence dramatically alters community dynamics (e.g. decreasing rates of
 insect emergence [@Starzomski2010] and increasing nutrient cycling
 [@Ngai2006]). 
