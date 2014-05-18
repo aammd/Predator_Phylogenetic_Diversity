@@ -3,10 +3,11 @@ title: "Predator phylogenetic diversity decreases predation rate via antagonisti
 author: "Andrew MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 output:
+  md_document: default
   html_document: default
   word_document:
     reference_docx: reference.docx
-  md_document: default
+
 ---
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
@@ -65,9 +66,6 @@ pd <- pd %.%
 ```
 
 ## Introduction
-
-This is a test modification. AND ANOTHER MODIFICATION
-
 
 Predator assemblages can have strong top-down effects, both on community
 structure and ecosystem processes [@Estes2011].  Detailed studies manipulating

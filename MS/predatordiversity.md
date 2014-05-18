@@ -1,9 +1,3 @@
-#### A. Andrew M. MacDonald; Diane S. Srivastava; Gustavo Q. Romero
-
-    #dropping a record that seems to have been 90% decomposed!
-    pd <- pd %.%
-      transform(decomp=ifelse(decomp>0.7,NA,decomp))
-
 Introduction
 ------------
 
@@ -192,12 +186,6 @@ beetles.
 
 ### metabolic capacity and phylogenetic distance
 
-    nodeages <- lapply(list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE),read.csv)
-    names(nodeages) <- list.files(path="../data/TreeData/",pattern="*.csv")
-    nstudies <- sapply(nodeages,nrow)
-    #names(nodeages)[which(nstudies>1)]
-    n.nodes <- length(nodeages)
-
 In 2008, insects were counted and measured in an observational study of
 25 bromeliads. Within this observational dataset, we identified 14
 species as predators. These predators vary in taxonomic relatedness:
@@ -246,24 +234,6 @@ for all individuals of the same species within a plant. We quantified
 total metabolic capacity among occupied bromeliads.
 
 ### Diet similarity
-
-    ##  predator x prey trials
-
-    feeding_trials <- foodweb %.%
-      group_by(Prey.species,predator.names) %.%
-      summarize(number.trials=n(),
-                eaten=sum(eaten.numeric)
-                ) %.%
-      filter(!is.na(predator.names)) %.%
-      filter(predator.names!="Leptagrion.small") %.%
-      ungroup()
-
-    ## numbers for text
-    ntrials <- sum(feeding_trials$number.trials)
-    npred <- length(unique(feeding_trials$predator.names))
-    nprey <- length(unique(feeding_trials$Prey.species))
-    ncombos <- nrow(feeding_trials)
-    rep_range <- range(feeding_trials$number.trials)
 
 We conducted 232 feeding trials of 7 predator taxa fed 14 prey taxa
 between March and April 2011. We covered all potential predator-prey
@@ -360,191 +330,6 @@ Results
 
 ### patterns of occurance
 
-    ####### metabolic matrix ####
-    ## we need to calculate two distance matrices:
-    ## 1) metabolic capacity distance
-    ## 2) phylogenetic distance
-
-    ## metabolic matrix -- the "distance" between predator co-occurance, measured as metabolism
-
-    dist_to_df <- function(matrix_for_df){
-      melt(matrix_for_df)[melt(upper.tri(matrix_for_df))$value,]
-    }
-
-
-    ####### phylogeny matrix ####
-    ## Calculate distances
-    phylogenetic_distance  <- predtree_timetree_ages %.%
-      cophenetic() %.%
-      dist_to_df() %.%
-      rename(c("Var1"="phylopred1",
-               "Var2"="phylopred2",
-               "value"="phylodistance")) %.%
-      mutate(pairs_RH=paste(phylopred1,phylopred2,sep="_"),
-             pairs_LH=paste(phylopred2,phylopred1,sep="_")) %.%
-      melt(id.vars=c("phylopred1","phylopred2","phylodistance"),
-           value.name="species_pair",
-           variable.name="L_or_R") 
-
-    metabolic_distance <- metabolic %.%
-      data.frame(row.names="Taxa") %.%
-      as.matrix() %.%
-      vegdist(method="euclid") %.%
-      as.matrix() %.%
-      dist_to_df() %.%
-      rename(c("Var1"="metapred1",
-               "Var2"="metapred2",
-               "value"="metadistance")) %.%
-      mutate(species_pair=paste0(metapred1,"_",metapred2))
-
-    # Check for TRUE ZEROS in cast matrix.
-
-    ## Fill = 0 !!!? correct ??!!!
-
-    ## similarity in diet is about how much they eat
-
-    ## Should this be the proportion of eating?!?
-
-    prop.eaten <- feeding_trials %.%
-      mutate(prop.eaten=eaten/number.trials) %.%
-      dcast(predator.names~Prey.species,value.var="prop.eaten")
-
-    predators <- expand.grid(pred1=unique(feeding_trials$predator.names),
-                             pred2=unique(feeding_trials$predator.names)) %.%
-      filter(pred1!=pred2) %.%
-      transform(pred_pair=paste0(pred1,"_",pred2)) %.%
-      melt(id.vars="pred_pair",value.name="predator.names",variable.name="p") %.%
-      left_join(prop.eaten) %.%
-      select(-p,-predator.names)
-
-    ## Joining by: "predator.names"
-
-    ## both ecopath and ecosim documentation (and those sources derived from them)
-    ## imply a different formula for Pianka's index.
-    pianka <- function(df){
-      mat <- as.matrix(df[,-1])
-      rowtotal <- rowSums(mat)
-      mat <- apply(mat,2,function(x) x/rowtotal)
-
-      squares <- mat^2
-      sum_sq_prod <- prod(rowSums(squares))
-      
-      prod <- apply(mat,2,prod)
-      sum_prod <- sum(prod)
-      
-      overlap <- sum_prod/sqrt(sum_sq_prod)
-      nspp <- ncol(mat)
-      data.frame(overlap,nspp)
-    }
-
-    outer_paste <-   function(x) outer(x,x,paste,sep="_")
-
-    prednames <- feeding_trials$predator.names %.%
-      unique() %.%
-      outer_paste()
-
-    predpairs <- prednames %.%
-      melt(value.name="species_pair") %.%
-      transform(species_pair=as.character(species_pair)) %.%
-      semi_join(
-        {
-          prednames %.%
-            upper.tri() %.%
-            melt(value.name="corner") %.%
-            filter(corner)
-          },
-        by=c("Var1","Var2")
-        ) %.%
-      transform(pred1=unique(feeding_trials$predator.names)[Var1],
-                pred2=unique(feeding_trials$predator.names)[Var2]) %.%
-      select(pred1,pred2,species_pair) %.%
-      arrange(pred1,pred2)
-
-    diet_overlap <- split(predators,predators$pred_pair) %.%
-      lapply(function(x) x[colSums(!is.na(x))>1]) %.%
-      lapply(pianka) %.%
-      ldply(stringsAsFactors=FALSE) %.%
-      rename(c(".id"="species_pair")) %.%
-      semi_join(predpairs)
-
-    ## Joining by: "species_pair"
-
-    ## summarize randomization test results
-
-    summarize_random_test <- rand.means %.%
-      # remove annoying X column
-      select(-X) %.%
-      # melt, so that all responses can be summarized at the same time
-      melt(id.vars="sp.pair") %.%
-      group_by(sp.pair,variable) %.%
-      summarise(mean=mean(value),
-                lower=quantile(value,probs=c(0.025)),
-                upper=quantile(value,probs=c(0.975))
-                ) %.%
-      # sequence of increasing PD
-      ungroup() %.%
-      mutate(sp.pair.names=factor(sp.pair,levels=c('elong + andro',
-                                             'elong + tab',
-                                             'elong + leech')
-                            ),
-             sp.pair=as.character(sp.pair),
-             sp.pair=ifelse(sp.pair=="elong + andro","Leptagrion.elongatum_Leptagrion.andromache",
-                            sp.pair),
-             sp.pair=ifelse(sp.pair=="elong + tab","Leptagrion.elongatum_Tabanidae.spA",
-                            sp.pair),
-             sp.pair=ifelse(sp.pair=="elong + leech","Leptagrion.elongatum_Hirudinidae",
-                            sp.pair)
-             
-             ) %.%
-      rename(c("sp.pair"="species_pair"))
-
-    ## we need to merge together several matrices:
-    ## metabolic occurance + predator phylogenetic distance
-    ## diet similarity + predator phylogenetic distance
-    ## experiment randomization results + predator phylogenetic distance
-
-    ## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
-    metabolic_occur_phylo <- left_join(metabolic_distance,phylogenetic_distance)
-
-    ## Joining by: "species_pair"
-
-    diet_overlap_phylo <- left_join(diet_overlap,phylogenetic_distance)
-
-    ## Joining by: "species_pair"
-
-    summarize_randoms_phylo <- left_join(summarize_random_test,phylogenetic_distance)
-
-    ## Joining by: "species_pair"
-
-    ## numbers for text:
-    meta_range <- metabolic %.%
-      melt(id.vars="Taxa") %.%
-      select(-variable) %.%
-      filter(value>0) %.%
-      filter(value%in%range(value)) %.%
-      transform(value=signif(value,2)) %.%
-      unique()
-
-    smallsp <- meta_range[1,]
-    largesp <- meta_range[2,]
-
-    nspp <- metabolic %.%
-      melt(id.vars="Taxa",variable.name="brom") %.%
-      filter(value>0) %.%
-      group_by(brom) %.%
-      summarize(nspp=n()) %.%
-      summarize(meanpred=mean(nspp),
-                sdpred=signif(sd(nspp),2)) 
-
-    meta_phylo_lm_summary <- with(metabolic_occur_phylo,lm(metadistance~phylodistance)) %.%
-      summary()
-
-    ## caculate summaries 
-    pval_metabol <- round(pf(meta_phylo_lm_summary$fstatistic[1],
-                             meta_phylo_lm_summary$fstatistic[2],
-                             meta_phylo_lm_summary$fstatistic[3],lower.tail=FALSE)
-                          ,digits=2)
-
 Across all bromeliads, predator species differed widely in metabolic
 capacity, from 4.5 × 10<sup>-4</sup> for a species of *Monopelopia* to
 0.15 for large predatory flies in the family Tabanidae. Predators often
@@ -554,49 +339,6 @@ did not show any relationship with phylogenetic distance between them
 (F<sub>1,89</sub>=1.5558, p=0.22).
 
 ### diet similarity
-
-    ## Diet numbers for text:
-    ## what percentage of total trials resulted in predation?
-    percentpredation <- feeding_trials %.%
-      transform(percent.eaten=eaten/number.trials) %.%
-      group_by(predator.names) %.%
-      summarize(mean.pred=mean(percent.eaten),
-                totaltrials=sum(number.trials),
-                nprey=n())
-      
-    andro <- percentpredation %.%
-      filter(predator.names=="Leptagrion.andromache") %.%
-      select(mean.pred) %.%
-      transform(mean.pred=round(mean.pred*100,1)) %.%
-      as.numeric()
-
-    elong <- percentpredation %.%
-      filter(predator.names=="Leptagrion.elongatum") %.%
-      select(mean.pred) %.%
-      transform(mean.pred=round(mean.pred*100,1)) %.%
-      as.numeric()
-
-    ## test a squared term with 
-    # 
-    # diet_overlap_phylo %.%
-    #   #filter(nspp>1) %.%
-    #   with(lm(overlap~phylodistance,weights=nspp)) %.%
-    #   pander(caption="Linear model of diet overlap as a function of phylogenetic distance between predators.")
-
-    #summary(dietoverlap_lm)
-
-    diet_phylo_lm_summary <- diet_overlap_phylo %.%
-      #filter(nspp>1) %.%
-      with(lm(overlap~phylodistance,weights=nspp)) %.%
-      summary()
-
-
-    dietmat <- diet_overlap_phylo %.%
-      select(-species_pair) %.%
-      unique() %.%
-      dcast(phylopred1~phylopred2,value.var="overlap") %.%
-      data.frame(row.names="phylopred1") %.%
-      as.matrix()
 
 Among the most common predator taxa (i.e. those used in our experiment,
 described below) the damselflies (*Leptagrion andromache* and
@@ -609,16 +351,6 @@ the niche overlap index (F<sub>1,\\ 19</sub>=6.72, p=0.018, regression
 weighted by the number of prey species assayed.)
 
 ### Ecosystem-level effects and phylogenetic distance
-
-    predeffect <- function(resp="total.surv"){
-      diffeffect <- (mean(pd[[resp]][pd$treatment!="control"],na.rm=TRUE)-mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE))/mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE)
-      round(diffeffect,digits=2)*100
-      }
-    # 
-    # ddply(pd,.(treatment),summarize,meansurv=mean(total.surv))
-    # 
-    # mean(pd$emerged)
-    # mean(rowSums(pd[c("Culicidae","Chironomidae","Tipulidae","Scirtidae")])
 
 In our manipulative experiment, we placed a standardized prey community
 into bromeliads and measured five response variables. Predators had a
@@ -639,10 +371,7 @@ Add stats to above paragraph: the two "orthogonal" questions of how predators af
 
 
 
-    polyeffect <- function(resp="total.surv"){
-      diffeffect <- (mean(pd[[resp]][pd$treatment%in%c("elong + andro","elong + leech","elong + tab")],na.rm=TRUE)-mean(pd[[resp]][pd$treatment%in%c("andro","tabanid","leech","elong")],na.rm=TRUE))/mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE)
-      round(diffeffect,digits=2)*100
-      }
+
 
 <!--
 stats in following paragraph!  
@@ -677,23 +406,12 @@ confidence intervals from the randomization test which overlap 0.
 
 ### Figures
 
-    ggplot(metabolic_occur_phylo,
-           aes(x=phylodistance,y=metadistance))+geom_point()+xlab("phylogenetic distance")+ylab("euclidian distance between total metabolic capacity")
-
 ![Figure 1: Phylogenetic distance and predator co-occurance. Each point
 represents a pair of predator species. We caluclated total metabolic
 capacity for each predator species in each bromeliad, and then
 calculated co-occurance between two predators as the euclidian distance
 between total metabolic capacity of two
 species.](./predatordiversity_files/figure-markdown_strict/FIG_metabolic_occurance_as_phylo.svg)
-
-    diet_overlap_phylo %.%
-      #filter(nspp>1) %.%
-      ggplot(aes(x=phylodistance,y=overlap,size=nspp)) %.%
-      +geom_point() %.%
-      +stat_smooth(method="lm",size=1) %.%
-      +scale_size_continuous(range=c(2,6),name="Number of \n prey spp.") %.%
-      +xlab("phylogenetic distance") + ylab("niche overlap")
 
 ![Figure 2: Phylogenetic distance and diet similarity. We performed 237
 feeding trials with the 8 major predator taxa found in this system. We
@@ -704,9 +422,6 @@ predation events in each predator-prey pairing. Regression was weighted
 by the sample size of the predator-prey
 pair.](./predatordiversity_files/figure-markdown_strict/FIG_feeding_trial_as_phylo.png)
 
-    ggplot(subset(summarize_randoms_phylo,summarize_randoms_phylo$variable=="survival"),
-           aes(x=phylodistance,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")
-
 ![Figure 4: Combinations of predators beyond congenerics show a negative
 non-additive effect on predation rate. Points represent the mean
 difference between the means of two monocultures compared to the mean of
@@ -716,41 +431,7 @@ effect. Relative to control (no predator) plants, bromeliads containing
 two predators which were not congeneric showed less
 predation](./predatordiversity_files/figure-markdown_strict/FIG_PD_experiment_nonadditive.svg)
 
-    # 
-    # ggplot(summarize_randoms_phylo,
-    #        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")+facet_wrap(~variable)
-
-    exp_summary <- pd %.%
-      select(treatment,total.surv,fine,decomp,growth,N) %.%
-      melt(id.vars="treatment") %.%
-      group_by(treatment,variable) %.%
-      summarise(meanval=mean(value),
-                n=n(),
-                sd=sd(value)) %.%
-      mutate(SE=sd/sqrt(n),
-             meanval_sig=signif(meanval,2),
-             SE_sig=signif(SE,2),
-             meanSE=paste(meanval_sig,"±",SE_sig)) %.%
-      dcast(treatment~variable,value.var="meanSE")
-
-    test <- exp_summary[c(2,1,3,7,8,4,5,6),] %.%
-      data.frame(row.names="treatment") %.%
-      rename(c("total.surv"="surviving",
-               "fine"="fine detritus",
-               "decomp"="decomposition",
-               "growth"="bromeliad growth"))
-
-
-    coltext <- expression("surviving insects","fine detritus (g)","leaf decomposition (g)",
-                          "bromeliad growth (g)","Nitrogen cycling")
-
-
-    grid.table(test,cols=coltext,gpar.colfill=gpar(fill="white",col="white"),
-               row.just="left",gp=gpar(cex=0.6),gpar.rowtext=gpar(),show.vlines=TRUE
-               )
-
-![plot of chunk
-TABLE\_communityexperiment](./predatordiversity_files/figure-markdown_strict/TABLE_communityexperiment.svg)
+![FALSE](./predatordiversity_files/figure-markdown_strict/TABLE_communityexperiment.svg)
 
 Discussion
 ----------
