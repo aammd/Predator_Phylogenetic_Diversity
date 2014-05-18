@@ -1,9 +1,17 @@
-% Predator phylogenetic diversity decreases predation rate via antagonistic interactions
-% A. Andrew M. MacDonald; Diane S. Srivastava; Gustavo Q. Romero
-%
+---
+title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
+author: "Andrew MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
+bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
+output:
+  html_document: default
+  word_document:
+    reference_docx: reference.docx
+  md_document: default
+---
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
+library(knitr)
 opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
 
 ## load packages
@@ -84,8 +92,7 @@ Phylogenetic diversity measures have provided useful insights into diverse plant
 communities [@Cadotte2009;@Cadotte2008;@Godoy2014], and yet have rarely been
 applied to local assemblages of predators [@Bersier2008;@Naisbit2011]. Many
 studies of phylogenetic signal in consumer traits focus on whole clades, rather
-than local assemblages (e.g. *Anolis* lizards [@Knouft2006], warblers [@Bohning-
-Gaese2003], treeboas [@Henderson2013] and wasps [@Udriene2005]) making it
+than local assemblages (e.g. *Anolis* lizards [@Knouft2006], warbler [@Bohning-Gaese2003], treeboas [@Henderson2013] and wasps [@Udriene2005]) making it
 difficult to connect these results to top-down effects at the scale of a local
 community. While these clade-specific studies often find weak evidence for
 phylogenetic signal in ecologically-relevant traits, studies at the level of the
