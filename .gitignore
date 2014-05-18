@@ -28,5 +28,5 @@ MS/predatordiversity_figs.html
 /MS/*.sublime-workspace
 
 /MS/*.html
-
+/MS/*.bibtex
 /MS/##*
