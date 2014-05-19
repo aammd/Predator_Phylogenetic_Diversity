@@ -3,10 +3,11 @@ title: "Predator phylogenetic diversity decreases predation rate via antagonisti
 author: "Andrew MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 output:
-  md_document: default
   html_document: default
   word_document:
     reference_docx: reference.docx
+  md_document: default
+
 
 ---
 
@@ -26,6 +27,7 @@ library(gplots)
 library(plyr)
 library(gridExtra)
 library(dplyr)
+library(magrittr)
 library(knitr)
 library(xtable)
 library(stargazer)
@@ -159,7 +161,7 @@ productivity more than equally speciose treatments from the same lineage
 result of indirect interactions either with prey species or other predators:
 prey species may respond to the presence of one predator by a behavioural shift
 that increases the predation by another predator population [@Carey2010a]. These
-trait-mediated indirect effects [@Werner2003] can be difficult to predict;
+trait-mediated indirect effects (TMII, [@Werner2003]) can be difficult to predict;
 however phylogenetic relatedness has been suggested as a possible means of
 predicting the combined effect of predators [@Naisbit2011]
 
@@ -186,9 +188,8 @@ insect emergence [@Starzomski2010] and increasing nutrient cycling
 decreases with phylogenetic distance if diet is phylogentically conserved. Alternatively,  closely related species may have evolved different diets to allow coexistence.
 
 3. *ecosystem-level effects*: Our experiments at the level of the whole habitat patch (i.e. a single bromeliad) allows us to examine direct and indirect effects of predator combinations.
-    * monoculture treatments allow us to assess the effect of each predator on a complete prey community and ecosystem function.  Phylogenetic similarity among predators may positively correlate with similarity in these effects
-    * In our predator combination treatments we force pairs of predators to co-occur.  If phylogenetic distance is negatively correlated with similarity in diet, then increasingly divergent pairs should show increased total predation, as they feed on different parts of the prey community.
-    * predator combination treatments also allow the estimation of non-additive effects, by comparison with monocultures.  The magnitude of these non-additive effects may increase with phylogenetic distance.
+    * monoculture treatments allow us to assess the effect of each predator on a complete prey community and ecosystem function.  Phylogenetic similarity among predators is predicted to  correlate with similarity in single-species effects if related predators share similar trophic interactions (e.g. predation rate, diet breadth or magnitude of TMII)
+    * By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and non-additive effects.  If distance between species correlates with increasing difference, we will see an increase in these non-additive effects with phylogenetic distance. At the extreme, differences between predators may lead to IGP among predators.
 
 ## Methods
 
@@ -202,12 +203,11 @@ _Quesnelia arvensis_ Mez. (Bromeliaceae), a large terrestrial bromeliad that
 accumulates up to 2.8 L of rainwater in tanks formed by individual leaves. More
 than 47 species of macroinvertebrates are found in these aquatic communities.
 This diversity encompasses an entire foodweb, from detrital shredders
-(Tipulidae, Trichoptera), detrital scrapers (Scirtidae), collectors
-(Chironomidae, Syrphidae, Psychodidae), and filter feeders (Culicidae) to a
-diverse predator assemblage consisting of at least 3 species of _Leptagrion_
-(Zygoptera:Coenagrionidae), 2 species of predatory fly (Tabanidae), and 2
+(Diptera:Tipulidae, Trichoptera), detrital scrapers (Coleoptera:Scirtidae), collectors
+(All Diptera:Chironomidae, Syrphidae, Psychodidae), and filter feeders (Diptera:Culicidae) to a
+diverse predator assemblage consisting of at least 3 species of damselfly larvae (_Leptagrion_ spp., Zygoptera:Coenagrionidae), 2 species of predatory Horse Fly larvae (Diptera:Tabanidae), and 2
 species of leech (Hirudinidae).  Many other smaller or occasional predators also
-occur, such as predatory midges (Chironomidae:Tanypodinae) and Dytiscid beetles.
+occur, such as predatory midge larvae (Diptera:Chironomidae:Tanypodinae) and Dytiscid beetles.
 
 ### metabolic capacity and phylogenetic distance
 
@@ -218,15 +218,14 @@ nstudies <- sapply(nodeages,nrow)
 #names(nodeages)[which(nstudies>1)]
 n.nodes <- length(nodeages)
 ```
-In 2008, insects were counted and measured in an observational study of `r ncol(metabolic)-1` bromeliads. Within this observational dataset, we
-identified `r length(predtree_timetree_ages$tip.label)` species as predators.
-These predators vary in taxonomic relatedness: from congeners -- _Bezzia_ sp.
+In 2008, we counted and measured macroinvertebrates in an observational study of `r ncol(metabolic)-1` bromeliads. Within this observational dataset, we
+identified `r metabolic$Taxa %>% unique %>% length` species as predators.
+These predators include species related at the genus level -- e.g. _Bezzia_ sp.
 (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
-(Odonata:Coenagrionidae) with three --  to confamilials (three species of
-Tabanidae and two of Empididae, all Diptera). Three families of Diptera are
-represented by a single species each: Dolichopodidae, Corethrellidae and
-Chironomidae. The deepest taxonomic divide is between all insects present and a
-species of leech (Annelida:Hirudinidae).
+(Odonata:Coenagrionidae) with three -- and family level (three species of
+Tabanidae and two of Empididae, all Diptera).  Deeper divisions are also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
+Chironomidae) and the deepest taxonomic divide is between all insects present and a
+species of predatory leech (Annelida:Hirudinidae).
 
 We obtained node age estimates for all `r n.nodes` internal nodes of the tree, using www.timetree.org, an online database of published  molecular time estimates from the literature [@Hedges2006].  Most dates came from only a single study; where multiple dates were found we used the median estimate: Insecta--Hirudina (`r paste(range(nodeages[["insects.to.leeches.csv"]]$Time),collapse=" to ")` Mya, n=`r nstudies[["insects.to.leeches.csv"]]` studies), Odonata--Tabanidae (`r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya, n=`r nstudies[["odonata-Tabanidae.csv"]]` studies) and Tabanidae--Diptera (`r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya, n=`r nstudies[["tabanidae_culidicae_ie_Diptera.csv"]]` studies).  Node age data was available
 for all but the shallowest nodes of the tree, where either a lack of taxonomic
@@ -235,11 +234,9 @@ prevented more information from being included.   These branches were left as
 polytomies, and were all assigned identical, arbitrary and short branch lengths
 (15 Mya).
 
-###  Observations of predator co-occurance 
+###  Observations of predator co-occurence 
 
-We used an observational dataset collected in 2008 to examine patterns of co-
-occurance among predator taxa.  This dataset was collected by completely
-dissecting bromeliads and washing all leaves to remove invertebrates.  The
+We used the 2008 survey to examine patterns of co-occurence among predator taxa.  Each bromeliad was dissected and washed to remove invertebrates.  The
 resulting water was filtered through two sieves (250 and 850 µm), which removed
 particulate organic matter without losing any invertebrates.  All invertebrates
 were counted and identified to the lowest taxonomic level possible. The body
