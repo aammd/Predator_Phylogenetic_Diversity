@@ -2,10 +2,10 @@
 title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
 author: "Andrew MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 output:
-  html_document: default
-  md_document: default
   word_document:
     reference_docx: reference.docx
+  md_document: default
+  html_document: default
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 ---
 
@@ -235,7 +235,7 @@ to the functional effects of species when species differ substantially in body
 size.  Integrating the allometric relationship between body size and feeding
 rate [@Brown2004; @Wilby2005] over all individuals of a species allows estimates
 of "metabolic capacity", or the potential energy requirements of a species
-[@Srivastava2009a;Chown2007]. Metabolic capacity is equal to individual body
+[@Srivastava2009a;@Chown2007]. Metabolic capacity is equal to individual body
 mass raised to the power of 0.69; this reflects the nonlinearity of feeding rate
 on body size across many invertebrate taxa. We used metabolic capacity to inform
 both our observational results and our experimental design (details below), with the exception
@@ -243,15 +243,17 @@ of our feeding trial data.  This is because the feeding trials were intended to
 measure which prey our predators ate, rather than their feeding rate (only the
 latter should scale with metabolic capacity).
 
-We evaluated overlap in predator diet preference using Pianka's index of niche overlap [@Pianka1974]:
+Questions 1 and 2 above focus on similarity between predator species, hypothesizing that this declines with increased phylogenetic distance between a pair of predators. We evaluated this similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
 
 $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
 For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
-predator $k$ (r $l$) for prey species $i$.  The number of prey species ($n$) is
-defined as the total number of prey species assayed with both predator taxa, and
-preference is defined as the proportion of trials for each predator-prey assay
-that resulted in prey mortality.
+predator $k$ (or $l$) for resource $i$.  For the observational dataset of
+predator distribution, $n$=`r ncol(metabolic)-1` bromeliads surveyed. For diet
+trials, the number of resources ($n$) is defined as the total number of prey
+species assayed with both predator taxa, and preference is defined as the
+proportion of trials for each predator-prey assay that resulted in prey
+mortality.
 
 
 ###  Observations of predator distribution 
@@ -303,8 +305,7 @@ predation to occur.
 Again, we estimated overlap between different predators using Pianka's index,
 using the proportion of trials which resulted in predation as our measure of
 predator preference. Because not not every predator/prey pair was equally
-replicated we weighted our analysis by  the number of trials conducted.
-
+replicated, we weighted our analysis by  the number of trials conducted.
 
 ### Community effect experiment
 
@@ -341,11 +342,11 @@ insects.
 
 Each bromeliad was supplied with dried leaves, simulating natural detritus
 inputs from the canopy.  We enriched these leaves with N-15 by fertilizing five
-(Jabuticaba, *Plinia cauliflora*) plants with 40ml pot^-1^ day^-1^ of 5g/L ammonium
-sulphate containing 10% atom excess of N15. *duration*. started on
-27 January 2011 Whole leaves were then picked from plants and air-dried until constant
-weight, and then soaked for three days and the water discarded. About 1.5 g of
-leaves were placed in each bromeliad (`r mean(pd$mass.g.)`g ± `r sd(pd$mass.g.)`).
+(Jabuticaba, *Plinia cauliflora*) plants with 40ml pot^-1^ day^-1^ of 5g/L
+ammonium sulphate containing 10% atom excess of N15 over 21 days. Whole leaves
+were then picked from plants and air-dried until constant weight, and then
+soaked for three days and the water discarded. About 1.5 g of leaves were placed
+in each bromeliad (`r mean(pd$mass.g.)`g ± `r sd(pd$mass.g.)`).
 
 Each bromeliad was stocked with a representative insect community. The densities
 of each prey taxon were calculated from the 2008 observational dataset, using
