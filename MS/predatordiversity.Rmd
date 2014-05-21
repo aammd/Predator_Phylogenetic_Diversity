@@ -1,14 +1,12 @@
 ---
 title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
 author: "Andrew MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
-bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 output:
-  html_document: default
   word_document:
     reference_docx: reference.docx
   md_document: default
-
-
+  html_document: default
+bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 ---
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
@@ -207,7 +205,7 @@ diverse predator assemblage consisting of at least 3 species of damselfly larvae
 species of leech (Hirudinidae).  Many other smaller or occasional predators also
 occur, such as predatory midge larvae (Diptera:Chironomidae:Tanypodinae) and Dytiscid beetles.
 
-### metabolic capacity and phylogenetic distance
+### Phylogenetic distance, metabolic capacity and niche overlap
 
 ```{r CALC_nodeages}
 nodeages <- lapply(list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE),read.csv)
@@ -241,23 +239,35 @@ of "metabolic capacity", or the potential energy requirements of a species
 [@Srivastava2009a;Chown2007]. Metabolic capacity is equal to individual body
 mass raised to the power of 0.69; this reflects the nonlinearity of feeding rate
 on body size across many invertebrate taxa. We used metabolic capacity to inform
-both our observational results and our experimental design, with the exception
+both our observational results and our experimental design (details below), with the exception
 of our feeding trial data.  This is because the feeding trials were intended to
 measure which prey our predators ate, rather than their feeding rate (only the
 latter should scale with metabolic capacity).
 
+We evaluated overlap in predator diet preference using Pianka's index of niche overlap [@Pianka1974]:
+
+$O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
+
+For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
+predator $k$ (r $l$) for prey species $i$.  The number of prey species ($n$) is
+defined as the total number of prey species assayed with both predator taxa, and
+preference is defined as the proportion of trials for each predator-prey assay
+that resulted in prey mortality.
+
+
 ###  Observations of predator distribution 
 
-We used the 2008 survey to examine patterns of co-occurence among predator taxa.  Each bromeliad was dissected and washed to remove invertebrates.  The
+We used the 2008 survey to examine patterns of co-occurrence among predator taxa.  Each bromeliad was dissected and washed to remove invertebrates.  The
 resulting water was filtered through two sieves (250 and 850 µm), which removed
 particulate organic matter without losing any invertebrates.  All invertebrates
 were counted and identified to the lowest taxonomic level possible. The body
 length of all individuals was measured, when possible.
 
 We calculated total metabolic capacity of each predator species in each
-bromeliad by summing estimates for all individuals of the same species within a
-plant. We quantified "coexistence" as a distance measure: the euclidian distance
-among the total metabolic capacity among occupied bromeliads.
+bromeliad by summing estimates of biomass for all individuals of the same
+species within a plant.  We used these values to calculate niche overlap as
+measured by habitat occupancy.  Overlap was calculated for each pair of
+predators across all bromeliads, even if neither species occurred there.
 
 ### Diet similarity
 ```{r CALC_feeding_trials}
@@ -281,21 +291,21 @@ rep_range <- range(feeding_trials$number.trials)
 ```
 
 We conducted `r ntrials` feeding trials of `r npred` predator taxa fed `r nprey` prey taxa between March and April 2011.  We  covered all potential predator-prey pairs present in the experiment
-(described below), and attempted to perform all other trials whenever possible. However, due to the rarity of some taxa many predator-prey pairs were not possible; we tested `r ncombos` pairwise combinations.  Most trials were replicated at least 5 times, but the number of replicates for various combinations ranged from `r rep_range[[1]]` to `r rep_range[[2]]`. We placed
+(described below), and attempted to perform all other trials whenever possible. However, due to the rarity of some taxa many predator-prey pairs were not possible; we tested `r ncombos` pairwise combinations.  Most trials were replicated at least five times, but the number of replicates for various combinations ranged from `r rep_range[[1]]` to `r rep_range[[2]]`. We placed
 predators together with prey in a 50ml vial, with a leaf or stick for
 substrate. The only exception was the tabanid larvae, which we
 placed between two vertical surfaces to imitate the narrow space found in
 bromeliad leaf axils, their preferred microhabitat.  Generally our trials contained a single predator and a
 single prey individual, except in the case of very small prey (_Elpidium_ sp.)
 or predators (_Monopelopia_ sp.) in which case we increased the density.  We
-replicated each combination up to 5 times where possible, and allowed 1 day for
+replicated each combination up to five times where possible, and allowed one day for
 predation to occur.
 
-We evaluated overlap in predator diet preference using Pianka (1973 CITE) 's index of niche overlap :
+Again, we estimated overlap between different predators using Pianka's index,
+using the proportion of trials which resulted in predation as our measure of
+predator preference. Because not not every predator/prey pair was equally
+replicated we weighted our analysis by  the number of trials conducted.
 
-$O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
-
-For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of predator $k$ (r $l$) for prey species $i$.  The number of prey species ($n$) is defined as the total number of prey species assayed with both predator taxa, and preference is defined as the proportion of trials for each predator-prey assay that resulted in prey mortality.   
 
 ### Community effect experiment
 
@@ -303,22 +313,27 @@ For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of pr
   [@Cadotte2010] -->
 
 Our experiment was created with two goals in mind: first, to measure the major
-effects of these predators on their prey and second, to estimate the non-
+effects of each of these predators on their prey and second, to estimate the non-
 additive effects of pairwise predator combinations.  The strength of these non
 additive effects can then be related back to the phylogenetic distance between
 each member of a pair of predators.
 
-We selected the most common predators in this system, which also created a range
-of relatedness: two congeneric damselflies (*Leptagrion andromache* and
+We selected the four most common predators in this system, which also created a
+range of relatedness: two congeneric damselflies (*Leptagrion andromache* and
 *Leptagrion elongatum*), two insects (*L. elongatum* and a Tabanid predatory
 fly), and two invertebrates (*L. elongatum* and leeches).  We used each of the
 pairs of predators just described, as well as each species in monoculture, and a
 predator-free control (8 treatments, n=5).  Combinations were substitutive,
-maintaining the same amount of total predator metabolic capacity to isolate the effects of predator behaviour and traits.  Response
-variables included the rate of decomposition of leaves, bromeliad growth and
-insect emergence.  This experiment allows the estimation of the effect of each
-predator species (monoculture treatments), as well as the detection of non-
-additive effects in predator combinations.
+maintaining the same amount of total predator metabolic capacity to isolate the
+effects of predator behaviour and traits. Substitutive experiments often hold
+total abundance constant, but when species differ substantially in body size -
+as in this experiment - allometric effects of body size on feeding rate can
+confound detection of non-additive effects based on trophic traits or species
+interactions, and standardizing to community metabolic capacity is preferred
+[@Srivastava2009a]. Response variables included the rate of decomposition of
+leaves, bromeliad growth and insect emergence.  This experiment allows the
+estimation of the effect of each predator species (monoculture treatments), as
+well as the detection of non- additive effects in predator combinations.
 
 In Feburary 2011, bromeliads between 90 and 200ml were collected, thoroughly
 washed and soaked for 12 hours in a tub of water.  They were then hung for 48
@@ -411,10 +426,12 @@ metabolic_distance <- metabolic %.%
 
 ## Should this be the proportion of eating?!?
 
+# pred x prey matrix, with cells = proportion eaten
 prop.eaten <- feeding_trials %.%
   mutate(prop.eaten=eaten/number.trials) %.%
   dcast(predator.names~Prey.species,value.var="prop.eaten")
-
+  
+## a table, with one four rows for each pair of predators.  This is necessary for connecting.  it causes repeats. 
 predators <- expand.grid(pred1=unique(feeding_trials$predator.names),
                          pred2=unique(feeding_trials$predator.names)) %.%
   filter(pred1!=pred2) %.%
@@ -427,6 +444,7 @@ predators <- expand.grid(pred1=unique(feeding_trials$predator.names),
 ## imply a different formula for Pianka's index.
 pianka <- function(df){
   mat <- as.matrix(df[,-1])
+  # scale rows
   rowtotal <- rowSums(mat)
   mat <- apply(mat,2,function(x) x/rowtotal)
 
@@ -466,6 +484,72 @@ predpairs <- prednames %.%
 
 diet_overlap <- split(predators,predators$pred_pair) %.%
   lapply(function(x) x[colSums(!is.na(x))>1]) %.%
+  lapply(pianka) %.%
+  ldply(stringsAsFactors=FALSE) %.%
+  rename(c(".id"="species_pair")) %.%
+  semi_join(predpairs)
+
+metabolic
+
+```
+
+```{r metabolictest}
+
+## a table, with one four rows for each pair of predators.  This is necessary for connecting.  it causes repeats. 
+predators <- expand.grid(pred1=unique(metabolic$Taxa),
+                         pred2=unique(metabolic$Taxa)) %.%
+  filter(pred1!=pred2) %.%
+  transform(pred_pair=paste0(pred1,"_",pred2)) %.%
+  melt(id.vars="pred_pair",value.name="Taxa",variable.name="p") %.%
+  left_join(metabolic) %.%
+  select(-p)
+
+## both ecopath and ecosim documentation (and those sources derived from them)
+## imply a different formula for Pianka's index.
+pianka <- function(df){
+  mat <- as.matrix(df[,-1])
+  # scale rows
+  rowtotal <- rowSums(mat)
+  mat <- apply(mat,2,function(x) x/rowtotal)
+
+  squares <- mat^2
+  sum_sq_prod <- prod(rowSums(squares))
+  
+  prod <- apply(mat,2,prod)
+  sum_prod <- sum(prod)
+  
+  overlap <- sum_prod/sqrt(sum_sq_prod)
+  nspp <- ncol(mat)
+  data.frame(overlap,nspp)
+}
+
+outer_paste <-   function(x) outer(x,x,paste,sep="_")
+
+prednames <- metabolic$Taxa %.%
+  unique() %.%
+  outer_paste()
+
+predpairs <- prednames %.%
+  melt(value.name="species_pair") %.%
+  transform(species_pair=as.character(species_pair)) %.%
+  semi_join(
+    {
+      prednames %.%
+        upper.tri() %.%
+        melt(value.name="corner") %.%
+        filter(corner)
+      },
+    by=c("Var1","Var2")
+    ) %.%
+  transform(pred1=unique(metabolic$Taxa)[Var1],
+            pred2=unique(metabolic$Taxa)[Var2]) %.%
+  select(pred1,pred2,species_pair) %.%
+  arrange(pred1,pred2)
+
+pres_overlap <- predators %>%
+  select(-Taxa) %>%
+  split(predators$pred_pair) %.%
+  #lapply(function(x) x[colSums(!is.na(x))>1]) %.%
   lapply(pianka) %.%
   ldply(stringsAsFactors=FALSE) %.%
   rename(c(".id"="species_pair")) %.%
@@ -515,6 +599,8 @@ summarize_random_test <- rand.means %.%
 ## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
 metabolic_occur_phylo <- left_join(metabolic_distance,phylogenetic_distance)
 
+metatest <- left_join(pres_overlap,phylogenetic_distance)
+
 diet_overlap_phylo <- left_join(diet_overlap,phylogenetic_distance)
 
 summarize_randoms_phylo <- left_join(summarize_random_test,phylogenetic_distance)
@@ -555,7 +641,7 @@ pval_metabol <- round(pf(meta_phylo_lm_summary$fstatistic[1],
                       ,digits=2)
 ```
 
-Across all bromeliads, predator species differed widely in metabolic capacity, from `r smallsp$value` for a species of _Monopelopia_ to `r largesp$value` for large predatory flies in the family Tabanidae.  Predators often co-occured in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` species per plant).  However, the euclidian distance between the total metabolic capacity of two predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`, p=`r pval_metabol`).
+Across all bromeliads, predator species differed widely in metabolic capacity, from `r smallsp$value` for a species of _Monopelopia_ to `r largesp$value` for large predatory flies in the family Tabanidae.  Predators often co-occured in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  However, the euclidian distance between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`, p=`r pval_metabol`).
 
 ### diet similarity
 
@@ -651,14 +737,17 @@ Our experimental design allows us to estimate the non-additive effect of predato
 <!-- previous sentence rather complex-sounding. how about an equation? -->
 <!-- need stats for these response variables, too -->
 
-We found the greatest effect for prey survival: while effects of _L. andromache_ and _L. elongatum_ in combination were quite similar to the effect of either alone, when _L. elongatum_ was placed in the same plant as either a Tabanid larva or leeches, on average 5 more prey (18% of total prey community) survived till the end of the experiment (Fig 3).  This effect was smaller among the other variables, most of which showed confidence intervals from the randomization test which overlap 0.
+We found the greatest effect for prey survival: while effects of _L. andromache_ and _L. elongatum_ in combination were quite similar to the effect of either alone, when _L. elongatum_ was placed in the same plant as either a Tabanid larva or leeches, on average five more prey individuals (18% of total prey community) survived till the end of the experiment (Fig 3).  This effect was smaller among the other variables, most of which showed confidence intervals from the randomization test which overlap 0.
 
 
 ### Figures
 
-```{r FIG_metabolic_occurance_as_phylo,fig.cap="Figure 1: Phylogenetic distance and predator co-occurance.  Each point represents a pair of predator species.  We caluclated total metabolic capacity for each predator species in each bromeliad, and then calculated co-occurance between two predators as the euclidian distance between total metabolic capacity of two species.",dev='svg'}
+```{r FIG_metabolic_occurance_as_phylo,fig.cap="Figure 1: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated co-occurrence between two predators as the euclidean distance between total metabolic capacity of two species.",dev='svg'}
 ggplot(metabolic_occur_phylo,
        aes(x=phylodistance,y=metadistance))+geom_point()+xlab("phylogenetic distance")+ylab("euclidian distance between total metabolic capacity")
+
+ggplot(metatest,aes(x=phylodistance,y=overlap))+geom_point(size=3,alpha=0.3) + stat_smooth(method = "loess",span=0.8)
+
 ```
 
 
