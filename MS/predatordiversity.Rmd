@@ -180,16 +180,14 @@ their presence dramatically alters community dynamics (e.g. decreasing rates of
 insect emergence [@Starzomski2010] and increasing nutrient cycling
 [@Ngai2006]). 
 
-
-
 1. *species co-occurance*: closely-related predators may occur together more frequently than less-related predators if there is a strong phylogenetic signal to habitat requirements.   Alternatively, very closely related species may never co-occur because high overlap in ecological niches results in competitive exclusion.
 
 2. *diet similarity*: similarity in diet (as measured by feeding trials)
 decreases with phylogenetic distance if diet is phylogentically conserved. Alternatively,  closely related species may have evolved different diets to allow coexistence.
 
 3. *ecosystem-level effects*: Our experiments at the level of the whole habitat patch (i.e. a single bromeliad) allows us to examine direct and indirect effects of predator combinations.
-    * monoculture treatments allow us to assess the effect of each predator on a complete prey community and ecosystem function.  Phylogenetic similarity among predators is predicted to  correlate with similarity in single-species effects if related predators share similar trophic interactions (e.g. predation rate, diet breadth or magnitude of TMII)
-    * By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and non-additive effects.  If distance between species correlates with increasing difference, we will see an increase in these non-additive effects with phylogenetic distance. At the extreme, differences between predators may lead to IGP among predators.
+    a) monoculture treatments allow us to assess the effect of each predator on a complete prey community and ecosystem function.  Phylogenetic similarity among predators is predicted to  correlate with similarity in single-species effects if related predators share similar trophic interactions (e.g. predation rate, diet breadth or magnitude of TMII)
+    b) By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and non-additive effects.  If distance between species correlates with increasing difference, we will see an increase in these non-additive effects with phylogenetic distance. At the extreme, differences between predators may lead to IGP among predators.
 
 ## Methods
 
@@ -234,7 +232,21 @@ prevented more information from being included.   These branches were left as
 polytomies, and were all assigned identical, arbitrary and short branch lengths
 (15 Mya).
 
-###  Observations of predator co-occurence 
+Species co-occurrence is often measured in terms of non-random patterns of
+species occurrence or abundance, but such measures will only be poorly related
+to the functional effects of species when species differ substantially in body
+size.  Integrating the allometric relationship between body size and feeding
+rate [@Brown2004; @Wilby2005] over all individuals of a species allows estimates
+of "metabolic capacity", or the potential energy requirements of a species
+[@Srivastava2009a;Chown2007]. Metabolic capacity is equal to individual body
+mass raised to the power of 0.69; this reflects the nonlinearity of feeding rate
+on body size across many invertebrate taxa. We used metabolic capacity to inform
+both our observational results and our experimental design, with the exception
+of our feeding trial data.  This is because the feeding trials were intended to
+measure which prey our predators ate, rather than their feeding rate (only the
+latter should scale with metabolic capacity).
+
+###  Observations of predator distribution 
 
 We used the 2008 survey to examine patterns of co-occurence among predator taxa.  Each bromeliad was dissected and washed to remove invertebrates.  The
 resulting water was filtered through two sieves (250 and 850 µm), which removed
@@ -242,16 +254,10 @@ particulate organic matter without losing any invertebrates.  All invertebrates
 were counted and identified to the lowest taxonomic level possible. The body
 length of all individuals was measured, when possible.
 
-Because predators in this system vary widely in size, we used "metabolic
-capacity", which correlates with predator feeding rate [@Brown2004; @Wilby2005].
-We calculated body mass using allometric equations which related dry biomass to
-body length.   Metabolic capacity is calculated as the sum of individual body
-mass raised to the power of 0.69; this reflects the nonlinearity of feeding rate
-on body size across many invertebrate taxa.  We calculated total metabolic
-capacity of each predator species in each bromeliad by summing estimates for all
-individuals of the same species within a plant. We quantified "coexistence" as a
-distance measure: the euclidian distance among the total metabolic capacity
-among occupied bromeliads.
+We calculated total metabolic capacity of each predator species in each
+bromeliad by summing estimates for all individuals of the same species within a
+plant. We quantified "coexistence" as a distance measure: the euclidian distance
+among the total metabolic capacity among occupied bromeliads.
 
 ### Diet similarity
 ```{r CALC_feeding_trials}
