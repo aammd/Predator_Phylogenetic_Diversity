@@ -2,10 +2,10 @@
 title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
 author: "Andrew MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 output:
+  html_document: default
+  md_document: default
   word_document:
     reference_docx: reference.docx
-  md_document: default
-  html_document: default
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 ---
 
@@ -178,14 +178,14 @@ their presence dramatically alters community dynamics (e.g. decreasing rates of
 insect emergence [@Starzomski2010] and increasing nutrient cycling
 [@Ngai2006]). 
 
-1. *species co-occurance*: closely-related predators may occur together more frequently than less-related predators if there is a strong phylogenetic signal to habitat requirements.   Alternatively, very closely related species may never co-occur because high overlap in ecological niches results in competitive exclusion.
+1. *species co-occurrence*: closely-related predators may occur together more frequently than less-related predators if there is a strong phylogenetic signal to habitat requirements.   Alternatively, very closely related species may never co-occur because high overlap in ecological niches results in competitive exclusion.
 
 2. *diet similarity*: similarity in diet (as measured by feeding trials)
-decreases with phylogenetic distance if diet is phylogentically conserved. Alternatively,  closely related species may have evolved different diets to allow coexistence.
+decreases with phylogenetic distance if diet is phylogenetically conserved. Alternatively,  closely related species may have evolved different diets to allow coexistence.
 
 3. *ecosystem-level effects*: Our experiments at the level of the whole habitat patch (i.e. a single bromeliad) allows us to examine direct and indirect effects of predator combinations.
     a) monoculture treatments allow us to assess the effect of each predator on a complete prey community and ecosystem function.  Phylogenetic similarity among predators is predicted to  correlate with similarity in single-species effects if related predators share similar trophic interactions (e.g. predation rate, diet breadth or magnitude of TMII)
-    b) By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and non-additive effects.  If distance between species correlates with increasing difference, we will see an increase in these non-additive effects with phylogenetic distance. At the extreme, differences between predators may lead to IGP among predators.
+    b) By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and nonadditive effects.  If distance between species correlates with increasing difference, we will see an increase in these non-additive effects with phylogenetic distance. At the extreme, differences between predators may lead to IGP among predators.
 
 ## Methods
 
@@ -196,8 +196,7 @@ Cardoso ($25^{\circ} 03^{\prime}$ S, $47^{\circ}53^{\prime}$ W), a 22.5 ha
 island off the south coast of São Paulo state, Brazil. We worked in a closed
 coastal forest (restinga) the understory of which is mostly covered by
 _Quesnelia arvensis_ Mez. (Bromeliaceae), a large terrestrial bromeliad that
-accumulates up to 2.8 L of rainwater in tanks formed by individual leaves. More
-than 47 species of macroinvertebrates are found in these aquatic communities.
+accumulates up to 2.8 L of rainwater in tanks formed by individual leaves. Previous observational surveys of this work found more than 47 species of macroinvertebrates in these aquatic communities [@Romero2010].
 This diversity encompasses an entire foodweb, from detrital shredders
 (Diptera:Tipulidae, Trichoptera), detrital scrapers (Coleoptera:Scirtidae), collectors
 (All Diptera:Chironomidae, Syrphidae, Psychodidae), and filter feeders (Diptera:Culicidae) to a
