@@ -16,7 +16,7 @@ matrix_to_df <- function(matrix_for_df){
 ## which indicates which two predators are being compared.
 ## to do that, I want to pair all the predator names together, say in a square matrix, and then melt it to obtain the paired rows:
 
-paired_predator_pianka <- function(pred_x_resource,pred_colname){
+paired_predator_pianka <- function(pred_x_resource,pred_colname,...){
   
   taxa_names <- pred_x_resource %>% extract2(pred_colname)
   
@@ -31,13 +31,12 @@ paired_predator_pianka <- function(pred_x_resource,pred_colname){
   equals(prednames %>% nrow) %>%
   not %>%
   if(.) stop(message("The number of rows in output does not match the number of possible pairs"))
-  
   ## next merge with the actual data
   prednames %>%
-  melt(id.vars = "dietpredpair",value.name="predator.names") %>%
+  melt(id.vars = "dietpredpair",value.name=pred_colname) %>%  ## giving same name here for merging later
   mutate(dietpredpair=as.character(dietpredpair)) %>% 
   left_join(pred_x_resource) %>% 
-  select(-variable,-predator.names) %>%
+  select(-variable,...) %>%
   group_by(dietpredpair) %>%
   do(. %>% select(-dietpredpair) %>% pianka)
 }

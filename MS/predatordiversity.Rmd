@@ -400,16 +400,8 @@ phylogenetic_distance  <- predtree_timetree_ages %.%
 ```
 
 ```{r CALC_metabolic_distance}
-metabolic_distance <- metabolic %.%
-  data.frame(row.names="Taxa") %.%
-  as.matrix() %.%
-  vegdist(method="euclid") %.%
-  as.matrix() %.%
-  dist_to_df() %.%
-  rename(c("Var1"="metapred1",
-           "Var2"="metapred2",
-           "value"="metadistance")) %.%
-  mutate(species_pair=paste0(metapred1,"_",metapred2))
+
+paired_predator_pianka(pred_x_resource = metabolic,pred_colname = "Taxa",... =-Taxa)
 
 ```
 
