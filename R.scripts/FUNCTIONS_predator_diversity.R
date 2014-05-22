@@ -1,6 +1,76 @@
 ### functions for analyzing predator diversity experiment 2011
 ## June 2011, Andrew MacDonald
 
+# This function turns a matrix into a dataframe
+matrix_to_df <- function(matrix_for_df){
+  matrix_for_df %>% 
+  melt(as.is=TRUE) %>%                    # as.is important for preventing factors
+  filter(matrix_for_df %>% 
+         upper.tri %>% 
+         melt %>% 
+         extract2("value")
+  )
+}
+
+## To make comparisions between pairs of predators, we need a factor
+## which indicates which two predators are being compared.
+## to do that, I want to pair all the predator names together, say in a square matrix, and then melt it to obtain the paired rows:
+
+paired_predator_pianka <- function(pred_x_resource,pred_colname){
+  
+  taxa_names <- pred_x_resource %>% extract2(pred_colname)
+  
+  prednames <- taxa_names %>%
+  unique %>%
+  (function(x) set_names(x,x)) %>%
+  (function(x) outer(x,x,paste,sep="_")) %>%
+  matrix_to_df() %>%
+  select(dietpred1=Var1,dietpred2=Var2,dietpredpair=value)
+  
+  taxa_names %>% unique %>% length %>% choose(2) %>%
+  equals(prednames %>% nrow) %>%
+  not %>%
+  if(.) stop(message("The number of rows in output does not match the number of possible pairs"))
+  
+  ## next merge with the actual data
+  prednames %>%
+  melt(id.vars = "dietpredpair",value.name="predator.names") %>%
+  mutate(dietpredpair=as.character(dietpredpair)) %>% 
+  left_join(pred_x_resource) %>% 
+  select(-variable,-predator.names) %>%
+  group_by(dietpredpair) %>%
+  do(. %>% select(-dietpredpair) %>% pianka)
+}
+## then we calculate similarity for each.  for the predation data, we must first remove animals not assayed with both predators. the `pianka` function does this by removing those with NA colSums.
+
+## then we merge with phylogenetic data.
+
+
+## both ecopath and ecosim documentation (and those sources derived from them)
+## imply a different formula for Pianka's index.
+pianka <- function(df){
+  ## remove resources never tested on both animals
+  mat <- df %>% 
+  as.matrix %>%
+  colSums %>% 
+  is.na %>%
+  not %>%
+  df[.]
+  
+  # scale rows
+  rowtotal <- rowSums(mat)
+  mat <- apply(mat,2,function(x) x/rowtotal)
+  
+  squares <- mat^2
+  sum_sq_prod <- prod(rowSums(squares))
+  
+  prod <- apply(mat,2,prod)
+  sum_prod <- sum(prod)
+  
+  overlap <- sum_prod/sqrt(sum_sq_prod)
+  nspp <- ncol(mat)
+  data.frame(overlap,nspp)
+}
 
 
 
