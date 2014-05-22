@@ -22,11 +22,10 @@ library(vegan)
 library(picante)
 library(pander)
 library(gplots)
-library(plyr)
+#library(plyr)
 library(gridExtra)
 library(dplyr)
 library(magrittr)
-library(knitr)
 library(xtable)
 library(stargazer)
 
@@ -399,8 +398,9 @@ phylogenetic_distance  <- predtree_timetree_ages %.%
   select(phylopred1=Var1,
          phylopred2=Var2,
          phylodistance=value) %.%
-  mutate(pairs_RH=paste(phylopred1,phylopred2,sep="_"),
-         pairs_LH=paste(phylopred2,phylopred1,sep="_")) %.%
+  mutate(pairs_RH=paste0(phylopred1,"_",phylopred2),
+         pairs_LH=paste0(phylopred2,"_",phylopred1)
+         ) %.%
   melt(id.vars=c("phylopred1","phylopred2","phylodistance"),
        value.name="species_pair",
        variable.name="L_or_R") 
@@ -423,27 +423,22 @@ metabolic_distance <- metabolic %.%
 ```
 
 ```{r CALC_diet_overlap}
-# Check for TRUE ZEROS in cast matrix.
-
-## Fill = 0 !!!? correct ??!!!
-
-## similarity in diet is about how much they eat
-
-## Should this be the proportion of eating?!?
-
 # pred x prey matrix, with cells = proportion eaten
 prop.eaten <- feeding_trials %.%
   mutate(prop.eaten=eaten/number.trials) %.%
   dcast(predator.names~Prey.species,value.var="prop.eaten")
   
 ## a table, with one four rows for each pair of predators.  This is necessary for connecting.  it causes repeats. 
-predators <- expand.grid(pred1=unique(feeding_trials$predator.names),
-                         pred2=unique(feeding_trials$predator.names)) %.%
-  filter(pred1!=pred2) %.%
-  transform(pred_pair=paste0(pred1,"_",pred2)) %.%
-  melt(id.vars="pred_pair",value.name="predator.names",variable.name="p") %.%
-  left_join(prop.eaten) %.%
-  select(-p,-predator.names)
+
+predators <- feeding_trials %>%
+  extract2("predator.names") %>%
+  unique %>%
+  (function(x) expand.grid(pred1=x,pred2=x)) %>%
+  filter(pred1!=pred2) %>%
+  transform(pred_pair=paste0(pred1,"_",pred2)) %>%
+  melt(id.vars="pred_pair",value.name="predator.names",variable.name="p") %>%
+  left_join(prop.eaten) %>%
+  select(-p,-predator.names) 
 
 ## both ecopath and ecosim documentation (and those sources derived from them)
 ## imply a different formula for Pianka's index.
