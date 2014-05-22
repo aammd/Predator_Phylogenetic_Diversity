@@ -382,24 +382,29 @@ indicate a significant nonadditive effect of a predator combination.
 
 ## metabolic matrix -- the "distance" between predator co-occurance, measured as metabolism
 
-dist_to_df <- function(matrix_for_df){
-  melt(matrix_for_df)[melt(upper.tri(matrix_for_df))$value,]
-}
-
+# This function turns a matrix into a dataframe
+matrix_to_df <- function(matrix_for_df){
+  matrix_for_df %>% melt %>% filter(matrix_for_df %>% 
+                                      upper.tri %>% 
+                                      melt %>% 
+                                      extract2("value")
+                                    )
+  }
 
 ####### phylogeny matrix ####
 ## Calculate distances
 phylogenetic_distance  <- predtree_timetree_ages %.%
   cophenetic() %.%
-  dist_to_df() %.%
-  rename(c("Var1"="phylopred1",
-           "Var2"="phylopred2",
-           "value"="phylodistance")) %.%
+  matrix_to_df() %.%
+  select(phylopred1=Var1,
+         phylopred2=Var2,
+         phylodistance=value) %.%
   mutate(pairs_RH=paste(phylopred1,phylopred2,sep="_"),
          pairs_LH=paste(phylopred2,phylopred1,sep="_")) %.%
   melt(id.vars=c("phylopred1","phylopred2","phylodistance"),
        value.name="species_pair",
        variable.name="L_or_R") 
+## my 
 
 ```
 
