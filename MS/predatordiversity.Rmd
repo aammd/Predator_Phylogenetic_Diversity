@@ -228,24 +228,22 @@ to the functional effects of species when species differ substantially in body
 size.  Integrating the allometric relationship between body size and feeding
 rate [@Brown2004; @Wilby2005] over all individuals of a species allows estimates
 of "metabolic capacity", or the potential energy requirements of a species
-[@Srivastava2009a;@Chown2007]. Metabolic capacity is equal to individual body
-mass raised to the power of 0.69; this reflects the nonlinearity of feeding rate
+[@Srivastava2009a]. Metabolic capacity is equal to individual body
+mass raised to the power of 0.69 (an insect-specific exponent determined by Peters 19xx, [@Chown2007]); this reflects the nonlinearity of feeding rate
 on body size across many invertebrate taxa. We used metabolic capacity to inform
 both our observational results and our experimental design (details below), with the exception
 of our feeding trial data.  This is because the feeding trials were intended to
 measure which prey our predators ate, rather than their feeding rate (only the
 latter should scale with metabolic capacity).
 
-Questions 1 and 2 above focus on similarity between predator species, hypothesizing that this declines with increased phylogenetic distance between a pair of predators. We evaluated this similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
+Questions 1 and 2 above focus on niche overlap between predator species. Question 1 hypothesizes that if diet is conserved, then diet similarity declines with increased phylogenetic distance between a pair of predators. Question 2 hypothesizes that if habitat preference is phylogenetically conserved and competition between predators unimportant, then co-occurence declines with increased phylogenetic distance between a pair of predators. We evaluated both diet similarity and co-occurence between predators using Pianka's index of niche overlap [@Pianka1974]:
 
 $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
 For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
-predator $k$ (or $l$) for resource $i$.  For the observational dataset of
-predator distribution, $n$=`r ncol(metabolic)-1` bromeliads surveyed. For diet
-trials, the number of resources ($n$) is defined as the total number of prey
+predator $k$ (or $l$) for resource or habitat $i$. In terms of predator co-occurrence, $n$=`r ncol(metabolic)-1` bromeliads surveyed in the observational dataset described below. In terms of diet similarity, the number of resources ($n$) is defined as the total number of prey
 species assayed with both predator taxa, and preference is defined as the
-proportion of trials for each predator-prey assay that resulted in prey
+proportion of diet trials (see below) for each predator-prey assay that resulted in prey
 mortality.
 
 
@@ -255,7 +253,7 @@ We used the 2008 survey to examine patterns of co-occurrence among predator taxa
 resulting water was filtered through two sieves (250 and 850 µm), which removed
 particulate organic matter without losing any invertebrates.  All invertebrates
 were counted and identified to the lowest taxonomic level possible. The body
-length of all individuals was measured, when possible.
+length of all individuals was measured, when possible for small and medium-sized taxa (< 1cm final instar) and always for large-bodied taxa (> 1 cm final instar).
 
 We calculated total metabolic capacity of each predator species in each
 bromeliad by summing estimates of biomass for all individuals of the same
