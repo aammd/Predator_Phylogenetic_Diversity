@@ -360,7 +360,7 @@ indicate a significant non-additive effect of a predator combination.
 
 ## Results
 
-### Patterns of occurence
+### Patterns of occurrence
 
 ```{r CALC_phylogenetic_distance}
 ####### metabolic matrix ####
@@ -491,7 +491,7 @@ pval_metabol <- round(pf(meta_phylo_lm_summary$fstatistic[1],
                       ,digits=2)
 ```
 
-Across all bromeliads, predator species differed widely in metabolic capacity, from `r smallsp$value` for a species of _Monopelopia_ to `r largesp$value` for large predatory flies in the family Tabanidae.  Predators often co-occured in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  However, the niche overlap between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`, p=`r pval_metabol`).
+Across all bromeliads, predator species differed widely in metabolic capacity, from `r smallsp$value` for a species of _Monopelopia_ to `r largesp$value` for large predatory flies in the family Tabanidae.  Predators often co-occurred in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  However, the niche overlap between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance between them (F~`r meta_phylo_lm_summary$fstatistic[["numdf"]]`,`r meta_phylo_lm_summary$fstatistic[["dendf"]]`~=`r meta_phylo_lm_summary$fstatistic[["value"]]`, p=`r pval_metabol`).
 
 ### diet similarity
 
@@ -561,13 +561,7 @@ predeffect <- function(resp="total.surv"){
 # mean(rowSums(pd[c("Culicidae","Chironomidae","Tipulidae","Scirtidae")])
 ```
 
-In our manipulative experiment, we placed a standardized prey community into bromeliads and measured five response variables. Predators had a large effect on prey survivorship: on average all predator treatments showed `r abs(predeffect())`% lower prey emerging or surviving as larvae relative to the predator-free control.  Nitrogen transport to bromeliad leaves was slightly decreased relative to controls (`r predeffect("N")`%), and was only higher than the control in treatments including Tabanid predators.  We found a similar pattern for plant growth: on average, predators had a `r predeffect("growth")`% effect on growth of bromeliad leaves (mm), though Tabanids seemed to create a slight increase. The decomposition of coarse detritus and production of fine organic matter showed no obvious pattern related to the mere presence of predators.
-
-
-<!--
-Add stats to above paragraph: the two "orthogonal" questions of how predators affect communities independently and how they affect them non-additively (in combination)  
--->
-
+In our manipulative experiment, we placed a standardized prey community into bromeliads and measured five response variables. Predators had a large effect on prey survivorship: on average all predator treatments showed `r abs(predeffect())`% lower prey emerging or surviving as larvae relative to the predator-free control.  Nitrogen transport to bromeliad leaves was slightly decreased in bromeliads with predators relative to predator-free controls (`r predeffect("N")`%), and was only higher than the control in treatments including Tabanid predators.  We found a similar pattern for plant growth: on average, predators had a `r predeffect("growth")`% effect on growth of bromeliad leaves (leaf elongation in mm), though Tabanids seemed to create a slight increase. The decomposition of coarse detritus and production of fine organic matter showed no obvious pattern related to the presence of predators.
 
 ```{r polysummary}
 polyeffect <- function(resp="total.surv"){
@@ -576,10 +570,6 @@ polyeffect <- function(resp="total.surv"){
   }
 
 ```
-
-<!--
-stats in following paragraph!  
--->
 
 Predator combinations tended to have a non-additive effect on our response variables, even though we held total metabolic capacity constant amongst all treatments.  Approximately `r polyeffect()`% more prey survived in polyculture, on average,  compared to all monocultures.  Nitrogen uptake increased by (`r polyeffect("N")`%) and bromeliad growth by (`r polyeffect("growth")`%). Production of fine particulate organic matter increased by `r polyeffect("fine")`% more when predators were present in combination.
 
