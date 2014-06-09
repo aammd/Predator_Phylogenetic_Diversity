@@ -574,8 +574,6 @@ polyeffect <- function(resp="total.surv"){
 Predator combinations tended to have a non-additive effect on our response variables, even though we held total metabolic capacity constant amongst all treatments.  Approximately `r polyeffect()`% more prey survived in polyculture, on average,  compared to all monocultures.  Nitrogen uptake increased by (`r polyeffect("N")`%) and bromeliad growth by (`r polyeffect("growth")`%). Production of fine particulate organic matter increased by `r polyeffect("fine")`% more when predators were present in combination.
 
 Our experimental design allows us to estimate the non-additive effect of predator species pairs on whole communities of prey, and the functioning of the bromeliad ecosystem.  We used randomization tests to test the hypothesis that increased phylogenetic distance between members of a predator pair results in a greater magnitude of nonadditive effect.  We contrasted the differences of the mean individual predator treatments from the control with the mean difference of their pairwise combination from the control.  
-<!-- previous sentence rather complex-sounding. how about an equation? -->
-<!-- need stats for these response variables, too -->
 
 We found the greatest effect for prey survival: while effects of _L. andromache_ and _L. elongatum_ in combination were quite similar to the effect of either alone, when _L. elongatum_ was placed in the same plant as either a Tabanid larva or leeches, on average five more prey individuals (18% of total prey community) survived till the end of the experiment (Fig 3).  This effect was smaller among the other variables, most of which showed confidence intervals from the randomization test which overlap zero.
 
