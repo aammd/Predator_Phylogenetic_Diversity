@@ -191,12 +191,11 @@ island off the south coast of São Paulo state, Brazil. We worked in a closed
 coastal forest (restinga) the understory of which is mostly covered by
 _*Quesnelia arvensis*_ Mez. (Bromeliaceae), a large terrestrial bromeliad that
 accumulates up to 2.8 L of rainwater in tanks formed by individual leaves. Previous observational surveys of this work found more than 47 species of macroinvertebrates in these aquatic communities [@Romero2010].
-This diversity encompasses an entire foodweb, from detrital shredders
-(Diptera:Tipulidae, Trichoptera), detrital scrapers (Coleoptera:Scirtidae), collectors
-(All Diptera:Chironomidae, Syrphidae, Psychodidae), and filter feeders (Diptera:Culicidae) to a
-diverse predator assemblage consisting of at least 3 species of damselfly larvae (_Leptagrion_ spp., Zygoptera:Coenagrionidae), 2 species of predatory Horse Fly larvae (Diptera:Tabanidae), and 2
-species of leech (Hirudinidae).  Many other smaller or occasional predators also
-occur, such as predatory midge larvae (Diptera:Chironomidae:Tanypodinae) and Dytiscid beetles.
+This diversity encompasses multiple trophic groups.  Detritivores include various functional groups: shredders
+(Diptera:Tipulidae, Trichoptera), scrapers (Coleoptera:Scirtidae), and collectors
+(All Diptera:Chironomidae, Syrphidae, Psychodidae). Filter feeders (Diptera:Culicidae) are supported by the microbial components of the food web. A
+diverse predator assemblage consists of at least 3 species of damselfly larvae (_Leptagrion_ spp., Zygoptera:Coenagrionidae), 2 species of predatory Horse Fly larvae (Diptera:Tabanidae), and 2
+species of leech (Hirudinidae).  Other, smaller-bodied predators present include predatory midge larvae (Diptera:Chironomidae:Tanypodinae) and less abundant species such as Dytiscid beetles.
 
 ### Phylogenetic distance, metabolic capacity and niche overlap
 
