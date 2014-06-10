@@ -587,7 +587,7 @@ ggplot(metabolic_occur_phylo,
 ```
 
 
-```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2: Phylogenetic distance and diet similarity.  We performed 237 feeding trials with the 8 major predator taxa found in this system.  We found that more distantly-related predators consume more dissimiliar prey.  We measured diet similarity using Pianka's index of niche overlap.  Regression was weighted by the sample size of the predator-prey pair.",dev='png'}
+```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. The best-fit regression, weighted by sample size, is shown with the 95% CI.",dev='png'}
 
 diet_overlap_phylo %>%
   #filter(nspp>1) %>%
