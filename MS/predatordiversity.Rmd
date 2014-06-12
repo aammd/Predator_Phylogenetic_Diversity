@@ -17,6 +17,7 @@ opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
 
 ## load packages
 library(ggplot2)
+mytheme <- theme_bw()
 library(bipartite)
 library(reshape2)
 library(vegan)
@@ -29,6 +30,7 @@ library(dplyr)
 library(magrittr)
 library(xtable)
 library(stargazer)
+library(tidyr)
 
 # occurrance data -- abundance
 occur <- read.csv("../data/reorganized_data/predator.cooccur.txt",stringsAsFactor=FALSE) %>%
@@ -535,6 +537,13 @@ diet_phylo_lm_summary <- diet_overlap_phylo %>%
   summary()
 
 
+
+# diet_phylo_lm_summary <- diet_overlap_phylo %>%
+#   #filter(nspp>1) %>%
+#   glm(overlap~phylodistance,weights=nspp,data=.,family=binomial) %>%
+#   summary()
+
+
 dietmat <- diet_overlap_phylo %>%
   select(-species_pair) %>%
   unique() %>%
@@ -581,8 +590,81 @@ We found the greatest effect for prey survival: while effects of _L. andromache_
 ### Figures
 
 ```{r FIG_metabolic_occurance_as_phylo,fig.cap="Figure 1: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index.",dev='png'}
-ggplot(metabolic_occur_phylo,
-       aes(x=phylodistance,y=overlap))+geom_point(size=3,alpha=0.3) + stat_smooth(method = "loess",span=0.8)+xlab("phylogenetic distance")+ylab("Overlap in habitat use")
+fig1 <- metabolic_occur_phylo %>% 
+  ungroup %>% 
+  mutate(PDgrp = phylodistance %>%  cut(breaks = 5)) %>%
+  select(PDgrp,phylodistance,overlap) %>%
+  arrange(phylodistance) %>% 
+  group_by(PDgrp) %>%
+  mutate(grp_mean = mean(overlap),
+         grp_n = n(),
+         grp_se = sd(overlap)/sqrt(grp_n),
+         PD_mean = mean(phylodistance)) %>%
+  ggplot(aes(x = phylodistance, y = overlap)) + 
+  geom_point(colour = "black", fill = "darkgrey", size = 4, shape  = 23) + 
+  geom_point(aes(x = PD_mean,
+                 y = grp_mean,
+                 size = grp_n),
+             colour = "black", shape = 21) + 
+  geom_linerange(aes(x = PD_mean,
+                      ymin = grp_mean - grp_se,
+                      ymax = grp_mean + grp_se),
+                  colour = "black") + 
+  scale_size(range = c(3,9),name="Number of\npoints per\nmean") + 
+  xlab("Phylogenetic distance") + ylab("Overlap in habitat use") + 
+  mytheme
+
+models <- metabolic_occur_phylo %>% 
+  ungroup %>% 
+  select(phylodistance,overlap) %>%
+  arrange(phylodistance) %>%
+  (function(x) {
+    m1 <- nls(overlap ~ a * (phylodistance)^2 + b * phylodistance + c, 
+              data = x, 
+              start = list(a = -0.0000008, b = 0.0008, c = 1))
+    m2 <- nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
+              data = x, 
+              start = list(a = 900000, peak = 1))
+    m3 <- nls(overlap ~ b * exp(a * phylodistance),
+              data = x,
+              start = list(a = -0.0004, b = 1))
+    m4 <- nls(overlap ~ c * exp(a * phylodistance) / 
+                (c * exp(a * phylodistance) + (1 - c)),
+              data = x,
+              start = list(a = -0.007, c = 0.9))
+    m5 <- lm(overlap ~ phylodistance, data = x)
+    m6 <- nls(overlap ~ z,
+              data = x,
+              start = list(z = 0.4))
+    list(m1 = m1,m2 = m2,m3 = m3, m4 = m4, m5 = m5,m6 = m6)
+    })
+
+metabolic_occur_phylo  %>%
+  ungroup %>%
+  summarize(min_x = min(phylodistance),
+            max_x = max(phylodistance)) %>%
+  do(seq(from = .$min_x,
+         to = .$max_x,
+         length.out = 500) %>%
+       data.frame(phylodistance = .)
+  ) %>% 
+  mutate(pred_m2 = predict(models$m2,newdata = list(phylodistance = phylodistance)),
+         ) %>% 
+  gather(model,prediction,-phylodistance) %>%  
+  (function(x) fig1 + geom_line(aes(x = phylodistance, y = prediction),data = x)) 
+
+# AIC(models$m1,models$m2,models$m3,models$m4,models$m5,models$m6) %>% 
+#   (function(df){
+#   data.frame(df,rnames = df %>% row.names)}) %>%
+#   arrange(AIC)
+
+summary(models$m2)
+
+lapply(models, summary)
+
+foo <- data.frame(one = c("a","b"), two = c("C","D"), row.names = 1)
+
+mutate(foo, test = row.names(foo))
 
 ```
 
@@ -595,7 +677,7 @@ diet_overlap_phylo %>%
   +geom_point() %>%
   +stat_smooth(method="lm",size=1) %>%
   +scale_size_continuous(range=c(2,6),name="Number of \n prey spp.") %>%
-  +xlab("phylogenetic distance") + ylab("Overlap in diet breadth")
+  +xlab("phylogenetic distance") + ylab("Overlap in diet breadth") + mytheme
 
 ```
 
@@ -603,7 +685,7 @@ diet_overlap_phylo %>%
 
 ```{r FIG_PD_experiment_nonadditive,fig.cap="Figure 3: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation",dev='png'}
 ggplot(subset(summarize_randoms_phylo,summarize_randoms_phylo$variable=="survival"),
-       aes(x=phylodistance,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")
+       aes(x=phylodistance,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)") + mytheme
 # 
 # ggplot(summarize_randoms_phylo,
 #        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")+facet_wrap(~variable)
@@ -639,6 +721,13 @@ coltext <- expression("surviving insects","fine detritus (g)","leaf decompositio
 grid.table(test,cols=coltext,gpar.colfill=gpar(fill="white",col="white"),
            row.just="left",gp=gpar(cex=0.6),gpar.rowtext=gpar(),show.vlines=TRUE
            )
+```
+
+```{r testtable, results = 'asis'}
+
+pd %>%
+  select(treatment,total.surv,fine,decomp,growth,N) %>%
+  stargazer(type = "html")
 ```
 
 ## Discussion
