@@ -614,30 +614,48 @@ fig1 <- metabolic_occur_phylo %>%
   xlab("Phylogenetic distance") + ylab("Overlap in habitat use") + 
   mytheme
 
+models_to_fit <- data.frame(formulae = c(
+  "overlap ~ a * (phylodistance)^2 + b * phylodistance + c",
+  "overlap ~ peak * exp(-1 * (phylodistance)^2 / a)",
+  "overlap ~ b * exp(a * phylodistance)",
+  "overlap ~ c * exp(a * phylodistance) / (c * exp(a * phylodistance) + (1 - c))")
+  ) %>% tbl_df()
+  
+models_to_fit$start <-  list(
+    list(a = -0.0000008, b = 0.0008, c = 1),
+    list(a = 900000, peak = 1),
+    list(a = -0.0004, b = 1),
+    list(a = -0.007, c = 0.9))
+
+# class(models_to_fit) <- c("tbl_df", "data.frame")
+# attr(models_to_fit, "row.names") <- .set_row_names(length(models_to_fit))
+
 models <- metabolic_occur_phylo %>% 
   ungroup %>% 
   select(phylodistance,overlap) %>%
-  arrange(phylodistance) %>%
-  (function(x) {
-    m1 <- nls(overlap ~ a * (phylodistance)^2 + b * phylodistance + c, 
-              data = x, 
-              start = list(a = -0.0000008, b = 0.0008, c = 1))
-    m2 <- nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
-              data = x, 
-              start = list(a = 900000, peak = 1))
-    m3 <- nls(overlap ~ b * exp(a * phylodistance),
-              data = x,
-              start = list(a = -0.0004, b = 1))
-    m4 <- nls(overlap ~ c * exp(a * phylodistance) / 
+  do(quadratic = nls(overlap ~ a * (phylodistance)^2 + b * phylodistance + c, 
+              data = ., 
+              start = list(a = -0.0000008, b = 0.0008, c = 1)),
+    bellshaped = nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
+              data = ., 
+              start = list(a = 900000, peak = 1)),    
+    exponential = nls(overlap ~ b * exp(a * phylodistance),
+              data = .,
+              start = list(a = -0.0004, b = 1)),
+    Sshaped = nls(overlap ~ c * exp(a * phylodistance) / 
                 (c * exp(a * phylodistance) + (1 - c)),
-              data = x,
-              start = list(a = -0.007, c = 0.9))
-    m5 <- lm(overlap ~ phylodistance, data = x)
-    m6 <- nls(overlap ~ z,
-              data = x,
+              data = .,
+              start = list(a = -0.007, c = 0.9)),
+    linear = lm(overlap ~ phylodistance, data = .),
+    constant = nls(overlap ~ z,
+              data = .,
               start = list(z = 0.4))
-    list(m1 = m1,m2 = m2,m3 = m3, m4 = m4, m5 = m5,m6 = m6)
-    })
+    ) 
+
+f_extract <- function(f) sapply(models,function(x) f(x[[1]]))
+
+data.frame(model = names(models),
+           AIC = f_extract(AIC))
 
 metabolic_occur_phylo  %>%
   ungroup %>%
@@ -648,20 +666,10 @@ metabolic_occur_phylo  %>%
          length.out = 500) %>%
        data.frame(phylodistance = .)
   ) %>% 
-  mutate(pred_m2 = predict(models$m2,newdata = list(phylodistance = phylodistance)),
+  mutate(pred_m2 = predict(models$bellshaped[[1]],newdata = list(phylodistance = phylodistance)),
          ) %>% 
   gather(model,prediction,-phylodistance) %>%  
   (function(x) fig1 + geom_line(aes(x = phylodistance, y = prediction),data = x)) 
-
-# AIC(models$m1,models$m2,models$m3,models$m4,models$m5,models$m6) %>% 
-#   (function(df){
-#   data.frame(df,rnames = df %>% row.names)}) %>%
-#   arrange(AIC)
-
-
-# foo <- data.frame(one = c("a","b"), two = c("C","D"), row.names = 1)
-# 
-# mutate(foo, test = row.names(foo))
 
 ```
 
