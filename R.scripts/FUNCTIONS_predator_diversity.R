@@ -35,7 +35,9 @@ fit_some_models <- function(data_phylo_overlap){
 #                        (c * exp(a * phylodistance) + (1 - c)),
 #                      data = .,
 #                      start = list(a = -0.007, c = 0.9)),
-       linear = lm(overlap ~ phylodistance, data = .),
+       linear = nls(overlap ~ a* phylodistance + b, 
+                    data = .,
+                    start = list(a = -0.1,b = 0.7)),
        constant = nls(overlap ~ z,
                       data = .,
                       start = list(z = 0.4))
@@ -86,18 +88,27 @@ pianka_plot <- function(data_phylo_overlap,formula_quote="overlap ~ peak * exp(-
     ungroup %>% 
     select(phylodistance,overlap)
   
-  predictions  <-  replicate(
-    100,{
-      boot  <- rawdata[sample.int(nrow(rawdata), replace = TRUE), ]
-      model = failwith(NULL,nls)(model_formula, 
-                                 data = boot, 
-                                 start = list(a = 900000, peak = 1))
-      # Output predictions at each point that we'll want to plot later
-      if(!is.null(model)) predict(model, data.frame(x = x_sequence)) else rep(NA,length(x_sequence))
-    }
+  predictions  <-  replicate(n = 100,
+                             expr = {
+                               boot  <- rawdata[sample.int(nrow(rawdata), replace = TRUE), ]
+                               model = failwith(NULL,nls)(model_formula, 
+                                                          data = boot, 
+                                                          start = list(a = 900000, peak = 1))
+                               # Output predictions at each point that we'll want to plot later
+                               if(!is.null(model)) {
+                                 predict(model, 
+                                         data.frame(x = x_sequence))
+                               }
+                               else {
+                                 rep(NA,length(x_sequence))
+                               }
+                             },
+                             simplify = FALSE
   )
+  #browser()
   
-  #  browser()
+  predictions  <- do.call(cbind,predictions)
+ # browser()
   
   observed_fit <- nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
                       data = rawdata, 
@@ -105,8 +116,8 @@ pianka_plot <- function(data_phylo_overlap,formula_quote="overlap ~ peak * exp(-
   
   x_sequence %>%
     mutate(pred_m2 = predict(observed_fit,newdata = list(phylodistance = phylodistance)),
-           upper = apply(predictions, 1, quantile, .975, na.rm = TRUE),
-           lower = apply(predictions, 1, quantile, .025, na.rm = TRUE)
+           upper = apply(predictions,1,quantile,prob = .975, na.rm = TRUE),
+           lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE)
     ) %>% 
     #  gather(model,prediction,-phylodistance) %>%
     (function(x) fig1 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +

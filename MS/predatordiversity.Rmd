@@ -246,10 +246,11 @@ For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
 predator $k$ (or $l$) for resource or habitat $i$. In terms of predator co-occurrence, $n$=`r ncol(metabolic)-1` bromeliads surveyed in the observational dataset described below. In terms of diet similarity, the number of resources ($n$) is defined as the total number of prey
 species assayed with both predator taxa, and preference is defined as the
 proportion of diet trials (see below) for each predator-prey assay that resulted in prey
-mortality.
+mortality.  
 
+We quantified the effect of phylogenetic distance on each of distributional and diet similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to this relationship (linear, constant, and several appropriate nonlinear functions).  We compared these models using AIC, selected the best model, and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively).
 
-###  Observations of predator distribution 
+###  Distributional Similarity 
 
 We used the 2008 survey to examine patterns of co-occurrence among predator taxa.  Each bromeliad was dissected and washed to remove invertebrates.  The
 resulting water was filtered through two sieves (250 and 850 µm), which removed
@@ -263,7 +264,7 @@ species within a plant.  We used these values to calculate niche overlap as
 measured by habitat occupancy.  Overlap was calculated for each pair of
 predators across all bromeliads, even if neither species occurred there.
 
-### Diet similarity
+### Diet Similarity
 ```{r CALC_feeding_trials}
 ##  predator x prey trials
 
@@ -589,11 +590,15 @@ We found the greatest effect for prey survival: while effects of _L. andromache_
 
 ### Figures
 
-```{r FIG_metabolic_occurance_as_phylo,fig.cap="Figure 1: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index.",dev='png'}
-metabolic_occur_phylo %>% 
-  ungroup %>% 
-  select(phylodistance,overlap) %>%
-  fit_some_models
+```{r FIG_metabolic_occurance_as_phylo,fig.cap="Figure 1: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. ",dev='png'}
+
+if(FALSE) {
+  model_aic <- metabolic_occur_phylo %>% 
+    ungroup %>% 
+    select(phylodistance,overlap) %>%
+    fit_some_models
+  write.csv(model_aic,file = "distributional_similarity.csv")
+  }
 
 metabolic_occur_phylo %>% 
   ungroup %>% 
@@ -603,17 +608,9 @@ metabolic_occur_phylo %>%
 ```
 
 
-```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. The best-fit regression, weighted by sample size, is shown with the 95% CI.",dev='png'}
+```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. The best-fit regression, weighted by sample size, is shown with 95% CI.",dev='png'}
 
-diet_overlap_phylo %>%
-  #filter(nspp>1) %>%
-  ggplot(aes(x=phylodistance,y=overlap,size=nspp)) %>%
-  +geom_point() %>%
-  +stat_smooth(method="lm",size=1) %>%
-  +scale_size_continuous(range=c(2,6),name="Number of \n prey spp.") %>%
-  +xlab("phylogenetic distance") + ylab("Overlap in diet breadth") + mytheme
-
-
+if(TRUE){
 models <- diet_overlap_phylo %>% 
   ungroup %>% 
   select(phylodistance,overlap,nspp) %>%
@@ -642,10 +639,11 @@ models <- diet_overlap_phylo %>%
 
 f_extract <- function(f) sapply(models,function(x) f(x[[1]]))
   
-  data.frame(model = names(models),
-             AIC = f_extract(AIC)) %>%
-    arrange(AIC %>% desc)
-
+data.frame(model = names(models),
+           AIC = f_extract(AIC)) %>%
+  arrange(AIC) %>%
+  write.csv(file = "diet_similarity.csv")
+}
 
 
 fig1 <- diet_overlap_phylo %>% 
@@ -655,6 +653,7 @@ fig1 <- diet_overlap_phylo %>%
   geom_point(shape  = 21) + 
   geom_point(colour = "black", fill = "darkgrey", shape  = 21, alpha = 0.6) + 
   xlab("Phylogenetic distance") + ylab("Overlap in habitat use") + 
+  scale_size(range = c(3,9),name="Number of\nprey") +
   mytheme
 
 x_sequence <- diet_overlap_phylo  %>%
@@ -683,17 +682,17 @@ predictions  <-  replicate(
     }
   )
 
-#  browser()nls(overlap ~ b * exp(a * phylodistance),
-                       data = .,
-                       start = list(a = -0.0004, b = 1),
-                       weights = nspp)
+# #  browser()nls(overlap ~ b * exp(a * phylodistance),
+#                        data = .,
+#                        start = list(a = -0.0004, b = 1),
+#                        weights = nspp)
+# 
+# observed_fit <- nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
+#                     data = rawdata, 
+#                     start = list(a = 900000, peak = 1))
 
-observed_fit <- nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
-                    data = rawdata, 
-                    start = list(a = 900000, peak = 1))
 
-
-
+# HERE 
 ```
 
 
