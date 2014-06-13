@@ -590,86 +590,15 @@ We found the greatest effect for prey survival: while effects of _L. andromache_
 ### Figures
 
 ```{r FIG_metabolic_occurance_as_phylo,fig.cap="Figure 1: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index.",dev='png'}
-fig1 <- metabolic_occur_phylo %>% 
-  ungroup %>% 
-  mutate(PDgrp = phylodistance %>%  cut(breaks = 5)) %>%
-  select(PDgrp,phylodistance,overlap) %>%
-  arrange(phylodistance) %>% 
-  group_by(PDgrp) %>%
-  mutate(grp_mean = mean(overlap),
-         grp_n = n(),
-         grp_se = sd(overlap)/sqrt(grp_n),
-         PD_mean = mean(phylodistance)) %>%
-  ggplot(aes(x = phylodistance, y = overlap)) + 
-  geom_point(colour = "black", fill = "darkgrey", size = 3, shape  = 23) + 
-  geom_point(aes(x = PD_mean,
-                 y = grp_mean,
-                 size = grp_n),
-             colour = "black", shape = 21) + 
-  geom_linerange(aes(x = PD_mean,
-                      ymin = grp_mean - grp_se,
-                      ymax = grp_mean + grp_se),
-                  colour = "black") + 
-  scale_size(range = c(3,9),name="Number of\npoints per\nmean") + 
-  xlab("Phylogenetic distance") + ylab("Overlap in habitat use") + 
-  mytheme
-
-models_to_fit <- data.frame(formulae = c(
-  "overlap ~ a * (phylodistance)^2 + b * phylodistance + c",
-  "overlap ~ peak * exp(-1 * (phylodistance)^2 / a)",
-  "overlap ~ b * exp(a * phylodistance)",
-  "overlap ~ c * exp(a * phylodistance) / (c * exp(a * phylodistance) + (1 - c))")
-  ) %>% tbl_df()
-  
-models_to_fit$start <-  list(
-    list(a = -0.0000008, b = 0.0008, c = 1),
-    list(a = 900000, peak = 1),
-    list(a = -0.0004, b = 1),
-    list(a = -0.007, c = 0.9))
-
-# class(models_to_fit) <- c("tbl_df", "data.frame")
-# attr(models_to_fit, "row.names") <- .set_row_names(length(models_to_fit))
-
-models <- metabolic_occur_phylo %>% 
+metabolic_occur_phylo %>% 
   ungroup %>% 
   select(phylodistance,overlap) %>%
-  do(quadratic = nls(overlap ~ a * (phylodistance)^2 + b * phylodistance + c, 
-              data = ., 
-              start = list(a = -0.0000008, b = 0.0008, c = 1)),
-    bellshaped = nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
-              data = ., 
-              start = list(a = 900000, peak = 1)),    
-    exponential = nls(overlap ~ b * exp(a * phylodistance),
-              data = .,
-              start = list(a = -0.0004, b = 1)),
-    Sshaped = nls(overlap ~ c * exp(a * phylodistance) / 
-                (c * exp(a * phylodistance) + (1 - c)),
-              data = .,
-              start = list(a = -0.007, c = 0.9)),
-    linear = lm(overlap ~ phylodistance, data = .),
-    constant = nls(overlap ~ z,
-              data = .,
-              start = list(z = 0.4))
-    ) 
+  fit_some_models
 
-f_extract <- function(f) sapply(models,function(x) f(x[[1]]))
-
-data.frame(model = names(models),
-           AIC = f_extract(AIC))
-
-metabolic_occur_phylo  %>%
-  ungroup %>%
-  summarize(min_x = min(phylodistance),
-            max_x = max(phylodistance)) %>%
-  do(seq(from = .$min_x,
-         to = .$max_x,
-         length.out = 500) %>%
-       data.frame(phylodistance = .)
-  ) %>% 
-  mutate(pred_m2 = predict(models$bellshaped[[1]],newdata = list(phylodistance = phylodistance)),
-         ) %>% 
-  gather(model,prediction,-phylodistance) %>%  
-  (function(x) fig1 + geom_line(aes(x = phylodistance, y = prediction),data = x)) 
+metabolic_occur_phylo %>% 
+  ungroup %>% 
+  select(phylodistance,overlap) %>%
+  pianka_plot
 
 ```
 
@@ -683,6 +612,87 @@ diet_overlap_phylo %>%
   +stat_smooth(method="lm",size=1) %>%
   +scale_size_continuous(range=c(2,6),name="Number of \n prey spp.") %>%
   +xlab("phylogenetic distance") + ylab("Overlap in diet breadth") + mytheme
+
+
+models <- diet_overlap_phylo %>% 
+  ungroup %>% 
+  select(phylodistance,overlap,nspp) %>%
+  do(quadratic = nls(overlap ~ a * (phylodistance)^2 + b * phylodistance + c, 
+                     data = ., 
+                     start = list(a = -0.0000008, b = 0.0008, c = 1),
+                     weights = nspp),
+     bellshaped = nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
+                      data = ., 
+                      start = list(a = 900000, peak = 1),
+                      weights = nspp),    
+     exponential = nls(overlap ~ b * exp(a * phylodistance),
+                       data = .,
+                       start = list(a = -0.0004, b = 1),
+                       weights = nspp),
+     #        Sshaped = nls(overlap ~ c * exp(a * phylodistance) / 
+     #                        (c * exp(a * phylodistance) + (1 - c)),
+     #                      data = .,
+     #                      start = list(a = -0.007, c = 0.9)),
+     linear = lm(overlap ~ phylodistance, data = .,weights = nspp),
+     constant = nls(overlap ~ z,
+                    data = .,
+                    start = list(z = 0.4),
+                    weights = nspp)
+     ) 
+
+f_extract <- function(f) sapply(models,function(x) f(x[[1]]))
+  
+  data.frame(model = names(models),
+             AIC = f_extract(AIC)) %>%
+    arrange(AIC %>% desc)
+
+
+
+fig1 <- diet_overlap_phylo %>% 
+  ungroup %>%
+  select(phylodistance,overlap,nspp) %>%
+  ggplot(aes(x = phylodistance, y = overlap,size = nspp)) + 
+  geom_point(shape  = 21) + 
+  geom_point(colour = "black", fill = "darkgrey", shape  = 21, alpha = 0.6) + 
+  xlab("Phylogenetic distance") + ylab("Overlap in habitat use") + 
+  mytheme
+
+x_sequence <- diet_overlap_phylo  %>%
+  ungroup %>%
+  summarize(min_x = min(phylodistance),
+            max_x = max(phylodistance)) %>%
+  do(seq(from = .$min_x,
+         to = .$max_x,
+         length.out = 500) %>%
+       data.frame(phylodistance = .)
+     ) 
+
+rawdata <- diet_overlap_phylo %>% 
+  ungroup %>% 
+  select(phylodistance,overlap,nspp)
+
+predictions  <-  replicate(
+  100,{
+    boot  <- rawdata[sample.int(nrow(rawdata), replace = TRUE), ]
+    model = failwith(NULL,nls)(overlap ~ b * exp(a * phylodistance), 
+                               data = boot, 
+                               start = list(a = -0.0004, b = 1),
+                               weights = nspp)
+    # Output predictions at each point that we'll want to plot later
+    if(!is.null(model)) predict(model, x_sequence) else rep(NA,length(x_sequence))
+    }
+  )
+
+#  browser()nls(overlap ~ b * exp(a * phylodistance),
+                       data = .,
+                       start = list(a = -0.0004, b = 1),
+                       weights = nspp)
+
+observed_fit <- nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
+                    data = rawdata, 
+                    start = list(a = 900000, peak = 1))
+
+
 
 ```
 
