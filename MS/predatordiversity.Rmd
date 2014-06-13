@@ -610,7 +610,7 @@ metabolic_occur_phylo %>%
 
 ```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. The best-fit regression, weighted by sample size, is shown with 95% CI.",dev='png'}
 
-if(TRUE){
+if(FALSE){
 models <- diet_overlap_phylo %>% 
   ungroup %>% 
   select(phylodistance,overlap,nspp) %>%
@@ -630,12 +630,16 @@ models <- diet_overlap_phylo %>%
      #                        (c * exp(a * phylodistance) + (1 - c)),
      #                      data = .,
      #                      start = list(a = -0.007, c = 0.9)),
-     linear = lm(overlap ~ phylodistance, data = .,weights = nspp),
+     linear = nls(overlap ~ a* phylodistance + b, 
+                  data = .,
+                  start = list(a = -0.1,b = 0.7), weights = nspp),
      constant = nls(overlap ~ z,
                     data = .,
                     start = list(z = 0.4),
                     weights = nspp)
      ) 
+}
+
 
 f_extract <- function(f) sapply(models,function(x) f(x[[1]]))
   
@@ -645,16 +649,19 @@ data.frame(model = names(models),
   write.csv(file = "diet_similarity.csv")
 }
 
+exponential <- function(x,a,b) b * exp(a * x)
 
-fig1 <- diet_overlap_phylo %>% 
+fig2 <- diet_overlap_phylo %>% 
   ungroup %>%
   select(phylodistance,overlap,nspp) %>%
-  ggplot(aes(x = phylodistance, y = overlap,size = nspp)) + 
-  geom_point(shape  = 21) + 
-  geom_point(colour = "black", fill = "darkgrey", shape  = 21, alpha = 0.6) + 
-  xlab("Phylogenetic distance") + ylab("Overlap in habitat use") + 
+  ggplot(aes(x = phylodistance, y = overlap)) + 
+  geom_point(aes(size = nspp), shape  = 21) + 
+  geom_point(aes(size = nspp), colour = "black", fill = "darkgrey", shape  = 21, alpha = 0.6) + 
+  xlab("Phylogenetic distance") + ylab("Diet similarity (Pianka's index)") + 
   scale_size(range = c(3,9),name="Number of\nprey") +
   mytheme
+
+# fig2 + stat_function(fun = exponential,args = f_extract(coef)$exponential %>% as.list , size = 1)
 
 x_sequence <- diet_overlap_phylo  %>%
   ungroup %>%
@@ -673,26 +680,43 @@ rawdata <- diet_overlap_phylo %>%
 predictions  <-  replicate(
   100,{
     boot  <- rawdata[sample.int(nrow(rawdata), replace = TRUE), ]
-    model = failwith(NULL,nls)(overlap ~ b * exp(a * phylodistance), 
-                               data = boot, 
-                               start = list(a = -0.0004, b = 1),
-                               weights = nspp)
+    #browser()
+    model = nls(overlap ~ b * exp(a * phylodistance), 
+                data = boot, 
+                start = list(a = -0.0004, b = 1),
+                weights = nspp)
     # Output predictions at each point that we'll want to plot later
-    if(!is.null(model)) predict(model, x_sequence) else rep(NA,length(x_sequence))
-    }
+    if(!is.null(model)) {
+      predict(model, 
+              data.frame(x = x_sequence))
+      }
+    else {
+      rep(NA,length(x_sequence))
+      }
+    },
+  simplify = FALSE
   )
 
-# #  browser()nls(overlap ~ b * exp(a * phylodistance),
-#                        data = .,
-#                        start = list(a = -0.0004, b = 1),
-#                        weights = nspp)
-# 
-# observed_fit <- nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
-#                     data = rawdata, 
-#                     start = list(a = 900000, peak = 1))
+predictions  <- do.call(cbind,predictions)
+
+observed_fit <- nls(overlap ~ b * exp(a * phylodistance), 
+                    data = rawdata, 
+                    start = list(a = -0.0004, b = 1),
+                    weights = nspp)
+
+x_sequence %>% tbl_df %>%
+  mutate(pred_m2 = predict(observed_fit,newdata = list(phylodistance = phylodistance)),
+         upper = apply(predictions,1,quantile,prob = .975, na.rm = TRUE),
+         lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE)
+         ) %>% 
+  #  gather(model,prediction,-phylodistance) %>%
+  (function(x) fig2 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +
+     geom_line(aes(x = phylodistance, y = upper),data = x,linetype = "dashed") +
+     geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")
+   ) 
 
 
-# HERE 
+
 ```
 
 

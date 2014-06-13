@@ -69,7 +69,7 @@ pianka_plot <- function(data_phylo_overlap,formula_quote="overlap ~ peak * exp(-
     #                       ymax = grp_mean + grp_se),
     #                   colour = "black") + 
     #   scale_size(range = c(3,9),name="Number of\npoints per\nmean") + 
-    xlab("Phylogenetic distance") + ylab("Overlap in habitat use") + 
+    xlab("Phylogenetic distance") + ylab("Distributional similarity (Pianka's index)") + 
     mytheme
   
   model_formula <- as.formula(formula_quote)
