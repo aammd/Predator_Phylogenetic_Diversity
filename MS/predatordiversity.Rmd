@@ -2,9 +2,9 @@
 title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
 author: "Andrew MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 output:
-  html_document: default
-  md_document: default
   pdf_document: default
+  md_document: default
+  html_document: default
   word_document:
     reference_docx: reference.docx
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
@@ -180,7 +180,7 @@ insect emergence [@Starzomski2010] and increases nutrient cycling
 decreases with phylogenetic distance if diet is phylogenetically conserved. Alternatively,  closely related species may have evolved different diets to allow coexistence.
 
 3. *ecosystem-level effects*: Our experiments at the level of the whole habitat patch (i.e. a single bromeliad) allows us to examine direct and indirect effects of predator combinations.
-    a) monoculture treatments allow us to assess the effect of each predator on a complete prey community and ecosystem function.  Phylogenetic similarity among predators is predicted to  correlate with similarity in single-species effects if related predators share similar trophic interactions (e.g. predation rate, diet breadth or magnitude of TMII)
+    a) monoculture treatments allow us to assess the effect of each predator on a complete prey community and ecosystem function.  Phylogenetic similarity among predators is predicted to  correlate with similarity in single-species effects if related predators share similar trophic interactions (e.g. predation rate, diet breadth)
     b) By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and nonadditive effects.  If distance between species correlates with increasing difference, we will see an increase in these non-additive effects with phylogenetic distance. At the extreme, differences between predators may lead to IGP among predators.
 
 ## Methods
@@ -601,7 +601,7 @@ fig1 <- metabolic_occur_phylo %>%
          grp_se = sd(overlap)/sqrt(grp_n),
          PD_mean = mean(phylodistance)) %>%
   ggplot(aes(x = phylodistance, y = overlap)) + 
-  geom_point(colour = "black", fill = "darkgrey", size = 4, shape  = 23) + 
+  geom_point(colour = "black", fill = "darkgrey", size = 3, shape  = 23) + 
   geom_point(aes(x = PD_mean,
                  y = grp_mean,
                  size = grp_n),
@@ -658,13 +658,10 @@ metabolic_occur_phylo  %>%
 #   data.frame(df,rnames = df %>% row.names)}) %>%
 #   arrange(AIC)
 
-summary(models$m2)
 
-lapply(models, summary)
-
-foo <- data.frame(one = c("a","b"), two = c("C","D"), row.names = 1)
-
-mutate(foo, test = row.names(foo))
+# foo <- data.frame(one = c("a","b"), two = c("C","D"), row.names = 1)
+# 
+# mutate(foo, test = row.names(foo))
 
 ```
 
@@ -724,55 +721,17 @@ grid.table(test,cols=coltext,gpar.colfill=gpar(fill="white",col="white"),
 ```
 
 ```{r testtable, results = 'asis'}
-
-pd %>%
-  select(treatment,total.surv,fine,decomp,growth,N) %>%
-  stargazer(type = "html")
+# 
+# pd %>%
+#   select(treatment,total.surv,fine,decomp,growth,N) %>%
+#   stargazer(type = "html")
 ```
 
 ## Discussion
 
-### co-occurrence
-Predators appear to be generalist with regard to their habitat preference; indicating that prey face a heterogeneous landscape of predator risks, and demonstrating that our experimental design captures natural variation in predator composition
-
-Predators occurring together at smaller spatial scales (i.e. within the same plant) may have limited direct interactions due to habitat structure, for example via the physical obstructions caused by detritus ().  Srivastava found that such habitat complexity within a bromeliad -- specifically the presence of coarse detritus -- reduces the amount of predation by damselflies.  It is not clear how these factors might influence the other predators in this system.  Effects might be similar for leeches, which are also active predators.  Tabanids are sit-and-wait predators, living deep in leaf axils, so it is likely that they are less affected by local patch structural conditions than other predators.  
-
-two important steps -- oviposition decisions and survival -- determine organism coexistence in bromeliad patches.
-
-Predator lifecycles can be quite long in this system, much longer than the lives of invertebrate prey (Robin).  As a result, actively dispersing inverts are probably faced with choices among various predation-risks in patches.  While this is beyond the sope of our work, we report evidence for both strong IGp nonliearities in predation amount, and a broad overlap in predator co-occurance. This indicates that, at the level of the metacommunity, discrete patches have varying amounts of predator biomass, which may not necessarily correlate with the amount of predation pressure they may face.
-
-Habitat selection is difficult to ascertain from observational data.  Especially given that animals in this system have difference lifecycles.  The insects are rapidly changing (smaller insects) while large predators may say or a while,and physical detritus longer still. 
-
-hm.  there's an idea: if there is IGP or TMII among predators, that means composition or biomass of predators can be decoupled from predation rate.  That could lead to strange decisions by insects, with nonintuitive results.
-
-### diet similarity
-* We demonstrate a slight but important decrease in feeding preferences with phylogenetic distance, indicating that food web structure itself might vary with phylogenetic diversity, becoming more compartmentalized when predators are more dissimilar.
- 
-calulate predatr's feeding rate nd diet breath simultaneously, and relate this to their phylogenetic distance from each other.
-could be that there is a phylgenetic signal in the prey eaten?  not really our focus here.  in fact we are more interested in whether similar predators have similar effects on communities.  
-
-* The differences in predation rates and diet breadth among our predators represents important trait differences between the groups involved, including differences in metabolic rate (physiological literature) and feeding mode. (for example, Tabanids and leeches are peircing predators, while Leptagrion is gape-limited.)
-
-Diet similarity, like occurance, also has two components: predator 
-
-### community experiment
-
-* Phylogenetically diverse predator assemblages showed more prey survivorship (i.e. less predation) than expected; this may be to strong trait-mediated indirect effects on the feeding rate of _Leptagrion elongatum_ when in the presence of other non-damselfly predators.
-
-Trait-mediated indirect effects may be common in nature [@Werner2003]. In our system we observed less predation in predator combinations, perhaps because the damselflies lowered their predation rates when they were exposed to other predators. Trait mediated interactions might be frequent in this system: for example, in close quarters of bromeliads it may be more likely that predators are aware of each other's densities. Physical touch and chemical cues can both be frequent cues for the presence of predators, and can trigger trait-mediated-effects. In bromeliads, a diverse community occurs at a very small spatial scale and diverse predators are quite likely to overlap.  Such predator-induced decreases in feeding might actually be common, although we would not estimate them directly by densities of predators [@Werner2003].
-
-* Feeding differences between predators, combined with their patchy but unpredictable distribution among bromeliads, creates a large variation in food web structure and total amount of predation per patch within this bromeliad metacommunity 
-
-Predators have different feeding rates, feed in different parts of the bromeliad, and have different effects on each other.  The presence of a predator with a low feeding rate may have a strong positive effect on prey survival, if it decreases the predation rate of _Leptagrion_ sp..  This uncouples predation rate and predator biomass, and creates a constantly changing amount of top-down regulation in this system.  These predators might also differ in dispersal rates, and in vulnerability to other predators.  for example, Leptagrion spp are frequent prey for semi-aquatic spiders, but tabanids are likely safe from most large predators because of their position deep in leaf axils.
 
 
-* In response to predator manipulations we observed less transfer of Nitrogen into bromeliad tissue than did Ngai and Srivastava (2006); this may be due to a greater role for bacterial decomposition in this system (cite?).
-
-Insects sometimes can be the major group which determines the speed of decomposition.  However, when substrate is very recalcitrant the insects are only able to break down small amounts of detritus.  In restingas, the leaves are very thick and waxy, a possible adaptation to the poor growing conditions.  As a result, invertebrates in this system do not eat the leaves directly; rather microinverterbrates (zooplankton) and bacteria do most of the decomposition.  This hypothesis could be tested, for example, by performing bacterial community "transplants" from a host bromelid to a sterile bromeliad, which could then be monitored for a decomposition rate similar to the original bromeliad.  Ngai et al hypothesized that their increase in nutrient cycling that they observed was due to increased mortality of insects, and that bromeliads were absorbing N from odonate predator waste.  In our system, a more diverse predator community leaves different kinds of dead prey, and also different dead insects.  Tabanids are primarily sucking predators, which leave the integument of their prey behind.  The waste products of these different predators might also be very different, depending on the physiology and nutrient requirements and efficienty of each predator.  
-
-Leaf decomposition does not show a strong relationship with bromeliad size in Cardoso, even though there is a strong relationship in Costa Rica (Robin)
-
-It may be that different predators influence the composition of the detritus (animal, fecal and leaf), and that this bottom-up effect determines the success of different taxa, as well as rates of nutrient cycling.
+### 
 
 ## Supplementary
 
