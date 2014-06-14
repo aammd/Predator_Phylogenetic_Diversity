@@ -6,6 +6,10 @@
 
 # read in data, functions, packages ---------------------------------------
 
+library(dplyr)
+library(magrittr)
+library(tidyr)
+
 measured <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/measured.predators.csv",comment.char="#",as.is=TRUE)
 preds <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/other.predators.csv",comment.char="#",as.is=TRUE)
 lepts <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/Leptagrion/lept.csv",as.is=TRUE)
@@ -24,13 +28,15 @@ lepts2 <- with(lepts,
                          stringsAsFactors=FALSE))
 
 # rename the awkward column
-names(measured)[which(names(measured)=="Eaten.or.not..1...eaten")] <- "eaten"
+measured  <- measured %>% tbl_df %>%
+  select(predator:Trial.stopped,eaten = Eaten.or.not..1...eaten)
+
 
 
 # merge dataframes --------------------------------------------------------
 
 ## keep all measured predators, but merge in the information from 'lepts'
-measured.lept <- merge(measured,lepts2,all.x=TRUE)
+measured.lept  <-  left_join(measured,lepts2)
 
 #now combine the predator names from both datasets
 
@@ -143,4 +149,25 @@ measured.lept$Prey.species <- factor(prey.mes)
 
 ### at this point, the "measured.lept" dataset contains all the data required for analysis.
 
-write.csv(measured.lept,file="../data/reorganized_data/reorganized.feeding.trial.data.csv")
+feeding_trials <- measured.lept %>% 
+  group_by(Prey.species,predator.names) %>%
+  summarize(number.trials=n(),
+            eaten=sum(eaten.numeric)
+  ) %>%
+  filter(!is.na(predator.names)) %>%
+  filter(predator.names!="Leptagrion.small") %>%
+  ungroup()
+
+
+feeding_trials2 <- preds %>% 
+  select(Prey.species = Prey,
+         predator.names = Predator.,
+         number.trials = N..trials,
+         eaten = N..trials.with.eaten.prey)
+
+## check
+if(!identical(feeding_trials %>% names,feeding_trials2 %>% names)) stop(message("the columns must be the same!"))
+
+feedingtrial <- rbind(feeding_trials,feeding_trials2)
+
+write.csv(feedingtrial,file="../data/reorganized_data/reorganized.feeding.trial.data.csv")
