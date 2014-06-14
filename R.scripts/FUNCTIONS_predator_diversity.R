@@ -154,9 +154,10 @@ matrix_to_df <- function(matrix_for_df){
     )
 }
 
-## To make comparisions between pairs of predators, we need a factor
-## which indicates which two predators are being compared.
-## to do that, I want to pair all the predator names together, say in a square matrix, and then melt it to obtain the paired rows:
+## To make comparisions between pairs of predators, we need a factor which
+## indicates which two predators are being compared. to do that, I want to pair
+## all the predator names together, say in a square matrix, and then melt it to
+## obtain the paired rows:
 
 paired_predator_pianka <- function(pred_x_resource,pred_colname,...){
   
@@ -183,7 +184,9 @@ paired_predator_pianka <- function(pred_x_resource,pred_colname,...){
     group_by(species_pair) %>%
     do(. %>% select(-species_pair) %>% pianka)
 }
-## then we calculate similarity for each.  for the predation data, we must first remove animals not assayed with both predators. the `pianka` function does this by removing those with NA colSums.
+## then we calculate similarity for each.  for the predation data, we must first
+## remove animals not assayed with both predators. the `pianka` function does
+## this by removing those with NA colSums.
 
 ## then we merge with phylogenetic data.
 

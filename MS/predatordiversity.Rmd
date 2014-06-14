@@ -2,9 +2,9 @@
 title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
 author: "Andrew MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 output:
-  pdf_document: default
-  md_document: default
   html_document: default
+  md_document: default
+  pdf_document: default
   word_document:
     reference_docx: reference.docx
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
@@ -268,7 +268,7 @@ predators across all bromeliads, even if neither species occurred there.
 ```{r CALC_feeding_trials}
 ##  predator x prey trials
 
-feeding_trials <- foodweb %>%
+feeding_trials <- foodweb %>% 
   group_by(Prey.species,predator.names) %>%
   summarize(number.trials=n(),
             eaten=sum(eaten.numeric)
@@ -302,9 +302,6 @@ predator preference. Because not every predator/prey pair was equally
 replicated, we weighted our analysis by  the number of trials conducted.
 
 ### Community effect experiment
-
-<!-- Abundance-based phylogenetic diversity measure : convert to metabolic capacity based?? 
-  [@Cadotte2010] -->
 
 Our experiment was created with two goals in mind: first, to measure the major
 effects of each of these predators on their prey and ecosystem function and second, to estimate the non-
@@ -398,12 +395,12 @@ metabolic_distance <- paired_predator_pianka(pred_x_resource = metabolic,pred_co
 ```
 
 ```{r CALC_diet_overlap}
-
-
 ## When calculating similiarity, we start with a predator (row) by resource (column) dataframe.
 # pred x prey matrix, with cells = proportion eaten
-prop.eaten <- feeding_trials %>%
+prop.eaten <- feeding_trials %>% 
+  filter(!Prey.species %in% c("Leptagrion andromache <5mm","Leptagrion.elongatum")) %>%
   mutate(prop.eaten=eaten/number.trials) %>%
+#   spread(Prey.species,prop.eaten)
   dcast(predator.names~Prey.species,value.var="prop.eaten")
 
 diet_overlap <- paired_predator_pianka(pred_x_resource = prop.eaten,
@@ -414,34 +411,23 @@ diet_overlap <- paired_predator_pianka(pred_x_resource = prop.eaten,
 
 ```{r CALC_summarize_random_test}
 ## summarize randomization test results
-
+betternames <- c("elong + andro" = "Leptagrion.elongatum_Leptagrion.andromache",
+                 "elong + tab" = "Leptagrion.elongatum_Tabanidae.spA",
+                 "elong + leech" = "Leptagrion.elongatum_Hirudinidae")
+                 
 summarize_random_test <- rand.means %>%
   # remove annoying X column
   select(-X) %>%
   # melt, so that all responses can be summarized at the same time
-  melt(id.vars="sp.pair") %>%
-  group_by(sp.pair,variable) %>%
+  gather(response_var,value,-sp.pair) %>%
+  group_by(sp.pair,response_var) %>%
   summarise(mean=mean(value),
             lower=quantile(value,probs=c(0.025)),
             upper=quantile(value,probs=c(0.975))
             ) %>%
   # sequence of increasing PD
   ungroup() %>%
-  mutate(sp.pair.names=factor(sp.pair,levels=c('elong + andro',
-                                         'elong + tab',
-                                         'elong + leech')
-                        ),
-         sp.pair=as.character(sp.pair),
-         sp.pair=ifelse(sp.pair=="elong + andro","Leptagrion.elongatum_Leptagrion.andromache",
-                        sp.pair),
-         sp.pair=ifelse(sp.pair=="elong + tab","Leptagrion.elongatum_Tabanidae.spA",
-                        sp.pair),
-         sp.pair=ifelse(sp.pair=="elong + leech","Leptagrion.elongatum_Hirudinidae",
-                        sp.pair),
-         species_pair=sp.pair         
-         )
-
-
+  mutate(sp.pair = betternames[sp.pair])
 ```
 
 ```{r DATA_merge}
@@ -608,9 +594,11 @@ metabolic_occur_phylo %>%
 ```
 
 
-```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. The best-fit regression, weighted by sample size, is shown with 95% CI.",dev='png'}
+```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles.",dev='png'}
 
-if(FALSE){
+f_extract <- function(f) sapply(models,function(x) f(x[[1]]))
+
+if(TRUE){
 models <- diet_overlap_phylo %>% 
   ungroup %>% 
   select(phylodistance,overlap,nspp) %>%
@@ -638,10 +626,6 @@ models <- diet_overlap_phylo %>%
                     start = list(z = 0.4),
                     weights = nspp)
      ) 
-}
-
-
-f_extract <- function(f) sapply(models,function(x) f(x[[1]]))
   
 data.frame(model = names(models),
            AIC = f_extract(AIC)) %>%
@@ -772,22 +756,6 @@ grid.table(test,cols=coltext,gpar.colfill=gpar(fill="white",col="white"),
 
 
 
-### 
 
-## Supplementary
-
-|  Species                 | density |
-|:------------------------:|:-------:|
-| *Chironomus detriticula* |  10     |
-| *Polypedium sp. 1*       |  4      |
-| *Polypedium sp. 2*       |  2      |
-| *Psychodid sp. 1*        |  1      |
-| *Scyrtes sp. A*          |  5      |
-| *Culex spp.*             |  4      |
-| *Trentepholia sp.*       |  1      |
-
-  : Densities of insects used in the experiment.
-
--->
 
 ## References
