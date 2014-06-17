@@ -33,21 +33,24 @@ library(stargazer)
 library(tidyr)
 
 # occurrance data -- abundance
-occur <- read.csv("../data/reorganized_data/predator.cooccur.txt",stringsAsFactor=FALSE) %>%
+occur <- read.csv("../data/reorganized_data/predator.cooccur.txt",
+                  stringsAsFactor=FALSE) %>%
   tbl_df()
 # occurrance data -- metabolic capacity
 metabolic  <- read.csv("../data/reorganized_data/predator.cooccur.metabolic.txt",
                        stringsAsFactor=FALSE) %>%
   tbl_df()
 # feeding trial data
-foodweb <- read.csv("../data/reorganized_data/reorganized.feeding.trial.data.csv",
+feeding_trials <- read.csv("../data/reorganized_data/reorganized.feeding.trial.data.csv",
                     stringsAsFactors=FALSE) %>%
   tbl_df()
 # experimental data
-pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",stringsAsFactors=FALSE) %>%
+pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
+               stringsAsFactors=FALSE) %>%
   tbl_df()
 # enriched leaves -- ie just the N data for the detritus we put in.
-enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",stringsAsFactors=FALSE) %>%
+enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",
+                     stringsAsFactors=FALSE) %>%
   tbl_df()
 # phylogeny data
 predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
@@ -70,9 +73,8 @@ pd <- pd %>%
 ## Introduction
 
 Predator assemblages can have strong top-down effects, both on community
-structure and ecosystem processes [@Estes2011].  However, the strength of top-down effects is often dependent on the composition of predator assemblages. While some combinations of predator species result in greater consumption or ecosystem processes than expected from their individual effects, other combinations result in less than additive effects (ref). Detailed studies manipulating
-predator assemblages have identified a great diversity of direct and indirect mechanisms
-for these compositional effects. For example, predators differ in their prefernces for microhabitats resulting in spatial or temporal partitioning between predaro species in their effects on prey and synergistic effects on net predation rates (REF).  When predators do
+structure and ecosystem processes [@Estes2011].  The strength of these effects is often dependent on species composition, and can be more or less than what simply the sum of effect sizes of individual predators [@Sih1998a;@Ives2005]. Detailed studies manipulating
+predator assemblages have identified a great diversity of direct and indirect mechanisms underlying the effect of predator diversity on communities. For example, predators differ in their prefernces for microhabitats resulting in spatial or temporal partitioning between predator species in their effects on prey and synergistic effects on net predation rates [@Schmitz2007].  When predators do
 co-occur in a local patch, they may feed on different prey species and so have additie top-down effects [@Schmitz2007]. Conversely, antagonistic predator-predator interactions can reduce the top-down effects of a diverse
 consumer assemblage, for example when predators feed directly on each other (intra-guild
 predation) or modify the behaviour of predators or prey via non-consumptive
@@ -202,11 +204,53 @@ species of leech (Hirudinidae).  Other, smaller-bodied predators present include
 ### Phylogenetic distance, metabolic capacity and niche overlap
 
 ```{r CALC_nodeages}
-nodeages <- lapply(list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE),read.csv)
-names(nodeages) <- list.files(path="../data/TreeData/",pattern="*.csv")
-nstudies <- sapply(nodeages,nrow)
-#names(nodeages)[which(nstudies>1)]
-n.nodes <- length(nodeages)
+
+nodeages <- list.files(path="../data/TreeData",pattern="*.csv",full.names=TRUE) %>%
+  data.frame(paths = .,stringsAsFactors = FALSE) %>%
+  mutate(nodename = basename(paths) %>% gsub(".csv","",.)) %>%
+  group_by(nodename) %>%
+  do(age_data = read.csv(.$paths)) %>%
+  mutate(Nstudies = nrow(age_data),
+         minT = min(age_data %>% extract2("Time")),
+         maxT = max(age_data %>% extract2("Time")))
+
+
+## move to supp mat
+phylogeny_node_age <- nodeages %>%
+  select(nodename,age_data,Nstudies) %>% 
+  do(extract2(.,"age_data") %>% as.data.frame(stringsAsFactors = FALSE)) %>%
+  lapply(.,function(x) gsub(pattern = "\\(.+\\)",replacement = "",x)) %>% 
+  data.frame
+
+# function to print out range
+
+agerange <- function(Name,pna = nodeages){
+  minT <- pna %>%
+    filter(nodename == Name) %>%
+    extract2("minT")
+  
+  maxT <- pna %>%
+    filter(nodename == Name) %>%
+    extract2("maxT")
+  
+  paste0(minT," to ",maxT)
+  }
+
+nstudy <- function(Name, dat = nodeages){
+  dat %>%
+    filter(nodename == Name) %>%
+    extract2("Nstudies")
+  }
+
+              
+n.nodes <- nrow(nodeages)
+nstudies <- sum(nodeages$nstudies)
+
+# nodeages <- lapply(list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE),read.csv)
+# names(nodeages) <- list.files(path="../data/TreeData/",pattern="*.csv")
+# nstudies <- sapply(nodeages,nrow)
+# #names(nodeages)[which(nstudies>1)]
+# n.nodes <- length(nodeages)
 ```
 In 2008, we counted and measured macroinvertebrates in an observational study of `r ncol(metabolic)-1` bromeliads. Within this observational dataset, we
 identified `r metabolic$Taxa %>% unique %>% length` species as predators.
@@ -217,7 +261,7 @@ Tabanidae and two of Empididae, all Diptera).  Deeper divisions are also present
 Chironomidae) and the deepest taxonomic divide is between all insects present and a
 species of predatory leech (Annelida:Hirudinidae).
 
-We obtained node age estimates for all `r n.nodes` internal nodes of the tree, using www.timetree.org, an online database of published  molecular time estimates from the literature [@Hedges2006].  Most dates came from only a single study; where multiple dates were found we used the median estimate: Insecta--Hirudina (`r paste(range(nodeages[["insects.to.leeches.csv"]]$Time),collapse=" to ")` Mya, n=`r nstudies[["insects.to.leeches.csv"]]` studies), Odonata--Tabanidae (`r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya, n=`r nstudies[["odonata-Tabanidae.csv"]]` studies) and Tabanidae--Diptera (`r paste(range(nodeages[["odonata-Tabanidae.csv"]]$Time),collapse=" to ")` Mya, n=`r nstudies[["tabanidae_culidicae_ie_Diptera.csv"]]` studies).  Node age data was available
+We obtained node age estimates for all seven internal nodes of the tree, using `www.timetree.org`, an online database of published  molecular time estimates from the literature [@Hedges2006].  Most dates came from only a single study; where multiple dates were found we used the median estimate: Insecta--Hirudina (`r agerange("insects.to.leeches")` Mya, n=`r nstudy("insects.to.leeches")` studies), Odonata--Tabanidae (`r agerange("odonata-Tabanidae")` Mya, n=`r nstudy("odonata-Tabanidae.csv")` studies) and Tabanidae--Diptera (`r agerange("tabanidae_culidicae_ie_Diptera")` Mya, n=`r nstudy("tabanidae_culidicae_ie_Diptera")` studies).  Node age data was available
 for all but the shallowest nodes of the tree, where either a lack of taxonomic
 information (e.g. Tabanidae) or a lack of phylogenetic study (e.g. _Leptagrion_)
 prevented more information from being included.   These branches were left as
@@ -268,14 +312,6 @@ predators across all bromeliads, even if neither species occurred there.
 ```{r CALC_feeding_trials}
 ##  predator x prey trials
 
-feeding_trials <- foodweb %>% 
-  group_by(Prey.species,predator.names) %>%
-  summarize(number.trials=n(),
-            eaten=sum(eaten.numeric)
-            ) %>%
-  filter(!is.na(predator.names)) %>%
-  filter(predator.names!="Leptagrion.small") %>%
-  ungroup()
 
 ## numbers for text
 ntrials <- sum(feeding_trials$number.trials)
@@ -398,10 +434,13 @@ metabolic_distance <- paired_predator_pianka(pred_x_resource = metabolic,pred_co
 ## When calculating similiarity, we start with a predator (row) by resource (column) dataframe.
 # pred x prey matrix, with cells = proportion eaten
 prop.eaten <- feeding_trials %>% 
-  filter(!Prey.species %in% c("Leptagrion andromache <5mm","Leptagrion.elongatum")) %>%
+  filter(!Prey.species %in% c("Leptagrion andromache <5mm",
+                              "Leptagrion.elongatum")) %>% #extract2("predator.names") %>% unique
+  filter(!predator.names %in% c("Phylloicus bromeliarum", "Dysticid")) %>%
   mutate(prop.eaten=eaten/number.trials) %>%
-#   spread(Prey.species,prop.eaten)
-  dcast(predator.names~Prey.species,value.var="prop.eaten")
+  arrange(predator.names,Prey.species) %>%
+  spread(Prey.species,prop.eaten)
+#   dcast(predator.names~Prey.species,value.var="prop.eaten")
 
 diet_overlap <- paired_predator_pianka(pred_x_resource = prop.eaten,
                                        pred_colname = "predator.names",
@@ -427,7 +466,7 @@ summarize_random_test <- rand.means %>%
             ) %>%
   # sequence of increasing PD
   ungroup() %>%
-  mutate(sp.pair = betternames[sp.pair])
+  mutate(species_pair = betternames[sp.pair] %>% as.character)
 ```
 
 ```{r DATA_merge}
@@ -461,10 +500,10 @@ largesp <- meta_range[2,]
 
 nspp <- metabolic %>%
   melt(id.vars="Taxa",variable.name="brom") %>%
-  filter(value>0) %>%
+  filter(value>0) %>% 
   group_by(brom) %>%
-  summarize(nspp=n()) %>%
-  summarize(meanpred=mean(nspp),
+  summarise(nspp=n()) %>%
+  summarise(meanpred=mean(nspp),
             sdpred=signif(sd(nspp),2)) 
 
 ```
@@ -490,7 +529,7 @@ Across all bromeliads, predator species differed widely in metabolic capacity, f
 percentpredation <- feeding_trials %>%
   transform(percent.eaten=eaten/number.trials) %>%
   group_by(predator.names) %>%
-  summarize(mean.pred=mean(percent.eaten),
+  summarise(mean.pred=mean(percent.eaten),
             totaltrials=sum(number.trials),
             nprey=n())
   
@@ -596,7 +635,7 @@ metabolic_occur_phylo %>%
 
 ```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles.",dev='png'}
 
-f_extract <- function(f) sapply(models,function(x) f(x[[1]]))
+f_extract <- function(f,.models) sapply(.models,function(x) f(x[[1]]))
 
 if(TRUE){
 models <- diet_overlap_phylo %>% 
@@ -628,7 +667,7 @@ models <- diet_overlap_phylo %>%
      ) 
   
 data.frame(model = names(models),
-           AIC = f_extract(AIC)) %>%
+           AIC = f_extract(AIC,models)) %>%
   arrange(AIC) %>%
   write.csv(file = "diet_similarity.csv")
 }
@@ -649,7 +688,7 @@ fig2 <- diet_overlap_phylo %>%
 
 x_sequence <- diet_overlap_phylo  %>%
   ungroup %>%
-  summarize(min_x = min(phylodistance),
+  summarise(min_x = min(phylodistance),
             max_x = max(phylodistance)) %>%
   do(seq(from = .$min_x,
          to = .$max_x,
@@ -706,8 +745,15 @@ x_sequence %>% tbl_df %>%
 
 
 ```{r FIG_PD_experiment_nonadditive,fig.cap="Figure 3: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation",dev='png'}
-ggplot(subset(summarize_randoms_phylo,summarize_randoms_phylo$variable=="survival"),
-       aes(x=phylodistance,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)") + mytheme
+
+summarize_randoms_phylo %>% 
+  filter(response_var == "survival") %>%
+  
+ggplot(aes(x=phylodistance,y=mean)) + 
+  geom_errorbar(aes(ymin=lower, ymax=upper),width=0) + 
+  geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment") + 
+  xlab("Time (Mya)") + mytheme
+
 # 
 # ggplot(summarize_randoms_phylo,
 #        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")+facet_wrap(~variable)
