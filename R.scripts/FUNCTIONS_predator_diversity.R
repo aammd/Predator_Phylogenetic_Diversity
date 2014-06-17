@@ -76,7 +76,7 @@ pianka_plot <- function(data_phylo_overlap,formula_quote="overlap ~ peak * exp(-
   
   x_sequence <- metabolic_occur_phylo  %>%
     ungroup %>%
-    summarize(min_x = min(phylodistance),
+    summarise(min_x = min(phylodistance),
               max_x = max(phylodistance)) %>%
     do(seq(from = .$min_x,
            to = .$max_x,

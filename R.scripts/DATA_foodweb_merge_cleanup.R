@@ -9,6 +9,7 @@
 library(dplyr)
 library(magrittr)
 library(tidyr)
+library(Hmisc)
 
 measured <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/measured.predators.csv",comment.char="#",as.is=TRUE)
 preds <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/other.predators.csv",comment.char="#",as.is=TRUE)
@@ -150,8 +151,8 @@ measured.lept$Prey.species <- factor(prey.mes)
 ### at this point, the "measured.lept" dataset contains all the data required for analysis.
 
 feeding_trials <- measured.lept %>% 
-  group_by(Prey.species,predator.names) %>%
-  summarize(number.trials=n(),
+  group_by(Prey.species,predator.names) %>% 
+  summarise(number.trials=n(),
             eaten=sum(eaten.numeric)
   ) %>%
   filter(!is.na(predator.names)) %>%
@@ -168,6 +169,74 @@ feeding_trials2 <- preds %>%
 ## check
 if(!identical(feeding_trials %>% names,feeding_trials2 %>% names)) stop(message("the columns must be the same!"))
 
-feedingtrial <- rbind(feeding_trials,feeding_trials2)
+prey_lookup <- rbind(feeding_trials,feeding_trials2) %>%
+  extract2("Prey.species") %>% 
+  unique %>% 
+  as.character
+
+names(prey_lookup) <- prey_lookup
+
+## remove numbers
+prey_lookup <- prey_lookup %>%
+  str_extract("[A-Za-z]+.[a-z]+.+") %>%
+  str_trim %>% 
+  capitalize
+
+prey_lookup[c("Ostracod",
+              "ostracod",
+              "scirtes A",
+              "scirtes B",
+              "Tricoptera",
+              "Trichoptera",
+              "tricoptera",
+              "1 Trichoptera",
+              "leech")] <- c("Ostracoda",
+                             "Ostracoda",
+                             "Scirtes A",
+                             "Scirtes B",
+                             "Phylloicus bromeliarum",
+                             "Phylloicus bromeliarum",
+                             "Phylloicus bromeliarum",
+                             "Phylloicus bromeliarum",
+                             "Hirudinidae")
+
+pred_lookup <- rbind(feeding_trials,feeding_trials2) %>%
+  extract2("predator.names") %>% 
+  unique %>% 
+  as.character
+
+names(pred_lookup) <- pred_lookup
+
+## remove numbers
+pred_lookup <- pred_lookup %>%
+  str_extract("[A-Za-z]+.[a-z]+.+") %>%
+  str_trim %>% 
+  capitalize
+
+pred_lookup[c("1 Trichoptera",
+              "leech",
+              "1 Leech ",
+              "Leptagrion elongatum",
+              "1 Tabanid")] <- c("Phylloicus bromeliarum",
+                                 "Hirudinidae",
+                                 "Hirudinidae",
+                                 "Leptagrion.elongatum",
+                                 "Tabanidae.spA")
+# names(pred_lookup) <- NULL
+# pred_lookup %>% unique %>% sort %>% cbind
+
+
+feedingtrial <- rbind(feeding_trials,feeding_trials2) %>%
+  mutate(Prey.species2 = prey_lookup[Prey.species],
+         predator.names2 = pred_lookup[predator.names]) %>%
+  #check new columns
+  #select(Prey.species,Prey.species2,predator.names,predator.names2,number.trials,eaten)
+  select(Prey.species = Prey.species2, predator.names = predator.names2, number.trials, eaten)
+
+feedingtrial %>%
+  group_by(Prey.species,predator.names) %>%
+  summarise(number.trials = sum(number.trials),
+            eaten = sum(eaten))
 
 write.csv(feedingtrial,file="../data/reorganized_data/reorganized.feeding.trial.data.csv")
+
