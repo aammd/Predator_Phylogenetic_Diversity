@@ -1,0 +1,72 @@
+---
+title: "Appendix"
+author: "Andrew MacDonald"
+output:
+  pdf_document: default
+  md_document: default
+  html_document: default
+  word_document:
+    reference_docx: reference.docx
+bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
+---
+
+```{r results='asis', echo=FALSE,message=FALSE}
+library(magrittr)
+library(dplyr)
+library(pander)
+library(picante)
+```
+
+### predator phylogeny
+
+```{r}
+read.tree("../data/reorganized_data/predator_tree_time.newick") %>% plot
+```
+
+
+
+### Prey community composition
+Densities of prey species used in the experiment.
+
+|  Species                 | density |
+|:------------------------:|:-------:|
+| *Chironomus detriticula* |  10     |
+| *Polypedium sp. 1*       |  4      |
+| *Polypedium sp. 2*       |  2      |
+| *Psychodid sp. 1*        |  1      |
+| *Scyrtes sp. A*          |  5      |
+| *Culex spp.*             |  4      |
+| *Trentepholia sp.*       |  1      |
+
+### Model comparison for distributional similarity as a function of PD
+```{r}
+formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
+              "bellshaped" = "$peak \\times {e}^{(-1 \\times (PD)^2 / a)}$",
+              "{e}^{onential" = "$b \\times {e}^{(a \\times PD)}$",
+              "Sshaped" = "$\\frac{c \\times {e}^{(a \\times PD)}}{(c \\times {e}^{(a \\times PD)} + (1 - c))}$",
+              "linear" = "$a \\times x + b$",
+              "constant" = "a \\times x$"
+              )
+```
+
+
+```{r results='asis',echo=FALSE}
+
+read.csv(file = "distributional_similarity.csv") %>%
+  mutate(Equation = formulae[model]) %>%
+  select(Equation,AIC) %>%
+  pander
+```
+
+
+### Model comparison for diet similarity as a function of PD
+Note: these models are weighted by the number of prey species tested
+```{r results='asis',echo=FALSE}
+
+
+read.csv(file = "diet_similarity.csv") %>%
+  mutate(Equation = formulae[model]) %>%
+  select(Equation,AIC) %>%
+  pander
+```
+
