@@ -1,0 +1,14 @@
+```{r}
+curve(-0.0000008*x^2+1,ylim = c(0,1), xlim = c(0,900))
+
+curve(exp(-x^2/900000),ylim = c(0,1), xlim = c(0,900))
+
+curve(exp(-0.0004*x),ylim = c(0,1), xlim = c(0,900))
+
+test <- function(x,a,c) c * exp(a * x) / (c * exp(a * x) + (1 - c))
+
+curve(test(x,a = -0.007, c = 0.9),ylim = c(0,1), xlim = c(0,900))
+
+
+curve(-2 + exp(- 8 * x),ylim = c(-5,5), xlim = c(0,900))
+```
