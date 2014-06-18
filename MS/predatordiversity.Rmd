@@ -766,23 +766,6 @@ ggplot(aes(x=phylodistance,y=mean)) +
 #        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")+facet_wrap(~variable)
 ```
 
-```{r TABLE_communityexperiment,fig.height=3.5,dev='png'}
-
-
-
-
-
-
-
-```
-
-```{r testtable, results = 'asis'}
-# 
-# pd %>%
-#   select(treatment,total.surv,fine,decomp,growth,N) %>%
-#   stargazer(type = "html")
-```
-
 ## Discussion
 
 
