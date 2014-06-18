@@ -1,59 +1,57 @@
 "Prey.species","predator.names","number.trials","eaten"
-"Chironomus detriticula","Leptagrion.andromache",1,1
-"Chironomus detriticula","Leptagrion.elongatum",6,6
-"Chironomus detriticula","Leptagrion.tan",7,7
-"Chironomus detriticula","Tabanidae.spA",5,4
+"Culex","Dysticid",4,2
+"Hirudinidae","Dysticid",5,0
+"Ostracoda","Dysticid",4,2
+"Phylloicus bromeliarum","Dysticid",4,0
+"Scirtes A","Dysticid",5,3
 "Culex","Hirudinidae",6,1
+"Hirudinidae","Hirudinidae",4,0
+"Psychodid","Hirudinidae",6,3
+"Scirtes A","Hirudinidae",6,4
+"Scirtes B","Hirudinidae",3,2
+"Tipulid","Hirudinidae",11,11
+"Chironomus detriticula","Leptagrion.andromache",1,1
 "Culex","Leptagrion.andromache",5,5
+"Polypedilum 1","Leptagrion.andromache",2,2
+"Polypedilum 2","Leptagrion.andromache",2,2
+"Psychodid","Leptagrion.andromache",5,4
+"Scirtes A","Leptagrion.andromache",5,4
+"Tipulid","Leptagrion.andromache",5,5
+"Chironomus detriticula","Leptagrion.elongatum",6,6
 "Culex","Leptagrion.elongatum",5,4
-"Culex","Leptagrion.tan",7,4
 "Hirudinidae","Leptagrion.elongatum",6,1
-"Hirudinidae","Leptagrion.tan",8,0
 "Leptagrion andromache <5mm","Leptagrion.elongatum",5,5
 "Leptagrion.elongatum","Leptagrion.elongatum",8,2
 "Monopelopia","Leptagrion.elongatum",7,7
-"Monopelopia","Leptagrion.tan",8,6
 "Ostracoda","Leptagrion.elongatum",11,3
-"Ostracoda","Leptagrion.tan",8,5
 "Phylloicus bromeliarum","Leptagrion.elongatum",5,0
-"Phylloicus bromeliarum","Leptagrion.tan",8,1
-"Polypedilum 1","Leptagrion.andromache",2,2
 "Polypedilum 1","Leptagrion.elongatum",5,5
-"Polypedilum 1","Leptagrion.tan",7,7
-"Polypedilum 2","Leptagrion.andromache",2,2
 "Polypedilum 2","Leptagrion.elongatum",5,5
-"Polypedilum 2","Tabanidae.spA",5,4
-"Psychodid","Leptagrion.andromache",5,4
 "Psychodid","Leptagrion.elongatum",2,2
-"Psychodid","Tabanidae.spA",4,1
-"Scirtes A","Hirudinidae",6,4
-"Scirtes A","Leptagrion.andromache",5,4
 "Scirtes A","Leptagrion.elongatum",11,9
-"Scirtes A","Leptagrion.tan",8,6
-"Scirtes A","Tabanidae.spA",5,1
-"Scirtes B","Leptagrion.elongatum",6,3
-"Scirtes B","Leptagrion.tan",7,4
-"Tipulid","Hirudinidae",6,6
-"Tipulid","Leptagrion.andromache",5,5
+"Scirtes B","Leptagrion.elongatum",7,4
 "Tipulid","Leptagrion.elongatum",5,3
+"Chironomus detriticula","Leptagrion.tan",7,7
+"Culex","Leptagrion.tan",7,4
+"Hirudinidae","Leptagrion.tan",8,0
+"Monopelopia","Leptagrion.tan",8,6
+"Ostracoda","Leptagrion.tan",8,5
+"Phylloicus bromeliarum","Leptagrion.tan",8,1
+"Polypedilum 1","Leptagrion.tan",7,7
+"Scirtes A","Leptagrion.tan",8,6
+"Scirtes B","Leptagrion.tan",7,4
 "Tipulid","Leptagrion.tan",8,8
+"Culex","Monopelopia",5,0
+"Ostracoda","Monopelopia",5,0
+"Phylloicus bromeliarum","Monopelopia",5,0
+"Polypedilum 1","Monopelopia",5,3
+"Tipulid","Monopelopia",5,2
+"Polypedilum 1","Phylloicus bromeliarum",10,1
+"Chironomus detriticula","Tabanidae.spA",5,4
+"Polypedilum 1","Tabanidae.spA",6,3
+"Polypedilum 2","Tabanidae.spA",5,4
+"Psychodid","Tabanidae.spA",4,1
+"Scirtes A","Tabanidae.spA",5,1
 "Tipulid","Tabanidae.spA",4,4
 "Tipulid","Tabanidae.spB",2,1
 "Tipulid","Tabanidae.spC",1,1
-"Phylloicus bromeliarum","Monopelopia",5,0
-"Culex","Monopelopia",5,0
-"Ostracoda","Monopelopia",5,0
-"Polypedilum 1","Monopelopia",5,3
-"Tipulid","Monopelopia",5,2
-"Tipulid","Leech",5,5
-"Polypedilum 1","Tabanidae.spA",6,3
-"Polypedilum 1","Phylloicus bromeliarum",10,1
-"Psychodid","Leech",6,3
-"Scirtes A","Dysticid",5,3
-"Phylloicus bromeliarum","Dysticid",4,0
-"Hirudinidae","Dysticid",5,0
-"Ostracoda","Dysticid",4,2
-"Culex","Dysticid",4,2
-"Hirudinidae","Hirudinidae",4,0
-"Scirtes B","Hirudinidae",3,2
-"Scirtes B","Leptagrion.elongatum",1,1

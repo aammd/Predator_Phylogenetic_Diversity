@@ -219,7 +219,7 @@ pred_lookup <- pred_lookup %>%
 
 pred_lookup[c("1 Trichoptera",
               "leech",
-              "1 Leech ",
+              "1 Leech",
               "Leptagrion elongatum",
               "1 Tabanid")] <- c("Phylloicus bromeliarum",
                                  "Hirudinidae",
@@ -240,9 +240,8 @@ feedingtrial <- rbind(feeding_trials,feeding_trials2) %>%
 feedingtrial %>%
   group_by(Prey.species,predator.names) %>%
   summarise(number.trials = sum(number.trials),
-            eaten = sum(eaten))
-
-write.csv(feedingtrial,
-          file="../data/reorganized_data/reorganized.feeding.trial.data.csv",
-          row.names = FALSE)
+            eaten = sum(eaten)) %>% 
+  arrange(predator.names,Prey.species) %>% #View
+  write.csv(file="../data/reorganized_data/reorganized.feeding.trial.data.csv",
+            row.names = FALSE)
 
