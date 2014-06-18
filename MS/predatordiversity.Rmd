@@ -746,6 +746,48 @@ x_sequence %>% tbl_df %>%
 
 ```
 
+```{r experimentANOVA,results='asis'}
+trt_means <- pd %>%
+  select(treatment,total.surv,fine,decomp,growth,N) %>%   
+  gather(response,value,-treatment) %>%
+  group_by(treatment,response) %>%
+  summarise(meanval=mean(value,na.rm = TRUE),
+            n=n()) %>%
+  mutate(trt_type = treatment %>% grepl(".+ \\+ .+",.) %>% ifelse(.,"pair",treatment),
+         trt_type = trt_type %in% c("control","pair") %>% not %>% ifelse(.,"single",trt_type)) %>%
+  ungroup %>%
+  group_by(trt_type,response) %>%
+  arrange(response,trt_type) %>%
+  filter(trt_type != "control") %>%
+  select(trt_type,response,val = meanval)
+#   summarise(mean_type = mean(meanval))
+cntrl_val <- pd %>% 
+  select(treatment,total.surv,fine,decomp,growth,N) %>%   
+  gather(response,value,-treatment) %>%
+  filter(treatment == "control") %>%
+  select(trt_type = treatment, response, val = value)
+
+models <- rbind(trt_means,cntrl_val) %>%
+  arrange(response) %>%
+  group_by(response) %>%
+  mutate(repno = seq_along(trt_type)) %>%
+#   spread(response,val) %>%
+  mutate(trt_type = trt_type %>% ordered(x = .,levels = c("control","single","pair"))) %>%
+  arrange(response,trt_type) %>%
+  select(-repno) %>%
+  do(mod = lm(val ~ trt_type, data = .))
+
+models %>%
+  extract2("mod") %>%
+  set_names(models$response) %>%
+  stargazer(.,type = "html",column.labels = models$response %>% as.character)
+
+# lapply(models$mod,TukeyHSD)
+
+#models$mod %>% lapply(.,stargazer,type = "html")
+
+# cbind(grepl(".+ \\+ .+",pd$treatment),pd$treatment)
+```
 
 
 ```{r FIG_PD_experiment_nonadditive,fig.cap="Figure 3: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation",dev='png'}
