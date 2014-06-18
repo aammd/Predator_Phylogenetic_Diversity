@@ -15,6 +15,11 @@ library(magrittr)
 library(dplyr)
 library(pander)
 library(picante)
+library(stargazer)
+library(tidyr)
+library(knitr)
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
+
 ```
 
 ### predator phylogeny
@@ -39,7 +44,7 @@ Densities of prey species used in the experiment.
 | *Trentepholia sp.*       |  1      |
 
 ### Model comparison for distributional similarity as a function of PD
-```{r}
+```{r results='asis',echo=FALSE}
 formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
               "bellshaped" = "$peak \\times {e}^{(-1 \\times (PD)^2 / a)}$",
               "{e}^{onential" = "$b \\times {e}^{(a \\times PD)}$",
@@ -47,10 +52,6 @@ formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
               "linear" = "$a \\times x + b$",
               "constant" = "a \\times x$"
               )
-```
-
-
-```{r results='asis',echo=FALSE}
 
 read.csv(file = "distributional_similarity.csv") %>%
   mutate(Equation = formulae[model]) %>%
@@ -68,5 +69,29 @@ read.csv(file = "diet_similarity.csv") %>%
   mutate(Equation = formulae[model]) %>%
   select(Equation,AIC) %>%
   pander
+```
+
+### experimental summary
+```{r exp summary, results='asis'}
+read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
+         stringsAsFactors=FALSE) %>%
+  tbl_df() %>%
+  select(treatment,total.surv,fine,decomp,growth,N) %>%
+  gather(response,value,-treatment) %>%
+  group_by(treatment,response) %>%
+  summarise(meanval=mean(value),
+            n=n(),
+            sdev=sd(value)) %>%
+  mutate(SE=sdev/sqrt(n),
+         meanval_sig=signif(meanval,2),
+         SE_sig=signif(SE,2),
+         meanSE=paste(meanval_sig,"±",SE_sig)) %>%
+  select(treatment,response,meanSE) %>% 
+  spread(response,meanSE) %>%
+  stargazer(summary = FALSE, type = "latex")
+
+# # could rename with this
+# coltext <- expression("surviving insects","fine detritus (g)","leaf decomposition (g)",
+#                       "bromeliad growth (g)","Nitrogen cycling")
 ```
 
