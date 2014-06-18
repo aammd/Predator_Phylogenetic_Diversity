@@ -238,5 +238,7 @@ feedingtrial %>%
   summarise(number.trials = sum(number.trials),
             eaten = sum(eaten))
 
-write.csv(feedingtrial,file="../data/reorganized_data/reorganized.feeding.trial.data.csv")
+write.csv(feedingtrial,
+          file="../data/reorganized_data/reorganized.feeding.trial.data.csv",
+          row.numbers = FALSE)
 
