@@ -10,26 +10,30 @@ library(dplyr)
 library(magrittr)
 library(tidyr)
 library(Hmisc)
+library(stringr)
 
-measured <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/measured.predators.csv",comment.char="#",as.is=TRUE)
-preds <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/other.predators.csv",comment.char="#",as.is=TRUE)
-lepts <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/Leptagrion/lept.csv",as.is=TRUE)
+measured <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/measured.predators.csv",
+                     comment.char="#",as.is=TRUE) %>% tbl_df
+preds <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/other.predators.csv",
+                  comment.char="#",as.is=TRUE) %>% tbl_df
+lepts <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/Leptagrion/lept.csv",
+                  as.is=TRUE) %>% tbl_df
 
 
 # tidy up variable names --------------------------------------------------
 
-measured <- measured[,-which(names(measured)=="Comments")] #drop comments
-preds <- preds[,-which(names(preds)=="Comments")]  #drop comments
+measured <- measured %>% select(-Comments) #drop comments
+preds <- preds %>% select(-Comments)  #drop comments
 ## make the lepts dataframe more managable
-lepts2 <- with(lepts,
-              data.frame(predator=Number,
-                         predator.sp.lept=Sp..,
-                         body=Measuring..body.,
-                         tail=Measuring..tail.,
-                         stringsAsFactors=FALSE))
+lepts2 <- lepts %>%
+  select(predator=Number,
+         predator.sp.lept=Sp..,
+         body=Measuring..body.,
+         tail=Measuring..tail.,
+         stringsAsFactors=FALSE)
 
 # rename the awkward column
-measured  <- measured %>% tbl_df %>%
+measured  <- measured %>% tbl_df %>% 
   select(predator:Trial.stopped,eaten = Eaten.or.not..1...eaten)
 
 
@@ -162,9 +166,9 @@ feeding_trials <- measured.lept %>%
 
 feeding_trials2 <- preds %>% 
   select(Prey.species = Prey,
-         predator.names = Predator.,
-         number.trials = N..trials,
-         eaten = N..trials.with.eaten.prey)
+         predator.names = Predator,
+         number.trials = N_trials,
+         eaten = N_trials_with_eaten_prey)
 
 ## check
 if(!identical(feeding_trials %>% names,feeding_trials2 %>% names)) stop(message("the columns must be the same!"))
@@ -240,5 +244,5 @@ feedingtrial %>%
 
 write.csv(feedingtrial,
           file="../data/reorganized_data/reorganized.feeding.trial.data.csv",
-          row.numbers = FALSE)
+          row.names = FALSE)
 
