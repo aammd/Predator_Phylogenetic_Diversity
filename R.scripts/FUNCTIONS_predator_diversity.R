@@ -58,8 +58,8 @@ pianka_plot <- function(data_phylo_overlap,formula_quote="overlap ~ peak * exp(-
     #          grp_se = sd(overlap)/sqrt(grp_n),
     #          PD_mean = mean(phylodistance)) %>%
     ggplot(aes(x = phylodistance, y = overlap)) + 
-    geom_point(shape  = 21, size = 4) + 
-    geom_point(colour = "black", fill = "darkgrey", size = 4, shape  = 21, alpha = 0.6) + 
+    geom_point(shape  = 21, size = 6) + 
+    geom_point(colour = "black", fill = "#00A08A", size = 6, shape  = 21, alpha = 0.6) + 
     #   geom_point(aes(x = PD_mean,
     #                  y = grp_mean,
     #                  size = grp_n),

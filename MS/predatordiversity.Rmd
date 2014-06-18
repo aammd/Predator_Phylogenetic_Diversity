@@ -683,7 +683,7 @@ fig2 <- diet_overlap_phylo %>%
   select(phylodistance,overlap,nspp) %>%
   ggplot(aes(x = phylodistance, y = overlap)) + 
   geom_point(aes(size = nspp), shape  = 21) + 
-  geom_point(aes(size = nspp), colour = "black", fill = "darkgrey", shape  = 21, alpha = 0.6) + 
+  geom_point(aes(size = nspp), colour = "black", fill = "#00A08A", shape  = 21, alpha = 0.6) + 
   xlab("Phylogenetic distance") + ylab("Diet similarity (Pianka's index)") + 
   scale_size(range = c(3,9),name="Number of\nprey") +
   mytheme
@@ -754,9 +754,12 @@ summarize_randoms_phylo %>%
   filter(response_var == "survival") %>%
   
 ggplot(aes(x=phylodistance,y=mean)) + 
-  geom_errorbar(aes(ymin=lower, ymax=upper),width=0) + 
-  geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment") + 
-  xlab("Time (Mya)") + mytheme
+  geom_linerange(aes(ymin=lower, ymax=upper)) + 
+  geom_point(size=6,shape = 21, colour = "black", fill = "#00A08A") + 
+  ylab("Mean treatment difference, Control-Treatment") + 
+  xlab("Time (Mya)") + 
+  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey") + 
+  mytheme
 
 # 
 # ggplot(summarize_randoms_phylo,
