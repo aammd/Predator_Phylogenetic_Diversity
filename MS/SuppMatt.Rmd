@@ -1,6 +1,6 @@
 ---
-title: "Appendix"
-author: "Andrew MacDonald"
+title: "Supplementary Material"
+author: "A. Andrew M. MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 output:
   pdf_document: default
   md_document: default
@@ -29,20 +29,6 @@ read.tree("../data/reorganized_data/predator_tree_time.newick") %>% plot
 ```
 
 
-
-### Prey community composition
-Densities of prey species used in the experiment.
-
-|  Species                 | density |
-|:------------------------:|:-------:|
-| *Chironomus detriticula* |  10     |
-| *Polypedium sp. 1*       |  4      |
-| *Polypedium sp. 2*       |  2      |
-| *Psychodid sp. 1*        |  1      |
-| *Scyrtes sp. A*          |  5      |
-| *Culex spp.*             |  4      |
-| *Trentepholia sp.*       |  1      |
-
 ### Model comparison for distributional similarity as a function of PD
 ```{r results='asis',echo=FALSE}
 formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
@@ -59,7 +45,6 @@ read.csv(file = "distributional_similarity.csv") %>%
   pander
 ```
 
-
 ### Model comparison for diet similarity as a function of PD
 Note: these models are weighted by the number of prey species tested
 ```{r results='asis',echo=FALSE}
@@ -70,6 +55,21 @@ read.csv(file = "diet_similarity.csv") %>%
   select(Equation,AIC) %>%
   pander
 ```
+
+## Predator diversity experiment
+
+### Prey community composition
+Densities of prey species used in the experiment.
+
+|  Species                 | density |
+|:------------------------:|:-------:|
+| *Chironomus detriticula* |  10     |
+| *Polypedium sp. 1*       |  4      |
+| *Polypedium sp. 2*       |  2      |
+| *Psychodid sp. 1*        |  1      |
+| *Scyrtes sp. A*          |  5      |
+| *Culex spp.*             |  4      |
+| *Trentepholia sp.*       |  1      |
 
 ### experimental summary
 ```{r exp summary, results='asis'}
@@ -95,3 +95,50 @@ read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
 #                       "bromeliad growth (g)","Nitrogen cycling")
 ```
 
+### the effect of predator diversity *per se*
+```{r experimentANOVA,results='asis'}
+pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
+               stringsAsFactors=FALSE) %>%
+  tbl_df() %>%
+  transform(decomp=ifelse(decomp>0.7,NA,decomp))
+
+### calculate means 
+trt_means <- pd %>%
+  select(treatment,total.surv,fine,decomp,growth,N) %>%   
+  gather(response,value,-treatment) %>%
+  group_by(treatment,response) %>%
+  summarise(meanval=mean(value,na.rm = TRUE),
+            n=n()) %>%
+  mutate(trt_type = treatment %>% grepl(".+ \\+ .+",.) %>% ifelse(.,"pair",treatment),
+         trt_type = trt_type %in% c("control","pair") %>% not %>% ifelse(.,"single",trt_type)) %>%
+  ungroup %>%
+  group_by(trt_type,response) %>%
+  arrange(response,trt_type) %>%
+  filter(trt_type != "control") %>%
+  select(trt_type,response,val = meanval)
+
+## select control treatments
+cntrl_val <- pd %>% 
+  select(treatment,total.surv,fine,decomp,growth,N) %>%   
+  gather(response,value,-treatment) %>%
+  filter(treatment == "control") %>%
+  select(trt_type = treatment, response, val = value)
+
+## order treatments & do model
+models <- rbind(trt_means,cntrl_val) %>%
+  arrange(response) %>%
+  group_by(response) %>%
+  mutate(repno = seq_along(trt_type)) %>%
+#   spread(response,val) %>%
+  mutate(trt_type = trt_type %>% ordered(x = .,levels = c("control","single","pair"))) %>%
+  arrange(response,trt_type) %>%
+  select(-repno) %>%
+  do(mod = lm(val ~ trt_type, data = .))
+
+## present via stargazer
+models %>%
+  extract2("mod") %>%
+  set_names(models$response) %>%
+  stargazer(.,type = "latex",column.labels = models$response %>% as.character)
+
+```
