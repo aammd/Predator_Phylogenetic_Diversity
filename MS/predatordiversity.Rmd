@@ -747,6 +747,7 @@ x_sequence %>% tbl_df %>%
 ```
 
 ```{r experimentANOVA,results='asis'}
+### calculate means 
 trt_means <- pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%   
   gather(response,value,-treatment) %>%
@@ -760,13 +761,15 @@ trt_means <- pd %>%
   arrange(response,trt_type) %>%
   filter(trt_type != "control") %>%
   select(trt_type,response,val = meanval)
-#   summarise(mean_type = mean(meanval))
+
+## select control treatments
 cntrl_val <- pd %>% 
   select(treatment,total.surv,fine,decomp,growth,N) %>%   
   gather(response,value,-treatment) %>%
   filter(treatment == "control") %>%
   select(trt_type = treatment, response, val = value)
 
+## order treatments & do model
 models <- rbind(trt_means,cntrl_val) %>%
   arrange(response) %>%
   group_by(response) %>%
@@ -777,16 +780,12 @@ models <- rbind(trt_means,cntrl_val) %>%
   select(-repno) %>%
   do(mod = lm(val ~ trt_type, data = .))
 
+## present via stargazer
 models %>%
   extract2("mod") %>%
   set_names(models$response) %>%
   stargazer(.,type = "html",column.labels = models$response %>% as.character)
 
-# lapply(models$mod,TukeyHSD)
-
-#models$mod %>% lapply(.,stargazer,type = "html")
-
-# cbind(grepl(".+ \\+ .+",pd$treatment),pd$treatment)
 ```
 
 
