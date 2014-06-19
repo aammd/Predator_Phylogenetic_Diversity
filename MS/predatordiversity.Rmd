@@ -2,8 +2,8 @@
 title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
 author: "Andrew MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 output:
-  html_document: default
   md_document: default
+  html_document: default
   pdf_document: default
   word_document:
     reference_docx: reference.docx
