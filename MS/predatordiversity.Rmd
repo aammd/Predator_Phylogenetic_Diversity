@@ -583,6 +583,24 @@ dietmat <- diet_overlap_phylo %>%
 
 ```
 
+```{r TEST_experiment_single_pred}
+trt_lkp <- c("andro" = "single",
+             "tabanid" = "single",
+             "elong + andro" = "pair",
+             "control" = "control",
+             "leech" = "single",
+             "elong + leech" = "pair",
+             "elong" = "single",
+             "elong + tab" = "pair")
+
+pd %>%
+  select(treatment,total.surv,fine,decomp,growth,N) %>%
+  mutate(trt_type = trt_lkp[treatment]) %>%
+  select(trt_type)
+  
+```
+
+
 Among the most common predator taxa (i.e. those used in our experiment, described below) the damselflies (_Leptagrion andromache_ and _Leptagrion elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). All predators showed a very generalist diet breadth, consuming nearly all species offered to them.  However, more phylogenetically distant predators differed in their preference of prey species, as measured by the niche overlap index (F~`r diet_phylo_lm_summary$fstatistic[["numdf"]]`,
 `r diet_phylo_lm_summary$fstatistic[["dendf"]]`~=`r round(diet_phylo_lm_summary $fstatistic[["value"]],2)`, p=`r round(pf(diet_phylo_lm_summary $fstatistic[1],diet_phylo_lm_summary $fstatistic[2],diet_phylo_lm_summary $fstatistic[3],lower.tail=FALSE),digits=3)`, regression weighted by the number of prey species assayed.)
 
