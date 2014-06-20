@@ -19,7 +19,8 @@ library(stargazer)
 library(tidyr)
 library(knitr)
 opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
-
+library(ggplot2)
+mytheme <- theme_bw()
 ```
 
 ### predator phylogeny
@@ -169,19 +170,56 @@ singlepred_resp$decomp <- lm(decomp ~ treatment, data = singlepred)
 singlepred_resp$growth <- lm(growth ~ treatment, data = singlepred)
 singlepred_resp$N <- lm(N ~ treatment, data = singlepred)
   
+## models
 stargazer(singlepred_resp,type = "latex")
 
+## graph
 singlepred %>%
   select(-trt_type) %>%
   gather(response, value, total.surv:N) %>%
   group_by(treatment, response) %>%
-  summarize(resp.mean = mean(value, na.rm = TRUE)) %>%
+  summarise(resp.mean = mean(value, na.rm = TRUE),
+            resp.n = n(),
+            se = sd(value, na.rm = TRUE)/resp.n) %>%
   ggplot(aes(x = treatment, y = resp.mean)) + 
   geom_point(size=6,shape = 21, colour = "black", fill = "#00A08A") + 
   ylab("Mean response") + 
+  geom_linerange(aes(ymin = resp.mean - se, ymax = resp.mean + se)) +
   facet_wrap(~response, scales = "free") + mytheme
-
 ```
 
+```{r results='asis'}
+## anovas and TukeyHSDs
+singlepred_resp_aov <- vector("list",4) %>%
+  set_names(singlepred %>% select(fine:N) %>% names)
+
+singlepred_resp_aov$fine <- aov(fine ~ treatment, data = singlepred)
+singlepred_resp_aov$decomp <- aov(decomp ~ treatment, data = singlepred)
+singlepred_resp_aov$growth <- aov(growth ~ treatment, data = singlepred)
+singlepred_resp_aov$N <- aov(N ~ treatment, data = singlepred) 
+
+tukies <- lapply(singlepred_resp_aov,TukeyHSD)
+
+trts <- lapply(tukies,function(x) x$treatment)
+```
+
+#### fine detritus
+```{r results='asis'}
+stargazer(trts$fine, header = FALSE)
+```
+
+#### decomposition
+```{r results='asis'}
+stargazer(trts$decomp, header = FALSE)
+```
+
+#### growth
+```{r results='asis'}
+stargazer(trts$growth, header = FALSE)
+```
+
+#### N
+```{r results='asis'}
+stargazer(trts$N, header = FALSE)
 ```
 
