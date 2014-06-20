@@ -142,3 +142,46 @@ models %>%
   stargazer(.,type = "latex",column.labels = models$response %>% as.character)
 
 ```
+
+## single-species work
+```{r TEST_experiment_single_pred, results='asis'}
+trt_lkp <- c("andro" = "single",
+             "tabanid" = "single",
+             "elong + andro" = "pair",
+             "control" = "control",
+             "leech" = "single",
+             "elong + leech" = "pair",
+             "elong" = "single",
+             "elong + tab" = "pair")
+
+singlepred <- pd %>%
+  select(treatment,total.surv,fine,decomp,growth,N) %>%
+  mutate(trt_type = trt_lkp[treatment]) %>%
+  filter(trt_type == "single") 
+
+singlepred_resp <- vector("list",5) %>%
+  set_names(singlepred %>% select(total.surv:N) %>% names)
+
+singlepred_resp$total.surv  <- glm(total.surv ~ treatment,
+                                   family = "poisson",data = singlepred)
+singlepred_resp$fine <- lm(fine ~ treatment, data = singlepred)
+singlepred_resp$decomp <- lm(decomp ~ treatment, data = singlepred)
+singlepred_resp$growth <- lm(growth ~ treatment, data = singlepred)
+singlepred_resp$N <- lm(N ~ treatment, data = singlepred)
+  
+stargazer(singlepred_resp,type = "latex")
+
+singlepred %>%
+  select(-trt_type) %>%
+  gather(response, value, total.surv:N) %>%
+  group_by(treatment, response) %>%
+  summarize(resp.mean = mean(value, na.rm = TRUE)) %>%
+  ggplot(aes(x = treatment, y = resp.mean)) + 
+  geom_point(size=6,shape = 21, colour = "black", fill = "#00A08A") + 
+  ylab("Mean response") + 
+  facet_wrap(~response, scales = "free") + mytheme
+
+```
+
+```
+
