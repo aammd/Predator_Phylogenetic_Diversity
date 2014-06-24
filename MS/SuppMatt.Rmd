@@ -89,7 +89,7 @@ read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
          meanSE=paste(meanval_sig,"±",SE_sig)) %>%
   select(treatment,response,meanSE) %>% 
   spread(response,meanSE) %>%
-  stargazer(summary = FALSE, type = "latex")
+  stargazer(summary = FALSE, type = "latex", header = FALSE)
 
 # # could rename with this
 # coltext <- expression("surviving insects","fine detritus (g)","leaf decomposition (g)",
@@ -103,49 +103,6 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
   tbl_df() %>%
   transform(decomp=ifelse(decomp>0.7,NA,decomp))
 
-### calculate means 
-trt_means <- pd %>%
-  select(treatment,total.surv,fine,decomp,growth,N) %>%   
-  gather(response,value,-treatment) %>%
-  group_by(treatment,response) %>%
-  summarise(meanval=mean(value,na.rm = TRUE),
-            n=n()) %>%
-  mutate(trt_type = treatment %>% grepl(".+ \\+ .+",.) %>% ifelse(.,"pair",treatment),
-         trt_type = trt_type %in% c("control","pair") %>% not %>% ifelse(.,"single",trt_type)) %>%
-  ungroup %>%
-  group_by(trt_type,response) %>%
-  arrange(response,trt_type) %>%
-  filter(trt_type != "control") %>%
-  select(trt_type,response,val = meanval)
-
-## select control treatments
-cntrl_val <- pd %>% 
-  select(treatment,total.surv,fine,decomp,growth,N) %>%   
-  gather(response,value,-treatment) %>%
-  filter(treatment == "control") %>%
-  select(trt_type = treatment, response, val = value)
-
-## order treatments & do model
-models <- rbind(trt_means,cntrl_val) %>%
-  arrange(response) %>%
-  group_by(response) %>%
-  mutate(repno = seq_along(trt_type)) %>%
-#   spread(response,val) %>%
-  mutate(trt_type = trt_type %>% ordered(x = .,levels = c("control","single","pair"))) %>%
-  arrange(response,trt_type) %>%
-  select(-repno) %>%
-  do(mod = lm(val ~ trt_type, data = .))
-
-## present via stargazer
-models %>%
-  extract2("mod") %>%
-  set_names(models$response) %>%
-  stargazer(.,type = "latex",column.labels = models$response %>% as.character)
-
-```
-
-## single-species work
-```{r TEST_experiment_single_pred, results='asis'}
 trt_lkp <- c("andro" = "single",
              "tabanid" = "single",
              "elong + andro" = "pair",
@@ -154,6 +111,34 @@ trt_lkp <- c("andro" = "single",
              "elong + leech" = "pair",
              "elong" = "single",
              "elong + tab" = "pair")
+
+mean_na <- function(x) mean(x, na.rm = TRUE)
+
+pd %>% 
+  select(treatment,total.surv,fine,decomp,growth,N) %>%
+  mutate(treatment = treatment %>% 
+           equals("control") %>% 
+           ifelse(paste0(treatment,seq_along(treatment)),
+                  treatment)) %>%
+  group_by(treatment) %>%
+  summarise_each(funs(mean_na)) %>%
+  mutate(treatment = treatment %>% gsub("\\d","",.),
+         treatment = trt_lkp[treatment],
+         treatment = treatment %>% ordered(x = .,levels = c("control","single","pair"))) %>%
+  gather(resp,val,-treatment) %>% 
+  group_by(resp) %>%
+  do(anova_ord = lm(val ~ treatment, data = .)) %>%
+  (function(g) {
+    g %>% 
+      extract2("anova_ord") %>% 
+      set_names(g %>% extract2("resp"))
+    }) %>%
+  stargazer
+
+```
+
+## single-species work
+```{r TEST_experiment_single_pred, results='asis'}
 
 singlepred <- pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
@@ -171,7 +156,7 @@ singlepred_resp$growth <- lm(growth ~ treatment, data = singlepred)
 singlepred_resp$N <- lm(N ~ treatment, data = singlepred)
   
 ## models
-stargazer(singlepred_resp,type = "latex")
+stargazer(singlepred_resp, header = FALSE)
 
 ## CI
 preds <- lapply(singlepred_resp,function(x) {
@@ -243,6 +228,8 @@ stargazer(trts$fine, header = FALSE)
 
 
 #### decomposition
+
+
 ```{r results='asis'}
 stargazer(trts$decomp, header = FALSE)
 ```

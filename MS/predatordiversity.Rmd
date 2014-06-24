@@ -2,18 +2,20 @@
 title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
 author: "A. Andrew M. MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 output:
-  html_document: default
   pdf_document: default
+  md_document: default
+  html_document: default
   word_document:
     reference_docx: reference.docx
-  md_document: default
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
+fontsize: 11pt
+geometry: margin=1in
 ---
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
 library(knitr)
-opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE,dev="png")
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE, dev='pdf')
 
 ## load packages
 library(ggplot2)
@@ -594,6 +596,7 @@ predeffect <- function(resp="total.surv"){
   diffeffect <- (mean(pd[[resp]][pd$treatment!="control"],na.rm=TRUE)-mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE))/mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE)
   round(diffeffect,digits=2)*100
   }
+
 # 
 # ddply(pd,.(treatment),summarize,meansurv=mean(total.surv))
 # 
@@ -620,7 +623,7 @@ We found the greatest effect for prey survival: while effects of _L. andromache_
 
 ### Figures
 
-```{r FIG_metabolic_occurance_as_phylo,fig.cap="Figure 1: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. ",dev='png'}
+```{r FIG_metabolic_occurance_as_phylo,fig.cap=""}
 
 if(FALSE) {
   model_aic <- metabolic_occur_phylo %>% 
@@ -636,9 +639,9 @@ metabolic_occur_phylo %>%
   pianka_plot
 
 ```
+**Figure 1**: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. "
 
-
-```{r FIG_feeding_trial_as_phylo, fig.cap="Figure 2:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles.",dev='png'}
+```{r FIG_feeding_trial_as_phylo, fig.cap=""}
 
 f_extract <- function(f,.models) sapply(.models,function(x) f(x[[1]]))
 
@@ -746,8 +749,13 @@ x_sequence %>% tbl_df %>%
 
 
 ```
+**Figure 2**:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles.
 
-```{r FIG_PD_experiment_nonadditive,fig.cap="Figure 3: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation",dev='png'}
+
+
+
+
+```{r FIG_PD_experiment_nonadditive,fig.cap=""}
 
 summarize_randoms_phylo %>% 
   filter(response_var == "survival") %>%
@@ -763,6 +771,8 @@ summarize_randoms_phylo %>%
 # ggplot(summarize_randoms_phylo,
 #        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")+facet_wrap(~variable)
 ```
+**Figure 3**: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation
+
 
 ## Discussion
 
