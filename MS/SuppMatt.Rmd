@@ -10,7 +10,7 @@ output:
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 ---
 
-```{r results='asis', echo=FALSE,message=FALSE}
+```{r packages_data, results='asis', echo=FALSE,message=FALSE}
 library(magrittr)
 library(dplyr)
 library(pander)
@@ -24,6 +24,8 @@ mytheme <- theme_bw()
 ```
 
 ### predator phylogeny
+
+
 
 ```{r}
 read.tree("../data/reorganized_data/predator_tree_time.newick") %>% plot
@@ -114,7 +116,46 @@ trt_lkp <- c("andro" = "single",
 
 mean_na <- function(x) mean(x, na.rm = TRUE)
 
-pd %>% 
+ctrl_single_pair <- pd %>% 
+  select(treatment,total.surv,fine,decomp,growth,N) %>%
+  mutate(treatment = treatment %>% 
+           equals("control") %>% 
+           ifelse(paste0(treatment,seq_along(treatment)),
+                  treatment)) %>%
+  group_by(treatment) %>%
+  summarise_each(funs(mean_na)) %>%
+  mutate(treatment = treatment %>% gsub("\\d","",.),
+         treatment = trt_lkp[treatment],
+         treatment = treatment %>% ordered(x = .,levels = c("control","single","pair"))) %>%
+  gather(resp,val,-treatment)
+
+ctrl_single_pair %>% 
+  ggplot(aes(x = treatment
+
+
+ctrl_single_pair_lm <- ctrl_single_pair %>% 
+  group_by(resp) %>%
+  do(anova_ord = aov(val ~ treatment, data = .)) %>%
+  function(g) {
+    g %>% 
+      extract2("anova_ord") %>% 
+      set_names(g %>% extract2("resp"))
+    }
+
+lapply(ctrl_single_pair_lm,TukeyHSD) %>%
+  lapply(function(x) x[["treatment"]]) %>%
+  lapply(as.data.frame) %>%
+  lapply(function(x) data.frame(comparison = row.names(x),x)) %>%
+  function(m) {
+    comps <- rbind_all(m)
+    r <- names(m) %>% rep(times = sapply(m,nrow) %>% as.numeric)
+    data.frame(r,comps)
+    } %>%
+  stargazer(header = FALSE, summary = FALSE)
+
+
+### calculate treatment means?
+trtmeans  <- pd %>% 
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(treatment = treatment %>% 
            equals("control") %>% 
@@ -126,14 +167,14 @@ pd %>%
          treatment = trt_lkp[treatment],
          treatment = treatment %>% ordered(x = .,levels = c("control","single","pair"))) %>%
   gather(resp,val,-treatment) %>% 
-  group_by(resp) %>%
-  do(anova_ord = lm(val ~ treatment, data = .)) %>%
-  (function(g) {
-    g %>% 
-      extract2("anova_ord") %>% 
-      set_names(g %>% extract2("resp"))
-    }) %>%
-  stargazer
+  group_by(resp,treatment) %>%
+  mutate(meanval = mean(val)) 
+
+# %>%
+#   ggplot(aes(x = treatment, y = val)) + 
+#   geom_point(position = "jitter") + 
+#   scale_shape(solid=FALSE) #+ 
+#   #facet_wrap(~resp, scales = "free")
 
 ```
 
