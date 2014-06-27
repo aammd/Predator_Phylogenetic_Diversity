@@ -21,6 +21,18 @@ library(knitr)
 opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
 library(ggplot2)
 mytheme <- theme_bw()
+
+# experimental data
+pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
+               stringsAsFactors=FALSE) %>%
+  tbl_df() %>%
+  transform(decomp=ifelse(decomp>0.7,NA,decomp))
+
+predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
+
+dist_sim <- read.csv(file = "distributional_similarity.csv")
+
+diet_sim <- read.csv(file = "diet_similarity.csv")
 ```
 
 ### predator phylogeny
@@ -28,7 +40,7 @@ mytheme <- theme_bw()
 
 
 ```{r}
-read.tree("../data/reorganized_data/predator_tree_time.newick") %>% plot
+predtree_timetree_ages %>% plot
 ```
 
 
@@ -42,7 +54,7 @@ formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
               "constant" = "a \\times x$"
               )
 
-read.csv(file = "distributional_similarity.csv") %>%
+dist_sim %>%
   mutate(Equation = formulae[model]) %>%
   select(Equation,AIC) %>%
   pander
@@ -51,9 +63,7 @@ read.csv(file = "distributional_similarity.csv") %>%
 ### Model comparison for diet similarity as a function of PD
 Note: these models are weighted by the number of prey species tested
 ```{r results='asis',echo=FALSE}
-
-
-read.csv(file = "diet_similarity.csv") %>%
+diet_sim %>%
   mutate(Equation = formulae[model]) %>%
   select(Equation,AIC) %>%
   pander
@@ -76,9 +86,7 @@ Densities of prey species used in the experiment.
 
 ### experimental summary
 ```{r exp summary, results='asis'}
-read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
-         stringsAsFactors=FALSE) %>%
-  tbl_df() %>%
+pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   gather(response,value,-treatment) %>%
   group_by(treatment,response) %>%
@@ -100,10 +108,6 @@ read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
 
 ### the effect of predator diversity *per se*
 ```{r experimentANOVA,results='asis'}
-pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
-               stringsAsFactors=FALSE) %>%
-  tbl_df() %>%
-  transform(decomp=ifelse(decomp>0.7,NA,decomp))
 
 trt_lkp <- c("andro" = "single",
              "tabanid" = "single",
@@ -128,9 +132,9 @@ ctrl_single_pair <- pd %>%
          treatment = trt_lkp[treatment],
          treatment = treatment %>% ordered(x = .,levels = c("control","single","pair"))) %>%
   gather(resp,val,-treatment)
-
-ctrl_single_pair %>% 
-  ggplot(aes(x = treatment
+# 
+# ctrl_single_pair %>% 
+#   ggplot(aes(x = treatment
 
 
 ctrl_single_pair_lm <- ctrl_single_pair %>% 
