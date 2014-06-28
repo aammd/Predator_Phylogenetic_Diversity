@@ -140,7 +140,6 @@ We estimated the densities of these common prey species based on their abundance
 We calculated means and standard error for every experimental treatment and response variable.  n = 5 for every pair of numbers, with only two exceptions due to missing values: `elong + leech` x `growth`, and `leech` x `decomp`.
 
 **Table S5**: Means and standard errors for all response variables for each predator treatment in our manipulative experiment.
-
 ```{r exp summary, results='asis'}
 pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
@@ -193,7 +192,7 @@ data.frame(Nspp = factor(trt_lkp, levels = c("none",
   print(include.rownames = FALSE, size = 8, comment = FALSE)
 ```
 
-**Table S7**: the effect of predator species number on 
+**Table S7**: the effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how changing number of predator species changed the response.  Treatment order was none < one < two species. (See Table S6).
 ```{r results='asis'}
 mean_na <- function(x) mean(x, na.rm = TRUE)
 
@@ -201,7 +200,8 @@ ctrl_single_pair <- pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(treatment = treatment %>% 
            equals("control") %>% 
-           ifelse(paste0(treatment,seq_along(treatment)),
+           ifelse(paste0(treatment,
+                         seq_along(treatment)),
                   treatment)) %>%
   group_by(treatment) %>%
   summarise_each(funs(mean_na)) %>%
@@ -216,15 +216,13 @@ ctrl_single_pair <- pd %>%
 ctrl_single_pair_lm <- ctrl_single_pair %>% 
   group_by(resp) %>%
   do(anova_ord = lm(val ~ treatment, data = .)) %>%
-  function(g) {
-    g %>% 
-      extract2("anova_ord") %>% 
-      set_names(g %>% extract2("resp"))
-    }
+  function(df) split(df$anova_ord,df$resp) %>%
+  lapply(function(x) x[[1]])
 
-ctrl_single_pair_lm %>%
-  function(l) stargazer(l, dep.var.labels = names(l),
-                        header = FALSE)
+
+  stargazer(ctrl_single_pair_lm,label = "",
+            dep.var.labels = names(ctrl_single_pair_lm),
+            header = FALSE, multicolumn = FALSE)
 #   xtable %>% 
 #   print(include.rownames = FALSE, size = 8, comment = FALSE)
 ```
