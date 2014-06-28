@@ -74,13 +74,24 @@ pd <- pd %>%
 
 ## Introduction
 
-Predators can have strong top-down effects, both on community
-structure and ecosystem processes [@Estes2011].  The effects of all predators in a community (the predator assemblage) is often dependent on species composition, and can be more or less than the sum of effect sizes of individual predators [@Sih1998a;@Ives2005]. Detailed studies manipulating
-predator diversity have identified many direct and indirect mechanisms of predator interaction. For example, predators may differ in their preference for microhabitats resulting in spatial or temporal partitioning between predator species [@Schmitz2007].  Even when predators occupy the same patch, they may feed on different prey species and so have additive top-down effects [@Schmitz2007]. Conversely, antagonistic predator-predator interactions can reduce the top-down effects of a diverse
-consumer assemblage, for example when predators feed directly on each other (intra-guild
-predation) or modify the behaviour of predators or prey via non-consumptive
-(i.e. trait-mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001].  While
-there are many mechanisms potentially underlying predator compositional effects, we lack a means of predicting _a priori_ which combinations are likely to have antagonistic versus synergistic effects on ecosystem functions. 
+Predators can have strong top-down effects, both on community structure and
+ecosystem processes [@Estes2011].  The effects of all predators in a community
+(the predator assemblage) is often dependent on species composition, and can be
+more or less than the sum of effect sizes of individual predators
+[@Sih1998a;@Ives2005]. Detailed studies manipulating predator diversity have
+identified many direct and indirect mechanisms of predator interaction. For
+example, predators may differ in their preference for microhabitats resulting in
+spatial or temporal partitioning between predator species [@Schmitz2007].  Even
+when predators occupy the same patch, they may feed on different prey species
+and so have additive top-down effects [@Schmitz2007]. Conversely, antagonistic
+predator-predator interactions can reduce the top-down effects of a diverse
+consumer assemblage, for example when predators feed directly on each other
+(intra-guild predation) or modify the behaviour of predators or prey via non-
+consumptive (i.e. trait-mediated) interactions
+[@Sih1998a;@Griswold2006;@Nystrom2001].  While there are many mechanisms
+potentially underlying predator compositional effects, we lack a means of
+predicting _a priori_ which combinations are likely to have antagonistic versus
+synergistic effects on ecosystem functions.
 
 Several authors have hypothesized that the
 phylogenetic diversity of a community or assemblage may correlate with increased
