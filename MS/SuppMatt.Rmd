@@ -136,10 +136,16 @@ We estimated the densities of these common prey species based on their abundance
 | *Trentepholia sp.*       |  1      |
 
 ## experimental responses 
+
+We calculated means and standard error for every experimental treatment and response variable.  n = 5 for every pair of numbers, with only two exceptions due to missing values: `elong + leech` x `growth`, and `leech` x `decomp`.
+
+**Table S5**: Means and standard errors for all response variables for each predator treatment in our manipulative experiment.
+
 ```{r exp summary, results='asis'}
 pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   gather(response,value,-treatment) %>%
+  filter(!is.na(value)) %>%
   group_by(treatment,response) %>%
   summarise(meanval=mean(value),
             n=n(),
@@ -150,26 +156,45 @@ pd %>%
          meanSE=paste(meanval_sig,"±",SE_sig)) %>%
   select(treatment,response,meanSE) %>% 
   spread(response,meanSE) %>%
-  stargazer(summary = FALSE, type = "latex", header = FALSE, 
-            dep.var.caption = "", notes.label = "")
+  xtable %>% 
+  print(include.rownames = FALSE, size = 8, comment = FALSE)
+#   stargazer(summary = FALSE, type = "latex", header = FALSE, 
+#             dep.var.caption = "", notes.label = "")
 
 # # could rename with this
 # coltext <- expression("surviving insects","fine detritus (g)","leaf decomposition (g)",
 #                       "bromeliad growth (g)","Nitrogen cycling")
 ```
 
-### the effect of predator diversity *per se*
+## Differences among treatments
+
+### Number of predator species
+
+Our experimental design manipulates predator diversity at three levels, and we tested each in turn.  At the highest level, we introduced zero, one and two species of predators into different bromeliads.  
+
+**Table S6**: Number of predator species in each experimental treatment.
 ```{r experimentANOVA,results='asis'}
 
-trt_lkp <- c("andro" = "single",
-             "tabanid" = "single",
-             "elong + andro" = "pair",
-             "control" = "control",
-             "leech" = "single",
-             "elong + leech" = "pair",
-             "elong" = "single",
-             "elong + tab" = "pair")
+trt_lkp <- c("andro" = "one",
+             "tabanid" = "one",
+             "elong + andro" = "two",
+             "control" = "none",
+             "leech" = "one",
+             "elong + leech" = "two",
+             "elong" = "one",
+             "elong + tab" = "two")
 
+data.frame(Nspp = factor(trt_lkp, levels = c("none",
+                                                "one",
+                                                "two")),
+           treatment = names(trt_lkp)) %>%
+  arrange(Nspp) %>%
+  xtable %>% 
+  print(include.rownames = FALSE, size = 8, comment = FALSE)
+```
+
+**Table S7**: the effect of predator species number on 
+```{r results='asis'}
 mean_na <- function(x) mean(x, na.rm = TRUE)
 
 ctrl_single_pair <- pd %>% 
@@ -182,23 +207,39 @@ ctrl_single_pair <- pd %>%
   summarise_each(funs(mean_na)) %>%
   mutate(treatment = treatment %>% gsub("\\d","",.),
          treatment = trt_lkp[treatment],
-         treatment = treatment %>% ordered(x = .,levels = c("control","single","pair"))) %>%
+         treatment = treatment %>% ordered(x = .,levels = c("none","one","two"))) %>%
   gather(resp,val,-treatment)
 # 
 # ctrl_single_pair %>% 
 #   ggplot(aes(x = treatment
 
-
 ctrl_single_pair_lm <- ctrl_single_pair %>% 
   group_by(resp) %>%
-  do(anova_ord = aov(val ~ treatment, data = .)) %>%
+  do(anova_ord = lm(val ~ treatment, data = .)) %>%
   function(g) {
     g %>% 
       extract2("anova_ord") %>% 
       set_names(g %>% extract2("resp"))
     }
 
-lapply(ctrl_single_pair_lm,TukeyHSD) %>%
+ctrl_single_pair_lm %>%
+  function(l) stargazer(l, dep.var.labels = names(l),
+                        header = FALSE)
+#   xtable %>% 
+#   print(include.rownames = FALSE, size = 8, comment = FALSE)
+```
+
+```{r results='asis'}
+
+ctrl_single_pair %>% 
+  group_by(resp) %>%
+  do(anova_ord = aov(val ~ treatment, data = .)) %>%
+  function(g) {
+    g %>% 
+      extract2("anova_ord") %>% 
+      set_names(g %>% extract2("resp"))
+    } %>%
+  lapply(TukeyHSD) %>%
   lapply(function(x) x[["treatment"]]) %>%
   lapply(as.data.frame) %>%
   lapply(function(x) data.frame(comparison = row.names(x),x)) %>%
@@ -206,8 +247,11 @@ lapply(ctrl_single_pair_lm,TukeyHSD) %>%
     comps <- rbind_all(m)
     r <- names(m) %>% rep(times = sapply(m,nrow) %>% as.numeric)
     data.frame(r,comps)
-    } %>%
-  stargazer(header = FALSE, summary = FALSE)
+    } %>% 
+  select(response = r, comparison:p.adj) %>%
+  xtable %>% 
+  print(include.rownames = FALSE, size = 8, comment = FALSE)
+#   stargazer(header = FALSE, summary = FALSE)
 
 
 ### calculate treatment means?
@@ -226,12 +270,6 @@ trtmeans  <- pd %>%
   group_by(resp,treatment) %>%
   mutate(meanval = mean(val)) 
 
-# %>%
-#   ggplot(aes(x = treatment, y = val)) + 
-#   geom_point(position = "jitter") + 
-#   scale_shape(solid=FALSE) #+ 
-#   #facet_wrap(~resp, scales = "free")
-
 ```
 
 ## single-species work
@@ -240,7 +278,7 @@ trtmeans  <- pd %>%
 singlepred <- pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(trt_type = trt_lkp[treatment]) %>%
-  filter(trt_type == "single") 
+  filter(trt_type == "one") 
 
 singlepred_resp <- vector("list",5) %>%
   set_names(singlepred %>% select(total.surv:N) %>% names)
