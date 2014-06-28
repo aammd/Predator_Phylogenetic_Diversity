@@ -10,15 +10,17 @@ output:
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 ---
 
+
 ```{r packages_data, results='asis', echo=FALSE,message=FALSE}
 library(magrittr)
 library(dplyr)
 library(pander)
 library(picante)
 library(stargazer)
+library(xtable)
 library(tidyr)
 library(knitr)
-opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE,fig.cap=FALSE)
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE)
 library(ggplot2)
 mytheme <- theme_bw()
 
@@ -33,19 +35,46 @@ predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time
 dist_sim <- read.csv(file = "distributional_similarity.csv")
 
 diet_sim <- read.csv(file = "diet_similarity.csv")
+
+prop.eaten <- read.csv(file = "proportion.eaten.csv")
+
+timetree <- list.files("../data/TreeData/", full.names = TRUE, pattern = "*.csv") %>%
+  function(d) {basename(d) %>% gsub(".csv","",.) %>% set_names(d,.)} %>%
+  lapply(read.csv,stringsAsFactors = FALSE) %>%
+  plyr::ldply() %>%
+  mutate(foo = seq_along(Taxon.A)) %>%
+  gather(var,val,-foo) %>%
+  mutate(val = gsub("\\(.+\\)","", val)) %>%
+  spread(var,val) %>%
+  select(-foo,"study taxa" = .id,Time:Year)
+
 ```
 
-### predator phylogeny
+# Predator phylogeny
 
+We used information from timetree.org (link) to add node ages to our tree.  This web service provides age estimates from the literature for all pairs of taxa from the same groups as the searched taxa. Thus deeper nodes are estimated from more taxa than shallower nodes, because more species are included among the descendents.  
 
+**Table S1** Studies used to date nodes on our predator phylogeny.  When more than one study was available, we used the median value.  
 
-```{r}
+```{r TABLE_Timetree, results='asis'}
+xtable(timetree) %>% print(include.rownames = FALSE, size = 8, comment = FALSE)
+```
+
+```{r FIG_predatorphylo}
 predtree_timetree_ages %>% plot
 ```
 
+**Figure S1** Predator phylogeny, with dated nodes derived from data in Table 1.  When multiple time estimates are available, we used the median.
 
-### Model comparison for distributional similarity as a function of PD
-```{r results='asis',echo=FALSE}
+
+# Phylogenetic distance and similarity in distribution and diet: nonlinear models
+
+Similarity in distribution or diet might not be similar over time, but might in fact relate to the increased amount or the plateauing of variation after a certain amount of evolutionary time. Additionally, because our similarity measure is bouded by 0 and 1, fitting a linear relationship may lead to nonsensical predicted values. 
+
+## Distributional similarity
+
+**Table S2** Linear, nonlinear and constant functions fit to the relationship of diet similarity and predator phylogenetic distance.
+```{r TABLE_dietsim, results='asis',echo=FALSE}
 formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
               "bellshaped" = "$peak \\times {e}^{(-1 \\times (PD)^2 / a)}$",
               "{e}^{onential" = "$b \\times {e}^{(a \\times PD)}$",
@@ -60,8 +89,27 @@ dist_sim %>%
   pander
 ```
 
-### Model comparison for diet similarity as a function of PD
-Note: these models are weighted by the number of prey species tested
+## Diet similarity
+
+**Table S3** proportion of predation in the feeding trials. 
+```{r prop.eaten.table, results='asis'}
+preds <- c("leech","L.andro","L.elong","L.tan","Monopelopia","Tab.A","Tab.B","Tab.C") %>%
+  set_names(c("Hirudinidae","Leptagrion.andromache","Leptagrion.elongatum","Leptagrion.tan","Monopelopia","Tabanidae.spA","Tabanidae.spB","Tabanidae.spC"))
+
+prop.eaten %>% 
+  select(-X) %>%
+  mutate(predator.names = predator.names %>% as.character %>% preds[.]) %>%
+  data.frame(row.names = "predator.names") %>% 
+  t %>% 
+  signif(digits = 2) %>%
+  function(mat) mat[mat %>% is.na %>% rowSums %>% order,
+                    mat %>% is.na %>% colSums %>% order] %>%
+  xtable %>%
+  print(include.rownames = TRUE, size = 5, comment = FALSE)
+```
+
+
+**Table S3** Linear, nonlinear and constant functions fit to the relationship of diet similarity and predator phylogenetic distance. These models are weighted by the number of prey species tested
 ```{r results='asis',echo=FALSE}
 diet_sim %>%
   mutate(Equation = formulae[model]) %>%
@@ -69,10 +117,13 @@ diet_sim %>%
   pander
 ```
 
-## Predator diversity experiment
+# Predator diversity experiment
 
-### Prey community composition
-Densities of prey species used in the experiment.
+## Prey community composition 
+
+We estimated the densities of these common prey species based on their abundances in our 2008 observational dataset as a function of bromeliad size.  We adjusted our density estimates slightly to account for interannual variation in invertebrate abundance.
+
+**Table S4** Densities of prey species used in the experiment.
 
 |  Species                 | density |
 |:------------------------:|:-------:|
@@ -84,7 +135,7 @@ Densities of prey species used in the experiment.
 | *Culex spp.*             |  4      |
 | *Trentepholia sp.*       |  1      |
 
-### experimental summary
+## experimental responses 
 ```{r exp summary, results='asis'}
 pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
@@ -99,7 +150,8 @@ pd %>%
          meanSE=paste(meanval_sig,"±",SE_sig)) %>%
   select(treatment,response,meanSE) %>% 
   spread(response,meanSE) %>%
-  stargazer(summary = FALSE, type = "latex", header = FALSE)
+  stargazer(summary = FALSE, type = "latex", header = FALSE, 
+            dep.var.caption = "", notes.label = "")
 
 # # could rename with this
 # coltext <- expression("surviving insects","fine detritus (g)","leaf decomposition (g)",

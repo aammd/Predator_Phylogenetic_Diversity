@@ -428,7 +428,8 @@ phylogenetic_distance  <- predtree_timetree_ages %>%
 
 ```{r CALC_metabolic_distance}
 
-metabolic_distance <- paired_predator_pianka(pred_x_resource = metabolic,pred_colname = "Taxa",... =-Taxa)
+metabolic_distance <- paired_predator_pianka(pred_x_resource = metabolic,
+                                             pred_colname = "Taxa",... =-Taxa)
 
 ```
 
@@ -448,6 +449,8 @@ prop.eaten <- feeding_trials %>%
   spread(Prey.species,prop.eaten,fill = NA)
    #dcast(predator.names~Prey.species,value.var="prop.eaten",fun.aggregate = mean)
 
+write.csv(prop.eaten,"proportion.eaten.csv")
+
 diet_overlap <- paired_predator_pianka(pred_x_resource = prop.eaten,
                                        pred_colname = "predator.names",
                                        -predator.names)
@@ -460,12 +463,12 @@ betternames <- c("elong + andro" = "Leptagrion.elongatum_Leptagrion.andromache",
                  "elong + tab" = "Leptagrion.elongatum_Tabanidae.spA",
                  "elong + leech" = "Leptagrion.elongatum_Hirudinidae")
                  
-summarize_random_test <- rand.means %>%
+summarize_random_test <- rand.means %>% 
   # remove annoying X column
   select(-X) %>%
   # melt, so that all responses can be summarized at the same time
-  gather(response_var,value,-sp.pair) %>%
-  group_by(sp.pair,response_var) %>%
+  gather(response_var,value,-sp.pair) %>% 
+  group_by(sp.pair,response_var) %>% 
   summarise(mean=mean(value),
             lower=quantile(value,probs=c(0.025)),
             upper=quantile(value,probs=c(0.975))
@@ -741,10 +744,10 @@ x_sequence %>% tbl_df %>%
          lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE)
          ) %>% 
   #  gather(model,prediction,-phylodistance) %>%
-  (function(x) fig2 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +
+  function(x) {fig2 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +
      geom_line(aes(x = phylodistance, y = upper),data = x,linetype = "dashed") +
-     geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")
-   ) 
+     geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")}
+   
 
 
 
