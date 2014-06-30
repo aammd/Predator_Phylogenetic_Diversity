@@ -251,7 +251,6 @@ ctrl_single_pair %>%
 
 
 ```{r results='asis'}
-
 ctrl_single_pair %>% 
   group_by(resp) %>%
   do(anova_ord = aov(val ~ treatment, data = .)) %>%
@@ -273,24 +272,6 @@ ctrl_single_pair %>%
   mutate(response = trtnames[response]) %>%
   xtable %>% 
   print(include.rownames = FALSE, size = 8, comment = FALSE)
-#   stargazer(header = FALSE, summary = FALSE)
-
-
-### calculate treatment means?
-trtmeans  <- pd %>% 
-  select(treatment,total.surv,fine,decomp,growth,N) %>%
-  mutate(treatment = treatment %>% 
-           equals("control") %>% 
-           ifelse(paste0(treatment,seq_along(treatment)),
-                  treatment)) %>%
-  group_by(treatment) %>%
-  summarise_each(funs(mean_na)) %>%
-  mutate(treatment = treatment %>% gsub("\\d","",.),
-         treatment = trt_lkp[treatment],
-         treatment = treatment %>% ordered(x = .,levels = c("control","single","pair"))) %>%
-  gather(resp,val,-treatment) %>% 
-  group_by(resp,treatment) %>%
-  mutate(meanval = mean(val)) 
 
 ```
 
