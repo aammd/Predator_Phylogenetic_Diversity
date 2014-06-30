@@ -196,6 +196,7 @@ data.frame(Nspp = factor(trt_lkp, levels = c("none",
 ```{r results='asis'}
 mean_na <- function(x) mean(x, na.rm = TRUE)
 
+## average every treatment 
 ctrl_single_pair <- pd %>% 
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(treatment = treatment %>% 
@@ -209,22 +210,18 @@ ctrl_single_pair <- pd %>%
          treatment = trt_lkp[treatment],
          treatment = treatment %>% ordered(x = .,levels = c("none","one","two"))) %>%
   gather(resp,val,-treatment)
-# 
-# ctrl_single_pair %>% 
-#   ggplot(aes(x = treatment
 
+## linear models
 ctrl_single_pair_lm <- ctrl_single_pair %>% 
   group_by(resp) %>%
   do(anova_ord = lm(val ~ treatment, data = .)) %>%
   function(df) split(df$anova_ord,df$resp) %>%
   lapply(function(x) x[[1]])
 
-
-  stargazer(ctrl_single_pair_lm,label = "",
-            dep.var.labels = names(ctrl_single_pair_lm),
-            header = FALSE, multicolumn = FALSE)
-#   xtable %>% 
-#   print(include.rownames = FALSE, size = 8, comment = FALSE)
+## present table
+stargazer(ctrl_single_pair_lm,label = "",
+          dep.var.labels = names(ctrl_single_pair_lm),
+          header = FALSE, multicolumn = FALSE)
 ```
 
 ```{r results='asis'}
