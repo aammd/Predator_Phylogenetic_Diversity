@@ -270,6 +270,7 @@ ctrl_single_pair %>%
     data.frame(r,comps)
     } %>% 
   select(response = r, comparison:p.adj) %>%
+  mutate(response = trtnames[response]) %>%
   xtable %>% 
   print(include.rownames = FALSE, size = 8, comment = FALSE)
 #   stargazer(header = FALSE, summary = FALSE)
