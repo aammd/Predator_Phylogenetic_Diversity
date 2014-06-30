@@ -2,12 +2,17 @@
 title: "Supplementary Material"
 author: "A. Andrew M. MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 output:
-  pdf_document: default
+  pdf_document:
+    latex_engine: xelatex
+    includes:
+      in_header: myheader_suppmatt.tex
   md_document: default
   html_document: default
   word_document:
     reference_docx: reference.docx
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
+geometry: margin=1in
+fontsize: 12pt
 ---
 
 
@@ -272,15 +277,26 @@ ctrl_single_pair %>%
     data.frame(r,comps)
     } %>% 
   select(response = r, comparison:p.adj) %>%
-  mutate(response = trtnames[response]) %>%
+  mutate(response = response %>% as.character %>% trtnames[.]) %>%
   xtable %>% 
   print(include.rownames = FALSE, size = 8, comment = FALSE)
-
 ```
 
-## Differences among predator species
-```{r TEST_experiment_single_pred, results='asis'}
 
+# insert new page here
+
+
+
+
+
+
+
+## Differences among predator species
+
+Within the single-predator treatments, we tested for difference in our response variables among different predator species. 
+
+**Table S9** : predator species effects.  These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
+```{r TEST_experiment_single_pred, results='asis'}
 singlepred <- pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(trt_type = trt_lkp[treatment]) %>%
@@ -296,9 +312,46 @@ singlepred_resp$decomp <- lm(decomp ~ treatment, data = singlepred)
 singlepred_resp$growth <- lm(growth ~ treatment, data = singlepred)
 singlepred_resp$N <- lm(N ~ treatment, data = singlepred)
   
-## models
-stargazer(singlepred_resp, header = FALSE)
+stargazer(singlepred_resp,label = "",
+          dep.var.labels = trtnames[names(singlepred_resp)],
+          header = FALSE, multicolumn = FALSE, float = FALSE,
+          covariate.labels = c("\\textit{L. elongatum}",
+                               "Hirudinidae","Tabanidae",
+                               "\\textit{L. andromache}"),
+          font.size = "small")
 
+```
+
+
+
+**Table S10**: Post-hoc Tukey tests for differences between predator species in all 5 responses. 
+```{r results='asis'}
+## anovas and TukeyHSDs
+singlepred_resp_aov <- vector("list",4) %>%
+  set_names(singlepred %>% select(fine:N) %>% names)
+
+singlepred_resp_aov$fine <- aov(fine ~ treatment, data = singlepred)
+singlepred_resp_aov$decomp <- aov(decomp ~ treatment, data = singlepred)
+singlepred_resp_aov$growth <- aov(growth ~ treatment, data = singlepred)
+singlepred_resp_aov$N <- aov(N ~ treatment, data = singlepred) 
+
+tukies <- lapply(singlepred_resp_aov,TukeyHSD)
+
+trts <- lapply(tukies,function(x) x$treatment)
+
+lapply(trts,function(x) data.frame(comparison = rownames(x),x)) %>%
+  rbind_all %>%
+  cbind(response = names(trts) %>% rep(each = 6),
+        .) %>%
+  mutate(response = response %>% as.character %>% trtnames[.]) %>%
+  xtable %>% 
+  print(include.rownames = FALSE, size = 8, comment = FALSE)
+```
+
+
+
+## making a figure
+```{r} 
 ## CI
 preds <- lapply(singlepred_resp,function(x) {
   treatment = c("andro","tabanid","leech","elong")
@@ -343,49 +396,5 @@ left_join(preds,experiment) %>%
 
 ```
 
-#### confidence intervals
-```{r results='asis'}
-## anovas and TukeyHSDs
-singlepred_resp_aov <- vector("list",4) %>%
-  set_names(singlepred %>% select(fine:N) %>% names)
 
-singlepred_resp_aov$fine <- aov(fine ~ treatment, data = singlepred)
-singlepred_resp_aov$decomp <- aov(decomp ~ treatment, data = singlepred)
-singlepred_resp_aov$growth <- aov(growth ~ treatment, data = singlepred)
-singlepred_resp_aov$N <- aov(N ~ treatment, data = singlepred) 
-
-tukies <- lapply(singlepred_resp_aov,TukeyHSD)
-
-trts <- lapply(tukies,function(x) x$treatment)
-```
-
-
-
-#### fine detritus
-```{r results='asis'}
-stargazer(trts$fine, header = FALSE)
-```
-
-
-
-#### decomposition
-
-
-```{r results='asis'}
-stargazer(trts$decomp, header = FALSE)
-```
-
-
-
-#### growth
-```{r results='asis'}
-stargazer(trts$growth, header = FALSE)
-```
-
-
-
-#### N
-```{r results='asis'}
-stargazer(trts$N, header = FALSE)
-```
 
