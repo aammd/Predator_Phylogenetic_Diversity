@@ -194,6 +194,12 @@ data.frame(Nspp = factor(trt_lkp, levels = c("none",
 
 **Table S7**: the effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how changing number of predator species changed the response.  Treatment order was none < one < two species. (See Table S6).
 ```{r results='asis'}
+trtnames <- c("total.surv" = "Total prey survival",
+  "fine" = "FPOM (g)",
+  "decomp" = "Decomposition (g)",
+  "growth" = "Bromeliad growth",
+  "N" = "Nitrogen cycling")
+
 mean_na <- function(x) mean(x, na.rm = TRUE)
 
 ## average every treatment 
@@ -220,18 +226,14 @@ ctrl_single_pair_lm <- ctrl_single_pair %>%
 
 ## present table
 stargazer(ctrl_single_pair_lm,label = "",
-          dep.var.labels = names(ctrl_single_pair_lm),
-          header = FALSE, multicolumn = FALSE)
+          dep.var.labels = trtnames[names(ctrl_single_pair_lm)],
+          header = FALSE, multicolumn = FALSE, float = FALSE,
+          covariate.labels = c("Linear","Quadratic","Constant"),
+          font.size = "small")
 ```
 
 
 ```{r FIG_spp_number}
-trtnames <- c("total.surv" = "Total prey survival",
-  "fine" = "FPOM (g)",
-  "decomp" = "Decomposition (g)",
-  "growth" = "Bromeliad growth",
-  "N" = "Nitrogen cycling")
-
 ctrl_single_pair %>% 
   mutate(resp = as.character(resp)) %>%
   mutate(resp = trtnames[resp]) %>%
@@ -246,10 +248,11 @@ ctrl_single_pair %>%
   xlab("Predator species number") + 
   mytheme
 ```
+
 **Figure S1**: The effect of predator species number on each of our response variables.  Each dot represents the mean for a different predator treatment.  Green dots represent group means.  
 
 
-
+**Table S8**: Tukey post-hoc tests for the effects of predator species number on each response variable.
 ```{r results='asis'}
 ctrl_single_pair %>% 
   group_by(resp) %>%
@@ -275,7 +278,7 @@ ctrl_single_pair %>%
 
 ```
 
-## single-species work
+## Differences among predator species
 ```{r TEST_experiment_single_pred, results='asis'}
 
 singlepred <- pd %>%
