@@ -69,12 +69,12 @@ xtable(timetree) %>% print(include.rownames = FALSE, size = 8, comment = FALSE)
 predtree_timetree_ages %>% plot
 ```
 
-**Figure S1** Predator phylogeny, with dated nodes derived from data in Table 1.  When multiple time estimates are available, we used the median.
+**Figure S1** Predator phylogeny, with dated nodes derived from data in Table 1.  When multiple time estimates were available for the same internal node, we used the median estimate.
 
 
 # Phylogenetic distance and similarity in distribution and diet: nonlinear models
 
-Similarity in distribution or diet might not be similar over time, but might in fact relate to the increased amount or the plateauing of variation after a certain amount of evolutionary time. Additionally, because our similarity measure is bouded by 0 and 1, fitting a linear relationship may lead to nonsensical predicted values. 
+Similarity in distribution or diet may have a nonlinear relationship with phylogenetic distance.  This could be caused by both biological and statistical effects.  Biological, because the fixed compositon of the prey community limits how different two predators can become. Statistical, because Pianka's similarity index is bounded by 0 and 1 and therefore an OLS linear model could potentially predict impossible (ie $< 0$ or $> 1$) values. We fit several nonlinear equations to our data in order to quantify how the amount of divergence in distribution or diet between predators changed over evolutionary time.
 
 ## Distributional similarity
 
@@ -96,7 +96,7 @@ dist_sim %>%
 
 ## Diet similarity
 
-**Table S3** proportion of predation in the feeding trials. 
+**Table S3** Proportion of predation in feeding trials. Each cell of the graph represents a predator-prey pair; note that some pairs are represented more than others (not shown).  Composition of these trials was limited by the abundance of organisms in the field.
 ```{r prop.eaten.table, results='asis'}
 preds <- c("leech","L.andro","L.elong","L.tan","Monopelopia","Tab.A","Tab.B","Tab.C") %>%
   set_names(c("Hirudinidae","Leptagrion.andromache","Leptagrion.elongatum","Leptagrion.tan","Monopelopia","Tabanidae.spA","Tabanidae.spB","Tabanidae.spC"))
@@ -114,7 +114,7 @@ prop.eaten %>%
 ```
 
 
-**Table S3** Linear, nonlinear and constant functions fit to the relationship of diet similarity and predator phylogenetic distance. These models are weighted by the number of prey species tested
+**Table S3** Linear, nonlinear and constant functions fit to the relationship of diet similarity and predator phylogenetic distance. These models are weighted by the number of prey species tested, but do not correct for the phylogenetic non-independence of the predator taxa.
 ```{r results='asis',echo=FALSE}
 diet_sim %>%
   mutate(Equation = formulae[model]) %>%
@@ -126,9 +126,9 @@ diet_sim %>%
 
 ## Prey community composition 
 
-We estimated the densities of these common prey species based on their abundances in our 2008 observational dataset as a function of bromeliad size.  We adjusted our density estimates slightly to account for interannual variation in invertebrate abundance.
+We estimated the densities of these common prey species based on their abundances in our 2008 observational dataset.  We estimated how many of each taxa would be found in a bromeliad of the same size as those we used in our experiment, and adjusted our estimates slightly to account for interannual variation in invertebrate abundance.
 
-**Table S4** Densities of prey species used in the experiment.
+**Table S4** Densities of prey species used in the 2010 predator diversity experiment.
 
 |  Species                 | density |
 |:------------------------:|:-------:|
@@ -142,9 +142,9 @@ We estimated the densities of these common prey species based on their abundance
 
 ## experimental responses 
 
-We calculated means and standard error for every experimental treatment and response variable.  n = 5 for every pair of numbers, with only two exceptions due to missing values: `elong + leech` x `growth`, and `leech` x `decomp`.
+We calculated means and standard error for every experimental treatment and response variable.  
 
-**Table S5**: Means and standard errors for all response variables for each predator treatment in our manipulative experiment.
+**Table S5**: Means and standard errors for all response variables for each predator treatment in our manipulative experiment. n = 5 for every pair of numbers, with only two exceptions due to missing values: `elong + leech` x `growth`, and `leech` x `decomp`.
 ```{r exp summary, results='asis'}
 pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
@@ -174,7 +174,7 @@ pd %>%
 
 ### Number of predator species
 
-Our experimental design manipulates predator diversity at three levels, and we tested each in turn.  At the highest level, we introduced zero, one and two species of predators into different bromeliads.  
+We divided the experimental design above into three separate hypothesis tests.  First, we examine the effect of predator species number by comparing the five control replicates with the means of the four single species treatments and the means of the three two-species treatments.  This tests whether species number *per se* has an effect on our response variables.  Secondly, we compared the four different predator taxa, to see if any of these differed in their effect on the community.  Finally, we contrast our predator diversity treatments to see how increasing PD of the predator assemblage affects our response variables. Because the first and third hypotheses suggest a ranking of the independent variables (species number and phylogenetic diversity) we used ordinal contrasts in the corresponding linear models.
 
 **Table S6**: Number of predator species in each experimental treatment.
 ```{r experimentANOVA,results='asis'}
@@ -197,7 +197,7 @@ data.frame(Nspp = factor(trt_lkp, levels = c("none",
   print(include.rownames = FALSE, size = 8, comment = FALSE)
 ```
 
-**Table S7**: the effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how changing number of predator species changed the response.  Treatment order was none < one < two species. (See Table S6).
+**Table S7**: The effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how an increasing number of predator species influenced the response.  Treatment order was none < one < two species. (See Table S6).
 ```{r results='asis'}
 trtnames <- c("total.surv" = "Total prey survival",
   "fine" = "FPOM (g)",
@@ -254,7 +254,7 @@ ctrl_single_pair %>%
   mytheme
 ```
 
-**Figure S2**: The effect of predator species number on each of our response variables.  Each dot represents the mean for a different predator treatment.  Green dots represent group means.  
+**Figure S2**: The effect of predator species number on each of our response variables.  Each dot represents the mean (n = 5) for different predator treatments.  Green dots represent group (i.e. species number) means.  
 
 
 **Table S8**: Tukey post-hoc tests for the effects of predator species number on each response variable.
@@ -282,14 +282,7 @@ ctrl_single_pair %>%
   print(include.rownames = FALSE, size = 8, comment = FALSE)
 ```
 
-
-# insert new page here
-
-
-
-
-
-
+\pagebreak
 
 ## Differences among predator species
 
@@ -366,4 +359,96 @@ singlepred %>%
   xlab("Predator species") + 
   mytheme
 ```
+
 **Figure S3**: The effect of predator species identiy on each of our response variables.  Each dot represents the observed value for a different predator treatment.  Green dots represent group means.  
+
+\pagebreak
+
+## Increasing predator phylogenetic diversity
+Our two-species combinations represent a range of increasing phylogenetic distance.  By examining differences between these three treatments, we can test how increasing PD *per se* influences our response variables.
+
+```{r CALC_twopred, results='asis'}
+twopred <- pd %>%
+  select(treatment,total.surv,fine,decomp,growth,N) %>%
+  mutate(trt_type = trt_lkp[treatment]) %>%
+  filter(trt_type == "two") %>%
+  select(-trt_type)
+
+
+## linear models
+twopred_lm <- twopred %>% 
+  gather(resp,val,-treatment) %>%
+  group_by(resp) %>%
+  mutate(treatment = treatment %>% as.character %>%
+           ordered(levels = c("elong + andro",
+                              "elong + tab",
+                              "elong + leech")
+                   )
+         ) %>%
+  do(anova_ord = lm(val ~ treatment, data = .)) %>%
+  function(df) split(df$anova_ord,df$resp) %>%
+  lapply(function(x) x[[1]])
+
+## present table
+stargazer(twopred_lm,label = "",
+          dep.var.labels = trtnames[names(twopred_lm)],
+          header = FALSE, multicolumn = FALSE, float = FALSE,
+          covariate.labels = c("Linear","Quadratic","Constant"),
+          font.size = "small")
+```
+
+**Table S11**: Tukey post-hoc tests for differences between predator phylogenetic diversity treatments on all response variables.
+```{r TABLE_twopred_tukey, results='asis'}
+twopred %>% 
+  gather(resp,val,-treatment) %>%
+  group_by(resp) %>%
+  do(anova_ord = aov(val ~ treatment, data = .)) %>%
+  function(g) {
+    g %>% 
+      extract2("anova_ord") %>% 
+      set_names(g %>% extract2("resp"))
+    } %>%
+  lapply(TukeyHSD) %>%
+  lapply(function(x) x[["treatment"]]) %>%
+  lapply(as.data.frame) %>%
+  lapply(function(x) data.frame(comparison = row.names(x),x)) %>%
+  function(m) {
+    comps <- rbind_all(m)
+    r <- names(m) %>% rep(times = sapply(m,nrow) %>% as.numeric)
+    data.frame(r,comps)
+    } %>% 
+  select(response = r, comparison:p.adj) %>%
+  mutate(response = response %>% as.character %>% trtnames[.]) %>%
+  xtable %>% 
+  print(include.rownames = FALSE, size = 8, comment = FALSE)
+```
+
+
+```{r FIG_twopred}
+twopred %>%
+  gather(resp,val,-treatment) %>%
+  mutate(resp = as.character(resp)) %>%
+  mutate(resp = trtnames[resp]) %>%
+  group_by(resp) %>%
+  mutate(treatment = treatment %>% 
+           gsub("\\w+ \\+ ","",x = .)) %>%
+  mutate(treatment = treatment %>% 
+           as.character %>%
+           ordered(levels = c("andro",
+                              "tab",
+                              "leech")
+                   )
+         ) %>%
+  group_by(treatment,resp) %>%
+  mutate(trtmean = mean(val,na.rm = TRUE)) %>%
+  ggplot(aes(x = treatment, y = val)) + 
+  geom_point(aes(y = trtmean),size = 4, shape = 21, 
+             colour = "black", fill = "#00A08A") +
+  geom_point(shape = 21, fill = NA, size = 4) + 
+  facet_wrap(~resp,scales = "free") +
+  ylab("response") +
+  xlab("Predator species") + 
+  mytheme
+```
+
+**Figure S4**: the effect of increasing phylogenetic signal on each of our response variables in our community experiment.  In each treatment category, *Leptagrion elongatum* is paired with another predator; these treatments are ordered by increasing phylogenetic diversity.  For clarity the axes are labelled with abbreviations for species names: andro = *Leptagrion andromache*, tab = Tabanidae, leech = Hirudinidae.
