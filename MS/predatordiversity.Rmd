@@ -281,7 +281,7 @@ of our feeding trial data.  This is because the feeding trials were intended to
 measure which prey our predators ate, rather than their feeding rate (only the
 latter should scale with metabolic capacity).
 
-Questions 1 and 2 above focus on niche overlap between predator species. Question 1 hypothesizes that if diet is conserved, then diet similarity declines with increased phylogenetic distance between a pair of predators. Question 2 hypothesizes that if habitat preference is phylogenetically conserved and competition between predators unimportant, then co-occurence declines with increased phylogenetic distance between a pair of predators. We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
+Questions 1 and 2 above focus on similarity ("niche overlap") between predator species. Question 1 hypothesizes that if habitat preference is phylogenetically conserved and competition between predators unimportant, then distributional similarity will decline with increased phylogenetic distance between a pair of predators. Question 2 hypothesizes that if diet is conserved, then diet similarity declines with increased phylogenetic distance between a pair of predators. We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
 
 $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
