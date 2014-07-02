@@ -253,23 +253,22 @@ nstudies <- sum(nodeages$nstudies)
 # n.nodes <- length(nodeages)
 ```
 In 2008, we counted and measured macroinvertebrates in an observational study of `r ncol(metabolic)-1` bromeliads. We
-identified `r metabolic$Taxa %>% unique %>% length` species as predators.
-These predators include species related at the genus level -- e.g. _Bezzia_ sp.
+identified `r metabolic$Taxa %>% unique %>% length` species as predators, including two groups of congeneric taxa -- _Bezzia_ sp.
 (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
-(Odonata:Coenagrionidae) with three -- and family level (three species of
-Tabanidae and two of Empididae, all Diptera).  Deeper divisions are also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
+(Odonata:Coenagrionidae) with three -- and two of confamilial taxa -- three species of
+Tabanidae and two of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide is between all insects present and a
 species of predatory leech (Annelida:Hirudinidae).
 
-We obtained node age estimates for all seven internal nodes of the tree, using `www.timetree.org`, an online database of published  molecular time estimates from the literature [@Hedges2006].  Most dates came from only a single study; where multiple dates were found we used the median estimate: Insecta--Hirudina (`r agerange("insects.to.leeches")` Mya, n=`r nstudy("insects.to.leeches")` studies), Odonata--Tabanidae (`r agerange("odonata-Tabanidae")` Mya, n=`r nstudy("odonata-Tabanidae.csv")` studies) and Tabanidae--Diptera (`r agerange("tabanidae_culidicae_ie_Diptera")` Mya, n=`r nstudy("tabanidae_culidicae_ie_Diptera")` studies).  Node age data was available
-for all but the shallowest nodes of the tree, where either a lack of taxonomic
+We obtained node age estimates for all seven internal nodes of the tree, using `www.timetree.org`, an online database of published  molecular time estimates [@Hedges2006].  Most dates came from only a single study; where multiple dates were found we used the median estimate: Insecta--Hirudina (`r agerange("insects.to.leeches")` Mya, n=`r nstudy("insects.to.leeches")` studies), Odonata--Tabanidae (`r agerange("odonata-Tabanidae")` Mya, n=`r nstudy("odonata-Tabanidae.csv")` studies) and Tabanidae--Diptera (`r agerange("tabanidae_culidicae_ie_Diptera")` Mya, n=`r nstudy("tabanidae_culidicae_ie_Diptera")` studies).  Node age data was available
+for all but the youngest nodes, where either a lack of taxonomic
 information (e.g. Tabanidae) or a lack of phylogenetic study (e.g. _Leptagrion_)
 prevented more information from being included.   These branches were left as
 polytomies, and were all assigned identical, arbitrary and short branch lengths
 (15 Mya).
 
 Species co-occurrence is often measured in terms of non-random patterns of
-species occurrence or abundance, but such measures will only be poorly related
+species presence/absence or abundance, but such measures will only be poorly related
 to the functional effects of species when species differ substantially in body
 size.  Integrating the allometric relationship between body size and feeding
 rate [@Brown2004; @Wilby2005] over all individuals of a species allows estimates
@@ -282,14 +281,14 @@ of our feeding trial data.  This is because the feeding trials were intended to
 measure which prey our predators ate, rather than their feeding rate (only the
 latter should scale with metabolic capacity).
 
-Questions 1 and 2 above focus on niche overlap between predator species. Question 1 hypothesizes that if diet is conserved, then diet similarity declines with increased phylogenetic distance between a pair of predators. Question 2 hypothesizes that if habitat preference is phylogenetically conserved and competition between predators unimportant, then co-occurence declines with increased phylogenetic distance between a pair of predators. We evaluated both diet similarity and co-occurence between predators using Pianka's index of niche overlap [@Pianka1974]:
+Questions 1 and 2 above focus on niche overlap between predator species. Question 1 hypothesizes that if diet is conserved, then diet similarity declines with increased phylogenetic distance between a pair of predators. Question 2 hypothesizes that if habitat preference is phylogenetically conserved and competition between predators unimportant, then co-occurence declines with increased phylogenetic distance between a pair of predators. We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
 
 $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
 For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
 predator $k$ (or $l$) for resource or habitat $i$. In terms of predator co-occurrence, $n$=`r ncol(metabolic)-1` bromeliads surveyed in the observational dataset described below. In terms of diet similarity, the number of resources ($n$) is defined as the total number of prey
 species assayed with both predator taxa, and preference is defined as the
-proportion of diet trials (see below) for each predator-prey assay that resulted in prey
+proportion of diet trials (see below) for each predator-prey combination that resulted in prey
 mortality.  
 
 We quantified the effect of phylogenetic distance on each of distributional and diet similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to this relationship (linear, constant, and several appropriate nonlinear functions).  We compared these models using AIC, selected the best model, and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively).
