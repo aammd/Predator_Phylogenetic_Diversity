@@ -252,25 +252,6 @@ stargazer(ctrl_single_pair_lm,label = "",
 ```
 
 
-```{r FIG_spp_number}
-ctrl_single_pair %>% 
-  mutate(resp = as.character(resp)) %>%
-  mutate(resp = trtnames[resp]) %>%
-  group_by(treatment,resp) %>%
-  mutate(trtmean = mean(val)) %>%
-  ggplot(aes(x = treatment, y = val)) + 
-  geom_point(aes(y = trtmean),size = 4, shape = 21, 
-             colour = "black", fill = "#00A08A") +
-  geom_point(shape = 21, fill = NA, size = 4) + 
-  facet_wrap(~resp,scales = "free") +
-  ylab("response") +
-  xlab("Predator species number") + 
-  mytheme
-```
-
-**Figure S2**: The effect of predator species number on each of our response variables.  Each dot represents the mean (n = 5) for different predator treatments.  Green dots represent group (i.e. species number) means.  
-
-
 **Table S8**: Tukey post-hoc tests for the effects of predator species number on each response variable.
 ```{r results='asis'}
 ctrl_single_pair %>% 
@@ -295,6 +276,25 @@ ctrl_single_pair %>%
   xtable %>% 
   print(include.rownames = FALSE, size = 8, comment = FALSE)
 ```
+
+
+```{r FIG_spp_number}
+ctrl_single_pair %>% 
+  mutate(resp = as.character(resp)) %>%
+  mutate(resp = trtnames[resp]) %>%
+  group_by(treatment,resp) %>%
+  mutate(trtmean = mean(val)) %>%
+  ggplot(aes(x = treatment, y = val)) + 
+  geom_point(aes(y = trtmean),size = 4, shape = 21, 
+             colour = "black", fill = "#00A08A") +
+  geom_point(shape = 21, fill = NA, size = 4) + 
+  facet_wrap(~resp,scales = "free") +
+  ylab("response") +
+  xlab("Predator species number") + 
+  mytheme
+```
+
+**Figure S2**: The effect of predator species number on each of our response variables.  Each dot represents the mean (n = 5) for different predator treatments.  Green dots represent group (i.e. species number) means.  
 
 \pagebreak
 
