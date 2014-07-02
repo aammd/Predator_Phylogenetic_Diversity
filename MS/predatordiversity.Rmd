@@ -98,30 +98,33 @@ mechanisms potentially underlying predator compositional effects, we lack a
 means of predicting _a priori_ which combinations are likely to have
 antagonistic versus synergistic effects on ecosystem functions.
 
-Several authors have hypothesized that the
-phylogenetic diversity of a community or assemblage may correlate with increased
-ecosystem function, via increases in trait diversity [@Srivastava2012c].
-<!-- Cadotte et al. many, cavender-Bares ecol let review, Flynn et al., Mahereli and Klironomos, -->
-
-Phylogenetic diversity measures have provided useful insights into diverse plant
-communities [e.g. @Cadotte2009;@Cadotte2008;@Godoy2014], and yet have rarely been
-applied to local assemblages of predators [@Bersier2008;@Naisbit2011]. Many
-studies of phylogenetic signal in predator traits focus on whole clades, rather
-than local assemblages (e.g. *Anolis* lizards [@Knouft2006], warbler [@Bohning-Gaese2003], treeboas [@Henderson2013] and wasps [@Udriene2005]) making it
-difficult to connect these results to top-down effects at the scale of a local
-community. While these clade-specific studies often find weak evidence for
-phylogenetic signal in ecologically-relevant traits, studies at the level of the
-whole biosphere [@Gomez2010;@Bersier2008] demonstrate that related organisms
-often have similar interspecific interactions -- i.e. related predators often
-consume similar prey. At the level of a community, the effect of a predator
-assemblage will depend on both the spatial distribution and trophic interactions of all
-predator species. Phylogeny may constrain species distributions when distant
-relatives have distinct fundamental niches, while close relatives are too
-similar to co-exist [@Webb2002;@Emerson2008] -- for predators, this means that
-similar taxa may not be able to occupy the same compartment of a food web
-[@Rezende2009]. By correlating with these properties, measures of phylogenetic
-diversity may allow us to predict the effect of a predator assemblage on
-ecosystem functioning.
+The measurement of phylogenetic diversity has become a popular means for
+ecologists to make inferences about ecological and evolutionary mechanisms
+behind observed patterns in natural communities. For example, phylogenetic
+diversity of plant communities is better correlated with productivity than is
+species richness or diversity [e.g. @Cadotte2009;@Cadotte2008;@Godoy2014].
+Central to most ecological applications of phylogenetic diversity is the
+assumption that increased phylogenetic distance implies increased ecological
+dissimilarity -- either in the form of differences in species niches,
+interactions, or functional traits. When these relationships occur, the
+resulting variation in ecologically-relevant traits and interactions could
+increase ecosystem function [@Srivastava2012c]. Despite the prevalence of
+phylogenetic community ecology, and the importance of predators to natural
+systems, the phylogenetic diversity of local predator assemblages has rarely
+been measured [@Bersier2008;@Naisbit2011]. Many studies of phylogenetic signal
+in predator traits focus on whole clades, rather than local assemblages (e.g.
+*Anolis* lizards [@Knouft2006], warblers [@Bohning-Gaese2003], treeboas
+[@Henderson2013] and wasps [@Udriene2005]) making it difficult to connect these
+results to top- down effects at the scale of a local community. While these
+clade-specific studies often find weak evidence for phylogenetic signal in
+ecologically- relevant traits, studies at the level of the whole biosphere
+[@Gomez2010;@Bersier2008] demonstrate that related organisms often have similar
+interspecific interactions -- i.e. related predators often consume similar prey.
+At the level of a community, the effect of a predator assemblage will depend on
+both the spatial distribution and trophic interactions of all predator species.
+Phylogeny may constrain species distributions when distant relatives have
+distinct fundamental niches, while close relatives are too similar to co-exist
+[@Webb2002;@Emerson2008].
 
 Within predator assemblages, there may be considerable variation in the
 abundance and distribution of related taxa. If habitat patches are variable, and
@@ -657,7 +660,8 @@ metabolic_occur_phylo %>%
   pianka_plot
 
 ```
-**Figure 1**: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. "
+
+**Figure 1**: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. 
 
 ```{r FIG_feeding_trial_as_phylo, fig.cap=""}
 
@@ -767,6 +771,7 @@ x_sequence %>% tbl_df %>%
 
 
 ```
+
 **Figure 2**:  Diet overlap decreases with phylogenetic distance, based on 237 feeding trials with the 8 major predator taxa found in this system.  Diet similarity is calculated as Pianka's index of niche overlap. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles.
 
 
@@ -789,6 +794,7 @@ summarize_randoms_phylo %>%
 # ggplot(summarize_randoms_phylo,
 #        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")+facet_wrap(~variable)
 ```
+
 **Figure 3**: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation
 
 
