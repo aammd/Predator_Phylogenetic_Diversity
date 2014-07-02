@@ -192,13 +192,13 @@ decreases with phylogenetic distance if diet is phylogenetically conserved. Alte
 We conducted all observations and experiments in Parque Estadual da Ilha do
 Cardoso ($25^{\circ} 03^{\prime}$ S, $47^{\circ}53^{\prime}$ W), a 22.5 ha
 island off the south coast of São Paulo state, Brazil. We worked in a closed
-coastal forest (restinga) the understory of which is mostly covered by
-_*Quesnelia arvensis*_ Mez. (Bromeliaceae), a large terrestrial bromeliad that
-accumulates up to 2.8 L of rainwater in tanks formed by individual leaves. Previous observational surveys of this work found more than 47 species of macroinvertebrates in these aquatic communities [@Romero2010].
-This diversity encompasses multiple trophic groups.  Detritivores include various functional groups: shredders
+coastal forest (*restinga*) the understory of which is mostly covered by
+*Quesnelia arvensis* Mez. (Bromeliaceae), a large terrestrial bromeliad that
+accumulates up to 2.8 L of rainwater in tanks formed by individual leaves. We used two datasets: an observational survey of insect diversity from 2008, and a manipulative experiment in 2010. Our observational survey found more than 47 species of macroinvertebrates in these aquatic communities [@Romero2010].
+This diversity encompasses multiple trophic and functional groups: filter feeders (Diptera:Culicidae); detritivores including shredders
 (Diptera:Tipulidae, Trichoptera), scrapers (Coleoptera:Scirtidae), and collectors
-(All Diptera:Chironomidae, Syrphidae, Psychodidae). Filter feeders (Diptera:Culicidae) are supported by the microbial components of the food web. A
-diverse predator assemblage consists of at least 3 species of damselfly larvae (_Leptagrion_ spp., Zygoptera:Coenagrionidae), 2 species of predatory Horse Fly larvae (Diptera:Tabanidae), and 2
+(All Diptera:Chironomidae, Syrphidae, Psychodidae). These species are the main prey for a 
+diverse predator assemblage of at least three species of damselfly larvae (_Leptagrion_ spp., Zygoptera:Coenagrionidae), two species of predatory Horse Fly larvae (Diptera:Tabanidae), and 2
 species of leech (Hirudinidae).  Other, smaller-bodied predators present include predatory midge larvae (Diptera:Chironomidae:Tanypodinae) and less abundant species such as Dytiscid beetles.
 
 ### Phylogenetic distance, metabolic capacity and niche overlap
@@ -252,7 +252,7 @@ nstudies <- sum(nodeages$nstudies)
 # #names(nodeages)[which(nstudies>1)]
 # n.nodes <- length(nodeages)
 ```
-In 2008, we counted and measured macroinvertebrates in an observational study of `r ncol(metabolic)-1` bromeliads. Within this observational dataset, we
+In 2008, we counted and measured macroinvertebrates in an observational study of `r ncol(metabolic)-1` bromeliads. We
 identified `r metabolic$Taxa %>% unique %>% length` species as predators.
 These predators include species related at the genus level -- e.g. _Bezzia_ sp.
 (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
