@@ -57,7 +57,7 @@ timetree <- list.files("../data/TreeData/", full.names = TRUE, pattern = "*.csv"
 
 # Predator phylogeny
 
-We used information from timetree.org (link) to add node ages to our tree.  This web service provides age estimates from the literature for all pairs of taxa from the same groups as the searched taxa. Thus deeper nodes are estimated from more taxa than shallower nodes, because more species are included among the descendents.  
+We used information from timetree.org (link) to add node ages to our tree.  This web service provides age estimates from the literature for all available pairs of taxa from the same groups as the searched taxa. Thus deeper nodes are estimated from more taxa and studies than shallower nodes.  
 
 **Table S1** Studies used to date nodes on our predator phylogeny.  When more than one study was available, we used the median value.  
 
@@ -74,7 +74,7 @@ predtree_timetree_ages %>% plot
 
 # Phylogenetic distance and similarity in distribution and diet: nonlinear models
 
-Similarity in distribution or diet may have a nonlinear relationship with phylogenetic distance.  This could be caused by both biological and statistical effects.  Biological, because the fixed compositon of the prey community limits how different two predators can become. Statistical, because Pianka's similarity index is bounded by 0 and 1 and therefore an OLS linear model could potentially predict impossible (ie $< 0$ or $> 1$) values. We fit several nonlinear equations to our data in order to quantify how the amount of divergence in distribution or diet between predators changed over evolutionary time.
+Both biological and statistical effects could cause a nonlinear relationship between similarity in distribution or diet and phylogenetic distance.  Biological, because the fixed compositon of the prey community limits how different two predators can become. Statistical, because Pianka's similarity index is bounded by 0 and 1 and therefore an OLS linear model could potentially predict impossible (ie $< 0$ or $> 1$) values. We fit several nonlinear equations to our data in order to quantify how the amount of divergence in distribution or diet between predators changed over evolutionary time.
 
 ## Distributional similarity
 
@@ -197,7 +197,7 @@ data.frame(Nspp = factor(trt_lkp, levels = c("none",
   print(include.rownames = FALSE, size = 8, comment = FALSE)
 ```
 
-**Table S7**: The effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how an increasing number of predator species influenced the response.  Treatment order was none < one < two species. (See Table S6).
+**Table S7**: The effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how an increasing number of predator species influenced the response.  Treatment order was none < one < two species. (See Table S6). For each non-control treatment, replicates were the mean of all bromeliads with the same predator treatment. Control (no predator) bromeliads were used as independent replicates.  Thus there are 5 replicates for the "none" factor level, four replicates of "one predator" and three of  "two predators". Note that we model prey survival using OLS, rather than poisson regression, because we are modeling the distribution of means.
 ```{r results='asis'}
 trtnames <- c("total.surv" = "Total prey survival",
   "fine" = "FPOM (g)",
@@ -228,6 +228,7 @@ ctrl_single_pair_lm <- ctrl_single_pair %>%
   do(anova_ord = lm(val ~ treatment, data = .)) %>%
   function(df) split(df$anova_ord,df$resp) %>%
   lapply(function(x) x[[1]])
+
 
 ## present table
 stargazer(ctrl_single_pair_lm,label = "",
@@ -374,35 +375,42 @@ twopred <- pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(trt_type = trt_lkp[treatment]) %>%
   filter(trt_type == "two") %>%
-  select(-trt_type)
-
-
-## linear models
-twopred_lm <- twopred %>% 
+  select(-trt_type) %>% 
   gather(resp,val,-treatment) %>%
   group_by(resp) %>%
-  mutate(treatment = treatment %>% as.character %>%
+  mutate(treatment = treatment %>%
+           as.character %>%
            ordered(levels = c("elong + andro",
                               "elong + tab",
                               "elong + leech")
                    )
-         ) %>%
+         ) 
+
+## linear models
+twopred_lm <- twopred %>%
   do(anova_ord = lm(val ~ treatment, data = .)) %>%
   function(df) split(df$anova_ord,df$resp) %>%
   lapply(function(x) x[[1]])
+
+## one of these models is count data:
+#twopred_lm$total.surv
+twopred_lm$total.surv <- glm(val ~ treatment,
+                             data = twopred %>% 
+                               filter(resp == "total.surv"),
+                             family = "poisson"
+                             )
 
 ## present table
 stargazer(twopred_lm,label = "",
           dep.var.labels = trtnames[names(twopred_lm)],
           header = FALSE, multicolumn = FALSE, float = FALSE,
-          covariate.labels = c("Linear","Quadratic","Constant"),
+          #covariate.labels = c("Linear","Quadratic","Constant"),
           font.size = "small")
 ```
 
 **Table S12**: Tukey post-hoc tests for differences between predator phylogenetic diversity treatments on all response variables.
 ```{r TABLE_twopred_tukey, results='asis'}
 twopred %>% 
-  gather(resp,val,-treatment) %>%
   group_by(resp) %>%
   do(anova_ord = aov(val ~ treatment, data = .)) %>%
   function(g) {
@@ -428,7 +436,7 @@ twopred %>%
 
 ```{r FIG_twopred}
 twopred %>%
-  gather(resp,val,-treatment) %>%
+  ungroup %>%
   mutate(resp = as.character(resp)) %>%
   mutate(resp = trtnames[resp]) %>%
   group_by(resp) %>%
