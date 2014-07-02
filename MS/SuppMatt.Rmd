@@ -37,7 +37,8 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
 
 predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
 
-dist_sim <- read.csv(file = "distributional_similarity.csv")
+dist_sim <- read.csv(file = "distributional_similarity.csv", 
+                     stringsAsFactors = FALSE)
 
 diet_sim <- read.csv(file = "diet_similarity.csv")
 
@@ -74,7 +75,7 @@ predtree_timetree_ages %>% plot
 
 # Phylogenetic distance and similarity in distribution and diet: nonlinear models
 
-Both biological and statistical effects could cause a nonlinear relationship between similarity in distribution or diet and phylogenetic distance.  Biological, because the fixed compositon of the prey community limits how different two predators can become. Statistical, because Pianka's similarity index is bounded by 0 and 1 and therefore an OLS linear model could potentially predict impossible (ie $< 0$ or $> 1$) values. We fit several nonlinear equations to our data in order to quantify how the amount of divergence in distribution or diet between predators changed over evolutionary time.
+Both biological and statistical effects could cause a nonlinear relationship between similarity in distribution or diet and phylogenetic distance.  Biological, because the fixed compositon of the prey community limits dissimilarity between predators. Statistical, because Pianka's similarity index is bounded by 0 and 1 and therefore an OLS linear model could potentially predict impossible (i.e. $< 0$ or $> 1$) values. We fit several nonlinear equations to our data in order to describe how the amount of divergence in distribution or diet between predators changed over evolutionary time.
 
 ## Distributional similarity
 
@@ -90,7 +91,7 @@ formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
 
 dist_sim %>%
   mutate(Equation = formulae[model]) %>%
-  select(Equation,AIC) %>%
+  select(model,Equation,AIC) %>%
   pander
 ```
 
