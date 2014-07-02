@@ -87,7 +87,7 @@ formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
               "exponential" = "$b \\times {e}^{(a \\times PD)}$",
               "Sshaped" = "$\\frac{c \\times {e}^{(a \\times PD)}}{(c \\times {e}^{(a \\times PD)} + (1 - c))}$",
               "linear" = "$a \\times x + b$",
-              "constant" = "$a \\times x$"
+              "constant" = "$a$"
               )
 
 dist_sim %>%
@@ -184,10 +184,10 @@ pd %>%
 We divided our experimental design into three separate hypothesis tests.  
 
 1. **Predator species number:** We compared the five control replicates with the means of the four single species treatments and the means of the three two-species treatments.  This tests whether species number *per se* has an effect.   
-2. **Predator species identity** We compared the four different predator taxa to see if any of these differed in their effect on the community.  
-3. **Predator phylogenetic diversity** we contrast our two predator species treatments to see how increasing PD of the predator assemblage affects our response variables. 
+2. **Predator species identity:** We compared the four different predator taxa to see if any of these differed in their effect on the community.  
+3. **Predator phylogenetic diversity:** We contrast our two predator species treatments to see how increasing PD of the predator assemblage effects our response variables. 
 
-Because the first and third hypotheses suggest a ranking of the independent variables (species number and phylogenetic diversity) we used ordinal contrasts in the corresponding linear models.
+Because the first and third hypotheses suggest a ranking of the independent variables (increasing species number and phylogenetic diversity) we used ordinal contrasts in the corresponding linear models.
 
 **Table S6**: Number of predator species in each experimental treatment.
 ```{r experimentANOVA,results='asis'}
@@ -374,7 +374,7 @@ singlepred %>%
   mytheme
 ```
 
-**Figure S3**: The effect of predator species identiy on each of our response variables.  Each dot represents the observed value for a different predator treatment.  Green dots represent group means.  
+**Figure S3**: The effect of predator species identity on each of our response variables.  Each dot represents the observed value for a different predator treatment.  Green dots represent group means.  
 
 \pagebreak
 
@@ -412,6 +412,10 @@ twopred_lm$total.surv <- glm(val ~ treatment,
                                filter(resp == "total.surv"),
                              family = "poisson"
                              )
+# twopred_lm$total.surv %>% summary
+# drop1(twopred_lm$total.surv)
+# twopred_lm$total.surv %>% plot
+
 
 ## present table
 stargazer(twopred_lm,label = "",
