@@ -40,7 +40,8 @@ predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time
 dist_sim <- read.csv(file = "distributional_similarity.csv", 
                      stringsAsFactors = FALSE)
 
-diet_sim <- read.csv(file = "diet_similarity.csv")
+diet_sim <- read.csv(file = "diet_similarity.csv",
+                     stringsAsFactors = FALSE)
 
 prop.eaten <- read.csv(file = "proportion.eaten.csv")
 
@@ -83,16 +84,19 @@ Both biological and statistical effects could cause a nonlinear relationship bet
 ```{r TABLE_dietsim, results='asis',echo=FALSE}
 formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
               "bellshaped" = "$peak \\times {e}^{(-1 \\times (PD)^2 / a)}$",
-              "{e}^{onential" = "$b \\times {e}^{(a \\times PD)}$",
+              "exponential" = "$b \\times {e}^{(a \\times PD)}$",
               "Sshaped" = "$\\frac{c \\times {e}^{(a \\times PD)}}{(c \\times {e}^{(a \\times PD)} + (1 - c))}$",
               "linear" = "$a \\times x + b$",
-              "constant" = "a \\times x$"
+              "constant" = "$a \\times x$"
               )
 
 dist_sim %>%
   mutate(Equation = formulae[model]) %>%
   select(model,Equation,AIC) %>%
   pander
+#   xtable %>%
+#   print(include.rownames = TRUE, size = 5, comment = FALSE,
+#         sanitize.text.function = NULL)
 ```
 
 ## Diet similarity
@@ -117,10 +121,12 @@ prop.eaten %>%
 
 **Table S3** Linear, nonlinear and constant functions fit to the relationship of diet similarity and predator phylogenetic distance. These models are weighted by the number of prey species tested, but do not correct for the phylogenetic non-independence of the predator taxa.
 ```{r results='asis',echo=FALSE}
-diet_sim %>%
+diet_sim %>% 
   mutate(Equation = formulae[model]) %>%
-  select(Equation,AIC) %>%
+  select(model,Equation,AIC) %>%
   pander
+#   xtable %>%
+#   print(include.rownames = TRUE, size = 5, comment = FALSE)
 ```
 
 # Predator diversity experiment
@@ -134,14 +140,14 @@ We estimated the densities of these common prey species based on their abundance
 |  Species                 | density |
 |:------------------------:|:-------:|
 | *Chironomus detriticula* |  10     |
-| *Polypedium sp. 1*       |  4      |
-| *Polypedium sp. 2*       |  2      |
-| *Psychodid sp. 1*        |  1      |
-| *Scyrtes sp. A*          |  5      |
-| *Culex spp.*             |  4      |
-| *Trentepholia sp.*       |  1      |
+| *Polypedium* sp. 1       |  4      |
+| *Polypedium* sp. 2       |  2      |
+| Psychodid sp. 1        |  1      |
+| *Scyrtes* sp. A          |  5      |
+| *Culex* spp.             |  4      |
+| *Trentepholia* sp.       |  1      |
 
-## experimental responses 
+## Experimental responses 
 
 We calculated means and standard error for every experimental treatment and response variable.  
 
@@ -175,7 +181,13 @@ pd %>%
 
 ### Number of predator species
 
-We divided the experimental design above into three separate hypothesis tests.  First, we examine the effect of predator species number by comparing the five control replicates with the means of the four single species treatments and the means of the three two-species treatments.  This tests whether species number *per se* has an effect on our response variables.  Secondly, we compared the four different predator taxa, to see if any of these differed in their effect on the community.  Finally, we contrast our predator diversity treatments to see how increasing PD of the predator assemblage affects our response variables. Because the first and third hypotheses suggest a ranking of the independent variables (species number and phylogenetic diversity) we used ordinal contrasts in the corresponding linear models.
+We divided our experimental design into three separate hypothesis tests.  
+
+1. **Predator species number:** We compared the five control replicates with the means of the four single species treatments and the means of the three two-species treatments.  This tests whether species number *per se* has an effect.   
+2. **Predator species identity** We compared the four different predator taxa to see if any of these differed in their effect on the community.  
+3. **Predator phylogenetic diversity** we contrast our two predator species treatments to see how increasing PD of the predator assemblage affects our response variables. 
+
+Because the first and third hypotheses suggest a ranking of the independent variables (species number and phylogenetic diversity) we used ordinal contrasts in the corresponding linear models.
 
 **Table S6**: Number of predator species in each experimental treatment.
 ```{r experimentANOVA,results='asis'}
