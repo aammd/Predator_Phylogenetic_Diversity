@@ -288,7 +288,7 @@ ctrl_single_pair %>%
 
 Within the single-predator treatments, we tested for difference in our response variables among different predator species. 
 
-**Table S9** : predator species effects.  These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
+**Table S9** : Contrasting predator species effects. These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
 ```{r TEST_experiment_single_pred, results='asis'}
 singlepred <- pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
@@ -365,9 +365,11 @@ singlepred %>%
 \pagebreak
 
 ## Increasing predator phylogenetic diversity
+
 Our two-species combinations represent a range of increasing phylogenetic distance.  By examining differences between these three treatments, we can test how increasing PD *per se* influences our response variables.
 
-```{r CALC_twopred, results='asis'}
+**Table S11**: Effects of increasing phylogenetic diversity of the predator assemblage on 5 response variables.  We used linear contrasts, ranking the independent variable by increasing predator PD (see Figure S4).  Linear model coefficients (standard error) are shown for Linear, Quadratic and Constant contrasts.
+```{r TABLE_twopred, results='asis'}
 twopred <- pd %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(trt_type = trt_lkp[treatment]) %>%
@@ -397,7 +399,7 @@ stargazer(twopred_lm,label = "",
           font.size = "small")
 ```
 
-**Table S11**: Tukey post-hoc tests for differences between predator phylogenetic diversity treatments on all response variables.
+**Table S12**: Tukey post-hoc tests for differences between predator phylogenetic diversity treatments on all response variables.
 ```{r TABLE_twopred_tukey, results='asis'}
 twopred %>% 
   gather(resp,val,-treatment) %>%
@@ -451,4 +453,4 @@ twopred %>%
   mytheme
 ```
 
-**Figure S4**: the effect of increasing phylogenetic signal on each of our response variables in our community experiment.  In each treatment category, *Leptagrion elongatum* is paired with another predator; these treatments are ordered by increasing phylogenetic diversity.  For clarity the axes are labelled with abbreviations for species names: andro = *Leptagrion andromache*, tab = Tabanidae, leech = Hirudinidae.
+**Figure S4**: The effect of increasing phylogenetic signal on each of our response variables in our community experiment.  In each treatment category, *Leptagrion elongatum* is paired with another predator; these treatments are ordered by increasing phylogenetic diversity.  For clarity the axes are labelled with abbreviations for species names: andro = *Leptagrion andromache*, tab = Tabanidae, leech = Hirudinidae.
