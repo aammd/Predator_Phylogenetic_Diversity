@@ -131,14 +131,8 @@ cues of prey, competitors, or intra-guild predators when selecting a habitat pat
 co-occurrence may be further modified by intraguild predation
 [@Lounibos2008;@Juliano2009] or competition [@Fincke1997].
 
-When predators co-occur, their feeding mode, diet breadth and nutritional
-requirements will determine which prey they consume and the 
-potential total amount of predation. Because such morphological traits may
-well be conserved over evolutionary time, the breadth of differentiation (and
-hence resource use) may also show a phylogenetic signal; this differentiation in
-resource use leads to complementarity and greater overall ecosystem function
-[@Finke2008a]. Among predators, feeding mode is an important trait that is
-conserved within lineages and determines a large part of diet breadth.  For
+When predators do co-occur, their direct effects on each other and on their prey is determined by their diet breadth. Diet breadth (the diversity of prey species which predators consume) will depend on their feeding traits and nutritional -- all of which may be phylogenetically conserved. If this is the case, then predator assemblages with higher phylogenetic diversity will show greater complementarity and a stronger top-down effect on ecosystem function
+[@Finke2008a]. For
 example, some predators are gape-limited, and can swallow any prey smaller than
 their mouth; these predators typically broaden their diet as they grow (e.g.,
 larvae of Odonata) [@Werner1984].  Such ontogenetic changes in diet breadth can
@@ -146,8 +140,8 @@ radically influence food web structure [@Moya-Larano2011]. Other
 predators (e.g. Leeches, or Diptera:Tabanidae) are "piercing-sucking" predators
 [@Bay1974] and may be more general consumers at all life stages, since they can
 feed on larger prey individuals even at very early predator life stages.  In
-some cases, predator diets may extend to include other predators leading to
-direct negative interactions such as intraguild predation, which may also have a
+some cases, predator diets may extend to include other predators, leading to
+direct negative interactions such as intraguild predation which may also have a
 phylogenetic signal [@Pfennig2000].
 
 Predator interactions are common in many communities, and can lead to
