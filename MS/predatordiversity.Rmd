@@ -100,7 +100,7 @@ antagonistic versus synergistic effects on ecosystem functions.
 
 The measurement of phylogenetic diversity has become a popular means for
 ecologists to make inferences about ecological and evolutionary mechanisms
-behind observed patterns in natural communities. For example, phylogenetic
+behind observed patterns in natural communities [@Cavender-Bares2009]. For example, phylogenetic
 diversity of plant communities is better correlated with productivity than is
 species richness or diversity [e.g. @Cadotte2009;@Cadotte2008;@Godoy2014].
 Central to most ecological applications of phylogenetic diversity is the
@@ -124,22 +124,9 @@ At the level of a community, the effect of a predator assemblage will depend on
 both the spatial distribution and trophic interactions of all predator species.
 Phylogeny may constrain species distributions when distant relatives have
 distinct fundamental niches, while close relatives are too similar to co-exist
-[@Webb2002;@Emerson2008].
-
-Within predator assemblages, there may be considerable variation in the
-abundance and distribution of related taxa. If habitat patches are variable, and
-if the fundamental niche of different organisms varies with relatedness, then we
-would expect a phylogenetic signal to patterns of occurrence.  Specifically, if
-related predators share habitat requirements, then we expect to find them in the
-same patches -- unless their similarity precludes their co-occurrence.  This
-relationship between relatedness and distribution is he most common way in which
-phylogenetic information is used in community ecology [@Cavender-Bares2009]. In
-metacommunities -- i.e. when patches are connected by dispersal -- variation in
-the composition of a local assemblage is also determined by species dispersal
-into, and selection among, habitat patches
-[@Leibold2004;@Howeth2010a;@Calcagno2011a]. The effects of other predators can
-be important too: during dispersal, assembly can be nonrandom if predators use
-cues of the presence of prey, competitors, or intra-guild predators when colonizing
+[@Webb2002;@Emerson2008]. The effects of other predators can also be
+be important: during dispersal, predators may use
+cues of prey, competitors, or intra-guild predators when selecting a habitat patch
 [@Chase2009a;@McCauley2008a;@Srivastava2008]. After colonization, patterns of
 co-occurrence may be further modified by intraguild predation
 [@Lounibos2008;@Juliano2009] or competition [@Fincke1997].
