@@ -289,7 +289,7 @@ ctrl_single_pair %>%
              colour = "black", fill = "#00A08A") +
   geom_point(shape = 21, fill = NA, size = 4) + 
   facet_wrap(~resp,scales = "free") +
-  ylab("response") +
+  ylab("Response") +
   xlab("Predator species number") + 
   mytheme
 ```
@@ -369,7 +369,7 @@ singlepred %>%
              colour = "black", fill = "#00A08A") +
   geom_point(shape = 21, fill = NA, size = 4) + 
   facet_wrap(~resp,scales = "free") +
-  ylab("response") +
+  ylab("Response") +
   xlab("Predator species") + 
   mytheme
 ```
@@ -473,7 +473,7 @@ twopred %>%
              colour = "black", fill = "#00A08A") +
   geom_point(shape = 21, fill = NA, size = 4) + 
   facet_wrap(~resp,scales = "free") +
-  ylab("response") +
+  ylab("Response") +
   xlab("Predator species") + 
   mytheme
 ```
