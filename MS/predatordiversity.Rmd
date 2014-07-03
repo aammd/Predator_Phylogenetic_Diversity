@@ -395,7 +395,7 @@ indicate a significant non-additive effect of a predator combination.
 
 ## Results
 
-### Patterns of occurrence
+### Distributional similarity
 
 ```{r CALC_phylogenetic_distance}
 ####### metabolic matrix ####
@@ -774,7 +774,7 @@ summarize_randoms_phylo %>%
 #        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")+facet_wrap(~variable)
 ```
 
-**Figure 3**: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures.  These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation
+**Figure 3**: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures. The dashed line represents differences $= 0$, i.e. no nonadditive effect. These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation
 
 
 ## Discussion
