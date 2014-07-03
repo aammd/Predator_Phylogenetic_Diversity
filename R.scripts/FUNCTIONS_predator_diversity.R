@@ -108,7 +108,7 @@ pianka_plot <- function(data_phylo_overlap,formula_quote="overlap ~ peak * exp(-
   #browser()
   
   predictions  <- do.call(cbind,predictions)
- # browser()
+  # browser()
   
   observed_fit <- nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
                       data = rawdata, 
@@ -120,10 +120,10 @@ pianka_plot <- function(data_phylo_overlap,formula_quote="overlap ~ peak * exp(-
            lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE)
     ) %>% 
     #  gather(model,prediction,-phylodistance) %>%
-    (function(x) fig1 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +
-       geom_line(aes(x = phylodistance, y = upper),data = x,linetype = "dashed") +
-       geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")
-    ) 
+    function(x) {fig1 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +
+                   geom_line(aes(x = phylodistance, y = upper),data = x,linetype = "dashed") +
+                   geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")
+    } 
 }
 
 
@@ -160,13 +160,12 @@ matrix_to_df <- function(matrix_for_df){
 ## obtain the paired rows:
 
 paired_predator_pianka <- function(pred_x_resource,pred_colname,...){
-  
+  #browser()
   taxa_names <- pred_x_resource %>% extract2(pred_colname)
   
   prednames <- taxa_names %>%
-    unique %>%
-    (function(x) set_names(x,x)) %>%
-    (function(x) outer(x,x,paste,sep="_")) %>%
+    unique %>% set_names(.,.) %>%
+    outer(.,.,paste,sep="_") %>%
     matrix_to_df() %>%
     select(dietpred1=Var1,dietpred2=Var2,species_pair=value)
   
