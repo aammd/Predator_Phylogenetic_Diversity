@@ -18,7 +18,7 @@ bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
 library(knitr)
-opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE, dev='pdf')
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE, dev='png')
 
 ## load packages
 library(ggplot2)
