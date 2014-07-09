@@ -497,3 +497,58 @@ twopred %>%
 ```
 
 **Figure S4**: The effect of increasing phylogenetic signal on each of our response variables in our community experiment.  In each treatment category, *Leptagrion elongatum* is paired with another predator; these treatments are ordered by increasing phylogenetic diversity.  For clarity the axes are labelled with abbreviations for species names: andro = *Leptagrion andromache*, tab = Tabanidae, leech = Hirudinidae.
+
+
+## Correlation matrix
+
+**Table S13**: Correlation matrix of all variables in our experiment. n = 30 for most of these values. Bold type indicates values of Pearson's product moment correlation with p < 0.05.
+
+```{r include=FALSE}
+pd %>%
+  select(total.surv,fine,decomp,growth,N) %>% cor(use = "pairwise")
+```
+
+
+```{r results='asis'}
+cortable <- c("total.surv","fine","decomp","growth","N") %>%
+  l(x -> expand.grid(x,x,stringsAsFactors = FALSE)) %>%
+  #combn(2,simplify = FALSE) %>% 
+  #do.call(rbind,.) %>% 
+  data.frame(stringsAsFactors = FALSE) %>%
+  set_names(c("var1","var2")) %>%
+  group_by(var1,var2) %>%
+  do(cor.test(pd[[.$var1]],pd[[.$var2]])[1:4] %>% as.data.frame) %>%
+  mutate(est = estimate %>% round(digits = 2) %>% as.character,
+         est = ifelse(p.value < 0.000001,"",est),
+         est = ifelse(p.value < 0.05,
+                paste0("\\textbf{",est,"}"),
+                est)) %>%
+  select(" " = var1,var2,est) %>%
+  spread(var2,est)
+
+cortable %>%
+  xtable %>% 
+  print(include.rownames = FALSE, size = 8, comment = FALSE, 
+        type='latex',sanitize.text.function=identity)
+# 
+# print(xtable(accounts_formatted,
+#              align=c("|","l","|","p{5cm}","|","r","|","p{9cm}","|","p{6cm}","|","l","|")),
+#       type='latex',sanitize.text.function=identity,
+#       tabular.environment="longtable",hline.after=1:nrow(accounts_formatted),floating=FALSE,
+#       include.rownames=FALSE,add.to.row = list(pos = list(0),command = "\\hline \\endhead "),
+#       comment=FALSE)
+
+# cor.test.p <- function(x){
+#     FUN <- function(x, y) cor.test(x, y)[[3]]
+#     z <- outer(
+#       colnames(x), 
+#       colnames(x), 
+#       Vectorize(function(i,j) FUN(x[,i], x[,j]))
+#     )
+#     dimnames(z) <- list(colnames(x), colnames(x))
+#     z
+# }
+# 
+# cor.test.p(pd[c("total.surv","fine","decomp","growth","N")])
+```
+
