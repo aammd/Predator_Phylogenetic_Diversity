@@ -312,8 +312,7 @@ singlepred <- pd %>%
 singlepred_resp <- vector("list",5) %>%
   set_names(singlepred %>% select(total.surv:N) %>% names)
 
-singlepred_resp$total.surv  <- glm(total.surv ~ treatment,
-                                   family = "poisson",data = singlepred)
+singlepred_resp$total.surv  <- lm(total.surv ~ treatment,data = singlepred)
 singlepred_resp$fine <- lm(fine ~ treatment, data = singlepred)
 singlepred_resp$decomp <- lm(decomp ~ treatment, data = singlepred)
 singlepred_resp$growth <- lm(growth ~ treatment, data = singlepred)
