@@ -397,7 +397,7 @@ twopred <- pd %>%
                               "elong + tab",
                               "elong + leech")
                    )
-         ) 
+         )  
 
 ## linear models
 twopred_lm <- twopred %>%
@@ -405,13 +405,32 @@ twopred_lm <- twopred %>%
   function(df) split(df$anova_ord,df$resp) %>%
   lapply(function(x) x[[1]])
 
+## randomization test for growth:
+if(FALSE) {
+replicate(1000,{
+  twopred %>%
+    filter(resp == "growth") %>%
+    mutate(val = sample(val,replace = FALSE)) %>%
+    lm(val ~ treatment, data = .) %>% 
+    summary %>% extract2("coefficients")
+},FALSE) %>% 
+  lapply(function(d) data.frame(param = rownames(d),d)) %>%
+  rbind_all %>%
+  filter(param == "treatment.L") %>%
+  extract2("Estimate") %>%
+  quantile(probs = c(0.025,0.975))
+}
+
 ## one of these models is count data:
 #twopred_lm$total.surv
+doglm <- FALSE
+if(doglm) {
 twopred_lm$total.surv <- glm(val ~ treatment,
                              data = twopred %>% 
                                filter(resp == "total.surv"),
                              family = "poisson"
                              )
+}
 # twopred_lm$total.surv %>% summary
 # drop1(twopred_lm$total.surv)
 # twopred_lm$total.surv %>% plot
