@@ -745,13 +745,24 @@ diet <- x_sequence %>% tbl_df %>%
      geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")}
    
 
-
-
-
-metabolic_occur_phylo %>% 
+distribution <- metabolic_occur_phylo %>% 
   ungroup %>% 
   select(phylodistance,overlap) %>%
-  pianka_plot
+  mutate(category = "distribution", nspp = 2)
+
+diet <- diet_overlap_phylo %>% 
+  ungroup %>%
+  select(phylodistance,overlap,nspp) %>%
+  mutate(category = "diet")
+
+rbind(distribution, diet) %>%
+  ggplot(aes(x = phylodistance, y = overlap, size = nspp)) + 
+  geom_point(colour = "black", fill = "#00A08A",
+             shape  = 21, alpha = 0.6) +
+  facet_grid(category ~ ., scales = "free_y") + 
+  xlab("Phylogenetic distance") + 
+  ylab("Distributional similarity (Pianka's index)") + 
+  mytheme
 
 ```
 
