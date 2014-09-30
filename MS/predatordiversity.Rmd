@@ -3,14 +3,14 @@ title: "Predator phylogenetic diversity decreases predation rate via antagonisti
 author: "A. Andrew M. MacDonald; Diane S. Srivastava; Gustavo Q. Romero"
 fontsize: 12pt
 output:
-  word_document:
-    reference_docx: reference.docx
-  md_document: default
   pdf_document:
     includes:
       in_header: myheader.tex
     latex_engine: xelatex
+  md_document: default
   html_document: default
+  word_document:
+    reference_docx: reference.docx
 geometry: margin=1in
 bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 ---
@@ -623,7 +623,7 @@ We found the greatest effect for prey survival: while effects of _L. andromache_
 
 ### Figures
 
-```{r FIG_metabolic_occurance_as_phylo,fig.cap=""}
+```{r CALC_AIC_distribution and diet}
 ### Distribution
 ## calculates the AIC values that appear in the supp matt.
 if(FALSE) {
@@ -667,15 +667,18 @@ models <- diet_overlap_phylo %>%
                     start = list(z = 0.4),
                     weights = nspp)
      ) 
-  
+
+
 data.frame(model = names(models),
            AIC = f_extract(AIC,models)) %>%
   arrange(AIC) %>%
   write.csv(file = "diet_similarity.csv")
 }
 
-exponential <- function(x,a,b) b * exp(a * x)
 
+```
+
+```{r }
 fig2 <- diet_overlap_phylo %>% 
   ungroup %>%
   select(phylodistance,overlap,nspp) %>%
