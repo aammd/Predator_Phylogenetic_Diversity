@@ -14,10 +14,6 @@ MS/*.synctex.gz
 MS/*-concordance.tex
 MS/predatordiversity_figs.html
 
-/figures/*
-/MS/figure/*.pdf
-/MS/figure/*.png
-
 /MS/dianeinput/*
 
 /MS/*#
