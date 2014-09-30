@@ -668,22 +668,10 @@ rbind(distribution, diet) %>%
   facet_grid(category ~ ., scales = "free_y") + 
   xlab("Phylogenetic distance") + 
   ylab("Distributional similarity (Pianka's index)") + 
+  scale_size(range = c(3,9),name = "Number of\nprey") +
   mytheme
 
 
-
-
-
-
-fig2 <- diet_overlap_phylo %>% 
-  ungroup %>%
-  select(phylodistance,overlap,nspp) %>%
-  ggplot(aes(x = phylodistance, y = overlap)) + 
-  geom_point(aes(size = nspp), shape  = 21) + 
-  geom_point(aes(size = nspp), colour = "black", fill = "#00A08A", shape  = 21, alpha = 0.6) + 
-  xlab("Phylogenetic distance") + ylab("Diet similarity (Pianka's index)") + 
-  scale_size(range = c(3,9),name="Number of\nprey") +
-  mytheme
 
 x_sequence <- diet_overlap_phylo  %>%
   ungroup %>%
