@@ -12,7 +12,7 @@ output:
   word_document:
     reference_docx: reference.docx
 geometry: margin=1in
-bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
+bibliography: /home/andrew/Documents/reference/Mendeley/Mendeley_reference_lists/@MS_pdpaper.bib
 ---
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
@@ -24,13 +24,9 @@ opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE, dev='png')
 library(ggplot2)
 mytheme <- theme_bw()
 library(bipartite)
-library(reshape2)
 library(vegan)
 library(picante)
 library(pander)
-# library(gplots)
-#library(plyr)
-# library(gridExtra)
 library(dplyr)
 library(magrittr)
 library(xtable)
