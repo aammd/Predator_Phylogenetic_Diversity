@@ -5,7 +5,7 @@ output:
   pdf_document:
     latex_engine: xelatex
     includes:
-      in_header: myheader_suppmatt.tex
+      in_header: formatting/myheader_suppmatt.tex
   md_document: default
   html_document: default
   word_document:
