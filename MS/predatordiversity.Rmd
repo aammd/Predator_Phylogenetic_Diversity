@@ -598,20 +598,19 @@ We found the greatest effect for prey survival: while effects of _L. andromache_
 ```{r CALC_AIC_distribution and diet}
 ### Distribution
 ## calculates the AIC values that appear in the supp matt.
-model_aic <- metabolic_occur_phylo %>% 
+occur_aic <- metabolic_occur_phylo %>% 
   ungroup %>% 
   select(phylodistance,overlap) %>%
   fit_some_models
 
-write.csv(model_aic,file = "./analyses/distributional_similarity.csv")
+write.csv(occur_aic,file = "./analyses/distributional_similarity.csv")
 
 
 ### Diet
 
 f_extract <- function(f,.models) sapply(.models,function(x) f(x[[1]]))
 
-if(TRUE){
-models <- diet_overlap_phylo %>% 
+diet_models <- diet_overlap_phylo %>% 
   ungroup %>% 
   select(phylodistance,overlap,nspp) %>%
   do(quadratic = nls(overlap ~ a * (phylodistance)^2 + b * phylodistance + c, 
@@ -640,11 +639,11 @@ models <- diet_overlap_phylo %>%
      ) 
 
 
-data.frame(model = names(models),
+data.frame(model = names(diet_models),
            AIC = f_extract(AIC,models)) %>%
   arrange(AIC) %>%
   write.csv(file = "./analyses/diet_similarity.csv")
-}
+
 
 
 ```
