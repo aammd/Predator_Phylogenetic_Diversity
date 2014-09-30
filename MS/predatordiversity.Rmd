@@ -738,11 +738,11 @@ diet <- x_sequence %>% tbl_df %>%
          lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE)
          )
 
-%>% 
-  #  gather(model,prediction,-phylodistance) %>%
-  function(x) {fig2 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +
-     geom_line(aes(x = phylodistance, y = upper),data = x,linetype = "dashed") +
-     geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")}
+# %>% 
+#   #  gather(model,prediction,-phylodistance) %>%
+#   function(x) {fig2 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +
+#      geom_line(aes(x = phylodistance, y = upper),data = x,linetype = "dashed") +
+#      geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")}
    
 
 distribution <- metabolic_occur_phylo %>% 
