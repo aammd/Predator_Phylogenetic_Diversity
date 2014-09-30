@@ -27,3 +27,5 @@ MS/predatordiversity_figs.html
 /MS/*.bibtex
 /MS/##*
 /MS/ref_line.docx
+
+/MS/cache/*

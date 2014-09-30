@@ -19,6 +19,7 @@ bibliography: /home/andrew/Documents/reference/Mendeley/Mendeley_reference_lists
 ## set chunk options
 library(knitr)
 opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE,
+               cache = TRUE, cache.path = "./cache/",
                dev='pdf', fig.path = './figure/')
 
 ## load packages
