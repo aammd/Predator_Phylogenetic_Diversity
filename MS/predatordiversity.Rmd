@@ -648,31 +648,7 @@ data.frame(model = names(diet_models),
 
 ```
 
-```{r FIG_dist_diet_effect}
-
-
-distribution <- metabolic_occur_phylo %>% 
-  ungroup %>% 
-  select(phylodistance,overlap) %>%
-  mutate(category = "distribution", nspp = 2)
-
-diet <- diet_overlap_phylo %>% 
-  ungroup %>%
-  select(phylodistance,overlap,nspp) %>%
-  mutate(category = "diet")
-
-rbind(distribution, diet) %>%
-  ggplot(aes(x = phylodistance, y = overlap, size = nspp)) + 
-  geom_point(colour = "black", fill = "#00A08A",
-             shape  = 21, alpha = 0.6) +
-  facet_grid(category ~ ., scales = "free_y") + 
-  xlab("Phylogenetic distance") + 
-  ylab("Distributional similarity (Pianka's index)") + 
-  scale_size(range = c(3,9),name = "Number of\nprey") +
-  mytheme
-
-
-
+```{r}
 x_sequence <- diet_overlap_phylo  %>%
   ungroup %>%
   summarise(min_x = min(phylodistance),
@@ -713,19 +689,41 @@ observed_fit <- nls(overlap ~ b * exp(a * phylodistance),
                     data = rawdata, 
                     start = list(a = -0.0004, b = 1),
                     weights = nspp)
-diet <- x_sequence %>% tbl_df %>%
+
+diet_predictions <- x_sequence %>% tbl_df %>%
   mutate(pred_m2 = predict(observed_fit,
                            newdata = list(phylodistance = phylodistance)),
          upper = apply(predictions,1,quantile,prob = .975, na.rm = TRUE),
-         lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE)
+         lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE),
+         category = factor("diet",levels = c("diet", "distribution"))
          )
+```
 
-# %>% 
-#   #  gather(model,prediction,-phylodistance) %>%
-#   function(x) {fig2 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +
-#      geom_line(aes(x = phylodistance, y = upper),data = x,linetype = "dashed") +
-#      geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")}
-   
+
+```{r FIG_dist_diet_effect}
+
+
+distribution <- metabolic_occur_phylo %>% 
+  ungroup %>% 
+  select(phylodistance,overlap) %>%
+  mutate(category = "distribution", nspp = 2)
+
+diet <- diet_overlap_phylo %>% 
+  ungroup %>%
+  select(phylodistance,overlap,nspp) %>%
+  mutate(category = "diet")
+
+fig1 <- rbind(distribution, diet) %>%
+  ggplot(aes(x = phylodistance, y = overlap, size = nspp)) + 
+  geom_point(colour = "black", fill = "#00A08A",
+             shape  = 21, alpha = 0.6) +
+  facet_grid(category ~ ., scales = "free_y") + 
+  xlab("Phylogenetic distance") + 
+  ylab("Distributional similarity (Pianka's index)") + 
+  scale_size(range = c(3,9),name = "Number of\nprey") +
+  geom_line(aes(x = phylodistance, y = pred_m2, size = 1),data = diet_predictions) +
+  geom_line(aes(x = phylodistance, y = upper, size = 1),data = diet_predictions,linetype = "dashed") +
+  geom_line(aes(x = phylodistance, y = lower size = 1),data = diet_predictions,linetype = "dashed")
 
 ```
 
