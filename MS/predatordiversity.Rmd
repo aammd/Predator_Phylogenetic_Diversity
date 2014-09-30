@@ -35,28 +35,24 @@ library(stargazer)
 library(tidyr)
 library(reshape2)
 
+## ggplot2 theme
 mytheme <- theme_bw()
 
 # occurrance data -- abundance
 occur <- read.csv("../data/reorganized_data/predator.cooccur.txt",
-                  stringsAsFactor=FALSE) %>%
-  tbl_df()
+                  stringsAsFactor=FALSE) %>%  tbl_df()
 # occurrance data -- metabolic capacity
 metabolic  <- read.csv("../data/reorganized_data/predator.cooccur.metabolic.txt",
-                       stringsAsFactor=FALSE) %>%
-  tbl_df()
+                       stringsAsFactor=FALSE) %>%  tbl_df()
 # feeding trial data
 feeding_trials <- read.csv("../data/reorganized_data/reorganized.feeding.trial.data.csv",
-                    stringsAsFactors=FALSE) %>%
-  tbl_df()
+                    stringsAsFactors=FALSE) %>%   tbl_df()
 # experimental data
 pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
-               stringsAsFactors=FALSE) %>%
-  tbl_df()
+               stringsAsFactors=FALSE) %>%   tbl_df()
 # enriched leaves -- ie just the N data for the detritus we put in.
 enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",
-                     stringsAsFactors=FALSE) %>%
-  tbl_df()
+                     stringsAsFactors=FALSE) %>%   tbl_df()
 # phylogeny data
 predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
 # randomization tests
@@ -65,8 +61,6 @@ rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.mea
 
 ## load in functions
 source("../R.scripts/FUNCTIONS_predator_diversity.R")
-
-#source("../R.scripts/cleanup_organization_for_graphing_analysis.R")
 ```
 
 ```{r experiment_data_postprocess}
@@ -446,7 +440,7 @@ prop.eaten <- feeding_trials %>%
   spread(Prey.species,prop.eaten,fill = NA)
    #dcast(predator.names~Prey.species,value.var="prop.eaten",fun.aggregate = mean)
 
-write.csv(prop.eaten,"proportion.eaten.csv")
+write.csv(prop.eaten,"./analyses/proportion.eaten.csv")
 
 diet_overlap <- paired_predator_pianka(pred_x_resource = prop.eaten,
                                        pred_colname = "predator.names",
@@ -626,13 +620,13 @@ We found the greatest effect for prey survival: while effects of _L. andromache_
 ```{r CALC_AIC_distribution and diet}
 ### Distribution
 ## calculates the AIC values that appear in the supp matt.
-if(FALSE) {
+if(TRUE) {
   model_aic <- metabolic_occur_phylo %>% 
     ungroup %>% 
     select(phylodistance,overlap) %>%
     fit_some_models
   
-  write.csv(model_aic,file = "distributional_similarity.csv")
+  write.csv(model_aic,file = "./analyses/distributional_similarity.csv")
   }
 
 ### Diet
@@ -672,7 +666,7 @@ models <- diet_overlap_phylo %>%
 data.frame(model = names(models),
            AIC = f_extract(AIC,models)) %>%
   arrange(AIC) %>%
-  write.csv(file = "diet_similarity.csv")
+  write.csv(file = "./analyses/diet_similarity.csv")
 }
 
 
