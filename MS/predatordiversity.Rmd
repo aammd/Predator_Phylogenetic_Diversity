@@ -28,9 +28,9 @@ library(reshape2)
 library(vegan)
 library(picante)
 library(pander)
-library(gplots)
+# library(gplots)
 #library(plyr)
-library(gridExtra)
+# library(gridExtra)
 library(dplyr)
 library(magrittr)
 library(xtable)
@@ -624,25 +624,18 @@ We found the greatest effect for prey survival: while effects of _L. andromache_
 ### Figures
 
 ```{r FIG_metabolic_occurance_as_phylo,fig.cap=""}
-
+### Distribution
+## calculates the AIC values that appear in the supp matt.
 if(FALSE) {
   model_aic <- metabolic_occur_phylo %>% 
     ungroup %>% 
     select(phylodistance,overlap) %>%
     fit_some_models
+  
   write.csv(model_aic,file = "distributional_similarity.csv")
   }
 
-metabolic_occur_phylo %>% 
-  ungroup %>% 
-  select(phylodistance,overlap) %>%
-  pianka_plot
-
-```
-
-**Figure 1**: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. 
-
-```{r FIG_feeding_trial_as_phylo, fig.cap=""}
+### Diet
 
 f_extract <- function(f,.models) sapply(.models,function(x) f(x[[1]]))
 
@@ -710,7 +703,7 @@ rawdata <- diet_overlap_phylo %>%
   select(phylodistance,overlap,nspp)
 
 predictions  <-  replicate(
-  100,{
+  500,{
     boot  <- rawdata[sample.int(nrow(rawdata), replace = TRUE), ]
     #browser()
     model = nls(overlap ~ b * exp(a * phylodistance), 
@@ -735,17 +728,34 @@ observed_fit <- nls(overlap ~ b * exp(a * phylodistance),
                     data = rawdata, 
                     start = list(a = -0.0004, b = 1),
                     weights = nspp)
-
-x_sequence %>% tbl_df %>%
-  mutate(pred_m2 = predict(observed_fit,newdata = list(phylodistance = phylodistance)),
+diet <- x_sequence %>% tbl_df %>%
+  mutate(pred_m2 = predict(observed_fit,
+                           newdata = list(phylodistance = phylodistance)),
          upper = apply(predictions,1,quantile,prob = .975, na.rm = TRUE),
          lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE)
-         ) %>% 
+         )
+
+%>% 
   #  gather(model,prediction,-phylodistance) %>%
   function(x) {fig2 + geom_line(aes(x = phylodistance, y = pred_m2),data = x) +
      geom_line(aes(x = phylodistance, y = upper),data = x,linetype = "dashed") +
      geom_line(aes(x = phylodistance, y = lower),data = x,linetype = "dashed")}
    
+
+
+
+
+metabolic_occur_phylo %>% 
+  ungroup %>% 
+  select(phylodistance,overlap) %>%
+  pianka_plot
+
+```
+
+**Figure 1**: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. 
+
+```{r FIG_feeding_trial_as_phylo, fig.cap=""}
+
 
 
 
