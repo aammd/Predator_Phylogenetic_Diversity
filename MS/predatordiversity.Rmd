@@ -548,27 +548,11 @@ elong <- percentpredation %>%
 ```
 
 ```{r TEST_diet-sim_as_PD,results='asis'}
-## test a squared term with 
-# 
-# diet_overlap_phylo %>%
-#   #filter(nspp>1) %>%
-#   with(lm(overlap~phylodistance,weights=nspp)) %>%
-#   pander(caption="Linear model of diet overlap as a function of phylogenetic distance between predators.")
-
-#summary(dietoverlap_lm)
 
 diet_phylo_lm_summary <- diet_overlap_phylo %>%
   #filter(nspp>1) %>%
   with(lm(overlap~phylodistance,weights=nspp)) %>%
   summary()
-
-
-
-# diet_phylo_lm_summary <- diet_overlap_phylo %>%
-#   #filter(nspp>1) %>%
-#   glm(overlap~phylodistance,weights=nspp,data=.,family=binomial) %>%
-#   summary()
-
 
 dietmat <- diet_overlap_phylo %>%
   select(-species_pair) %>%
@@ -590,12 +574,6 @@ predeffect <- function(resp="total.surv"){
   diffeffect <- (mean(pd[[resp]][pd$treatment!="control"],na.rm=TRUE)-mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE))/mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE)
   round(diffeffect,digits=2)*100
   }
-
-# 
-# ddply(pd,.(treatment),summarize,meansurv=mean(total.surv))
-# 
-# mean(pd$emerged)
-# mean(rowSums(pd[c("Culicidae","Chironomidae","Tipulidae","Scirtidae")])
 ```
 
 In our manipulative experiment, we placed a standardized prey community into bromeliads and measured five response variables. Predators had a large effect on prey survivorship: on average all predator treatments showed `r abs(predeffect())`% lower prey emerging or surviving as larvae relative to the predator-free control.  Nitrogen transport to bromeliad leaves was slightly decreased in bromeliads with predators relative to predator-free controls (`r predeffect("N")`%), and was only higher than the control in treatments including Tabanid predators.  We found a similar pattern for plant growth: on average, predators had a `r predeffect("growth")`% effect on growth of bromeliad leaves (leaf elongation in mm), though Tabanids seemed to create a slight increase. The decomposition of coarse detritus and production of fine organic matter showed no obvious pattern related to the presence of predators.
@@ -620,14 +598,13 @@ We found the greatest effect for prey survival: while effects of _L. andromache_
 ```{r CALC_AIC_distribution and diet}
 ### Distribution
 ## calculates the AIC values that appear in the supp matt.
-if(TRUE) {
-  model_aic <- metabolic_occur_phylo %>% 
-    ungroup %>% 
-    select(phylodistance,overlap) %>%
-    fit_some_models
-  
-  write.csv(model_aic,file = "./analyses/distributional_similarity.csv")
-  }
+model_aic <- metabolic_occur_phylo %>% 
+  ungroup %>% 
+  select(phylodistance,overlap) %>%
+  fit_some_models
+
+write.csv(model_aic,file = "./analyses/distributional_similarity.csv")
+
 
 ### Diet
 
