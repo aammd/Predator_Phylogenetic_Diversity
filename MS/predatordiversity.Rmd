@@ -648,7 +648,9 @@ data.frame(model = names(diet_models),
 
 ```
 
+
 ```{r nonlinear_trendline_confint}
+
 x_sequence <- diet_overlap_phylo  %>%
   ungroup %>%
   summarise(min_x = min(phylodistance),
@@ -702,7 +704,6 @@ diet_predictions <- x_sequence %>% tbl_df %>%
 
 
 ```{r FIG_dist_diet_effect}
-
 
 distribution <- metabolic_occur_phylo %>% 
   ungroup %>% 
