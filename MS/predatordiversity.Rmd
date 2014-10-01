@@ -18,7 +18,7 @@ bibliography: /home/andrew/Documents/reference/Mendeley/Mendeley_reference_lists
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
 library(knitr)
-opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE,
+opts_chunk$set(message=FALSE,warning=FALSE,echo=TRUE, fig.cap=TRUE,
                cache = TRUE, cache.path = "./cache/",
                dev='pdf', fig.path = './figure/')
 
@@ -648,7 +648,7 @@ data.frame(model = names(diet_models),
 
 ```
 
-```{r}
+```{r nonlinear_trendline_confint}
 x_sequence <- diet_overlap_phylo  %>%
   ungroup %>%
   summarise(min_x = min(phylodistance),
@@ -695,7 +695,8 @@ diet_predictions <- x_sequence %>% tbl_df %>%
                            newdata = list(phylodistance = phylodistance)),
          upper = apply(predictions,1,quantile,prob = .975, na.rm = TRUE),
          lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE),
-         category = factor("diet",levels = c("diet", "distribution"))
+         category = "diet",
+         category = factor(category,levels = c("diet", "distribution"))
          )
 ```
 
@@ -713,7 +714,32 @@ diet <- diet_overlap_phylo %>%
   select(phylodistance,overlap,nspp) %>%
   mutate(category = "diet")
 
-fig1 <- rbind(distribution, diet) %>%
+exper <- pd %>%
+  filter(treatment %in% c("andro","elong","tabanid","leech")) %>%
+  select(treatment, Culicidae:Scirtidae) %>%
+  group_by(treatment) %>%
+  summarise_each(funs(mean)) %>%
+  paired_predator_pianka(pred_colname = "treatment", ... = -treatment) %>%
+  ungroup %>%
+  mutate(species_pair = ifelse(species_pair == "andro_elong",
+                               "Leptagrion.andromache_Leptagrion.elongatum", species_pair),
+         species_pair = ifelse(species_pair == "andro_leech",
+                               "Leptagrion.andromache_Hirudinidae", species_pair),
+         species_pair = ifelse(species_pair == "andro_tabanid",
+                               "Leptagrion.andromache_Tabanidae.spA", species_pair),
+         species_pair = ifelse(species_pair == "elong_leech",
+                               "Leptagrion.elongatum_Tabanidae.spA", species_pair),
+         species_pair = ifelse(species_pair == "elong_tabanid",
+                               "Leptagrion.elongatum_Tabanidae.spA", species_pair),
+         species_pair = ifelse(species_pair == "leech_tabanid",
+                               "Tabanidae.spA_Hirudinidae", species_pair)) %>%
+  left_join(phylogenetic_distance) %>% 
+  ungroup %>%
+  select(phylodistance,overlap,nspp) %>%
+  mutate(category = "experiment")
+
+rbind(distribution, diet, exper) %>%
+  mutate(category = factor(category, levels = c("distribution", "diet", "experiment"))) %>%
   ggplot(aes(x = phylodistance, y = overlap, size = nspp)) + 
   geom_point(colour = "black", fill = "#00A08A",
              shape  = 21, alpha = 0.6) +
@@ -721,13 +747,14 @@ fig1 <- rbind(distribution, diet) %>%
   xlab("Phylogenetic distance") + 
   ylab("Distributional similarity (Pianka's index)") + 
   scale_size(range = c(3,9),name = "Number of\nprey") +
-  geom_line(aes(x = phylodistance, y = pred_m2, size = 1),data = diet_predictions) +
-  geom_line(aes(x = phylodistance, y = upper, size = 1),data = diet_predictions,linetype = "dashed") +
-  geom_line(aes(x = phylodistance, y = lower size = 1),data = diet_predictions,linetype = "dashed")
+  geom_line(aes(x = phylodistance, y = pred_m2), size = 0.5, data = diet_predictions) +
+  geom_line(aes(x = phylodistance, y = upper),size = 0.5, data = diet_predictions,linetype = "dashed") +
+  geom_line(aes(x = phylodistance, y = lower),size = 0.5, data = diet_predictions,linetype = "dashed") + 
+  mytheme
 
 ```
 
-**Figure 1**: Phylogenetic distance and predator co-occurrence.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. 
+**Figure 1**: Phylogenetic distance between predator pairs and their ecology.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. 
 
 ```{r FIG_feeding_trial_as_phylo, fig.cap=""}
 
