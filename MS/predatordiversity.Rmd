@@ -745,7 +745,7 @@ rbind(distribution, diet, exper) %>%
              shape  = 21, alpha = 0.6) +
   facet_grid(category ~ ., scales = "free_y") + 
   xlab("Phylogenetic distance") + 
-  ylab("Distributional similarity (Pianka's index)") + 
+  ylab("Similarity (Pianka's index)") + 
   scale_size(range = c(3,9),name = "Number of\nprey") +
   geom_line(aes(x = phylodistance, y = pred_m2), size = 0.5, data = diet_predictions) +
   geom_line(aes(x = phylodistance, y = upper),size = 0.5, data = diet_predictions,linetype = "dashed") +
@@ -754,7 +754,7 @@ rbind(distribution, diet, exper) %>%
 
 ```
 
-**Figure 1**: Phylogenetic distance between predator pairs and their ecology.  Each point represents a pair of predator species.  We calculated total metabolic capacity for each predator species in each bromeliad, and then calculated niche overlap between two predators using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. 
+**Figure 1**: Phylogenetic distance between predator pairs and their ecology.  Each point represents a pair of predator species. Distributional similarity was quantified from the total metabolic capacity for each predator species in each bromeliad. Diet similarity is calculated from a series of feeding trials, and experimental similarity as the surviving prey community emerging from bromeliads. Similarity between each pair of predators was calculated using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. 
 
 ```{r FIG_feeding_trial_as_phylo, fig.cap=""}
 
