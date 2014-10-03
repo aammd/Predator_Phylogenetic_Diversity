@@ -791,7 +791,7 @@ grid.arrange(pres, number, ncol=2)
 ```
 
 **Figure 2**:  Adding predators reduces insect emergence, probably because they eat the prey.
-
+ However, increasing predator number raises survival again. This is because the predators are interfering with each other.
 
 ```{r}
 pred_number <- pred_present %>%
