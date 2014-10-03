@@ -793,6 +793,19 @@ grid.arrange(pres, number, ncol=2)
 
 **Figure 2**:  Adding predators reduces insect emergence, probably because they eat the prey. However, increasing predator number raises survival again. This is because the predators are interfering with each other.
 
+```{r}
+pd %>%
+  select(treatment, total.surv) %>%
+  mutate(treatment = as.character(treatment)) %>%
+  filter(treatment != "control") %>% 
+  mutate(npred = ifelse(grepl(" \\+ ", treatment), "two", "one")) %>%
+  ggplot(aes(x = treatment, y = total.surv)) +
+  facet_grid(. ~ npred, scales = "free_x") +
+  geom_point(colour = "black", fill = NA, shape = 21, colour = "black", size = 5) +
+  stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
+  mytheme
+```
+
 
 ```{r FIG_PD_experiment_nonadditive,fig.cap=""}
 
