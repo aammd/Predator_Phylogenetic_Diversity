@@ -757,7 +757,7 @@ rbind(distribution, diet, exper) %>%
 
 **Figure 1**: Phylogenetic distance between predator pairs and their ecology.  Each point represents a pair of predator species. Distributional similarity was quantified from the total metabolic capacity for each predator species in each bromeliad. Diet similarity is calculated from a series of feeding trials, and experimental similarity as the surviving prey community emerging from bromeliads. Similarity between each pair of predators was calculated using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. 
 
-```{r FIG_feeding_trial_as_phylo, fig.cap=""}
+```{r FIG_predator_pres_number, fig.cap=""}
 
 # 
 pred_present <- pd %>%
@@ -793,7 +793,7 @@ grid.arrange(pres, number, ncol=2)
 
 **Figure 2**:  Adding predators reduces insect emergence, probably because they eat the prey. However, increasing predator number raises survival again. This is because the predators are interfering with each other.
 
-```{r}
+```{r FIG_predator_composition}
 pd %>%
   select(treatment, total.surv) %>%
   mutate(treatment = factor(treatment, 
