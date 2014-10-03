@@ -762,22 +762,32 @@ rbind(distribution, diet, exper) %>%
 # 
 pred_present <- pd %>%
   select(treatment, total.surv) %>%
-  mutate(ispred = ifelse(treatment == "control", "absent", "present")) %>%
   group_by(treatment) %>%
-  mutate(trtmeans = mean(total.surv)) %>%
+  summarise(trtmeans = mean(total.surv)) %>%
+  mutate(ispred = ifelse(treatment == "control", "absent", "present")) %>%
   group_by(ispred) %>%
   mutate(presence_mean = mean(trtmeans))
   
-pred_present %>%
+pres <- pred_present %>%
   ggplot(aes(x = ispred, y = trtmeans)) + 
   geom_point(colour = "black", fill = NA, shape = 21, colour = "black", size = 5) +
   geom_point(aes(y = presence_mean), fill = "#00A08A", shape = 21, colour = "black", size = 5) + 
 #   geom_point(aes(y = total.surv), fill = NA, shape = 21, colour = "black", size = 5,
 #              data = subset(pred_present, treatment == "control")) + 
-  ylab("Mean survival (n = 5)") + xlab("Predator presence") + 
+  ylab("Mean survival (n = 5)") + xlab("Predator number") + 
   mytheme
 
+umber <- pred_present %>% g
+  filter(ispred == "present") %>%
+  mutate(npred = ifelse(grepl(" \\+ ", treatment), "two", "one")) %>%
+  ggplot(aes(x = npred, y = trtmeans)) +
+  geom_point(colour = "black", fill = NA, shape = 21, colour = "black", size = 5) +
+  stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
+  ylab("Mean survival (n = 5)") + xlab("Predator presence") + 
+  mytheme  
 
+require(gridExtra)
+grid.arrange(pres, number, ncol=2)
 ```
 
 **Figure 2**:  Adding predators reduces insect emergence, probably because they eat the prey.
