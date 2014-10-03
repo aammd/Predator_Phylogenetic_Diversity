@@ -796,16 +796,19 @@ grid.arrange(pres, number, ncol=2)
 ```{r}
 pd %>%
   select(treatment, total.surv) %>%
-  mutate(treatment = as.character(treatment)) %>%
+  mutate(treatment = factor(treatment, 
+                            levels = c("andro","elong","tabanid","leech",
+                                       "elong + andro", "elong + tab", "elong + leech"))) %>%
   filter(treatment != "control") %>% 
-  mutate(npred = ifelse(grepl(" \\+ ", treatment), "two", "one")) %>%
+  mutate(npred = ifelse(grepl(" \\+ ", treatment),
+                        "Two species combination", "Monoculture")) %>%
   ggplot(aes(x = treatment, y = total.surv)) +
   facet_grid(. ~ npred, scales = "free_x") +
   geom_point(colour = "black", fill = NA, shape = 21, colour = "black", size = 5) +
   stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
   mytheme
 ```
-
+**Figure 3**: Predator community compositon, in monoculture and polyculture, and its effects on prey survival. Prey emergence is lowest when damselflies are paired together, but increases when damselflies are combined with other species.
 
 ```{r FIG_PD_experiment_nonadditive,fig.cap=""}
 
