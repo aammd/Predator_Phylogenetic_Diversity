@@ -777,29 +777,21 @@ pres <- pred_present %>%
   ylab("Mean survival (n = 5)") + xlab("Predator number") + 
   mytheme
 
-umber <- pred_present %>% g
+number <- pred_present %>% 
   filter(ispred == "present") %>%
   mutate(npred = ifelse(grepl(" \\+ ", treatment), "two", "one")) %>%
   ggplot(aes(x = npred, y = trtmeans)) +
   geom_point(colour = "black", fill = NA, shape = 21, colour = "black", size = 5) +
   stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
   ylab("Mean survival (n = 5)") + xlab("Predator presence") + 
-  mytheme  
-
+  mytheme
+  
 require(gridExtra)
 grid.arrange(pres, number, ncol=2)
-```
-
-**Figure 2**:  Adding predators reduces insect emergence, probably because they eat the prey.
- However, increasing predator number raises survival again. This is because the predators are interfering with each other.
-
-```{r}
-pred_number <- pred_present %>%
-  filter(ispred != "absent") %>%
-  mutate(npred = ifelse(treatment %in% c("andro","tabanid","elong","leech"), "one","two") )
 
 ```
 
+**Figure 2**:  Adding predators reduces insect emergence, probably because they eat the prey. However, increasing predator number raises survival again. This is because the predators are interfering with each other.
 
 
 ```{r FIG_PD_experiment_nonadditive,fig.cap=""}
