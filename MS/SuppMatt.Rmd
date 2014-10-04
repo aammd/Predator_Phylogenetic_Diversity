@@ -37,13 +37,13 @@ pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
 
 predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
 
-dist_sim <- read.csv(file = "distributional_similarity.csv", 
+dist_sim <- read.csv(file = "analyses/distributional_similarity.csv", 
                      stringsAsFactors = FALSE)
 
-diet_sim <- read.csv(file = "diet_similarity.csv",
+diet_sim <- read.csv(file = "analyses/diet_similarity.csv",
                      stringsAsFactors = FALSE)
 
-prop.eaten <- read.csv(file = "proportion.eaten.csv")
+prop.eaten <- read.csv(file = "analyses/proportion.eaten.csv")
 
 timetree <- list.files("../data/TreeData/", full.names = TRUE, pattern = "*.csv") %>%
   function(d) {basename(d) %>% gsub(".csv","",.) %>% set_names(d,.)} %>%
@@ -166,7 +166,7 @@ pd %>%
          SE_sig=signif(SE,2),
          meanSE=paste(meanval_sig,"±",SE_sig)) %>%
   select(treatment,response,meanSE) %>% 
-  spread(response,meanSE) %>%
+  spread(response,meanSE) %>% as.matrix %>%
   xtable %>% 
   print(include.rownames = FALSE, size = 8, comment = FALSE)
 #   stargazer(summary = FALSE, type = "latex", header = FALSE, 
