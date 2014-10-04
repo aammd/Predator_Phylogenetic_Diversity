@@ -872,14 +872,20 @@ modlist <- list(
     do(m = lm(mean ~ ispred, data = .)),
   identity = pd2 %>% 
     filter(npred == "one" & ispred != "absent") %>%
-    select(treatment, response, resp_val, ispred),
+    select(treatment, response, resp_val, ispred) %>% 
+    group_by(response) %>%
+    do(m = lm(resp_val ~ treatment, data = .)),
   number = pd2 %>% 
     filter(ispred == "present") %>%
     select(treatment, response, resp_val, npred) %>%
-    group_by(npred, treatment, response) %>%
-    summarise(mean = mean_na(resp_val)),
+    group_by( response, npred, treatment) %>%
+    summarise(mean = mean_na(resp_val))  %>% 
+    group_by(response) %>%
+    do(m = lm(mean ~ npred, data = .)),
   phylodist = pd2 %>%
-    filter(npred == "two")
+    filter(npred == "two") %>%
+    group_by(response) %>%
+    do(m = lm(resp_val ~ phylodistance, data = .))
   )
 
 prF <- function(resp,test,.modlist = modlist){
@@ -905,14 +911,14 @@ prF <- function(resp,test,.modlist = modlist){
 
 ```
 
-**Table 1**
+**Table 1** Experimental results. We measured for community-level variables: total prey survival (both emerged adults and surviving larvae), the breakdown of coarse detritus, the production of fine particulate organic matter (FPOM), and the growth of the bromeliad itself. We considered our experimental design at several levels: comparing treatments with predators to those without, contrasting predator species, comparing predator communities of 1 or 2 species, and considering the effects of phylogenetic distance between predators.
 
-Response | Predator Presence | Identity | Richness
--------- | ------------------| ---------|---------
-Total prey survival  |   `r prF("total.surv", "presence")` |  | 
-FPOM (g)     | `r prF("fine", "presence")` |  | 
-Decomposition (g)  | `r prF("decomp", "presence")` | |
-Bromeliad growth  | `r prF("growth", "presence")` | |
+Response | Predator Presence | Identity | Richness | Pairwise PD |
+-------- | ------------------| ---------|--------- | ---------- |
+Total prey survival  |   `r prF("total.surv", "presence")` | `r prF("total.surv", "identity")`  | `r prF("total.surv", "number")` | `r prF("total.surv", "phylodist")`
+Decomposition (g)  | `r prF("decomp", "presence")` | `r prF("decomp", "identity")`| `r prF("decomp", "number")` | `r prF("decomp", "phylodist")`
+FPOM (g)     | `r prF("fine", "presence")` | `r prF("fine", "identity")` | `r prF("fine", "number")` | `r prF("fine", "phylodist")`
+Bromeliad growth  | `r prF("growth", "presence")` |`r prF("growth", "identity")` | `r prF("growth", "number")` | `r prF("growth", "phylodist")`
 
 
 ## Discussion
