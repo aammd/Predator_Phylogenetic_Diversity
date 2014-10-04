@@ -18,7 +18,7 @@ bibliography: /home/andrew/Documents/reference/Mendeley/Mendeley_reference_lists
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
 library(knitr)
-opts_chunk$set(message=FALSE,warning=FALSE,echo=TRUE, fig.cap=TRUE,
+opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE,
                cache = TRUE, cache.path = "./cache/",
                dev='pdf', fig.path = './figure/')
 
@@ -729,7 +729,7 @@ exper <- pd %>%
          species_pair = ifelse(species_pair == "andro_tabanid",
                                "Leptagrion.andromache_Tabanidae.spA", species_pair),
          species_pair = ifelse(species_pair == "elong_leech",
-                               "Leptagrion.elongatum_Tabanidae.spA", species_pair),
+                               "Leptagrion.elongatum_Hirudinidae", species_pair),
          species_pair = ifelse(species_pair == "elong_tabanid",
                                "Leptagrion.elongatum_Tabanidae.spA", species_pair),
          species_pair = ifelse(species_pair == "leech_tabanid",
@@ -777,9 +777,11 @@ pres <- pred_present %>%
   ylab("Mean survival (n = 5)") + xlab("Predator number") + 
   mytheme
 
-number <- pred_present %>% 
+pred_number <- pred_present %>% 
   filter(ispred == "present") %>%
-  mutate(npred = ifelse(grepl(" \\+ ", treatment), "two", "one")) %>%
+  mutate(npred = ifelse(grepl(" \\+ ", treatment), "two", "one")) 
+
+number <- pred_number %>%
   ggplot(aes(x = npred, y = trtmeans)) +
   geom_point(colour = "black", fill = NA, shape = 21, colour = "black", size = 5) +
   stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
@@ -808,6 +810,7 @@ pd %>%
   stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
   mytheme
 ```
+
 **Figure 3**: Predator community compositon, in monoculture and polyculture, and its effects on prey survival. Prey emergence is lowest when damselflies are paired together, but increases when damselflies are combined with other species.
 
 ```{r FIG_PD_experiment_nonadditive,fig.cap=""}
@@ -827,7 +830,89 @@ summarize_randoms_phylo %>%
 #        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")+facet_wrap(~variable)
 ```
 
-**Figure 3**: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures. The dashed line represents differences $= 0$, i.e. no nonadditive effect. These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation
+**Figure 4**: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures. The dashed line represents differences $= 0$, i.e. no nonadditive effect. These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation
+
+
+```{r summaryFs}
+pd2 <- pd %>% 
+  select(treatment, total.surv, decomp, fine, N, growth) %>%
+  mutate(treatment = treatment %>% 
+           equals("control") %>% 
+           ifelse(paste0(treatment,
+                         seq_along(treatment)),
+                  treatment)) %>% 
+  gather(key = response, value = resp_val, -treatment) %>%
+  mutate(ispred = ifelse(grepl("control[0-9]+", treatment), "absent", "present"),
+         npred = ifelse(grepl(" \\+ ", treatment), "two", "one"),  
+         # note this mislabels control; remember to filter it
+         species_pair = ifelse(treatment == "elong + andro",
+                               "Leptagrion.andromache_Leptagrion.elongatum", NA),
+         species_pair = ifelse(treatment == "elong + leech",
+                               "Leptagrion.elongatum_Tabanidae.spA", species_pair),
+         species_pair = ifelse(treatment == "elong + tab",
+                               "Leptagrion.elongatum_Tabanidae.spA", species_pair)) %>%
+  left_join(phylogenetic_distance)
+         
+
+
+trtnames <- c("total.surv" = "Total prey survival",
+  "fine" = "FPOM (g)",
+  "decomp" = "Decomposition (g)",
+  "growth" = "Bromeliad growth")
+
+mean_na <- function(x) mean(x, na.rm = TRUE)
+
+
+modlist <- list(
+  presence = pd2 %>% 
+    select(treatment, response, resp_val, ispred) %>%
+    group_by(ispred, treatment, response) %>% 
+    summarise(mean = mean_na(resp_val)) %>% 
+    group_by(response) %>% 
+    do(m = lm(mean ~ ispred, data = .)),
+  identity = pd2 %>% 
+    filter(npred == "one" & ispred != "absent") %>%
+    select(treatment, response, resp_val, ispred),
+  number = pd2 %>% 
+    filter(ispred == "present") %>%
+    select(treatment, response, resp_val, npred) %>%
+    group_by(npred, treatment, response) %>%
+    summarise(mean = mean_na(resp_val)),
+  phylodist = pd2 %>%
+    filter(npred == "two")
+  )
+
+prF <- function(resp,test,.modlist = modlist){
+  modsum <- .modlist[[test]] %>%
+    filter(response == resp) %>%
+    extract2("m") %>%
+    extract2(1) %>%
+    summary 
+  
+  fv <- modsum %>%
+    extract2("fstatistic")
+  F_format <- paste0("F~",fv[["numdf"]],",",fv[["dendf"]],"~", " = ")
+  pv <- pf(fv[1],fv[2],fv[3],lower.tail=F)
+  
+  fval <- round(fv[["value"]], 2)
+  
+  if (pv < 0.05) {
+    paste0(F_format,"**",fval,"**")
+    } else {
+      paste0(F_format,fval)      
+    }
+  }
+
+```
+
+**Table 1**
+
+Response | Predator Presence | Identity | Richness
+-------- | ------------------| ---------|---------
+Total prey survival  |   `r prF("total.surv", "presence")` |  | 
+FPOM (g)     | `r prF("fine", "presence")` |  | 
+Decomposition (g)  | `r prF("decomp", "presence")` | |
+Bromeliad growth  | `r prF("growth", "presence")` | |
 
 
 ## Discussion
