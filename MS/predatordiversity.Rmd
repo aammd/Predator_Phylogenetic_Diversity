@@ -907,11 +907,7 @@ In our system, distantly related predators are no more likely to be similar in d
 
 ### Do related organisms occur in different bromeliads? 
 
-Predator pairs showed only a weak relationship between phylogenetic distance and differences in distribution.
-
-This may reflect a lack of variation among bromeliads, either in environmental variables or prey community composition, at least over the lifespans of the predators. 
-
-It may also indicate that predator species in this system are habitat generalists.  Organisms which live in small habitats, which are prone to large fluctuations, may develop a wide physiological tolerance as they integrate over variation in prey community composition, temperature, etc.
+Predator pairs showed only a weak relationship between phylogenetic distance and differences in distribution. This may reflect a lack of variation among bromeliads, either in environmental variables or prey community composition, at least over the lifespans of the predators.  However, we know already (CITE) that bromeliads in this and other systems vary considerably in many habitat variables, such as detritus content, amount of sunlight, and habitat size. Therefore it is more likely that these predator species are habitat generalists. Organisms which live in small, fluctuation-prone habitats -- especially if they are long-lived -- may evolve a wide physiological tolerance to those environmental fluctuations. Therefore we would not expect a high degree of habitat specificity among these organisms.
 
 We observed little predator mortality in our experiment; this indicates that perhaps even negative interactions among predators would not necessarily lead to differences in their distribution.
 
