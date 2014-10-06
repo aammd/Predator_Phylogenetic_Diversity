@@ -103,7 +103,7 @@ dissimilarity -- either in the form of differences in species niches,
 interactions, or functional traits. When these relationships occur, the
 resulting variation in ecologically-relevant traits and interactions could
 increase ecosystem function [@Srivastava2012c]. Despite the prevalence of
-phylogenetic community ecology, and the importance of predators to natural
+phylogenetic community ecology and the importance of predators to natural
 systems, the phylogenetic diversity of local predator assemblages has rarely
 been measured [@Bersier2008;@Naisbit2011]. Many studies of phylogenetic signal
 in predator traits focus on whole clades, rather than local assemblages (e.g.
@@ -125,7 +125,7 @@ cues of prey, competitors, or intra-guild predators when selecting a habitat pat
 co-occurrence may be further modified by intraguild predation
 [@Lounibos2008;@Juliano2009] or competition [@Fincke1997].
 
-When predators do co-occur, their direct effects on each other and on their prey is determined by their diet breadth. Diet breadth (the diversity of prey species which predators consume) will depend on their feeding traits and nutritional -- all of which may be phylogenetically conserved. If this is the case, then predator assemblages with higher phylogenetic diversity will show greater complementarity and a stronger top-down effect on ecosystem function
+When predators do co-occur, their direct effects on each other and on their prey is determined by their diet breadth. Diet breadth (the diversity of prey species which predators consume) will depend on their feeding traits and nutritional requirements -- both of which may be phylogenetically conserved. If this is the case, then predator assemblages with higher phylogenetic diversity will show greater complementarity and a stronger top-down effect on ecosystem function
 [@Finke2008a]. For
 example, some predators are gape-limited, and can swallow any prey smaller than
 their mouth; these predators typically broaden their diet as they grow (e.g.,
@@ -138,9 +138,7 @@ some cases, predator diets may extend to include other predators, leading to
 direct negative interactions such as intraguild predation which may also have a
 phylogenetic signal [@Pfennig2000].
 
-Indirect interactions among predators are common in many communities, and can lead to
-nonlinearities which prevent the inference of predator effect from the additive
-combination of individual predators [@Sih1998a]. For example, decreasing
+Indirect interactions among predators are common in many communities, which means that the total amount of top-down control cannot be predicted by summing the contributions of individual predator species [@Sih1998a]. For example, decreasing
 predator richness has been shown to increase herbivory in a three-level kelp
 food web [@Byrnes2006]. The complex traits that underlie such species
 interactions ("higher-order" interactions, Sih *et al.*
@@ -924,7 +922,7 @@ Predator pairs which were more phylogenetically distant had a larger negative no
 
 Odonates can be sensitive to chemical cues of potential predators, which causes a decrease in feeding rate (Barry and Roberts 2014). However other research in bromeliads has demonstrated that it is physical contact with other organisms that reduces damselfly predation rate (Trish).  If this is the case for *Leptagrion*, then when combined with leeches they may be responding to frequent contact with those very active predators. Tabanids, however, are rarely observed outside of a deep leaf axil -- in this case, it may be chemical cues which are responsible. There may also be a phylogenetic signal to the chemical cues which the damselflies perceive: i.e. close relatives (other _Leptagrion_ sp. in this case) might induce less of an effect than other predators.
 
-In feeding trials with leeches, actual predation was rarely observed -- except in one instance, where the damselfly ate the leech. However, trait-mediated indirect effects may not always reflect realized probability of predation: an animal may change behaviour when exposed to a "predator" poses little threat (REF).
+Interestingly, the pattern of induced defenses do not line up with predation risk, as observed in our feeding trials. In feeding trials with leeches, actual predation was rarely observed -- except in one instance, where the damselfly ate the leech. However, trait-mediated indirect effects may not always reflect realized probability of predation: an animal may change behaviour when exposed to a "predator" which poses little threat (REF).
 
 One limitation of our approach is the focus on a single focal predator, the odonate *Leptagrion elongatum*, which was common in all of our predator treatments. It is possible that this species is more sensitive to the presence of other predators, and therefore shows a larger trait-mediated indirect effect, than would other species in this community.  However, this is the most common species in this community and our results indicate that its top-down effects are likely to be frequently reduced by the presence of other predators.
 
