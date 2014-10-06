@@ -683,7 +683,7 @@ diet_predictions <- x_sequence %>% tbl_df %>%
 ```
 
 
-```{r FIG_dist_diet_effect}
+```{r FIG_dist_diet_effect, fig.height=9}
 
 distribution <- metabolic_occur_phylo %>% 
   ungroup %>% 
@@ -903,17 +903,11 @@ Bromeliad growth  | `r prF("growth", "presence")` |`r prF("growth", "identity")`
 
 ## Discussion
 
-### Summary
-
-We tested whether related predators are similar or dissimilar in their habitat distribution (Question 1).  We found only weak support: There is no evidence for close relatives being either more or less likely to be found in association.  Very distant relatives may be slightly likely to co-occur, as shown by the decelerating curve in Fig 1.
-
-We also tested whether diet similarity decreased with predator phylogenetic distance (Question 2), and found a stronger pattern: diet similarity declined more rapidly than distributional similarity with PD, in a nearly linear relationship.
-
-Question 3 has two parts. Question 3a hypothesized that differences among predator responses would correlate with their phylogenetic divergence, and we found no support for this pattern. We did find support for hypothesis 3b for one of our responses: increased phylogenetic diversity of the predator assemblage was associated with a negative non-additive effect on predation (increased prey survival).
+In our system, distantly related predators are no more likely to be similar in distribution than are close relatives (Question 1). We also tested whether diet similarity decreased with predator phylogenetic distance (Question 2), and found a stronger pattern: diet similarity declined with phylogenetic distance between two predators, in a nearly linear relationship. However, this difference in diet did not translate into a difference in the composition of animals surviving in bromeliads stocked with different predators (3a). We did find and effect of phylogenetic distance when predators were placed in pairs - specifically, when damselflies were paired with non-damselfly predators. This resulted in more prey animals surviving to the end of the experiment; this could be caused by a reduction in feeding rate when predator taxa are very dissimilar. 
 
 ### Do related organisms occur in different bromeliads? 
 
-Predator pairs showed only a weak relationship between phylogenetic distance and differences in distribution.  
+Predator pairs showed only a weak relationship between phylogenetic distance and differences in distribution.
 
 This may reflect a lack of variation among bromeliads, either in environmental variables or prey community composition, at least over the lifespans of the predators. 
 
