@@ -92,22 +92,23 @@ potentially underlying predator compositional effects, we lack a means of
 predicting _a priori_ which combinations are likely to have antagonistic versus
 synergistic effects on ecosystem functions.
 
-The measurement of phylogenetic diversity has become a popular means for
-ecologists to make inferences about ecological and evolutionary mechanisms
-behind observed patterns in natural communities [@Cavender-Bares2009]. For example, phylogenetic
-diversity of plant communities is better correlated with productivity than is
-species richness or diversity [e.g. @Cadotte2009;@Cadotte2008;@Godoy2014].
-Central to most ecological applications of phylogenetic diversity is the
-assumption that increased phylogenetic distance implies increased ecological
-dissimilarity -- either in the form of differences in species niches,
-interactions, or functional traits. When these relationships occur, the
-resulting variation in ecologically-relevant traits and interactions could
-increase ecosystem function [@Srivastava2012c]. Despite the prevalence of
-phylogenetic community ecology and the importance of predators to natural
-systems, the phylogenetic diversity of local predator assemblages has rarely
-been measured [@Bersier2008;@Naisbit2011]. Many studies of phylogenetic signal
-in predator traits focus on whole clades, rather than local assemblages (e.g.
-*Anolis* lizards [@Knouft2006], warblers [@Bohning-Gaese2003], treeboas
+One possible predictor of the effect of predator combinations is predator
+phylogenetic diversity. The measurement of phylogenetic diversity has become a
+popular means for ecologists to make inferences about ecological and
+evolutionary mechanisms behind observed patterns in natural communities
+[@Cavender-Bares2009]. For example, the phylogenetic diversity of plant
+communities is a better predictor of productivity than is either species
+richness or diversity [e.g. @Cadotte2009;@Cadotte2008;@Godoy2014]. A central
+assumption of this approach is that increased phylogenetic distance implies
+increased ecological dissimilarity -- either in the form of differences in
+species niches, interactions, or functional traits. When this is true, high
+phylogenetic diversity could creat the ecological conditions neede for strong
+ecosystem functioning [@Srivastava2012c]. Despite the prevalence of phylogenetic
+community ecology and the importance of predators to natural systems, the
+phylogenetic diversity of local predator assemblages has rarely been measured
+[@Bersier2008;@Naisbit2011]. Many studies of phylogenetic signal in predator
+traits focus on whole clades, rather than local assemblages (e.g. *Anolis*
+lizards [@Knouft2006], warblers [@Bohning- Gaese2003], tree boas
 [@Henderson2013] and wasps [@Udriene2005]) making it difficult to connect these
 results to top- down effects at the scale of a local community. While these
 clade-specific studies often find weak evidence for phylogenetic signal in
@@ -115,67 +116,81 @@ ecologically- relevant traits, studies at the level of the whole biosphere
 [@Gomez2010;@Bersier2008] demonstrate that related organisms often have similar
 interspecific interactions -- i.e. related predators often consume similar prey.
 At the level of a community, the effect of a predator assemblage will depend on
-both the spatial distribution and trophic interactions of all predator species.
-Phylogeny may constrain species distributions when distant relatives have
-distinct fundamental niches, while close relatives are too similar to co-exist
-[@Webb2002;@Emerson2008]. The effects of other predators can also be
-be important: during dispersal, predators may use
-cues of prey, competitors, or intra-guild predators when selecting a habitat patch
-[@Chase2009a;@McCauley2008a;@Srivastava2008]. After colonization, patterns of
-co-occurrence may be further modified by intraguild predation
-[@Lounibos2008;@Juliano2009] or competition [@Fincke1997].
+both the microhabitat distribution and trophic interactions of all predator
+species. Phylogeny may constrain local species composition when distant
+relatives have distinct fundamental niches, while close relatives are too
+similar to co-exist [@Webb2002;@Emerson2008]. Other predators constrain
+distribution not only through direct interactions, but also colonization:
+predators may use cues of prey, competitors, or intra-guild predators when
+selecting a habitat patch [@Chase2009a;@McCauley2008a;@Srivastava2008]. After
+colonization, patterns of co-occurrence may be further modified by intraguild
+predation [@Lounibos2008;@Juliano2009] or competition [@Fincke1997].
 
-When predators do co-occur, their direct effects on each other and on their prey is determined by their diet breadth. Diet breadth (the diversity of prey species which predators consume) will depend on their feeding traits and nutritional requirements -- both of which may be phylogenetically conserved. If this is the case, then predator assemblages with higher phylogenetic diversity will show greater complementarity and a stronger top-down effect on ecosystem function
-[@Finke2008a]. For
-example, some predators are gape-limited, and can swallow any prey smaller than
-their mouth; these predators typically broaden their diet as they grow (e.g.,
-larvae of Odonata) [@Werner1984].  Such ontogenetic changes in diet breadth can
-radically influence food web structure [@Moya-Larano2011]. Other
-predators (e.g. Leeches, or Diptera:Tabanidae) are "piercing-sucking" predators
-[@Bay1974] and may be more general consumers at all life stages, since they can
-feed on larger prey individuals even at very early predator life stages.  In
-some cases, predator diets may extend to include other predators, leading to
-direct negative interactions such as intraguild predation which may also have a
-phylogenetic signal [@Pfennig2000].
+When predators do co-occur, their direct effects on each other and on their prey
+is in part determined by their overlap in diet. Diet overlap (shared prey
+species between predators) will depend on the feeding traits and nutritional
+requirements of predators -- both of which may be phylogenetically conserved
+(CITEAngelica). If this is the case, then predator assemblages with higher
+phylogenetic diversity will show greater prey consumption and a stronger top-
+down effect on ecosystem function [@Finke2008a]. For example, some predators are
+gape-limited, and can swallow any prey smaller than their mouth; these predators
+typically broaden their diet as they grow (e.g., larvae of Odonata)
+[@Werner1984].  Such ontogenetic changes in diet breadth can radically influence
+food web structure [@Moya-Larano2011]. Other predators (e.g. Leeches, or
+Diptera:Tabanidae) are "piercing-sucking" predators [@Bay1974] and may be more
+general consumers at all life stages, since they can feed on larger prey
+individuals even at very early predator life stages.  In some cases, predator
+diets may extend to include other predators, leading to direct negative
+interactions such as intraguild predation consequently have a phylogenetic
+signal [@Pfennig2000].
 
-Indirect interactions among predators are common in many communities, which means that the total amount of top-down control cannot be predicted by summing the contributions of individual predator species [@Sih1998a]. For example, decreasing
-predator richness has been shown to increase herbivory in a three-level kelp
-food web [@Byrnes2006]. The complex traits that underlie such species
-interactions ("higher-order" interactions, Sih *et al.*
-[-@Sih1998a]) may also correlate with phylogeny; if so, then phylogenetic diversity will be a better predictor of ecosystem function than richness alone [@Cadotte2009]. For example,
+Indirect interactions among predators are common in many communities, which
+means that the total amount of top-down control cannot be predicted by summing
+the contributions of individual predator species [@Sih1998a]. For example,
+decreasing predator richness has been shown to increase herbivory in a three-
+level kelp food web [@Byrnes2006]. The complex traits that underlie such species
+interactions ("higher-order" interactions, Sih *et al.* [-@Sih1998a]) may also
+correlate with phylogeny; if so, then phylogenetic diversity will be a better
+predictor of ecosystem function than richness alone [@Cadotte2009]. For example,
 phylogenetically diverse assemblages of mycorrhizae increased primary
 productivity more than equally speciose treatments from the same lineage
 [@Maherali2007]. The effect of predators on prey may also be non-additive, the
 result of indirect interactions either with prey species or other predators:
 prey species may respond to the presence of one predator by a behavioural shift
 that increases the predation by another predator population [@Carey2010a]. These
-trait-mediated indirect effects (TMII, [@Werner2003]) can be difficult to predict;
-however phylogenetic relatedness has been suggested as a possible means of
-predicting the combined effect of predators [@Naisbit2011]
+trait-mediated indirect effects (TMII, [@Werner2003]) can be difficult to
+predict; however phylogenetic relatedness has been suggested as a possible means
+of predicting the combined effect of predators [@Naisbit2011]
 
 We used a series of observations, lab feeding trials, and manipulative field
 experiments to measure how the phylogenetic diversity of the predator assemblage
 predicts community composition and ecosystem function.  We test three related
-hypotheses concerning co-occurance patterns, diet similarity and top-down
-ecosystem effects of diverse predators, using a natural mesocosm: the community
-of invertebrates living within bromeliads. Bromeliads (Bromeliaceae) are
-epiphytic plants native to the Neotropics. Many bromeliad species contain water, detritus
-and a complex insect food web within their leaves; the decomposition of this
-detritus supplies nutrients for the bromeliad [@Benzing2000]. The small size of
-these habitats permits direct manipulations of entire food webs, manipulations
-which would be difficult in most natural systems.  Within this aquatic food web, damselfly larvae (e.g. *Leptagrion* spp., Odonata:Coenagrionidae) are important predators;
-their presence dramatically alters community dynamics (e.g. decreases
-insect emergence [@Starzomski2010] and increases nutrient cycling
-[@Ngai2006]). 
+hypotheses concerning similarity in distribution, diet and top-down ecosystem
+effects, using a natural mesocosm: the community of invertebrates living within
+bromeliads. Bromeliads (Bromeliaceae) are epiphytic plants native to the
+Neotropics. Many bromeliad species contain water, detritus and a complex insect
+food web within their leaves; the decomposition of this detritus supplies
+nutrients for the bromeliad [@Benzing2000]. The small size of these habitats
+permits direct manipulations of entire food webs, manipulations which would be
+difficult in most natural systems.  Within this aquatic food web, damselfly
+larvae (e.g. *Leptagrion* spp., Odonata:Coenagrionidae) are important predators;
+their presence dramatically alters community dynamics (e.g. decreases insect
+emergence [@Starzomski2010] and increases nutrient cycling [@Ngai2006]).
 
-1. *species co-occurrence*: closely-related predators may occur together more frequently than less-related predators if there is a strong phylogenetic signal to habitat requirements.   Alternatively, very closely related species may never co-occur because high overlap in ecological niches results in competitive exclusion.
+1. *species co-occurrence*: closely-related predators may occur together more
+frequently than less-related predators if there is a strong phylogenetic
+signal to habitat requirements.   Alternatively, very closely related species
+may never co-occur because high overlap in ecological niches results in
+competitive exclusion.
 
 2. *diet similarity*: similarity in diet (as measured by feeding trials)
-decreases with phylogenetic distance if diet is phylogenetically conserved. Alternatively,  closely related species may have evolved different diets to allow coexistence.
+decreases with phylogenetic distance if diet is phylogenetically conserved.
+Alternatively,  closely related species may have evolved different diets to
+allow coexistence.
 
-3. *ecosystem-level effects*: Our experiments at the level of the whole habitat patch (i.e. a single bromeliad) allows us to examine direct and indirect effects of predator combinations.
-    a) monoculture treatments allow us to assess the effect of each predator on a complete prey community and ecosystem function.  Phylogenetic similarity among predators is predicted to  correlate with similarity in single-species effects if related predators share similar trophic interactions (e.g. predation rate, diet breadth)
-    b) By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and nonadditive effects.  If distance between species correlates with increasing difference, we will see an increase in these non-additive effects with phylogenetic distance. At the extreme, differences between predators may lead to IGP among predators.
+3. *ecosystem-level effects*: Our experiments at the level of the whole habitat patch (i.e. a single bromeliad) allow us to test hypotheses about direct and indirect effects of predator combinations:
+    (a) Closely-related predators will have similar effects on the community. This will occur if related predators share similar trophic interactions (e.g. predation rate, diet breadth). Our monoculture treatments allow us to assess the effect of each predator on both a complete prey community and ecosystem function.  
+    (b) More phylogenetically diverse predator assemblages will show a stronger non-additive effect. This will occur if phylogenetic distance correlates with increasing trait difference, and if this trait difference is enough to lead to complementarity. At the extreme, differences between predators may lead to IGP among predators. By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and nonadditive effects. 
 
 ## Methods
 
@@ -224,7 +239,7 @@ placed between two vertical surfaces to imitate the narrow space found in
 bromeliad leaf axils (their preferred microhabitat).  Generally our trials contained a single predator and a
 single prey individual, except in the case of very small prey (_Elpidium_ sp.)
 or predators (_Monopelopia_ sp.) in which case we increased the density.  We
-replicated each combination up to five times where possible, and allowed one day for
+replicated each combination up to five times where possible, and allowed 24 hours for
 predation to occur.
 
 ### Community effect experiment
