@@ -9,14 +9,14 @@
 
 # read in the datasets ----------------------------------------------------
 
-lvs<-read.csv("~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/leaves.csv")
-coarse<-read.csv("~/Dropbox/PhD/Brazil2011/data/detritus/paperbags.csv")
-fine <- read.csv("~/Dropbox/PhD/Brazil2011/data/detritus/filters.csv")
-pd<-read.csv("~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/cages.csv")
-n15<-read.csv("~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/n15.csv")
-emerg<-read.csv("~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/emerg.csv")
-surv <- read.csv("~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/survived.csv",comment.char="#")
-samp <- read.table("~/Dropbox/PhD/Brazil2011/data/predator.div.experiment/Samples.csv",comment.char="#",sep=",",flush=TRUE,header=TRUE)
+lvs<-read.csv("raw-data/predator.div.experiment/leaves.csv")
+coarse<-read.csv("raw-data/detritus/paperbags.csv")
+fine <- read.csv("raw-data/detritus/filters.csv")
+pd<-read.csv("raw-data/predator.div.experiment/cages.csv")
+n15<-read.csv("raw-data/predator.div.experiment/n15.csv")
+emerg<-read.csv("~raw-data/predator.div.experiment/emerg.csv")
+surv <- read.csv("raw-data/predator.div.experiment/survived.csv", comment.char="#")
+samp <- read.table("raw-data/predator.div.experiment/Samples.csv", comment.char="#", sep=",", flush=TRUE, header=TRUE)
 
 ## correctly order the treatment factor
 pd$treatment<-factor(pd$treatment,
