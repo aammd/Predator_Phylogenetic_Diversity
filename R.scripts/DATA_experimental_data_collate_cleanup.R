@@ -185,9 +185,7 @@ rm(lvs,coarse,fine,n15,emerg,surv,samp)
 
 #### write data out ####
 ## experimental data
-write.csv(pd,file="~/Dropbox/PhD/Brazil2011/data/reorganized_data/pd_exp_cleaned_data.csv",
-  row.names=FALSE)
+write.csv(pd, file="data/pd_exp_cleaned_data.csv", row.names=FALSE)
 ## enriched leaves
-write.csv(enriched,file="~/Dropbox/PhD/Brazil2011/data/reorganized_data/enriched_leaves.csv",
-          row.names=FALSE)
+write.csv(enriched, file="data/enriched_leaves.csv", row.names=FALSE)
 
