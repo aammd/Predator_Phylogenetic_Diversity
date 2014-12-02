@@ -244,20 +244,24 @@ predation to occur.
 
 ### Community effect experiment
 
-Our third question had two parts: a) how do predator species differ in their effects on the whole community and b) do predators show nonadditive effects in combination, and are these related to phylogenetic distance? We tested these questions with an experiment involving the four most common predators, paired to create a range of phylogenetic relatedness: two congeneric damselflies (*Leptagrion andromache* and
-*Leptagrion elongatum*), two insects (*L. elongatum* and a Tabanid predatory
-fly), and two invertebrates (*L. elongatum* and leeches).  We used each of these
-pairs of predators, as well as each species in monoculture, and a
-predator-free control (8 treatments, n=5).  Combinations were substitutive,
-maintaining the same amount of total predator metabolic capacity (see below) to isolate the
-effects of predator behaviour and traits. Substitutive experiments often hold
-total abundance constant, but when species differ substantially in body size -
-as in this experiment - allometric effects of body size on feeding rate can
-confound detection of effects based on trophic traits or species
-interactions, and standardizing to community metabolic capacity is preferred
-[@Srivastava2009a]. This experiment allows the
-estimation of the effect of each predator species (monoculture treatments), as
-well as the detection of non- additive effects in predator combinations.
+Our third question had two parts: (a) how do predator species differ in their
+effects on the whole community and :b) do predators show nonadditive effects on
+the community in combination, and are these related to phylogenetic distance? We
+tested these questions with an experiment involving the four most common
+predators, paired to create a range of phylogenetic relatedness: two congeneric
+damselflies (*Leptagrion andromache* and *Leptagrion elongatum*), two insects
+(*L. elongatum* and a Tabanid predatory fly), and two invertebrates (*L.
+elongatum* and a predatory leech).  Our experiment also included species in
+monoculture, and a predator-free control (8 treatments, n=5).  Combinations were
+substitutive, maintaining the same amount of total predator metabolic capacity
+(see below) to isolate the effects of predator behaviour and traits.
+Substitutive experiments often hold total abundance constant, but when species
+differ substantially in body size - as in this experiment - allometric effects
+of body size on feeding rate can confound detection of effects based on trophic
+traits or species interactions, and standardizing to community metabolic
+capacity is preferred [@Srivastava2009a]. This experiment allows the estimation
+of the effect of each predator species (monoculture treatments), as well as the
+detection of non- additive effects in predator combinations.
 
 In Feburary 2011, bromeliads between 90 and 200ml in capacity were collected, thoroughly
 washed to remove organisms and detritus and soaked for 12 hours in a tub of water.  They were then hung for 48
