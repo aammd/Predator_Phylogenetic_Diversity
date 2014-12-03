@@ -12,11 +12,11 @@ library(tidyr)
 library(Hmisc)
 library(stringr)
 
-measured <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/measured.predators.csv",
+measured <- read.csv("../raw-data/feeding.rearing/measured.predators.csv",
                      comment.char="#",as.is=TRUE) %>% tbl_df
-preds <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/feeding.rearing/other.predators.csv",
+preds <- read.csv("../raw-data/feeding.rearing/other.predators.csv",
                   comment.char="#",as.is=TRUE) %>% tbl_df
-lepts <- read.csv("/home/andrew/Dropbox/PhD/Brazil2011/data/Leptagrion/lept.csv",
+lepts <- read.csv("../raw-data/Leptagrion/lept.csv",
                   as.is=TRUE) %>% tbl_df
 
 
@@ -242,6 +242,6 @@ feedingtrial %>%
   summarise(number.trials = sum(number.trials),
             eaten = sum(eaten)) %>% 
   arrange(predator.names,Prey.species) %>% #View
-  write.csv(file="../data/reorganized_data/reorganized.feeding.trial.data.csv",
+  write.csv(file="../data/reorganized.feeding.trial.data.csv",
             row.names = FALSE)
 
