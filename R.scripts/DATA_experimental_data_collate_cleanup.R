@@ -3,20 +3,20 @@
 ## Andrew MacDonald, 2013
 
 ## outputs:
-##        data/reorganized_data/pd_exp_cleaned_data.csv
-##        data/reorganized_data/enriched_leaves.csv
+##        data/pd_exp_cleaned_data.csv
+##        data/enriched_leaves.csv
 
 
 # read in the datasets ----------------------------------------------------
 
-lvs<-read.csv("raw-data/predator.div.experiment/leaves.csv")
-coarse<-read.csv("raw-data/detritus/paperbags.csv")
-fine <- read.csv("raw-data/detritus/filters.csv")
-pd<-read.csv("raw-data/predator.div.experiment/cages.csv")
-n15<-read.csv("raw-data/predator.div.experiment/n15.csv")
-emerg<-read.csv("~raw-data/predator.div.experiment/emerg.csv")
-surv <- read.csv("raw-data/predator.div.experiment/survived.csv", comment.char="#")
-samp <- read.table("raw-data/predator.div.experiment/Samples.csv", comment.char="#", sep=",", flush=TRUE, header=TRUE)
+lvs<-read.csv("../raw-data/predator.div.experiment/leaves.csv")
+coarse<-read.csv("../raw-data/detritus/paperbags.csv")
+fine <- read.csv("../raw-data/detritus/filters.csv")
+pd<-read.csv("../raw-data/predator.div.experiment/cages.csv")
+n15<-read.csv("../raw-data/predator.div.experiment/n15.csv")
+emerg<-read.csv("../raw-data/predator.div.experiment/emerg.csv")
+surv <- read.csv("../raw-data/predator.div.experiment/survived.csv", comment.char="#")
+samp <- read.table("../raw-data/predator.div.experiment/Samples.csv", comment.char="#", sep=",", flush=TRUE, header=TRUE)
 
 ## correctly order the treatment factor
 pd$treatment<-factor(pd$treatment,
@@ -181,11 +181,11 @@ samp$eu <- as.numeric(sub("EU","",samp$Id))
 
 pd <- merge(samp,pd)
 
-rm(lvs,coarse,fine,n15,emerg,surv,samp)
+#rm(lvs,coarse,fine,n15,emerg,surv,samp)
 
 #### write data out ####
 ## experimental data
-write.csv(pd, file="data/pd_exp_cleaned_data.csv", row.names=FALSE)
+write.csv(pd, file="../data/pd_exp_cleaned_data.csv", row.names=FALSE)
 ## enriched leaves
-write.csv(enriched, file="data/enriched_leaves.csv", row.names=FALSE)
+#write.csv(enriched, file="data/enriched_leaves.csv", row.names=FALSE)
 
