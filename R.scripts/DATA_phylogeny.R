@@ -1,20 +1,20 @@
 ## Code for processing the phylogeny of insects in the experiment
 ## outputs:
-##       ../data/reorganized_data/predator_tree_time.newick
+##       ../data/predator_tree_time.newick
 
 library(picante)
 
 ## read in the "arbitrairly ultrametric" tree which I stuck together in Mesquite, which represents the taxonomic relationships of these predators
-predtree <- read.tree("../data/TreeData/predators.arbit.ultrametric.phy")
+predtree <- read.tree("../raw-data/TreeData/predators.arbit.ultrametric.phy")
 
 ## read in all data 
-insects_to_leeches <- median(read.csv("../data/TreeData//insects.to.leeches.csv")$Time)
-odonata_tabanid <- median(read.csv("../data/TreeData/odonata-Tabanidae.csv")$Time)
-cerato_chiro <- median(read.csv("../data/TreeData/Ceratopogonidae_Chironomidae.csv")$Time)
-culicidae_chironomidae <- median(read.csv("../data/TreeData/CulicidaetoChironomidae.csv")$Time)
-empid_dolicho <- median(read.csv("../data/TreeData/empididaeDolichopodidae.csv")$Time)
-dolicho_tabanid <- median(read.csv("../data/TreeData/dolicho_tabanid.csv")$Time)
-diptera <- median(read.csv("../data/TreeData/tabanidae_culidicae_ie_Diptera.csv")$Time)
+insects_to_leeches <- median(read.csv("../raw-data/TreeData/insects.to.leeches.csv")$Time)
+odonata_tabanid <- median(read.csv("../raw-data/TreeData/odonata-Tabanidae.csv")$Time)
+cerato_chiro <- median(read.csv("../raw-data/TreeData/Ceratopogonidae_Chironomidae.csv")$Time)
+culicidae_chironomidae <- median(read.csv("../raw-data/TreeData/CulicidaetoChironomidae.csv")$Time)
+empid_dolicho <- median(read.csv("../raw-data/TreeData/empididaeDolichopodidae.csv")$Time)
+dolicho_tabanid <- median(read.csv("../raw-data/TreeData/dolicho_tabanid.csv")$Time)
+diptera <- median(read.csv("../raw-data/TreeData/tabanidae_culidicae_ie_Diptera.csv")$Time)
 
 ## now a phylogenetic tree for all predators in the experiment
 ## create a new tree to modify with branchlenghts:
@@ -72,4 +72,4 @@ predtree_timetree_ages <- change_edgelength(desc_name_regex="Hirudinidae",ancest
 rm(list=c("cerato_chiro","change_edgelength","culicidae_chironomidae","diptera","dolicho_tabanid","empid_dolicho","insects_to_leeches","odonata_tabanid"))
 
 ## export tree with all the new node ages
-write.tree(phy=predtree_timetree_ages,file="../data/reorganized_data/predator_tree_time.newick")
+write.tree(phy=predtree_timetree_ages,file="../data/predator_tree_time.newick")
