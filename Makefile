@@ -1,4 +1,4 @@
-all: data/pd_exp_cleaned_data.csv data/predator_tree_time.newick data/reorganized.feeding.trial.data.csv
+all: data/pd_exp_cleaned_data.csv data/predator_tree_time.newick data/reorganized.feeding.trial.data.csv data/predator.cooccur.metabolic.txt data/predator.cooccur.txt
 
 clean:
 
@@ -11,4 +11,10 @@ data/predator_tree_time.newick: R.scripts/DATA_phylogeny.R raw-data/TreeData/*
 	cd $(<D); Rscript $(<F)
 
 data/reorganized.feeding.trial.data.csv: R.scripts/DATA_foodweb_merge_cleanup.R raw-data/feeding.rearing/measured.predators.csv raw-data/feeding.rearing/other.predators.csv raw-data/Leptagrion/lept.csv
+	cd $(<D); Rscript $(<F)
+
+data/predator.cooccur.txt: R.scripts/DATA_predator.cooccurance.R raw-data/BWGdatasets/*
+	cd $(<D); Rscript $(<F)
+
+data/predator.cooccur.metabolic.txt: R.scripts/DATA_predator.cooccurance.R raw-data/BWGdatasets/*
 	cd $(<D); Rscript $(<F)

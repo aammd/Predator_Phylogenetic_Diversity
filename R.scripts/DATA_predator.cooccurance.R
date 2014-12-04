@@ -3,8 +3,8 @@
 ## and calculates co-occurance metrics for the predators.
 ## there are two calculations: one based on abundance, the other on metabolic capacity
 ##  OUTPUTS
-##        ../data/reorganized_data/predator.cooccur.metabolic.txt
-##        ../data/reorganized_data/predator.cooccur.txt
+##        ../data/predator.cooccur.metabolic.txt
+##        ../data/predator.cooccur.txt
 
 
 # load packages -----------------------------------------------------------
@@ -15,17 +15,17 @@ library(plyr)
 
 
 data <-
-  read.table("../../../CommunityAnalysis/Analyses/data.05dec2012/species/cardoso_2008_speciesname.txt",
+  read.table("../raw-data/BWGdatasets/cardoso_2008_speciesname.txt",
              sep="\t",header=TRUE,stringsAsFactors=FALSE)
 
 data_biomass <-
-  read.table("../data/occur_by_size/Cardoso2008_WGformat_correct.txt",
+  read.table("../raw-data/BWGdatasets/Cardoso2008_WGformat_correct.txt",
              sep="\t",header=TRUE,stringsAsFactors=FALSE)
 
 ## remove this "comment" column:
 data_biomass <- data_biomass[!names(data_biomass)%in%c("X")]
 
-trait.data <- read.table("../../../CommunityAnalysis/Analyses/data.05dec2012/nicknames.FGs.csv",sep=",",
+trait.data <- read.table("../raw-data/BWGdatasets/nicknames.FGs.csv",sep=",",
                          na.strings=c("NA","?"),header=TRUE,stringsAsFactors=FALSE)
 
 
@@ -137,7 +137,7 @@ rename.rows <- c("Bezzia.sp1", "Bezzia.sp2", "Corethrella", "Dolichopodidae",
 predator.mat[["X"]] <- rename.rows
 
 ## write to a file in /data/reorganized_data
-write.csv(x=predator.mat,file="../data/reorganized_data/predator.cooccur.txt",row.names=FALSE)
+write.csv(x=predator.mat,file="../data/predator.cooccur.txt",row.names=FALSE)
 
 
 
@@ -187,38 +187,4 @@ predator.mat_meta[["Taxa"]] <- rename.rows
 
 
 ## write to a file in /data/reorganized_data
-write.csv(x=predator.mat_meta,file="../data/reorganized_data/predator.cooccur.metabolic.txt",row.names=FALSE)
-
-
-
-# calculate correlations --------------------------------------------------
-# 
-# 
-# 
-# transpose.predator.matrix <- t(predator.matrix.numeric)
-# 
-# pred.abd.distance <- vegdist(predator.matrix.numeric,method="euclid")
-# 
-# 
-# pred.abd.cor <- cor(transpose.predator.matrix)
-# 
-# pdf("../figures/correlation_predator_dist.pdf")
-# plot(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)],pch="_")
-# lines(lowess(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)]))
-# dev.off()
-# 
-# pdf("../figures/euclid_predator_dist.pdf")
-# plot(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)])
-# lines(lowess(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)],delta=5))
-# dev.off()
-# 
-# pdf("../figures/beanplot_correlation_predator_dist.pdf")
-# beanplot(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)],pch="_")
-# #lines(lowess(pred.abd.cor[lower.tri(pred.abd.cor)]~dist.tip.matrix[lower.tri(dist.tip.matrix)]))
-# dev.off()
-# 
-# pdf("../figures/beanplot_euclid_predator_dist.pdf")
-# beanplot(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)])
-# #lines(lowess(pred.abd.distance~dist.tip.matrix[lower.tri(dist.tip.matrix)],delta=5))
-# dev.off()
-# 
+write.csv(x=predator.mat_meta,file="../data/predator.cooccur.metabolic.txt",row.names=FALSE)
