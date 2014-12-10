@@ -358,10 +358,6 @@ diet_overlap <- paired_predator_pianka(pred_x_resource = prop.eaten,
                                        -predator.names)
 ```
 
-```{r CALC_summarize_random_test}
-
-```
-
 ```{r DATA_merge}
 ## we need to merge together several matrices:
 ## metabolic occurance + predator phylogenetic distance
