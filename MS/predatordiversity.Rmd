@@ -54,8 +54,9 @@ pd <- read.csv("../data/pd_exp_cleaned_data.csv",
 # enriched <- read.csv("../data/enriched_leaves.csv",
 #                      stringsAsFactors=FALSE) %>%   tbl_df()
 # phylogeny data
-predtree_timetree_ages <- read.tree("../data/predator_tree_time.newick")
 nodeages <- read.csv("../data/nodeages.csv")
+  
+phylogenetic_distance  <- read.csv("../data/phylogenetic_distance.csv")
 # randomization tests
 rand.means <- read.csv("../raw-data/predator.div.experiment/randomizations.group.means.csv") %>%
   tbl_df()
@@ -345,32 +346,6 @@ We quantified the effect of phylogenetic distance on each of distributional and 
 ## Results
 
 ### Distributional similarity
-
-```{r CALC_phylogenetic_distance}
-####### metabolic matrix ####
-## we need to calculate two distance matrices:
-## 1) metabolic capacity distance
-## 2) phylogenetic distance
-
-## metabolic matrix -- the "distance" between predator co-occurrence, measured as metabolism
-
-####### phylogeny matrix ####
-## Calculate distances
-phylogenetic_distance  <- predtree_timetree_ages %>%
-  cophenetic() %>%
-  matrix_to_df() %>%
-  select(phylopred1=Var1,
-         phylopred2=Var2,
-         phylodistance=value) %>%
-  mutate(pairs_RH=paste0(phylopred1,"_",phylopred2),
-         pairs_LH=paste0(phylopred2,"_",phylopred1)
-         ) %>%
-  melt(id.vars=c("phylopred1","phylopred2","phylodistance"),
-       value.name="species_pair",
-       variable.name="L_or_R") 
-## my 
-
-```
 
 ```{r CALC_metabolic_distance}
 

@@ -1,4 +1,4 @@
-all: data/pd_exp_cleaned_data.csv data/predator_tree_time.newick data/reorganized.feeding.trial.data.csv data/predator.cooccur.metabolic.txt data/predator.cooccur.txt data/nodeages.csv
+all: data/pd_exp_cleaned_data.csv data/predator_tree_time.newick data/reorganized.feeding.trial.data.csv data/predator.cooccur.metabolic.txt data/predator.cooccur.txt data/nodeages.csv data/phylogenetic_distance.csv
 
 clean:
 
@@ -20,4 +20,7 @@ data/predator.cooccur.metabolic.txt: R.scripts/DATA_predator.cooccurance.R raw-d
 	cd $(<D); Rscript $(<F)
 
 data/nodeages.csv: R.scripts/DATA_nodeages.R raw-data/TreeData/*
+	cd $(<D); Rscript $(<F)
+
+data/phylogenetic_distance.csv: R.scripts/DATA_phylo_distance.R data/predator_tree_time.newick
 	cd $(<D); Rscript $(<F)
