@@ -47,6 +47,7 @@ metabolic  <- read.csv("../data/predator.cooccur.metabolic.txt",
 # feeding trial data
 feeding_trials <- read.csv("../data/reorganized.feeding.trial.data.csv",
                     stringsAsFactors=FALSE) %>%   tbl_df()
+prop.eaten <- read.csv("../data/proportion.eaten.csv")
 # experimental data
 pd <- read.csv("../data/pd_exp_cleaned_data.csv",
                stringsAsFactors=FALSE) %>%   tbl_df()
@@ -353,12 +354,9 @@ metabolic_distance <- paired_predator_pianka(pred_x_resource = metabolic,
 ```
 
 ```{r CALC_diet_overlap}
-
-prop.eaten <- read.csv("../data/proportion.eaten.csv")
 diet_overlap <- paired_predator_pianka(pred_x_resource = prop.eaten,
                                        pred_colname = "predator.names",
                                        -predator.names)
-
 ```
 
 ```{r CALC_summarize_random_test}
