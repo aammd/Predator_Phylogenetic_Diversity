@@ -348,30 +348,13 @@ We quantified the effect of phylogenetic distance on each of distributional and 
 ### Distributional similarity
 
 ```{r CALC_metabolic_distance}
-
 metabolic_distance <- paired_predator_pianka(pred_x_resource = metabolic,
                                              pred_colname = "Taxa",... =-Taxa)
-
 ```
 
 ```{r CALC_diet_overlap}
-## When calculating similiarity, we start with a predator (row) by resource (column) dataframe.
-# pred x prey matrix, with cells = proportion eate
 
-# feeding_trials %>% arrange(predator.names) %>% mutate(prop.eaten=eaten/number.trials)
-
-prop.eaten <- feeding_trials %>% 
-  filter(!Prey.species %in% c("Leptagrion andromache <5mm",
-                              "Leptagrion.elongatum")) %>% 
-  filter(!predator.names %in% c("Phylloicus bromeliarum", "Dysticid")) %>%
-  mutate(prop.eaten=eaten/number.trials) %>%
-  arrange(predator.names,Prey.species) %>%
-  select(-number.trials,-eaten) %>%
-  spread(Prey.species,prop.eaten,fill = NA)
-   #dcast(predator.names~Prey.species,value.var="prop.eaten",fun.aggregate = mean)
-
-write.csv(prop.eaten,"./analyses/proportion.eaten.csv")
-
+prop.eaten <- read.csv("../data/proportion.eaten.csv")
 diet_overlap <- paired_predator_pianka(pred_x_resource = prop.eaten,
                                        pred_colname = "predator.names",
                                        -predator.names)
