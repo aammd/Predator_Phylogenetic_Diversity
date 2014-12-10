@@ -61,6 +61,8 @@ rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.mea
 
 ## load in functions
 source("../R.scripts/FUNCTIONS_predator_diversity.R")
+
+source("../R.scripts/FUNCTIONS_text.R")
 ```
 
 ```{r experiment_data_postprocess}
@@ -315,28 +317,7 @@ phylogeny_node_age <- nodeages %>%
   do(extract2(.,"age_data") %>% as.data.frame(stringsAsFactors = FALSE)) %>%
   lapply(.,function(x) gsub(pattern = "\\(.+\\)",replacement = "",x)) %>% 
   data.frame
-
-# function to print out range
-
-agerange <- function(Name,pna = nodeages){
-  minT <- pna %>%
-    filter(nodename == Name) %>%
-    extract2("minT")
-  
-  maxT <- pna %>%
-    filter(nodename == Name) %>%
-    extract2("maxT")
-  
-  paste0(minT," to ",maxT)
-  }
-
-nstudy <- function(Name, dat = nodeages){
-  dat %>%
-    filter(nodename == Name) %>%
-    extract2("Nstudies")
-  }
-
-              
+         
 n.nodes <- nrow(nodeages)
 nstudies <- sum(nodeages$nstudies)
 
