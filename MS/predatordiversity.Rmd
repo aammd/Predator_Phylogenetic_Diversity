@@ -12,7 +12,7 @@ output:
   word_document:
     reference_docx: formatting/reference.docx
 geometry: margin=1in
-bibliography: /home/andrew/Documents/reference/Mendeley/Mendeley_reference_lists/@MS_pdpaper.bib
+bibliography: /home/andrew/Documents/reference/Mendeley_reference_lists/@MS_pdpaper.bib
 ---
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
@@ -39,24 +39,25 @@ library(reshape2)
 mytheme <- theme_bw()
 
 # occurrance data -- abundance
-occur <- read.csv("../data/reorganized_data/predator.cooccur.txt",
+occur <- read.csv("../data/predator.cooccur.txt",
                   stringsAsFactor=FALSE) %>%  tbl_df()
 # occurrance data -- metabolic capacity
-metabolic  <- read.csv("../data/reorganized_data/predator.cooccur.metabolic.txt",
+metabolic  <- read.csv("../data/predator.cooccur.metabolic.txt",
                        stringsAsFactor=FALSE) %>%  tbl_df()
 # feeding trial data
-feeding_trials <- read.csv("../data/reorganized_data/reorganized.feeding.trial.data.csv",
+feeding_trials <- read.csv("../data/reorganized.feeding.trial.data.csv",
                     stringsAsFactors=FALSE) %>%   tbl_df()
 # experimental data
-pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
+pd <- read.csv("../data/pd_exp_cleaned_data.csv",
                stringsAsFactors=FALSE) %>%   tbl_df()
 # enriched leaves -- ie just the N data for the detritus we put in.
-enriched <- read.csv("../data/reorganized_data/enriched_leaves.csv",
-                     stringsAsFactors=FALSE) %>%   tbl_df()
+# enriched <- read.csv("../data/enriched_leaves.csv",
+#                      stringsAsFactors=FALSE) %>%   tbl_df()
 # phylogeny data
-predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
+predtree_timetree_ages <- read.tree("../data/predator_tree_time.newick")
+nodeages <- read.csv("../data/nodeages.csv")
 # randomization tests
-rand.means <- read.csv("../data/predator.div.experiment/randomizations.group.means.csv") %>%
+rand.means <- read.csv("../raw-data/predator.div.experiment/randomizations.group.means.csv") %>%
   tbl_df()
 
 ## load in functions
@@ -223,8 +224,6 @@ final instar) and always for large-bodied taxa (> 1 cm final instar).
 
 ### Diet Similarity: feeding trials
 ```{r CALC_feeding_trials}
-##  predator x prey trials
-
 ## numbers for text
 ntrials <- sum(feeding_trials$number.trials)
 npred <- length(unique(feeding_trials$predator.names))
@@ -300,32 +299,8 @@ indicate a significant non-additive effect of a predator combination.
 ### Phylogenetic distance, metabolic capacity and niche overlap
 
 ```{r CALC_nodeages}
-
-nodeages <- list.files(path="../data/TreeData",pattern="*.csv",full.names=TRUE) %>%
-  data.frame(paths = .,stringsAsFactors = FALSE) %>%
-  mutate(nodename = basename(paths) %>% gsub(".csv","",.)) %>%
-  group_by(nodename) %>%
-  do(age_data = read.csv(.$paths)) %>%
-  mutate(Nstudies = nrow(age_data),
-         minT = min(age_data %>% extract2("Time")),
-         maxT = max(age_data %>% extract2("Time")))
-
-
-## move to supp mat
-phylogeny_node_age <- nodeages %>%
-  select(nodename,age_data,Nstudies) %>% 
-  do(extract2(.,"age_data") %>% as.data.frame(stringsAsFactors = FALSE)) %>%
-  lapply(.,function(x) gsub(pattern = "\\(.+\\)",replacement = "",x)) %>% 
-  data.frame
-         
 n.nodes <- nrow(nodeages)
 nstudies <- sum(nodeages$nstudies)
-
-# nodeages <- lapply(list.files(path="../data/TreeData/",pattern="*.csv",full.names=TRUE),read.csv)
-# names(nodeages) <- list.files(path="../data/TreeData/",pattern="*.csv")
-# nstudies <- sapply(nodeages,nrow)
-# #names(nodeages)[which(nstudies>1)]
-# n.nodes <- length(nodeages)
 ```
 Our observational data contains data from `r ncol(metabolic)-1` bromeliads, containing 
 `r metabolic$Taxa %>% unique %>% length` predator taxa. These include two groups of 
