@@ -1,4 +1,4 @@
-all: data/pd_exp_cleaned_data.csv data/predator_tree_time.newick data/reorganized.feeding.trial.data.csv data/predator.cooccur.metabolic.txt data/predator.cooccur.txt data/nodeages.csv data/phylogenetic_distance.csv data/proportion.eaten.csv
+all: data/pd_exp_cleaned_data.csv data/predator_tree_time.newick data/reorganized.feeding.trial.data.csv data/predator.cooccur.metabolic.txt data/predator.cooccur.txt data/nodeages.csv data/phylogenetic_distance.csv data/proportion.eaten.csv data/randomization_summary.csv
 
 clean:
 
@@ -26,4 +26,7 @@ data/phylogenetic_distance.csv: R.scripts/DATA_phylo_distance.R data/predator_tr
 	cd $(<D); Rscript $(<F)
 
 data/proportion.eaten.csv: R.scripts/DATA_prop_eaten.R data/reorganized.feeding.trial.data.csv
+	cd $(<D); Rscript $(<F)
+
+data/randomization_summary.csv: R.scripts/DATA_summarize_randomization.R raw-data/predator.div.experiment/randomizations.group.means.csv
 	cd $(<D); Rscript $(<F)
