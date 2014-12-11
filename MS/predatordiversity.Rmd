@@ -573,8 +573,8 @@ diet_predictions <- x_sequence %>% tbl_df %>%
                            newdata = list(phylodistance = phylodistance)),
          upper = apply(predictions,1,quantile,prob = .975, na.rm = TRUE),
          lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE),
-         category = "diet",
-         category = factor(category,levels = c("diet", "distribution"))
+         category = "(b)",
+         category = factor(category,levels = c("(b)", "Distribution"))
          )
 ```
 
@@ -584,12 +584,13 @@ diet_predictions <- x_sequence %>% tbl_df %>%
 distribution <- metabolic_occur_phylo %>% 
   ungroup %>% 
   select(phylodistance,overlap) %>%
-  mutate(category = "distribution", nspp = 2)
+  mutate(category = "(a)", nspp = 2)
 
 diet <- diet_overlap_phylo %>% 
   ungroup %>%
   select(phylodistance,overlap,nspp) %>%
-  mutate(category = "diet")
+  mutate(category = "(b)") %>%
+  as.data.frame
 
 exper <- pd %>%
   filter(treatment %in% c("andro","elong","tabanid","leech")) %>%
@@ -613,21 +614,24 @@ exper <- pd %>%
   left_join(phylogenetic_distance) %>% 
   ungroup %>%
   select(phylodistance,overlap,nspp) %>%
-  mutate(category = "experiment")
+  mutate(category = "(c)")
 
 rbind(distribution, diet, exper) %>%
-  mutate(category = factor(category, levels = c("distribution", "diet", "experiment"))) %>%
   ggplot(aes(x = phylodistance, y = overlap, size = nspp)) + 
   geom_point(colour = "black", fill = "#00A08A",
              shape  = 21, alpha = 0.6) +
-  facet_grid(category ~ ., scales = "free_y") + 
+  facet_wrap( ~ category, scales = "free_y", nrow = 3) + 
   xlab("Phylogenetic distance") + 
   ylab("Similarity (Pianka's index)") + 
   scale_size(range = c(3,9),name = "Number of\nprey") +
-  geom_line(aes(x = phylodistance, y = pred_m2), size = 0.5, data = diet_predictions) +
-  geom_line(aes(x = phylodistance, y = upper),size = 0.5, data = diet_predictions,linetype = "dashed") +
-  geom_line(aes(x = phylodistance, y = lower),size = 0.5, data = diet_predictions,linetype = "dashed") + 
-  mytheme
+  geom_line(aes(x = phylodistance, y = pred_m2), 
+            size = 0.5, data = diet_predictions) +
+  geom_line(aes(x = phylodistance, y = upper),
+            size = 0.5, data = diet_predictions, linetype = "dashed") +
+  geom_line(aes(x = phylodistance, y = lower),
+            size = 0.5, data = diet_predictions, linetype = "dashed") + 
+  mytheme + theme(strip.text = element_text(hjust = 0.01),
+                  strip.background = element_blank())
 
 ```
 
