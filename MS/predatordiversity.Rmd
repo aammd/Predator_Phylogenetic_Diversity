@@ -44,13 +44,24 @@ occur <- read.csv("../data/predator.cooccur.txt",
 # occurrance data -- metabolic capacity
 metabolic  <- read.csv("../data/predator.cooccur.metabolic.txt",
                        stringsAsFactor=FALSE) %>%  tbl_df()
+
+metabolic_distance <- read.csv("../data/metabolic_distance.csv", stringsAsFactors = FALSE)
+
 # feeding trial data
 feeding_trials <- read.csv("../data/reorganized.feeding.trial.data.csv",
+                    stringsAsFactors=FALSE) %>%   tbl_df()
+
+
+diet_overlap <- read.csv("../data/diet_overlap.csv",
                     stringsAsFactors=FALSE) %>%   tbl_df()
 
 # experimental data
 pd <- read.csv("../data/pd_exp_cleaned_data.csv",
                stringsAsFactors=FALSE) %>%   tbl_df()
+
+
+
+
 # enriched leaves -- ie just the N data for the detritus we put in.
 # enriched <- read.csv("../data/enriched_leaves.csv",
 #                      stringsAsFactors=FALSE) %>%   tbl_df()
@@ -390,7 +401,7 @@ nspp <- metabolic %>%
 meta_phylo_lm_summary <- lm(overlap~phylodistance, data = metabolic_occur_phylo) %>% summary
 ```
 
-Across all bromeliads, predator species differed widely in metabolic capacity, from `r smallsp$value` for a species of _Monopelopia_ to `r largesp$value` for large predatory flies in the family Tabanidae.  Predators often co-occurred in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  However, the niche overlap between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance between them (`r F_text(meta_phylo_lm_summary)`).
+Across all bromeliads, predator species differed widely in metabolic capacity, from 4.5 x 10^-4^ for a species of _Monopelopia_ to `r largesp$value` for large predatory flies (Tabanidae).  Predators often co-occurred in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  However, the niche overlap between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance between them (`r F_text(meta_phylo_lm_summary)`).
 
 ### Diet similarity
 
@@ -432,8 +443,7 @@ dietmat <- diet_overlap_phylo %>%
 ```
 
 
-Among the most common predator taxa (i.e. those used in our experiment, described below) the damselflies (_Leptagrion andromache_ and _Leptagrion elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). All predators showed a broadly similar diets, consuming nearly all species offered to them.  However, more phylogenetically distant predators differed in their preference of prey species, as measured by the niche overlap index (F~`r diet_phylo_lm_summary$fstatistic[["numdf"]]`,
-`r diet_phylo_lm_summary$fstatistic[["dendf"]]`~=`r round(diet_phylo_lm_summary $fstatistic[["value"]],2)`, p=`r round(pf(diet_phylo_lm_summary $fstatistic[1],diet_phylo_lm_summary $fstatistic[2],diet_phylo_lm_summary $fstatistic[3],lower.tail=FALSE),digits=3)`, regression weighted by the number of prey species assayed.)
+Among the most common predator taxa (i.e. those used in our experiment, described below) the damselflies (_Leptagrion andromache_ and _Leptagrion elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). All predators showed a broadly similar diets, consuming nearly all species offered to them.  However, more phylogenetically distant predators differed in their preference of prey species, as measured by the niche overlap index (`r F_text(diet_phylo_lm_summary)`), regression weighted by the number of prey species assayed.)
 
 ### Ecosystem-level effects and phylogenetic distance
 
