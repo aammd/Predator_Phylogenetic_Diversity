@@ -6,6 +6,7 @@ library("tidyr")
 rand.means <- read.csv("../raw-data/predator.div.experiment/randomizations.group.means.csv") %>%
   tbl_df()
 
+phylogenetic_distance  <- read.csv("../data/phylogenetic_distance.csv", stringsAsFactors = FALSE)
 
 betternames <- c("elong + andro" = "Leptagrion.elongatum_Leptagrion.andromache",
                  "elong + tab" = "Leptagrion.elongatum_Tabanidae.spA",
@@ -24,7 +25,8 @@ rand.means %>%
   # sequence of increasing PD
   ungroup() %>%
   mutate(species_pair = betternames[sp.pair] %>% as.character) %>%
-  write.csv("../data/randomization_summary.csv")
+  left_join(phylogenetic_distance) %>%
+  write.csv("../data/summarize_randoms_phylo.csv")
   
 
 
