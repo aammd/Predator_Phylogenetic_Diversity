@@ -68,7 +68,7 @@ pd <- read.csv("../data/pd_exp_cleaned_data.csv",
 # phylogeny data
 nodeages <- read.csv("../data/nodeages.csv")
   
-phylogenetic_distance  <- read.csv("../data/phylogenetic_distance.csv")
+
 # randomization tests
 summarize_random_test <- read.csv("../data/randomization_summary.csv")
 
@@ -358,7 +358,6 @@ We quantified the effect of phylogenetic distance on each of distributional and 
 
 ### Distributional similarity
 
-
 ```{r DATA_merge}
 ## we need to merge together several matrices:
 ## metabolic occurance + predator phylogenetic distance
@@ -366,7 +365,7 @@ We quantified the effect of phylogenetic distance on each of distributional and 
 ## experiment randomization results + predator phylogenetic distance
 
 ## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
-metabolic_occur_phylo <-  left_join(metabolic_distance, phylogenetic_distance)
+
 
 diet_overlap_phylo <- left_join(diet_overlap,phylogenetic_distance)
 
@@ -472,14 +471,6 @@ We tested the hypothesis that increased phylogenetic distance between members of
 ### Figures
 
 ```{r CALC_AIC_distribution and diet}
-### Distribution
-## calculates the AIC values that appear in the supp matt.
-occur_aic <- metabolic_occur_phylo %>% 
-  ungroup %>% 
-  select(phylodistance,overlap) %>%
-  fit_some_models
-
-write.csv(occur_aic,file = "./analyses/distributional_similarity.csv")
 
 
 ### Diet
