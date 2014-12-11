@@ -181,8 +181,10 @@ paired_predator_pianka <- function(pred_x_resource,pred_colname,...){
     left_join(pred_x_resource) %>% 
     select(-variable,...) %>%
     group_by(species_pair) %>%
-    do(. %>% select(-species_pair) %>% pianka)
+    do(pianka(select_(., quote(-species_pair))))
 }
+
+
 ## then we calculate similarity for each.  for the predation data, we must first
 ## remove animals not assayed with both predators. the `pianka` function does
 ## this by removing those with NA colSums.
