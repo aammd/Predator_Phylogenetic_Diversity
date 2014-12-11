@@ -6,9 +6,9 @@ source("../R.scripts/FUNCTIONS_predator_diversity.R")
 
 # occurrance data -- metabolic capacity
 metabolic  <- read.csv("../data/predator.cooccur.metabolic.txt",
-                       stringsAsFactor=FALSE) %>%  tbl_df()
+                       stringsAsFactors = FALSE) %>%  tbl_df()
 
-phylogenetic_distance  <- read.csv("../data/phylogenetic_distance.csv")
+phylogenetic_distance  <- read.csv("../data/phylogenetic_distance.csv", stringsAsFactors = FALSE)
 
 
 metabolic_distance <- paired_predator_pianka(pred_x_resource = metabolic,

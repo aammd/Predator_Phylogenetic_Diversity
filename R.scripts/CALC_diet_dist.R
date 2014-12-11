@@ -7,9 +7,9 @@ source("../R.scripts/FUNCTIONS_predator_diversity.R")
 ## proportion eaten
 
 prop.eaten <- read.csv("../data/proportion.eaten.csv",
-                       stringsAsFactor=FALSE) %>%  tbl_df()
+                       stringsAsFactors = FALSE) %>%  tbl_df()
 
-phylogenetic_distance  <- read.csv("../data/phylogenetic_distance.csv")
+phylogenetic_distance  <- read.csv("../data/phylogenetic_distance.csv", stringsAsFactors = FALSE)
 
 diet_overlap <- paired_predator_pianka(pred_x_resource = prop.eaten,
                                        pred_colname = "predator.names",
