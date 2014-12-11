@@ -1,4 +1,4 @@
-all: data/pd_exp_cleaned_data.csv data/predator_tree_time.newick data/reorganized.feeding.trial.data.csv data/predator.cooccur.metabolic.txt data/predator.cooccur.txt data/nodeages.csv data/phylogenetic_distance.csv data/proportion.eaten.csv data/randomization_summary.csv data/metabolic_occur_phylo.csv data/diet_overlap.csv
+all: data/pd_exp_cleaned_data.csv data/predator_tree_time.newick data/reorganized.feeding.trial.data.csv data/predator.cooccur.metabolic.txt data/predator.cooccur.txt data/nodeages.csv data/phylogenetic_distance.csv data/proportion.eaten.csv data/randomization_summary.csv data/metabolic_occur_phylo.csv data/diet_overlap_phylo.csv
 
 clean:
 
@@ -34,5 +34,5 @@ data/randomization_summary.csv: R.scripts/DATA_summarize_randomization.R raw-dat
 data/metabolic_occur_phylo.csv: R.scripts/CALC_meta_dist.R R.scripts/FUNCTIONS_predator_diversity.R data/predator.cooccur.metabolic.txt data/phylogenetic_distance.csv 
 	cd $(<D); Rscript $(<F)
 
-data/diet_overlap.csv: R.scripts/CALC_diet_dist.R data/proportion.eaten.csv R.scripts/FUNCTIONS_predator_diversity.R
+data/diet_overlap_phylo.csv: R.scripts/CALC_diet_dist.R R.scripts/FUNCTIONS_predator_diversity.R data/proportion.eaten.csv data/phylogenetic_distance.csv
 	cd $(<D); Rscript $(<F)

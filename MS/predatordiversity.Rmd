@@ -367,7 +367,6 @@ We quantified the effect of phylogenetic distance on each of distributional and 
 ## note that the nomeclature of the columns keeps `sp.pair` as the only shared name among columns.
 
 
-diet_overlap_phylo <- left_join(diet_overlap,phylogenetic_distance)
 
 summarize_randoms_phylo <- left_join(summarize_random_test,phylogenetic_distance)
 
