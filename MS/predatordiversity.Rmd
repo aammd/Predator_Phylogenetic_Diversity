@@ -415,14 +415,12 @@ elong <- percentpredation %>%
   select(mean.pred) %>%
   transform(mean.pred=round(mean.pred*100,1)) %>%
   as.numeric()
-  
 ```
 
 ```{r TEST_diet-sim_as_PD,results='asis'}
-
 diet_phylo_lm_summary <- diet_overlap_phylo %>%
   #filter(nspp>1) %>%
-  with(lm(overlap~phylodistance,weights=nspp)) %>%
+  lm(overlap~phylodistance, weights = nspp, data = .) %>%
   summary()
 
 dietmat <- diet_overlap_phylo %>%
@@ -431,7 +429,6 @@ dietmat <- diet_overlap_phylo %>%
   dcast(phylopred1~phylopred2,value.var="overlap") %>%
   data.frame(row.names="phylopred1") %>%
   as.matrix()
-
 ```
 
 
