@@ -25,3 +25,14 @@ nstudy <- function(Name, dat = nodeages){
     filter(nodename == Name) %>%
     extract2("Nstudies")
 }
+
+## Format the output of summary.lm for inline knitr
+F_text <- function(model_summary){
+  pval <- round(pf(model_summary$fstatistic[1],
+                   model_summary$fstatistic[2],
+                   model_summary$fstatistic[3],lower.tail=FALSE)
+                ,digits=2)
+  
+  paste0("F~", model_summary$fstatistic[["numdf"]], ", ", model_summary$fstatistic[["dendf"]],
+         "~=", model_summary$fstatistic[["value"]], ", p=", pval)
+}
