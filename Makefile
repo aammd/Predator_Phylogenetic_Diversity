@@ -1,4 +1,4 @@
-all: data/pd_exp_cleaned_data.csv data/predator_tree_time.newick data/reorganized.feeding.trial.data.csv data/predator.cooccur.metabolic.txt data/predator.cooccur.txt data/nodeages.csv data/phylogenetic_distance.csv data/proportion.eaten.csv data/summarize_randoms_phylo.csv data/metabolic_occur_phylo.csv data/diet_overlap_phylo.csv data/distributional_similarity_AIC.csv data/diet_similarity_AIC.csv diet_predictions.csv  Figures/FIG_1.pdf Figures/FIG_2.pdf Figures/FIG_3.pdf data/modlist.RData
+all:  MS/predatordiversity.pdf
 
 clean:
 
@@ -59,4 +59,4 @@ data/modlist.RData: R.scripts/CALC_pd_experiment_models.R data/phylogenetic_dist
 	cd $(<D); Rscript $(<F)
 
 MS/predatordiversity.pdf: MS/predatordiversity.Rmd data/predator.cooccur.txt data/predator.cooccur.metabolic.txt data/metabolic_occur_phylo.csv data/reorganized.feeding.trial.data.csv data/diet_overlap_phylo.csv data/nodeages.csv data/pd_exp_cleaned_data.csv data/modlist.RData R.scripts/FUNCTIONS_predator_diversity.R R.scripts/FUNCTIONS_text.R
-	cd $(<D); Rscript -e 'rmarkdown::render($(<F))'
+	cd $(<D); Rscript -e 'rmarkdown::render("$(<F)")'
