@@ -23,7 +23,6 @@ opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE,
                dev='pdf', fig.path = './figure/')
 
 ## load packages
-library(ggplot2)
 library(bipartite)
 library(vegan)
 library(picante)
@@ -35,9 +34,6 @@ library(stargazer)
 library(tidyr)
 library(reshape2)
 
-## ggplot2 theme
-mytheme <- theme_bw()
-
 # occurrance data -- abundance
 occur <- read.csv("../data/predator.cooccur.txt",
                   stringsAsFactor=FALSE) %>%  tbl_df()
@@ -48,6 +44,7 @@ metabolic  <- read.csv("../data/predator.cooccur.metabolic.txt",
 metabolic_occur_phylo <- read.csv("../data/metabolic_occur_phylo.csv",
                                   stringsAsFactors = FALSE)
 
+
 # feeding trial data
 feeding_trials <- read.csv("../data/reorganized.feeding.trial.data.csv",
                     stringsAsFactors=FALSE) %>%   tbl_df()
@@ -56,33 +53,29 @@ feeding_trials <- read.csv("../data/reorganized.feeding.trial.data.csv",
 diet_overlap_phylo <- read.csv("../data/diet_overlap_phylo.csv",
                     stringsAsFactors=FALSE) %>%   tbl_df()
 
-# experimental data
-pd <- read.csv("../data/pd_exp_cleaned_data.csv",
-               stringsAsFactors=FALSE) %>%   tbl_df()
-
-summarize_randoms_phylo <- read.csv("../data/summarize_randoms_phylo.csv")
-
 
 # enriched leaves -- ie just the N data for the detritus we put in.
 # enriched <- read.csv("../data/enriched_leaves.csv",
 #                      stringsAsFactors=FALSE) %>%   tbl_df()
 # phylogeny data
 nodeages <- read.csv("../data/nodeages.csv")
-  
 
-# randomization tests
-summarize_random_test <- read.csv("../data/randomization_summary.csv")
+# experimental data
+pd <- read.csv("../data/pd_exp_cleaned_data.csv",
+               stringsAsFactors=FALSE) %>%   tbl_df()
+
+#dropping a record that seems to have been 90% decomposed!
+pd <- pd %>%
+  transform(decomp=ifelse(decomp>0.7,NA,decomp))
+
+
+## analysis results
+load("../data/modlist.RData")
 
 ## load in functions
 source("../R.scripts/FUNCTIONS_predator_diversity.R")
 
 source("../R.scripts/FUNCTIONS_text.R")
-```
-
-```{r experiment_data_postprocess}
-#dropping a record that seems to have been 90% decomposed!
-pd <- pd %>%
-  transform(decomp=ifelse(decomp>0.7,NA,decomp))
 ```
 
 ## Introduction
@@ -431,22 +424,7 @@ Among the most common predator taxa (i.e. those used in our experiment, describe
 
 ### Ecosystem-level effects and phylogenetic distance
 
-```{r experimentsummary}
-predeffect <- function(resp="total.surv"){
-  diffeffect <- (mean(pd[[resp]][pd$treatment!="control"],na.rm=TRUE)-mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE))/mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE)
-  round(diffeffect,digits=2)*100
-  }
-```
-
 Predators had a large effect on prey survivorship: on average all predator treatments showed `r abs(predeffect())`% lower prey emerging or surviving as larvae relative to the predator-free control.  Nitrogen transport to bromeliad leaves was slightly decreased in bromeliads with predators relative to predator-free controls (`r predeffect("N")`%), and was only higher than the control in treatments including Tabanid predators.  We found a similar pattern for plant growth: on average, predators had a `r predeffect("growth")`% effect on growth of bromeliad leaves (leaf elongation in mm), though Tabanids seemed to create a slight increase. The decomposition of coarse detritus and production of fine organic matter showed no obvious pattern related to the presence of predators.
-
-```{r polysummary}
-polyeffect <- function(resp="total.surv"){
-  diffeffect <- (mean(pd[[resp]][pd$treatment%in%c("elong + andro","elong + leech","elong + tab")],na.rm=TRUE)-mean(pd[[resp]][pd$treatment%in%c("andro","tabanid","leech","elong")],na.rm=TRUE))/mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE)
-  round(diffeffect,digits=2)*100
-  }
-
-```
 
 Predator combinations tended to have a non-additive effect on our response variables.  Approximately `r polyeffect()`% more prey survived in polyculture, on average,  compared to all monocultures.  Nitrogen uptake increased by (`r polyeffect("N")`%) and bromeliad growth by (`r polyeffect("growth")`%). Production of fine particulate organic matter increased by `r polyeffect("fine")`% more when predators were present in combination.
 
@@ -455,317 +433,18 @@ We tested the hypothesis that increased phylogenetic distance between members of
 
 ### Figures
 
-```{r CALC_AIC_distribution and diet}
+![](../Figures/FIG_1.pdf)
 
+**Figure 1**: Phylogenetic distance and niche overlap among predators. Our measures of niche overlap were: (a) distribution among bromeliads; (b) diet preferences and (c) community composition of surviving prey. We measured distributional similarity (a) by counting all predators in 25 bromeliads, estimating their total metabolic capacity, and calculating niche overlap among all pairs of species. We measured diet preferences (b) for a subset of these predators by offering them various prey in no-choice trials. Finally, we measured community composition of surviving prey (c) at the end of an experiment in which predators were placed in bromeliads with standardized communities (see main text for details). We used Pianka's index of niche overlap and fit various nonlinear models (see Appendix) to the relationship between this index and phylogenetic distance. Solid lines show signifigant model fit, and dashed lines show bootstrap 95% quantiles.
 
-### Diet
+![](../Figures/FIG_2.pdf)
 
-f_extract <- function(f,.models) sapply(.models,function(x) f(x[[1]]))
+**Figure 2**: The effect of predators on the survival of prey organisms. We show the effects of predator presence (a), increased number of predators (b), predator species identity (c) and predator species pairs (d, arranged in order of increasing phylogenetic distance). Shaded dots represent grand means for each group; unshaded dots are either treatment means (2a and 2b, n = 5) or individual bromeliads (2c and 2d).
 
-diet_models <- diet_overlap_phylo %>% 
-  ungroup %>% 
-  select(phylodistance,overlap,nspp) %>%
-  do(quadratic = nls(overlap ~ a * (phylodistance)^2 + b * phylodistance + c, 
-                     data = ., 
-                     start = list(a = -0.0000008, b = 0.0008, c = 1),
-                     weights = nspp),
-     bellshaped = nls(overlap ~ peak * exp(-1 * (phylodistance)^2 / a), 
-                      data = ., 
-                      start = list(a = 900000, peak = 1),
-                      weights = nspp),    
-     exponential = nls(overlap ~ b * exp(a * phylodistance),
-                       data = .,
-                       start = list(a = -0.0004, b = 1),
-                       weights = nspp),
-     #        Sshaped = nls(overlap ~ c * exp(a * phylodistance) / 
-     #                        (c * exp(a * phylodistance) + (1 - c)),
-     #                      data = .,
-     #                      start = list(a = -0.007, c = 0.9)),
-     linear = nls(overlap ~ a* phylodistance + b, 
-                  data = .,
-                  start = list(a = -0.1,b = 0.7), weights = nspp),
-     constant = nls(overlap ~ z,
-                    data = .,
-                    start = list(z = 0.4),
-                    weights = nspp)
-     ) 
+![](../Figures/FIG_3.pdf)
 
+**Figure 3**: Phylogenetic distance and non-additive effects of predator combinations. We calculated non-additive effect size by first subtracting treatment means from control (no predators), then subtracting the mean of single-predator treatments from two-predator treatments. A difference of 0 indicates that two-predator treatments resulted in no more prey mortality than would be expected from simply averaging single-predator treatments. Error bars represent bootstrap 95% confidence intervals.
 
-data.frame(model = names(diet_models),
-           AIC = f_extract(AIC,diet_models)) %>%
-  arrange(AIC) %>%
-  write.csv(file = "./analyses/diet_similarity.csv")
-
-
-
-```
-
-
-```{r nonlinear_trendline_confint}
-
-x_sequence <- diet_overlap_phylo  %>%
-  ungroup %>%
-  summarise(min_x = min(phylodistance),
-            max_x = max(phylodistance)) %>%
-  do(seq(from = .$min_x,
-         to = .$max_x,
-         length.out = 500) %>%
-       data.frame(phylodistance = .)
-     ) 
-
-rawdata <- diet_overlap_phylo %>% 
-  ungroup %>% 
-  select(phylodistance,overlap,nspp)
-
-predictions  <-  replicate(
-  500,{
-    boot  <- rawdata[sample.int(nrow(rawdata), replace = TRUE), ]
-    #browser()
-    model = nls(overlap ~ b * exp(a * phylodistance), 
-                data = boot, 
-                start = list(a = -0.0004, b = 1),
-                weights = nspp)
-    # Output predictions at each point that we'll want to plot later
-    if(!is.null(model)) {
-      predict(model, 
-              data.frame(x = x_sequence))
-      }
-    else {
-      rep(NA,length(x_sequence))
-      }
-    },
-  simplify = FALSE
-  )
-
-predictions  <- do.call(cbind,predictions)
-
-observed_fit <- nls(overlap ~ b * exp(a * phylodistance), 
-                    data = rawdata, 
-                    start = list(a = -0.0004, b = 1),
-                    weights = nspp)
-
-diet_predictions <- x_sequence %>% tbl_df %>%
-  mutate(pred_m2 = predict(observed_fit,
-                           newdata = list(phylodistance = phylodistance)),
-         upper = apply(predictions,1,quantile,prob = .975, na.rm = TRUE),
-         lower = apply(predictions,1,quantile,prob = .025, na.rm = TRUE),
-         category = "(b)",
-         category = factor(category,levels = c("(b)", "Distribution"))
-         )
-```
-
-
-```{r FIG_dist_diet_effect, fig.height=9}
-
-distribution <- metabolic_occur_phylo %>% 
-  ungroup %>% 
-  select(phylodistance,overlap) %>%
-  mutate(category = "(a)", nspp = 2)
-
-diet <- diet_overlap_phylo %>% 
-  ungroup %>%
-  select(phylodistance,overlap,nspp) %>%
-  mutate(category = "(b)") %>%
-  as.data.frame
-
-exper <- pd %>%
-  filter(treatment %in% c("andro","elong","tabanid","leech")) %>%
-  select(treatment, Culicidae:Scirtidae) %>%
-  group_by(treatment) %>%
-  summarise_each(funs(mean)) %>%
-  paired_predator_pianka(pred_colname = "treatment", ... = -treatment) %>%
-  ungroup %>%
-  mutate(species_pair = ifelse(species_pair == "andro_elong",
-                               "Leptagrion.andromache_Leptagrion.elongatum", species_pair),
-         species_pair = ifelse(species_pair == "andro_leech",
-                               "Leptagrion.andromache_Hirudinidae", species_pair),
-         species_pair = ifelse(species_pair == "andro_tabanid",
-                               "Leptagrion.andromache_Tabanidae.spA", species_pair),
-         species_pair = ifelse(species_pair == "elong_leech",
-                               "Leptagrion.elongatum_Hirudinidae", species_pair),
-         species_pair = ifelse(species_pair == "elong_tabanid",
-                               "Leptagrion.elongatum_Tabanidae.spA", species_pair),
-         species_pair = ifelse(species_pair == "leech_tabanid",
-                               "Tabanidae.spA_Hirudinidae", species_pair)) %>%
-  left_join(phylogenetic_distance) %>% 
-  ungroup %>%
-  select(phylodistance,overlap,nspp) %>%
-  mutate(category = "(c)")
-
-rbind(distribution, diet, exper) %>%
-  ggplot(aes(x = phylodistance, y = overlap, size = nspp)) + 
-  geom_point(colour = "black", fill = "#00A08A",
-             shape  = 21, alpha = 0.6) +
-  facet_wrap( ~ category, scales = "free_y", nrow = 3) + 
-  xlab("Phylogenetic distance") + 
-  ylab("Similarity (Pianka's index)") + 
-  scale_size(range = c(3,9),name = "Number of\nprey") +
-  geom_line(aes(x = phylodistance, y = pred_m2), 
-            size = 0.5, data = diet_predictions) +
-  geom_line(aes(x = phylodistance, y = upper),
-            size = 0.5, data = diet_predictions, linetype = "dashed") +
-  geom_line(aes(x = phylodistance, y = lower),
-            size = 0.5, data = diet_predictions, linetype = "dashed") + 
-  mytheme + theme(strip.text = element_text(hjust = 0.01),
-                  strip.background = element_blank())
-
-```
-
-**Figure 1**: Phylogenetic distance between predator pairs and their ecology.  Each point represents a pair of predator species. Distributional similarity was quantified from the total metabolic capacity for each predator species in each bromeliad. Diet similarity is calculated from a series of feeding trials, and experimental similarity as the surviving prey community emerging from bromeliads. Similarity between each pair of predators was calculated using Pianka's index. Solid line shows the best fit non-linear model (see Appendix) and dashed lines show bootstrap 95% quantiles. 
-
-```{r FIG_predator_pres_number, fig.cap=""}
-
-# 
-pred_present <- pd %>%
-  select(treatment, total.surv) %>%
-  group_by(treatment) %>%
-  summarise(trtmeans = mean(total.surv)) %>%
-  mutate(ispred = ifelse(treatment == "control", "absent", "present")) %>%
-  group_by(ispred) %>%
-  mutate(presence_mean = mean(trtmeans))
-  
-pres <- pred_present %>%
-  ggplot(aes(x = ispred, y = trtmeans)) + 
-  geom_point(colour = "black", fill = NA, shape = 21, colour = "black", size = 5) +
-  geom_point(aes(y = presence_mean), fill = "#00A08A", shape = 21, colour = "black", size = 5) + 
-#   geom_point(aes(y = total.surv), fill = NA, shape = 21, colour = "black", size = 5,
-#              data = subset(pred_present, treatment == "control")) + 
-  ylab("Mean survival (n = 5)") + xlab("Predator number") + 
-  mytheme
-
-pred_number <- pred_present %>% 
-  filter(ispred == "present") %>%
-  mutate(npred = ifelse(grepl(" \\+ ", treatment), "two", "one")) 
-
-number <- pred_number %>%
-  ggplot(aes(x = npred, y = trtmeans)) +
-  geom_point(colour = "black", fill = NA, shape = 21, colour = "black", size = 5) +
-  stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
-  ylab("Mean survival (n = 5)") + xlab("Predator presence") + 
-  mytheme
-  
-require(gridExtra)
-grid.arrange(pres, number, ncol=2)
-
-```
-
-**Figure 2**:  Adding predators reduces insect emergence, probably because they eat the prey. However, increasing predator number raises survival again. This is because the predators are interfering with each other.
-
-```{r FIG_predator_composition}
-pd %>%
-  select(treatment, total.surv) %>%
-  mutate(treatment = factor(treatment, 
-                            levels = c("andro","elong","tabanid","leech",
-                                       "elong + andro", "elong + tab", "elong + leech"))) %>%
-  filter(treatment != "control") %>% 
-  mutate(npred = ifelse(grepl(" \\+ ", treatment),
-                        "Two species combination", "Monoculture")) %>%
-  ggplot(aes(x = treatment, y = total.surv)) +
-  facet_grid(. ~ npred, scales = "free_x") +
-  geom_point(colour = "black", fill = NA, shape = 21, colour = "black", size = 5) +
-  stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
-  mytheme
-```
-
-**Figure 3**: Predator community compositon, in monoculture and polyculture, and its effects on prey survival. Prey emergence is lowest when damselflies are paired together, but increases when damselflies are combined with other species.
-
-```{r FIG_PD_experiment_nonadditive,fig.cap=""}
-
-summarize_randoms_phylo %>% 
-  filter(response_var == "survival") %>%
-  ggplot(aes(x=phylodistance,y=mean)) + 
-  geom_linerange(aes(ymin=lower, ymax=upper)) + 
-  geom_point(size=6,shape = 21, colour = "black", fill = "#00A08A") + 
-  ylab("Mean treatment difference, Control-Treatment") + 
-  xlab("Time (Mya)") + 
-  geom_hline(yintercept = 0, linetype = "dashed", colour = "grey") + 
-  mytheme
-# 
-# 
-# ggplot(summarize_randoms_phylo,
-#        aes(x=Time,y=mean))+geom_errorbar(aes(ymin=lower, ymax=upper),width=0)+geom_point(size=3)+ylab("Mean treatment difference, Control-Treatment")+xlab("Time (Mya)")+facet_wrap(~variable)
-```
-
-**Figure 4**: Combinations of predators beyond congenerics show a negative non-additive effect on predation rate.  Points represent the mean difference between the means of two monocultures compared to the mean of a polycultures. The dashed line represents differences $= 0$, i.e. no nonadditive effect. These values are presented as differences from (predator free) controls; therefore zero indicates no significant non-additive effect. Relative to control (no predator) plants, bromeliads containing two predators which were not congeneric showed less predation
-
-
-```{r summaryFs}
-pd2 <- pd %>% 
-  select(treatment, total.surv, decomp, fine, N, growth) %>%
-  mutate(treatment = treatment %>% 
-           equals("control") %>% 
-           ifelse(paste0(treatment,
-                         seq_along(treatment)),
-                  treatment)) %>% 
-  gather(key = response, value = resp_val, -treatment) %>%
-  mutate(ispred = ifelse(grepl("control[0-9]+", treatment), "absent", "present"),
-         npred = ifelse(grepl(" \\+ ", treatment), "two", "one"),  
-         # note this mislabels control; remember to filter it
-         species_pair = ifelse(treatment == "elong + andro",
-                               "Leptagrion.andromache_Leptagrion.elongatum", NA),
-         species_pair = ifelse(treatment == "elong + leech",
-                               "Leptagrion.elongatum_Tabanidae.spA", species_pair),
-         species_pair = ifelse(treatment == "elong + tab",
-                               "Leptagrion.elongatum_Tabanidae.spA", species_pair)) %>%
-  left_join(phylogenetic_distance)
-         
-
-
-trtnames <- c("total.surv" = "Total prey survival",
-  "fine" = "FPOM (g)",
-  "decomp" = "Decomposition (g)",
-  "growth" = "Bromeliad growth")
-
-mean_na <- function(x) mean(x, na.rm = TRUE)
-
-
-modlist <- list(
-  presence = pd2 %>% 
-    select(treatment, response, resp_val, ispred) %>%
-    group_by(ispred, treatment, response) %>% 
-    summarise(mean = mean_na(resp_val)) %>% 
-    group_by(response) %>% 
-    do(m = lm(mean ~ ispred, data = .)),
-  identity = pd2 %>% 
-    filter(npred == "one" & ispred != "absent") %>%
-    select(treatment, response, resp_val, ispred) %>% 
-    group_by(response) %>%
-    do(m = lm(resp_val ~ treatment, data = .)),
-  number = pd2 %>% 
-    filter(ispred == "present") %>%
-    select(treatment, response, resp_val, npred) %>%
-    group_by( response, npred, treatment) %>%
-    summarise(mean = mean_na(resp_val))  %>% 
-    group_by(response) %>%
-    do(m = lm(mean ~ npred, data = .)),
-  phylodist = pd2 %>%
-    filter(npred == "two") %>%
-    group_by(response) %>%
-    do(m = lm(resp_val ~ phylodistance, data = .))
-  )
-
-prF <- function(resp,test,.modlist = modlist){
-  modsum <- .modlist[[test]] %>%
-    filter(response == resp) %>%
-    extract2("m") %>%
-    extract2(1) %>%
-    summary 
-  
-  fv <- modsum %>%
-    extract2("fstatistic")
-  F_format <- paste0("F~",fv[["numdf"]],",",fv[["dendf"]],"~", " = ")
-  pv <- pf(fv[1],fv[2],fv[3],lower.tail=F)
-  
-  fval <- round(fv[["value"]], 2)
-  
-  if (pv < 0.05) {
-    paste0(F_format,"**",fval,"**")
-    } else {
-      paste0(F_format,fval)      
-    }
-  }
-
-```
 
 **Table 1** Experimental results. We measured for community-level variables: total prey survival (both emerged adults and surviving larvae), the breakdown of coarse detritus, the production of fine particulate organic matter (FPOM), and the growth of the bromeliad itself. We considered our experimental design at several levels: comparing treatments with predators to those without, contrasting predator species, comparing predator communities of 1 or 2 species, and considering the effects of phylogenetic distance between predators.
 
