@@ -33,3 +33,6 @@ MS/predatordiversity_figs.html
 /MS/cache/*
 
 out*.png
+
+Figures/*.svg
+Figures/*.png
