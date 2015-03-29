@@ -217,7 +217,7 @@ This diversity encompasses multiple trophic and functional groups: filter feeder
 diverse predator assemblage of at least three species of damselfly larvae (_Leptagrion_ spp., Zygoptera:Coenagrionidae), two species of predatory Horse Fly larvae (Diptera:Tabanidae), and 2
 species of leech (Hirudinidae).  Other, smaller-bodied predators present include predatory midge larvae (Diptera:Chironomidae:Tanypodinae) and less abundant species such as Dytiscid beetles.
 
-### Distributional similarity: observational data
+### Distributional similarity
 
 We investigated Question 1 above with observations of predator distribution
 among bromeliads, using a 2008 survey of bromeliad communities.  Each bromeliad
@@ -228,7 +228,7 @@ identified to the lowest taxonomic level possible. The body length of all
 individuals was measured, when possible for small and medium-sized taxa (< 1cm
 final instar) and always for large-bodied taxa (> 1 cm final instar).
 
-### Diet Similarity: feeding trials
+### Diet Similarity
 ```{r CALC_feeding_trials}
 ## numbers for text
 ntrials <- sum(feeding_trials$number.trials)
@@ -302,7 +302,7 @@ response in bromeliads with both predator species (n=5) and the mean response in
 these nonadditive effects; confidence intervals which do not overlap zero
 indicate a significant non-additive effect of a predator combination.
 
-### Phylogenetic distance, metabolic capacity and niche overlap
+### Similarity in community effect
 
 ```{r CALC_nodeages}
 n.nodes <- nrow(nodeages)
@@ -378,7 +378,7 @@ nspp <- metabolic %>%
 meta_phylo_lm_summary <- lm(overlap~phylodistance, data = metabolic_occur_phylo) %>% summary
 ```
 
-Across all bromeliads, predator species differed widely in metabolic capacity, from 4.5 x 10^-4^ for a species of _Monopelopia_ to `r largesp$value` for large predatory flies (Tabanidae).  Predators often co-occurred in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  However, the niche overlap between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance between them (`r F_text(meta_phylo_lm_summary)`).
+Across all bromeliads, predator species differed widely in metabolic capacity, from 4.5 x 10^-4^ for a species of _Monopelopia_ to `r largesp$value` for large predatory flies (Tabanidae).  Predators often co-occurred in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  However, the niche overlap between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance (`r F_text(meta_phylo_lm_summary)`).
 
 ### Diet similarity
 
