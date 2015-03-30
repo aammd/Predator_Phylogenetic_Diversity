@@ -1,4 +1,4 @@
-all:  MS/predatordiversity.pdf
+	all:  MS/predatordiversity.pdf
 
 clean:
 
