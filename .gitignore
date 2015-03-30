@@ -13,6 +13,7 @@ MS/*.log
 MS/*.synctex.gz
 MS/*-concordance.tex
 MS/predatordiversity_figs.html
+MS/predatordiversity.pdf
 
 /MS/dianeinput/*
 /MS/*sublime-project
