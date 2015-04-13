@@ -493,8 +493,8 @@ with the same degree of similarity as phylogenetically similar predators
 (Question 1). However, we did find that phylogenetically distant predators had
 slightly different diet preferences (Question 2). Interestingly, these
 apparent diet preferences in the lab did not create a difference in surviving
-species composition in the field (3a).  When we combined pairs of predators in
-experimental communities, creating a range of phylogenetic relatedness, we
+species composition in the field (3a).  When we created increasingly
+phylogenetically distant pairs of predators in experimental communities we
 found that increasing phylogenetic diversity was correlated with an increase
 in prey survival (ie decreased predation) (3b).
 
