@@ -276,7 +276,7 @@ tub of water. They were then hung for 48 hours to dry.  One bromeliad dissected
 after this procedure contained no insects. Each bromeliad was supplied with
 dried leaves, simulating natural detritus inputs from the canopy. In order to
 track the effects on detrital decomposition on bromeliad nutrition, we enriched
-these leaves with ^15^N by fertilizing five (Jabuticaba, *Plinia cauliflora*)
+these leaves with ^15^N by fertilizing five *Plinia cauliflora* (common name: Jabuticaba) 
 plants with 40ml pot^-1^ day^-1^ of 5g L^-1^ ammonium sulphate containing 10%
 atom excess of ^15^N over 21 days. Whole leaves were then picked from plants and
 air-dried until constant weight, and then soaked for three days and the water
@@ -420,15 +420,45 @@ dietmat <- diet_overlap_phylo %>%
 ```
 
 
-Among the most common predator taxa (i.e. those used in our experiment, described below) the damselflies (_Leptagrion andromache_ and _Leptagrion elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). All predators showed a broadly similar diets, consuming nearly all species offered to them.  However, more phylogenetically distant predators differed in their preference of prey species, as measured by the niche overlap index (`r F_text(diet_phylo_lm_summary)`), regression weighted by the number of prey species assayed.)
+Among the most common predator taxa (i.e. those used in our experiment,
+described below) the damselflies (_Leptagrion andromache_ and _Leptagrion
+elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). All predators showed a
+broadly similar diets, consuming nearly all species offered to them.  However,
+more phylogenetically distant predators differed in their preference of prey
+species, as measured by the niche overlap index (`r F_text(diet_phylo_lm_summary)`), regression weighted by the number of prey
+species assayed.)
 
 ### Ecosystem-level effects and phylogenetic distance
 
-Predators had a large effect on prey survivorship: on average all predator treatments showed `r abs(predeffect())`% lower prey emerging or surviving as larvae relative to the predator-free control.  Nitrogen transport to bromeliad leaves was slightly decreased in bromeliads with predators relative to predator-free controls (`r predeffect("N")`%), and was only higher than the control in treatments including Tabanid predators.  We found a similar pattern for plant growth: on average, predators had a `r predeffect("growth")`% effect on growth of bromeliad leaves (leaf elongation in mm), though Tabanids seemed to create a slight increase. The decomposition of coarse detritus and production of fine organic matter showed no obvious pattern related to the presence of predators.
+Predators had a large effect on prey survivorship: on average all predator
+treatments showed `r abs(predeffect())`% lower prey emerging or surviving as
+larvae relative to the predator-free control.  Nitrogen transport to bromeliad
+leaves was slightly decreased in bromeliads with predators relative to
+predator-free controls (`r predeffect("N")`%), and was only higher than the
+control in treatments including Tabanid predators.  We found a similar pattern
+for plant growth: on average, predators had a `r predeffect("growth")`% effect
+on growth of bromeliad leaves (leaf elongation in mm), though Tabanids seemed
+to create a slight increase. The decomposition of coarse detritus and
+production of fine organic matter showed no obvious pattern related to the
+presence of predators.
 
-Predator combinations tended to have a non-additive effect on our response variables.  Approximately `r polyeffect()`% more prey survived in polyculture, on average,  compared to all monocultures.  Nitrogen uptake increased by (`r polyeffect("N")`%) and bromeliad growth by (`r polyeffect("growth")`%). Production of fine particulate organic matter increased by `r polyeffect("fine")`% more when predators were present in combination.
+Predator combinations tended to have a non-additive effect on our response
+variables.  Approximately `r polyeffect()`% more prey survived in polyculture,
+on average,  compared to all monocultures.  Nitrogen uptake increased by (`r polyeffect("N")`%) and bromeliad growth by (`r polyeffect("growth")`%).
+Production of fine particulate organic matter increased by `r polyeffect("fine")`% more when predators were present in combination.
 
-We tested the hypothesis that increased phylogenetic distance between members of a predator pair results in a greater magnitude of nonadditive effect using randomization tests.  We contrasted the differences of the mean individual predator treatments from the control with the mean difference of their pairwise combination from the control. We found the greatest effect for prey survival: while effects of _L. andromache_ and _L. elongatum_ in combination were quite similar to the effect of either alone, when _L. elongatum_ was placed in the same plant as either a Tabanid larva or leeches, on average five more prey individuals (18% of total prey community) survived till the end of the experiment (Fig 3).  This effect was smaller among the other variables, most of which showed confidence intervals from the randomization test which overlap zero.
+We tested the hypothesis that increased phylogenetic distance between members
+of a predator pair results in a greater magnitude of nonadditive effect using
+randomization tests.  We contrasted the differences of the mean individual
+predator treatments from the control with the mean difference of their
+pairwise combination from the control. We found the greatest effect for prey
+survival: while effects of _L. andromache_ and _L. elongatum_ in combination
+were quite similar to the effect of either alone, when _L. elongatum_ was
+placed in the same plant as either a Tabanid larva or leeches, on average five
+more prey individuals (18% of total prey community) survived till the end of
+the experiment (Fig 3).  This effect was smaller among the other variables,
+most of which showed confidence intervals from the randomization test which
+overlap zero.
 
 
 ### Figures
@@ -458,11 +488,23 @@ Bromeliad growth  | `r prF("growth", "presence")` |`r prF("growth", "identity")`
 
 ## Discussion
 
-In our system, distantly related predators are no more likely to be similar in distribution than are close relatives (Question 1). We also tested whether diet similarity decreased with predator phylogenetic distance (Question 2), and found a stronger pattern: diet similarity declined with phylogenetic distance between two predators, in a nearly linear relationship. However, this difference in diet did not translate into a difference in the composition of animals surviving in bromeliads stocked with different predators (3a). We did find an effect of phylogenetic distance when predators were placed in pairs - specifically, when damselflies were paired with non-damselfly predators. This resulted in more prey animals surviving to the end of the experiment; this could be caused by a reduction in feeding rate when predator taxa are very dissimilar. 
+In our system, distantly related predators are no more likely to be similar in
+distribution than are close relatives (Question 1). We also tested whether
+diet similarity decreased with predator phylogenetic distance (Question 2),
+and found a stronger pattern: diet similarity declined with phylogenetic
+distance between two predators, in a nearly linear relationship. However, this
+difference in diet did not translate into a difference in the composition of
+animals surviving in bromeliads stocked with different predators (3a). We did
+find an effect of phylogenetic distance when predators were placed in pairs -
+specifically, when damselflies were paired with non-damselfly predators. This
+resulted in more prey animals surviving to the end of the experiment; this
+could be caused by a reduction in feeding rate when predator taxa are very
+dissimilar.
 
 ### Do related organisms occur in different bromeliads? 
 
-Predator pairs showed only a weak relationship between phylogenetic distance and differences in distribution. Such differences could have been caused by different species either having different preferences for environmental variables, or antagonistic interactions with each other. The absence of any signal suggests that either patches do not differ in variables which matter to the predators, or that predator taxa do not have strong impacts on each other's distribution. The lack of a relationship is probably not due to a lack of variation in bromeliad communities: We know already (CITE) that bromeliads in this and other systems vary considerably in many habitat variables, such as detritus content, amount of sunlight, and habitat size. It is more likely that these predator species are habitat generalists. Organisms which live in small, fluctuation-prone habitats -- especially if they are long-lived -- may evolve a wide physiological tolerance to those environmental fluctuations. Therefore we would not expect a high degree of habitat specificity among these organisms. 
+Predator pairs showed only a weak relationship between phylogenetic distance and differences in distribution. The absence of any signal suggests that either patches do not differ in variables which matter to the predators, or that predator taxa do not have strong impacts on each other's distribution. The lack of a relationship is
+probably not due to a lack of variation in habitat features among patches: We know already (CITE) that bromeliads in this and other systems vary considerably in many habitat variables, such as detritus content, amount of sunlight, and habitat size. It is more likely that these predator species are habitat generalists. Organisms which live in small, fluctuation-prone habitats -- especially if they are long-lived -- may evolve a wide physiological tolerance to those environmental fluctuations. Therefore we would not expect a high degree of habitat specificity among these organisms. 
 
 Although we found some evidence for negative intraspecific effects in our experiment, these do not appear to limit predator distribution. This could be caused by a low encounter rate of predators in natural plants, especially in larger bromeliads than those used in our experiment. Additionally, negative effects could still be occurring in nature, but not resulting in mortality. Indeed, if animals are actually able to adjust their development times and feeding rates when conditions are unfavourable (and if the presence of a competing predator creates such unfavourable conditions), then we would expect to observe more frequent, not less frequent, co-occurances of predators.  Non-consumptive negative interactions need not result in dissimilar distributions.
 
