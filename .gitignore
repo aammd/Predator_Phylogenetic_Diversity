@@ -37,3 +37,7 @@ out*.png
 
 Figures/*.svg
 Figures/*.png
+
+cache/
+.remake/
+MS/TABLE1.md
