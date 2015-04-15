@@ -22,17 +22,6 @@ opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE,
                cache = TRUE, cache.path = "./cache/",
                dev='pdf', fig.path = './figure/')
 
-## load packages
-library(bipartite)
-library(vegan)
-library(picante)
-library(pander)
-library(dplyr)
-library(magrittr)
-library(xtable)
-library(stargazer)
-library(tidyr)
-library(reshape2)
 
 # occurrance data -- abundance
 occur <- read.csv("../data/predator.cooccur.txt",
@@ -500,19 +489,18 @@ in prey survival (ie decreased predation) (3b).
 
 ### Do related organisms occur in different bromeliads? 
 
-Predator pairs showed only a weak relationship between phylogenetic distance
-and differences in distribution. The absence of any signal suggests that
-either patches do not differ in variables which matter to the predators, or
-that predator taxa do not have strong impacts on each other's distribution.
-The lack of a relationship is probably not due to a lack of variation in
-habitat features among patches: We know already (CITE) that bromeliads in this
-and other systems vary considerably in many habitat variables, such as
-detritus content, amount of sunlight, and habitat size. It is more likely that
-these predator species are habitat generalists. Organisms which live in small,
-fluctuation-prone habitats -- especially if they are long-lived -- may evolve
-a wide physiological tolerance to those environmental fluctuations. Therefore
-we would not expect a high degree of habitat specificity among these
-organisms.
+Both phylogenetically similar and distinct predators were distributed in a
+similar way. This indicates The absence of any signal suggests that either patches do not
+differ in variables which matter to the predators, or that predator taxa do
+not have strong impacts on each other's distribution. The lack of a
+relationship is probably not due to a lack of variation in habitat features
+among patches: We know already (CITE) that bromeliads in this and other
+systems vary considerably in many habitat variables, such as detritus content,
+amount of sunlight, and habitat size. It is more likely that these predator
+species are habitat generalists. Organisms which live in small, fluctuation-
+prone habitats -- especially if they are long-lived -- may evolve a wide
+physiological tolerance to those environmental fluctuations. Therefore we
+would not expect a high degree of habitat specificity among these organisms.
 
 Although we found some evidence for negative intraspecific effects in our
 experiment, these do not appear to limit predator distribution. This could be

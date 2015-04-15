@@ -1,0 +1,18 @@
+## All R files that are used must be listed here:
+
+packages:
+  - dplyr
+  - magrittr
+  - lubridate
+  - tidyr
+  - mvabund
+  - ggplot2
+  - lubridate
+  - vegan
+  - pryr
+  - rmarkdown
+  - vegan
+  
+sources:
+ - 
+ 
