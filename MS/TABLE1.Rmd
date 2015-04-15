@@ -1,0 +1,16 @@
+
+```{r echo=FALSE}
+library(magrittr)
+suppressPackageStartupMessages(library(dplyr))
+source("../R.scripts/FUNCTIONS_text.R")
+load("../data/modlist.RData")
+
+
+```
+
+| Response | Predator Presence | Identity | Richness | Pairwise PD |
+  | -------- | ------------------| ---------|--------- | ---------- |
+  | Total prey survival  |   `r prF("total.surv", "presence", .modlist = modlist)` | `r prF("total.surv", "identity", .modlist = modlist)`  | `r prF("total.surv", "number", .modlist = modlist)` | `r prF("total.surv", "phylodist", .modlist = modlist)` | 
+  | Decomposition (g)  | `r prF("decomp", "presence", .modlist = modlist)` | `r prF("decomp", "identity", .modlist = modlist)`| `r prF("decomp", "number", .modlist = modlist)` | `r prF("decomp", "phylodist", .modlist = modlist)` | 
+  | FPOM (g)     | `r prF("fine", "presence", .modlist = modlist)` | `r prF("fine", "identity", .modlist = modlist)` | `r prF("fine", "number", .modlist = modlist)` | `r prF("fine", "phylodist", .modlist = modlist)` | 
+  | Bromeliad growth  | `r prF("growth", "presence", .modlist = modlist)` |`r prF("growth", "identity", .modlist = modlist)` | `r prF("growth", "number", .modlist = modlist)` | `r prF("growth", "phylodist", .modlist = modlist)` | 
