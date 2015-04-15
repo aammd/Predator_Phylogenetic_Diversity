@@ -40,7 +40,7 @@ F_text <- function(model_summary){
 }
 
 ## Extract pretty Fvals from the `modlist` object, which is a list of models.
-prF <- function(resp,test,.modlist = modlist){
+prF <- function(resp,test,.modlist){
   modsum <- .modlist[[test]] %>%
     filter(response == resp) %>%
     extract2("m") %>%
