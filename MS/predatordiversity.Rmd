@@ -17,54 +17,20 @@ bibliography: /home/andrew/Documents/reference/Mendeley_reference_lists/@MS_pdpa
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
 ## set chunk options
-library(knitr)
-opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE,
+knitr::opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE,
                cache = TRUE, cache.path = "./cache/",
                dev='pdf', fig.path = './figure/')
 
 
-# occurrance data -- abundance
-occur <- read.csv("../data/predator.cooccur.txt",
-                  stringsAsFactor=FALSE) %>%  tbl_df()
-# occurrance data -- metabolic capacity
-metabolic  <- read.csv("../data/predator.cooccur.metabolic.txt",
-                       stringsAsFactor=FALSE) %>%  tbl_df()
-
-metabolic_occur_phylo <- read.csv("../data/metabolic_occur_phylo.csv",
-                                  stringsAsFactors = FALSE)
-
-
-# feeding trial data
-feeding_trials <- read.csv("../data/reorganized.feeding.trial.data.csv",
-                    stringsAsFactors=FALSE) %>%   tbl_df()
-
-
-diet_overlap_phylo <- read.csv("../data/diet_overlap_phylo.csv",
-                    stringsAsFactors=FALSE) %>%   tbl_df()
-
-
-# enriched leaves -- ie just the N data for the detritus we put in.
-# enriched <- read.csv("../data/enriched_leaves.csv",
-#                      stringsAsFactors=FALSE) %>%   tbl_df()
-# phylogeny data
-nodeages <- read.csv("../data/nodeages.csv")
 
 # experimental data
-pd <- read.csv("../data/pd_exp_cleaned_data.csv",
-               stringsAsFactors=FALSE) %>%   tbl_df()
+
 
 #dropping a record that seems to have been 90% decomposed!
 pd <- pd %>%
   transform(decomp=ifelse(decomp>0.7,NA,decomp))
 
 
-## analysis results
-load("../data/modlist.RData")
-
-## load in functions
-source("../R.scripts/FUNCTIONS_predator_diversity.R")
-
-source("../R.scripts/FUNCTIONS_text.R")
 ```
 
 ## Introduction
@@ -304,7 +270,7 @@ congeneric taxa -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Hirudinidae).
 
-We obtained node age estimates for all seven internal nodes of the tree, using `www.timetree.org`, an online database of published  molecular time estimates [@Hedges2006].  Most dates came from only a single study; where multiple dates were found we used the median estimate: Insecta--Hirudina (`r agerange("insects.to.leeches")` Mya, n=`r nstudy("insects.to.leeches")` studies), Odonata--Tabanidae (`r agerange("odonata-Tabanidae")` Mya, n=`r nstudy("odonata-Tabanidae.csv")` studies) and Tabanidae--Diptera (`r agerange("tabanidae_culidicae_ie_Diptera")` Mya, n=`r nstudy("tabanidae_culidicae_ie_Diptera")` studies).  Node age data was available
+We obtained node age estimates for all seven internal nodes of the tree, using `www.timetree.org`, an online database of published  molecular time estimates [@Hedges2006].    Node age data was available
 for all but the youngest nodes, where either a lack of taxonomic
 information (e.g. Tabanidae) or a lack of phylogenetic study (e.g. _Leptagrion_)
 prevented more information from being included.   These branches were left as
@@ -343,7 +309,7 @@ We quantified the effect of phylogenetic distance on each of distributional and 
 ```{r CALC_metabolic_numbers}
 ## numbers for text:
 meta_range <- metabolic %>%
-  melt(id.vars="Taxa") %>%
+  reshape2::melt(id.vars="Taxa") %>%
   select(-variable) %>%
   filter(value>0) %>%
   filter(value%in%range(value)) %>%
@@ -354,7 +320,7 @@ smallsp <- meta_range[1,]
 largesp <- meta_range[2,]
 
 nspp <- metabolic %>%
-  melt(id.vars="Taxa",variable.name="brom") %>%
+  reshape2::melt(id.vars="Taxa",variable.name="brom") %>%
   filter(value>0) %>% 
   group_by(brom) %>%
   summarise(nspp=n()) %>%
@@ -403,7 +369,7 @@ diet_phylo_lm_summary <- diet_overlap_phylo %>%
 dietmat <- diet_overlap_phylo %>%
   select(-species_pair) %>%
   unique() %>%
-  dcast(phylopred1~phylopred2,value.var="overlap") %>%
+  reshape2::dcast(phylopred1~phylopred2,value.var="overlap") %>%
   data.frame(row.names="phylopred1") %>%
   as.matrix()
 ```
@@ -420,21 +386,21 @@ species assayed.)
 ### Ecosystem-level effects and phylogenetic distance
 
 Predators had a large effect on prey survivorship: on average all predator
-treatments showed `r abs(predeffect())`% lower prey emerging or surviving as
+treatments showed XX% lower prey emerging or surviving as
 larvae relative to the predator-free control.  Nitrogen transport to bromeliad
 leaves was slightly decreased in bromeliads with predators relative to
-predator-free controls (`r predeffect("N")`%), and was only higher than the
+predator-free controls (XX%), and was only higher than the
 control in treatments including Tabanid predators.  We found a similar pattern
-for plant growth: on average, predators had a `r predeffect("growth")`% effect
+for plant growth: on average, predators had a XX% effect
 on growth of bromeliad leaves (leaf elongation in mm), though Tabanids seemed
 to create a slight increase. The decomposition of coarse detritus and
 production of fine organic matter showed no obvious pattern related to the
 presence of predators.
 
 Predator combinations tended to have a non-additive effect on our response
-variables.  Approximately `r polyeffect()`% more prey survived in polyculture,
-on average,  compared to all monocultures.  Nitrogen uptake increased by (`r polyeffect("N")`%) and bromeliad growth by (`r polyeffect("growth")`%).
-Production of fine particulate organic matter increased by `r polyeffect("fine")`% more when predators were present in combination.
+variables.  Approximately `r #polyeffect()`% more prey survived in polyculture,
+on average,  compared to all monocultures.  Nitrogen uptake increased by (`r #polyeffect("N")`%) and bromeliad growth by (`r #polyeffect("growth")`%).
+Production of fine particulate organic matter increased by `r #polyeffect("fine")`% more when predators were present in combination.
 
 We tested the hypothesis that increased phylogenetic distance between members
 of a predator pair results in a greater magnitude of nonadditive effect using
@@ -466,13 +432,6 @@ overlap zero.
 
 
 **Table 1** Experimental results. We measured for community-level variables: total prey survival (both emerged adults and surviving larvae), the breakdown of coarse detritus, the production of fine particulate organic matter (FPOM), and the growth of the bromeliad itself. We considered our experimental design at several levels: comparing treatments with predators to those without, contrasting predator species, comparing predator communities of 1 or 2 species, and considering the effects of phylogenetic distance between predators.
-
-Response | Predator Presence | Identity | Richness | Pairwise PD |
--------- | ------------------| ---------|--------- | ---------- |
-Total prey survival  |   `r prF("total.surv", "presence")` | `r prF("total.surv", "identity")`  | `r prF("total.surv", "number")` | `r prF("total.surv", "phylodist")`
-Decomposition (g)  | `r prF("decomp", "presence")` | `r prF("decomp", "identity")`| `r prF("decomp", "number")` | `r prF("decomp", "phylodist")`
-FPOM (g)     | `r prF("fine", "presence")` | `r prF("fine", "identity")` | `r prF("fine", "number")` | `r prF("fine", "phylodist")`
-Bromeliad growth  | `r prF("growth", "presence")` |`r prF("growth", "identity")` | `r prF("growth", "number")` | `r prF("growth", "phylodist")`
 
 
 ## Discussion

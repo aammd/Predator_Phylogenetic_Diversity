@@ -12,7 +12,66 @@ packages:
   - pryr
   - rmarkdown
   - vegan
+  - readr
+
+sources: 
+  - R.scripts/FUNCTIONS_predator_diversity.R
+  - R.scripts/FUNCTIONS_text.R
+
+targets:
+  all: 
+    depends:
+      - MS/predatordiversity.pdf
+      - MS/TABLE1.md
+
+# occurrance data -- abundance
+  occur:
+    command: read_csv("data/predator.cooccur.txt")
+    
+  # occurrance data -- metabolic capacity
+  metabolic:
+    command: read_csv("data/predator.cooccur.metabolic.txt")
+    
+  metabolic_occur_phylo:
+    command: read_csv("data/metabolic_occur_phylo.csv")
+
+# feeding trial data
+  feeding_trials:
+    command: read_csv("data/reorganized.feeding.trial.data.csv")
+
+  diet_overlap_phylo:
+    command: read_csv("data/diet_overlap_phylo.csv")
+
+# enriched leaves -- ie just the N data for the detritus we put in.
+# enriched <- read.csv("../data/enriched_leaves.csv",
+#                      stringsAsFactors=FALSE) %>%   tbl_df()
+# phylogeny data
+  nodeages:
+    command: read_csv("data/nodeages.csv")
+    
+  pd:
+    command: read_csv("data/pd_exp_cleaned_data.csv")
+    
+  modlist:
+    command: load("data/modlist.RData")
+    
+  MS/TABLE1.md:
+    depends:
+      - modlist
+    knitr: true
+    
+  MS/predatordiversity.md:
+    depends: 
+      - pd
+      - feeding_trials
+      - nodeages
+      - metabolic
+      - metabolic_occur_phylo
+      - diet_overlap_phylo
+    knitr: true
+    
+  MS/predatordiversity.pdf:
+    command: render("MS/predatordiversity.md")
   
-sources:
- - 
- 
+  
+
