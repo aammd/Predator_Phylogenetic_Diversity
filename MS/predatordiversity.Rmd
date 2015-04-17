@@ -21,14 +21,8 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE,
                cache = TRUE, cache.path = "./cache/",
                dev='pdf', fig.path = './figure/')
 
-
-
-# experimental data
-
-
 #dropping a record that seems to have been 90% decomposed!
-pd <- pd %>%
-  transform(decomp=ifelse(decomp>0.7,NA,decomp))
+pd <- transform(pd, decomp=ifelse(decomp>0.7,NA,decomp))
 
 
 ```
@@ -235,7 +229,8 @@ these leaves with ^15^N by fertilizing five *Plinia cauliflora* (common name: Ja
 plants with 40ml pot^-1^ day^-1^ of 5g L^-1^ ammonium sulphate containing 10%
 atom excess of ^15^N over 21 days. Whole leaves were then picked from plants and
 air-dried until constant weight, and then soaked for three days and the water
-discarded. About 1.5 g of leaves were placed in each bromeliad (`r mean(pd$mass.g.)`g ± `r sd(pd$mass.g.)`).
+discarded. About 1.5 g of leaves were placed in each bromeliad 
+(`r round(mean(pd$mass.g.), 2)`g ± `r round(sd(pd$mass.g.), 2)`).
 
 Each bromeliad was stocked with a representative insect community. The densities
 of each prey taxon were calculated from the 2008 observational dataset, using
