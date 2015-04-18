@@ -13,3 +13,23 @@ that increases the predation by another predator population [@Carey2010a].
 These trait-mediated indirect effects (TMII, [@Werner2003]) can be difficult
 to predict; however phylogenetic relatedness has been suggested as a possible
 means of predicting the combined effect of predators [@Naisbit2011]
+
+
+Other predators constrain
+distribution not only through direct interactions, but also colonization:
+predators may use cues of prey, competitors, or intra-guild predators when
+selecting a habitat patch [@Chase2009a;@McCauley2008a;@Srivastava2008].
+
+
+ After
+colonization, patterns of co-occurrence may be further modified by intraguild
+predation [@Lounibos2008;@Juliano2009] or competition [@Fincke1997].
+
+For example, some predators are
+gape-limited, and can swallow any prey smaller than their mouth; these predators
+typically broaden their diet as they grow (e.g., larvae of Odonata)
+[@Werner1984].  Such ontogenetic changes in diet can radically influence
+food web structure [@Moya-Larano2011]. Other predators (e.g. Leeches, or
+Diptera:Tabanidae) are "piercing-sucking" predators [@Bay1974] and may be more
+general consumers at all life stages, since they can feed on larger prey
+individuals even at very early predator life stages. 
