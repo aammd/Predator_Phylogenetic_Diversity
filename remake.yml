@@ -21,6 +21,7 @@ sources:
 targets:
   all: 
     depends:
+      - MS/predatordiversity.md
       - MS/predatordiversity.pdf
       - MS/TABLE1.md
 
