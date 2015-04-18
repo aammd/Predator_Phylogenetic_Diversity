@@ -212,7 +212,8 @@ these leaves with ^15^N by fertilizing five *Plinia cauliflora* (common name: Ja
 plants with 40ml pot^-1^ day^-1^ of 5g L^-1^ ammonium sulphate containing 10%
 atom excess of ^15^N over 21 days. Whole leaves were then picked from plants and
 air-dried until constant weight, and then soaked for three days and the water
-discarded. About 1.5 g of leaves were placed in each bromeliad (1.50055g ± 0.0248449).
+discarded. About 1.5 g of leaves were placed in each bromeliad 
+(1.5g ± 0.02).
 
 Each bromeliad was stocked with a representative insect community. The densities
 of each prey taxon were calculated from the 2008 observational dataset, using
