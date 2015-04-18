@@ -370,20 +370,30 @@ overlap zero.
 
 ### Figures
 
-![](../Figures/FIG_1.pdf)
+![niche overlap](../Figures/FIG_1.pdf)
 
 **Figure 1**: Phylogenetic distance and niche overlap among predators. Our measures of niche overlap were: (a) distribution among bromeliads; (b) diet preferences and (c) community composition of surviving prey. We measured distributional similarity (a) by counting all predators in 25 bromeliads, estimating their total metabolic capacity, and calculating niche overlap among all pairs of species. We measured diet preferences (b) for a subset of these predators by offering them various prey in no-choice trials. Finally, we measured community composition of surviving prey (c) at the end of an experiment in which predators were placed in bromeliads with standardized communities (see main text for details). We used Pianka's index of niche overlap and fit various nonlinear models (see Appendix) to the relationship between this index and phylogenetic distance. Solid lines show signifigant model fit, and dashed lines show bootstrap 95% quantiles.
 
-![](../Figures/FIG_2.pdf)
+![prey survival](../Figures/FIG_2.pdf)
 
 **Figure 2**: The effect of predators on the survival of prey organisms. We show the effects of predator presence (a), increased number of predators (b), predator species identity (c) and predator species pairs (d, arranged in order of increasing phylogenetic distance). Shaded dots represent grand means for each group; unshaded dots are either treatment means (2a and 2b, n = 5) or individual bromeliads (2c and 2d).
 
-![](../Figures/FIG_3.pdf)
+![nonadditive](../Figures/FIG_3.pdf)
 
 **Figure 3**: Phylogenetic distance and non-additive effects of predator combinations. We calculated non-additive effect size by first subtracting treatment means from control (no predators), then subtracting the mean of single-predator treatments from two-predator treatments. A difference of 0 indicates that two-predator treatments resulted in no more prey mortality than would be expected from simply averaging single-predator treatments. Error bars represent bootstrap 95% confidence intervals.
 
 
-**Table 1** Experimental results. We measured for community-level variables: total prey survival (both emerged adults and surviving larvae), the breakdown of coarse detritus, the production of fine particulate organic matter (FPOM), and the growth of the bromeliad itself. We considered our experimental design at several levels: comparing treatments with predators to those without, contrasting predator species, comparing predator communities of 1 or 2 species, and considering the effects of phylogenetic distance between predators.
+**Table 1** Predator diversity effects on community and ecosystem variables. We measured four community-level variables: total prey survival (both emerged adults and surviving larvae), the breakdown of coarse detritus, the production of fine particulate organic matter (FPOM), and the growth of the bromeliad itself. We contrast treatments in our experimental design in three ways: comparing treatments with predators to those without, contrasting predator species, comparing predator communities of 1 or 2 species, and considering the effects of phylogenetic distance between predators. Bold values are p < 0.05.
+
+```{r results="asis"}
+test <- readLines("TABLE1.md")
+for(i in test) {
+  cat(i, "\n")
+}
+```
+
+
+
 
 
 ## Discussion
