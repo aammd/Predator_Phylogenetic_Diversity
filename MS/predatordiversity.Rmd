@@ -109,7 +109,7 @@ allow coexistence.
 
 ## Methods
 
-### Study Design
+## Study Design
 
 We collected three datasets to address each of these questions. We examined distributional similarity among predator species (Question 1) by making observations of predator distribution among habitat patches. We examined diet similarity with a series of no-choice feeding trials in under laboratory conditions. Finally, we examined the effects on predators on whole communities with a field experiment, in which predators were added to habitat patches containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
 
@@ -131,6 +131,8 @@ This diversity encompasses multiple trophic and functional groups: filter feeder
 (All Diptera:Chironomidae, Syrphidae, Psychodidae). These species are the main prey for a 
 diverse predator assemblage of at least three species of damselfly larvae (_Leptagrion_ spp., Zygoptera:Coenagrionidae), two species of predatory Horse Fly larvae (Diptera:Tabanidae), and two
 species of leech (Hirudinidae). 
+
+## Data collection
 
 ### Question 1: Distributional similarity
 
@@ -169,13 +171,15 @@ predation to occur.
 Our third question had two parts: (a) how do predator species differ in their
 effects on the whole community and (b) does predator diversity show
 nonadditive effects on the community, and do these nonadditive effects
-increase with phylogenetic distance? We tested these questions with an
-experiment involving the four most common predators, paired to maximize the
-range of phylogenetic distance: two congeneric damselflies (*Leptagrion
+increase with phylogenetic distance? 
+
+#### Experimental design
+
+In this experiment we focused on the four most abundant large predators found in this community: _Leptagrion andromache_ and _Leptagrion elongatum_ (Odonata: Coenagrionidae), a predatory Tabanid fly (Diptera:Tabanidae:_Stibasoma_ **correct?**) and a predatory leech. We combined these species in eight treatments: predator species alone in bromeliads (relevant to part a) and predator species paired to maximize the
+range of phylogenetic distance (part b). Specifically, these pairs were: two congeneric damselflies (*Leptagrion
 andromache* and *Leptagrion elongatum*), two insects (*L. elongatum* and a
 Tabanid predatory fly), and two invertebrates (*L. elongatum* and a predatory
-leech).  Our experiment also included species in monoculture, and a predator-
-free control (total of 8 treatments, n=5).  In order to control for
+leech).  We used five replicate bromeliads for each treatment (8 treatments, n=5).  In order to control for
 differences in body size and feeding rate among predator species, we used a
 substitutive design which maintained the same predator metabolic capacity in all
 replicates (see below). Substitutive experiments often hold total abundance
@@ -185,7 +189,19 @@ detection of effects based on trophic traits or species interactions, and
 standardizing to community metabolic capacity is preferred [@Srivastava2009a].
 This experiment allows the estimation of the effect of each predator species
 (monoculture treatments), as well as the detection of non- additive effects in
-predator combinations.
+predator combinations. Species co-occurrence is often measured in terms of non-random patterns of
+species presence/absence or abundance, but such measures will only be poorly related
+to the functional effects of species when species differ substantially in body
+size.  Integrating the allometric relationship between body size and feeding
+rate [@Brown2004; @Wilby2005] over all individuals of a species allows estimates
+of "metabolic capacity", or the potential energy requirements of a species
+[@Srivastava2009a]. Metabolic capacity is equal to individual body
+mass raised to the power of 0.69 (an insect-specific exponent determined by Peters 19xx and confirmed by Chown et al, [-@Chown2007]); this reflects the nonlinearity of feeding rate
+on body size across many invertebrate taxa. We used metabolic capacity to inform
+both our observational results and our experimental design (details below), with the exception
+of our feeding trial data.  This is because the feeding trials were intended to
+measure which prey our predators ate, rather than their feeding rate (only the
+latter should scale with metabolic capacity).
 
 In Feburary 2011 we collected bromeliads with a volume between 90 and 200ml,
 thoroughly washed them to remove organisms and detritus and soaked them for 12 hours in a
@@ -198,7 +214,7 @@ plants with 40ml pot^-1^ day^-1^ of 5g L^-1^ ammonium sulphate containing 10%
 atom excess of ^15^N over 21 days. Whole leaves were then picked from plants and
 air-dried until constant weight, and then soaked for three days and the water
 discarded. About 1.5 g of leaves were placed in each bromeliad 
-(`r round(mean(pd$mass.g.), 2)`g ± `r round(sd(pd$mass.g.), 2)`).
+(`r round(mean(pd$mass.g.), 2)`g ± `r round(sd(pd$mass.g.), 2)`). 
 
 Each bromeliad was stocked with a representative insect community. The densities
 of each prey taxon were calculated from the 2008 observational dataset, using
@@ -208,12 +224,16 @@ bromeliads received the same insect community.  Halfway through the experiment,
 insects were added to bromeliads a second time to simulate the continuous
 oviposition that characterizes the system.  Throughout the experiment, all bromeliads were enclosed
 with a mesh cage topped with a malaise trap and checked daily for emergence of
-adults.
+adults. At the end of the experiment we completely dissected our bromeliads, collecting all invertebrates and detritus remaining inside.
 
-In this experiment we measured five response variables: production of fine
+To quantify the effect of predators on ecosystem function, we measured five community and ecosystem response variables: production of fine
 particulate organic matter (FPOM), decomposition of coarse detritus, bromeliad
 growth, uptake of detrital nitrogen into bromeliad tissue, and survival of invertebrate prey (emerged adults +
-surviving larvae). We analyzed each of these responses with ANOVA.  For each pair of predator species and each response type, we
+surviving larvae). We measured the decrease in coarse detritus, and the increase in fine, by separating the collected detritus on a sieve and air drying it to constant weight before weighing. We measured uptake of labelled detrital nitrogen by analysing three samples of bromeliad leaves. Finally, we quantified the species composition and survivorship of invertebrate prey by adding together counts of emerging adult insects with counts of surviving larvae.
+
+
+## Data analysis
+We analyzed each of these responses with ANOVA.  For each pair of predator species and each response type, we
 calculated the non-additive effect as the difference between the
 response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
 (n=5 for each predator species).  We generated bootstrap confidence intervals for
@@ -233,19 +253,7 @@ congeneric taxa -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Hirudinidae).
 
-Species co-occurrence is often measured in terms of non-random patterns of
-species presence/absence or abundance, but such measures will only be poorly related
-to the functional effects of species when species differ substantially in body
-size.  Integrating the allometric relationship between body size and feeding
-rate [@Brown2004; @Wilby2005] over all individuals of a species allows estimates
-of "metabolic capacity", or the potential energy requirements of a species
-[@Srivastava2009a]. Metabolic capacity is equal to individual body
-mass raised to the power of 0.69 (an insect-specific exponent determined by Peters 19xx and confirmed by Chown et al, [-@Chown2007]); this reflects the nonlinearity of feeding rate
-on body size across many invertebrate taxa. We used metabolic capacity to inform
-both our observational results and our experimental design (details below), with the exception
-of our feeding trial data.  This is because the feeding trials were intended to
-measure which prey our predators ate, rather than their feeding rate (only the
-latter should scale with metabolic capacity).
+
 
 Questions 1 and 2 above focus on similarity ("niche overlap") between predator species. Question 1 hypothesizes that if habitat preference is phylogenetically conserved and competition between predators unimportant, then distributional similarity will decline with increased phylogenetic distance between a pair of predators. Question 2 hypothesizes that if diet is conserved, then diet similarity declines with increased phylogenetic distance between a pair of predators. We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
 
