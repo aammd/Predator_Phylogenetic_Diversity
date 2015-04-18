@@ -69,9 +69,14 @@ targets:
       - metabolic
       - metabolic_occur_phylo
       - diet_overlap_phylo
+      - MS/TABLE1.md
     knitr: true
     
   MS/predatordiversity.pdf:
+    depends:
+      - Figures/FIG_1.pdf
+      - Figures/FIG_2.pdf
+      - Figures/FIG_3.pdf
     command: render("MS/predatordiversity.md")
   
   

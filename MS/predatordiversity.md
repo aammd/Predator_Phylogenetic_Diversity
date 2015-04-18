@@ -307,14 +307,15 @@ overlap zero.
 **Figure 3**: Phylogenetic distance and non-additive effects of predator combinations. We calculated non-additive effect size by first subtracting treatment means from control (no predators), then subtracting the mean of single-predator treatments from two-predator treatments. A difference of 0 indicates that two-predator treatments resulted in no more prey mortality than would be expected from simply averaging single-predator treatments. Error bars represent bootstrap 95% confidence intervals.
 
 
-**Table 1** Predator diversity effects on community and ecosystem variables. We measured four community-level variables: total prey survival (both emerged adults and surviving larvae), the breakdown of coarse detritus, the production of fine particulate organic matter (FPOM), and the growth of the bromeliad itself. We contrast treatments in our experimental design in three ways: comparing treatments with predators to those without, contrasting predator species, comparing predator communities of 1 or 2 species, and considering the effects of phylogenetic distance between predators. Bold values are p < 0.05.
+**Table 1** Predator diversity effects on community and ecosystem variables. We measured four community-level variables: total prey survival (both emerged adults and surviving larvae), the breakdown of coarse detritus, the production of fine particulate organic matter (FPOM), and the growth of the bromeliad itself. We contrast treatments in our experimental design in three ways: comparing treatments with predators to those without, contrasting predator species, comparing predator communities of 1 or 2 species, and considering the effects of phylogenetic distance between predators.  \* = p < 0.05, \*\* = p < 0.01
 
+ 
  
  
  
 | Response | Predator Presence | Identity | Richness | Pairwise PD | 
   | -------- | ------------------| ---------|--------- | ---------- | 
-  | Total prey survival  |   F~1,10~ = **9.07** | F~3,16~ = 0.6  | F~1,5~ = 1.96 | F~1,13~ = **7.64** |  
+  | Total prey survival  |   F~1,10~ = 9.07\* | F~3,16~ = 0.6  | F~1,5~ = 1.96 | F~1,13~ = 7.64\* |  
   | Decomposition (g)  | F~1,10~ = 0.47 | F~3,15~ = 1.29| F~1,5~ = 0.21 | F~1,13~ = 0.4 |  
   | FPOM (g)     | F~1,10~ = 0.92 | F~3,16~ = 0.42 | F~1,5~ = 6.47 | F~1,13~ = 1.35 |  
   | Bromeliad growth  | F~1,10~ = 0.51 |F~3,16~ = 0.96 | F~1,5~ = 0.49 | F~1,12~ = 1.29 |  

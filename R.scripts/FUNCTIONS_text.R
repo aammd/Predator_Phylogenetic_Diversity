@@ -54,8 +54,10 @@ prF <- function(resp,test,.modlist){
   
   fval <- round(fv[["value"]], 2)
   
-  if (pv < 0.05) {
-    paste0(F_format,"**",fval,"**")
+  if (pv < 0.05 & pv > 0.01) {
+    paste0(F_format,fval,"\\*")
+  } else if (pv < 0.01) {
+    paste0(F_format,fval,"\\*\\*")
   } else {
     paste0(F_format,fval)      
   }

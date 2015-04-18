@@ -2,11 +2,9 @@
 ```{r echo=FALSE}
 library(magrittr)
 suppressPackageStartupMessages(library(dplyr))
-source("../R.scripts/FUNCTIONS_text.R")
 load("../data/modlist.RData")
-
-
 ```
+
 
 | Response | Predator Presence | Identity | Richness | Pairwise PD |
   | -------- | ------------------| ---------|--------- | ---------- |
