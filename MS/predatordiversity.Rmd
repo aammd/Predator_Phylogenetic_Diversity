@@ -32,7 +32,7 @@ pd <- transform(pd, decomp=ifelse(decomp>0.7,NA,decomp))
 Predators can have strong top-down effects, both on community structure and
 ecosystem processes [@Estes2011]; however their effects in combination are not
 well understood. The net effect of a predator assemblage is often dependent on
-species identity, and can be more or less than the additive effects of
+species identity, and can be stronger or weaker than the combined effects of
 individual predators [@Sih1998a;@Ives2005]. Non-additive effects of predator
 diversity occur when predators interact directly with each other, or indirectly
 via prey species, in a way that increases or decreases total predation.
@@ -101,24 +101,6 @@ individuals even at very early predator life stages.  In some cases, predator
 diets may extend to include other predators, leading to direct negative
 interactions such as intraguild predation consequently have a phylogenetic
 signal [@Pfennig2000].
-
-<! -- 
-Indirect interactions among predators are common in many communities, which
-means that the total amount of top-down control cannot be predicted by summing
-the contributions of individual predator species [@Sih1998a]. For example,
-decreasing predator richness has been shown to increase herbivory in a three-
-level kelp food web [@Byrnes2006]. The complex traits that underlie such
-species interactions ("higher-order" interactions, Sih *et al.* [-@Sih1998a])
-may also correlate with phylogeny; if so, then phylogenetic diversity will be
-a better predictor of ecosystem function than richness alone [@Cadotte2009].
-The effect of predators on prey may also be non-additive, the result of
-indirect interactions either with prey species or other predators: prey
-species may respond to the presence of one predator by a behavioural shift
-that increases the predation by another predator population [@Carey2010a].
-These trait-mediated indirect effects (TMII, [@Werner2003]) can be difficult
-to predict; however phylogenetic relatedness has been suggested as a possible
-means of predicting the combined effect of predators [@Naisbit2011]
--->
 
 We used a series of observations, lab feeding trials, and manipulative field
 experiments to measure how the phylogenetic diversity of the predator
