@@ -92,14 +92,14 @@ assemblage predicts community composition and ecosystem function.  We test
 three related hypotheses concerning similarity in distribution, diet and top-
 down ecosystem effects of predators, 
 
-1. *species co-occurrence*: closely-related predators may occur together more
+1. *distributional similarity*: closely-related predators may occur together more
 frequently than less-related predators if there is a strong phylogenetic
 signal to habitat requirements.  Alternatively, very closely related species
 may never co-occur because high overlap in ecological niches results in
 competitive exclusion.
 
 2. *diet similarity*: similarity in diet (as measured by feeding trials)
-decreases with phylogenetic distance if diet is phylogenetically conserved.
+decreases with phylogenetic distance if diet is conserved.
 Alternatively,  closely related species may have evolved different diets to
 allow coexistence.
 
@@ -108,6 +108,18 @@ allow coexistence.
     (b) More phylogenetically diverse predator assemblages will show a stronger non-additive effect. This will occur if phylogenetic distance correlates with increasing trait difference, and if this trait difference is enough to lead to complementarity. At the extreme, differences between predators may lead to IGP among predators. By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and nonadditive effects. 
 
 ## Methods
+
+### Study Design
+
+We collected three datasets to address each of these questions. We examined distributional similarity among predator species (Question 1) by making observations of predator distribution among habitat patches. We examined diet similarity with a series of no-choice feeding trials in under laboratory conditions. Finally, we examined the effects on predators on whole communities with a field experiment, in which predators were added to habitat patches containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
+
+In each dataset, we related the results to published phylogenies accessed from
+"timetree.org", an online database of published  molecular time estimates
+[@Hedges2006].    Node age data was available for all but the youngest nodes,
+where either a lack of taxonomic information (e.g. Tabanidae) or a lack of
+phylogenetic study (e.g. _Leptagrion_) prevented more information from being
+included.   These branches were left as polytomies, and were all assigned
+identical, arbitrary and short branch lengths (15 Mya).
 
 ### Site and Species
 
@@ -221,13 +233,6 @@ congeneric taxa -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _
 (Odonata:Coenagrionidae) with three species. There were also two groups of confamilial taxa -- three species of
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Hirudinidae).
-
-We obtained node age estimates for all seven internal nodes of the tree, using `www.timetree.org`, an online database of published  molecular time estimates [@Hedges2006].    Node age data was available
-for all but the youngest nodes, where either a lack of taxonomic
-information (e.g. Tabanidae) or a lack of phylogenetic study (e.g. _Leptagrion_)
-prevented more information from being included.   These branches were left as
-polytomies, and were all assigned identical, arbitrary and short branch lengths
-(15 Mya).
 
 Species co-occurrence is often measured in terms of non-random patterns of
 species presence/absence or abundance, but such measures will only be poorly related
