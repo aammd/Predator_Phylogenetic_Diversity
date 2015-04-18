@@ -31,26 +31,17 @@ pd <- transform(pd, decomp=ifelse(decomp>0.7,NA,decomp))
 
 Predators can have strong top-down effects, both on community structure and
 ecosystem processes [@Estes2011]; however their effects in combination are not
-well understood. The net effect of a predator assemblage is often dependent on
-species identity, and can be stronger or weaker than the combined effects of
-individual predators [@Sih1998a;@Ives2005]. Non-additive effects of predator
+well understood. The effect of predator species diversity on communities is often stronger or weaker than the combined effects of
+individual predator species [@Sih1998a;@Ives2005]. These nonadditive effects of predator
 diversity occur when predators interact directly with each other, or indirectly
-via prey species, in a way that increases or decreases total predation.
-Antagonistic among-predator interactions can reduce the top-down effects of a
-diverse consumer assemblage, for example when predators feed directly on each
+via prey species. For example when predators feed directly on each
 other (intra-guild predation), consume the same prey (resource competition) or
-modify the behaviour of predators or prey via non- consumptive (i.e. trait-
-mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001]. Synergy between
-predators is also possible, for example if one predator causes behavioral shifts
-in prey that increase their chance of being eaten by another predator species.
-These interactions depend on predators actually co-occurring, and predators in
-the same community may not always co-occur, for example because of microhabitat
-preference differences [@Schmitz2007]. While there are many mechanisms
-potentially underlying predator compositional effects, we lack a means of
-predicting _a priori_ which combinations are likely to have antagonistic versus
-synergistic effects on ecosystem functions.
+modify the behaviour of predators or prey via nonconsumptive (i.e. trait-
+mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001]. Nonadditive effects can be positive or negative: e.g. if one predator causes behavioral shifts
+in prey that increase their chance of being eaten by another predator species. While there are many possible mechanisms underlying the effect of predator composition, we lack a means of
+predicting _a priori_ the strenght and direction of predator diversity on communities and ecosystem functions.
 
-One possible predictor of the effect of predator combinations is predator
+One candidate predictor of the effect of predator combinations is predator
 phylogenetic diversity. The measurement of phylogenetic diversity has become a
 popular means for ecologists to make inferences about ecological and
 evolutionary mechanisms behind observed patterns in natural communities
@@ -60,7 +51,7 @@ richness or diversity [e.g. @Cadotte2009;@Cadotte2008;@Godoy2014]. A central
 assumption of this approach is that increased phylogenetic distance implies
 increased ecological dissimilarity -- either in the form of differences in
 species niches, interactions, or functional traits. When this is true, high
-phylogenetic diversity could creat the ecological conditions neede for strong
+phylogenetic diversity leads to complementarity between species, resulting in increased
 ecosystem functioning [@Srivastava2012c]. Despite the prevalence of phylogenetic
 community ecology and the importance of predators to natural systems, the
 phylogenetic diversity of local predator assemblages has rarely been measured
@@ -68,11 +59,15 @@ phylogenetic diversity of local predator assemblages has rarely been measured
 traits focus on whole clades, rather than local assemblages (e.g. *Anolis*
 lizards [@Knouft2006], warblers [@Bohning- Gaese2003], tree boas
 [@Henderson2013] and wasps [@Udriene2005]) making it difficult to connect these
-results to top- down effects at the scale of a local community. While these
+results to predator effects at the scale of a local community. These 
 clade-specific studies often find weak evidence for phylogenetic signal in
-ecologically- relevant traits, studies at the level of the whole biosphere
+ecologically- relevant traits; in contrast, studies at the level of the whole biosphere
 [@Gomez2010;@Bersier2008] demonstrate that related organisms often have similar
-interspecific interactions -- i.e. related predators often consume similar prey.
+interspecific interactions -- i.e. related predators often consume similar prey. In order to understand how predator diversity will affect community composition and ecosystem function at the local scale, we need to understand both their distribution and their interspecific interactions alone and in combination.
+
+Within a local community, the effect of predator species diversity will depend on three factors: how predators are distributed, how they interact with prey, and how they behave in combination. Phylogenetic relationships may be useful in predicting all of these factors, and if so phylogenetic diversity will predict the amount of top-down control as well. 
+
+
 At the level of a community, the effect of a predator assemblage will depend on
 both the microhabitat distribution and trophic interactions of all predator
 species. Phylogeny may constrain local species composition when distant
