@@ -242,35 +242,33 @@ indicate a significant non-additive effect of a predator combination.
 
 ## Results
 
-### Distributional similarity
+### Question 1 and 2: similarity in distribution and diet
 
 
 
 
 
 
-We did not find any significant relationship between niche overlap among pairs of predator species and the phylogenetic distance between those predator species (F~1,89~=2.39, p=0.13). Indeed we often found predator species co-occurring in the same bromeliads (4.4 ± 2.9 predator species per plant).  This indicates that predator species all have roughly similar habitat distributions at the level of the bromeliad. This observational data contains more species than our other datasets: in 25 bromeliads, we found 
-14 predator taxa. These include two groups of 
-congeneric taxa -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
-(Odonata:Coenagrionidae) with three species. There were also two groups of confamilial taxa -- three species of
+We did not find any significant relationship between habitat distribution (measured as Pianka's index of niche overlap) among predator species and the phylogenetic distance between them (Figure 1a, F~1,89~=2.39, p=0.13). Indeed we often found multiple predator species co-occurring in the same bromeliads (mean 4.4 ± 2.9 predator species per plant).  This indicates that predator species all have roughly similar habitat distributions at the level of the bromeliad. We found this pattern of broad overlap despite this dataset containing more more species than our other datasets, a total of 14 predator taxa in 25 bromeliads. We were able to sample a wide range of phylogenetic relatedness, including two groups of 
+congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
+(Odonata:Coenagrionidae). There were also two groups of confamilials -- three species of
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Hirudinidae).
 
-### Diet similarity
 
 
 
 
 
-Among the most common predator taxa (i.e. those used in our experiment,
+
+More phylogenetically distant predators differed in their preference of prey
+species, as measured by the niche overlap index (Fig 1b, F~1,26~=19.41, p=0.00016), regression weighted by the number of prey
+species assayed.). Among the most common predator taxa (i.e. those used in our experiment,
 described below) the damselflies (_Leptagrion andromache_ and _Leptagrion
-elongatum_) showed the highest rates of prey consumption (prey consumed in 94.3% and 67.7% of trials, respectively). All predators showed a
-broadly similar diets, consuming nearly all species offered to them.  However,
-more phylogenetically distant predators differed in their preference of prey
-species, as measured by the niche overlap index (F~1,26~=19.41, p=0.00016), regression weighted by the number of prey
-species assayed.)
+elongatum_) showed the highest rates of prey consumption (prey consumed in 94.3% and 67.7% of trials, respectively). Despite the declining pattern of phylogenetic distance, the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
+(Fig 1c, F~1,4~=0.6, p=0.48)
 
-### Ecosystem-level effects and phylogenetic distance
+### Question 3: similarity in community effect
 
 Predators had a large effect on prey survivorship: on average all predator
 treatments showed XX% lower prey emerging or surviving as

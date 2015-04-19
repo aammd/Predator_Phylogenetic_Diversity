@@ -61,6 +61,10 @@ exper <- pd %>%
   select(phylodistance,overlap,nspp) %>%
   mutate(category = "(c)")
 
+### write out the experiment result for use in the result section
+save(exper, file = "../data/exper.Rdata")
+
+
 rbind(distribution, diet, exper) %>%
   ggplot(aes(x = phylodistance, y = overlap, size = nspp)) + 
   geom_point(colour = "black", fill = "#00A08A",

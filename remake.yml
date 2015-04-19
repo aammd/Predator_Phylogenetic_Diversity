@@ -70,6 +70,7 @@ targets:
       - metabolic_occur_phylo
       - diet_overlap_phylo
       - MS/TABLE1.md
+      - data/exper.Rdata
     knitr: true
     
   MS/predatordiversity.pdf:

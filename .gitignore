@@ -41,3 +41,4 @@ Figures/*.png
 cache/
 .remake/
 MS/TABLE1.md
+data/exper.Rdata
