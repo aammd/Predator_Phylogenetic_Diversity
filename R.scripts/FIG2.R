@@ -98,14 +98,18 @@ preds <- pd %>%
 pred_identity <- preds %>%
   filter(npred == "Monoculture")
 
+x_cat <- list("Leptagrion \n andromache", "Leptagion \n elongatum", "Tabanid", "Leech")
+
 pred_identity_plot <- pred_identity %>%
   mutate(plotcode = "(c)") %>%
   ggplot(aes(x = treatment, y = total.surv)) +
   one_point + 
-  stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
+  stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") + 
+  scale_x_discrete(labels = x_cat)+
   xlab("Predator identity") +
   facet_grid(~ plotcode) +
   mytheme
+
 
 # Combinations ------------------------------------------------------------
 
