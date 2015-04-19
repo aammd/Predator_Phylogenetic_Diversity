@@ -76,12 +76,12 @@ releveler <- data_frame(treatment = c("andro",
                         newlevels = c(
                           "La", 
                           "Tabanid", 
-                          "Le + La", 
+                          "low", 
                           "control", 
                           "Leech",
-                          "Le + Leech",
+                          "high",
                           "Le",
-                          "Le + Tabanid"))
+                          "medium"))
 
 
 
@@ -90,9 +90,9 @@ preds <- pd %>%
   left_join(releveler) %>%
   mutate(treatment = factor(newlevels, 
                             levels = c("La","Le","Tabanid","Leech",
-                                       "Le + La", "Le + Tabanid", "Le + Leech"))) %>%
+                                       "low", "medium", "high"))) %>%
   filter(treatment != "control") %>% 
-  mutate(npred = ifelse(grepl(" \\+ ", treatment),
+  mutate(npred = ifelse(grepl("low|medium|high", treatment),
                         "Two species combination", "Monoculture"))
 
 pred_identity <- preds %>%
@@ -119,7 +119,7 @@ pred_combo_plot <- pred_combo %>%
   ggplot(aes(x = treatment, y = total.surv)) +
   one_point + 
   stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
-  xlab("Predator combination") +
+  xlab("Phylogenetic diversity") +
   facet_grid(~ plotcode) + 
   mytheme
 
