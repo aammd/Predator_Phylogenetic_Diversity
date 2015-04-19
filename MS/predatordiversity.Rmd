@@ -235,25 +235,27 @@ surviving larvae). We measured the decrease in coarse detritus, and the increase
 
 ### Question 1 and 2: similarity in distribution and diet
 
-We quantified the effect of phylogenetic distance on each of distributional and diet similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to the relationship between phylogenetic diversity an either distributional or diet similarity (linear, constant, and several appropriate nonlinear functions).  We compared these models using AIC, selected the best model, and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively). We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
+We quantified the effect of phylogenetic distance on each of distributional (Question 1) and diet (Question 2) similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to the relationship between phylogenetic diversity an either distributional or diet similarity (linear, constant, and several appropriate nonlinear functions).  We compared these models using AIC, selected the best model, and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively). We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
 
 $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
 For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
-predator $k$ (or $l$) for resource or habitat $i$. When quantifing distributional similarity, $n$=`r ncol(metabolic)-1` bromeliads surveyed in the observational data; when quantifying diet similarity, the number of resources ($n$) is defined as the total number of prey
+predator $k$ (or $l$) for resource or habitat $i$. When quantifying distributional similarity, $n$=`r ncol(metabolic)-1` bromeliads surveyed in the observational data; when quantifying diet similarity, the number of resources ($n$) is defined as the total number of prey
 species assayed with both predator taxa.  In the survey data, preference ($p_{ik}$) is defined as the proportion of a predator's total metabolic capacity found in a particular bromeliad; in diet trials it is the
 proportion of diet trials (see below) for each predator-prey combination that resulted in prey
 mortality.
 
 ### Question 3: similarity in community effect
 
-We analyzed each of these responses with ANOVA.  For each pair of predator species and each response type, we
-calculated the non-additive effect as the difference between the
+We tested for effects of predator species on community processes, both alone and in combination, with a manipulative experiment where identical communities were exposed to treatments of either a single predator, or a range of phylogenetically-diverse pairs of predatorss. We divided the analysis of this experiment into three parts. First, we used Pianka's index (as above) to measure the similarity between surviving prey communities among the four treatments with single predator species, and related this similarity to phylogenetic distance. If predator feeding choices are phylogenetically conserved, then we expect a negative relationship, with close relatives leaving behind similar communities of prey. 
+
+Second, we examined how predators affected the five community and ecosystem responses we described above. For each response, we combined our treatment levels into four different contrasts, each of which examine a different aspect of predator impact. First, we contrasted the control treatment (predators absent) with the mean responses of all seven treatments that did contain predators. Second, we contrasted the means of all monocultures with the means of all pair treatments. Third, we contrasted all four predator species and finally we contrasted all three pairs of predators. We analyzed each of these responses with one-way ANOVA. 
+
+In our third and final analysis we quantified the non-additive effect of predator species. We calculated this effect as the difference between the
 response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
 (n=5 for each predator species).  We generated bootstrap confidence intervals for
 these nonadditive effects; confidence intervals which do not overlap zero
 indicate a significant non-additive effect of a predator combination.
-
 
 ## Results
 
