@@ -82,52 +82,63 @@ assemblage predicts community composition and ecosystem function.  We test
 three related hypotheses concerning similarity in distribution, diet and top-
 down ecosystem effects of predators, 
 
-1. *species co-occurrence*: closely-related predators may occur together more
+1. *Distributional similarity*: closely-related predators may occur together more
 frequently than less-related predators if there is a strong phylogenetic
 signal to habitat requirements.  Alternatively, very closely related species
 may never co-occur because high overlap in ecological niches results in
 competitive exclusion.
 
-2. *diet similarity*: similarity in diet (as measured by feeding trials)
-decreases with phylogenetic distance if diet is phylogenetically conserved.
+2. *Diet similarity*: similarity in diet (as measured by feeding trials)
+decreases with phylogenetic distance if diet is conserved.
 Alternatively,  closely related species may have evolved different diets to
 allow coexistence.
 
-3. *ecosystem-level effects*: Our experiments at the level of the whole habitat patch (i.e. a single bromeliad) allow us to test hypotheses about direct and indirect effects of predator combinations:
+3. *Ecosystem-level effects*: our experiments at the level of the whole habitat patch (i.e. a single bromeliad) allow us to test hypotheses about direct and indirect effects of predator combinations:
     (a) Closely-related predators will have similar effects on the community. This will occur if related predators share similar trophic interactions (e.g. predation rate, diet similarity). Our monoculture treatments allow us to assess the effect of each predator on both a complete prey community and ecosystem function.  
     (b) More phylogenetically diverse predator assemblages will show a stronger non-additive effect. This will occur if phylogenetic distance correlates with increasing trait difference, and if this trait difference is enough to lead to complementarity. At the extreme, differences between predators may lead to IGP among predators. By comparing treatments with pairs of predators to treatments which received a monoculture of each predator, we are able to estimate additive and nonadditive effects. 
 
 ## Methods
 
-### Site and Species
+## Study Design
+
+We collected three datasets to address each of these questions. We examined distributional similarity among predator species (Question 1) by making observations of predator distribution among habitat patches. We examined diet similarity with a series of no-choice feeding trials in under laboratory conditions. Finally, we examined the effects on predators on whole communities with a field experiment, in which predators were added to habitat patches containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
+
+In each dataset, we related the results to published phylogenies accessed from
+"timetree.org", an online database of published  molecular time estimates
+[@Hedges2006]. Node age data was available for all but the youngest nodes,
+where either a lack of taxonomic information (e.g. Tabanidae) or a lack of
+phylogenetic study (e.g. _Leptagrion_) prevented more information from being
+included.   These branches were left as polytomies, and were all assigned
+identical, arbitrary and short branch lengths (15 Mya).
 
 We conducted all observations and experiments in Parque Estadual da Ilha do
 Cardoso ($25^{\circ} 03^{\prime}$ S, $47^{\circ}53^{\prime}$ W), a 22.5 ha
 island off the south coast of São Paulo state, Brazil. We worked in a closed
-coastal forest (*restinga*) in the understory of which grows the abundant 
-*Quesnelia arvensis* Mez. (Bromeliaceae). _Quesnelia_ is a large terrestrial bromeliad that
-accumulates up to 2.8 L of rainwater in tanks formed by individual leaves. We used two datasets: an observational survey of insect diversity from 2008, and a manipulative experiment in 2010. Our observational survey found more than 47 species of macroinvertebrates in these aquatic communities [@Romero2010].
+coastal forest (_restinga_) in the understory of which grows the abundant 
+_Quesnelia arvensis_ Mez. (Bromeliaceae). _Quesnelia_ is a large terrestrial bromeliad that catches and holds rainwater (phytotelmata), accumulating up to 2.8 L of rainwater in a single plant. Our observational survey found more than 47 species of macroinvertebrates in these aquatic communities [@Romero2010].
 This diversity encompasses multiple trophic and functional groups: filter feeders (Diptera:Culicidae); detritivores including shredders
 (Diptera:Tipulidae, Trichoptera), scrapers (Coleoptera:Scirtidae), and collectors
 (All Diptera:Chironomidae, Syrphidae, Psychodidae). These species are the main prey for a 
-diverse predator assemblage of at least three species of damselfly larvae (_Leptagrion_ spp., Zygoptera:Coenagrionidae), two species of predatory Horse Fly larvae (Diptera:Tabanidae), and 2
-species of leech (Hirudinidae).  Other, smaller-bodied predators present include predatory midge larvae (Diptera:Chironomidae:Tanypodinae) and less abundant species such as Dytiscid beetles.
+diverse predator assemblage of at least three species of damselfly larvae (_Leptagrion_ spp., Zygoptera:Coenagrionidae), two species of predatory Horse Fly larvae (Diptera:Tabanidae), and two
+species of leech (Hirudinidae). 
 
-### Distributional similarity
+## Data collection
 
-We investigated Question 1 above with observations of predator distribution
-among bromeliads, using a 2008 survey of bromeliad communities.  Each bromeliad
-was dissected and washed to remove invertebrates and the resulting water was
-filtered through two sieves (250 and 850 µm), which removed particulate organic
-matter without losing any invertebrates. All invertebrates were counted and
+### Question 1: Distributional similarity
+
+To examine distributional similarity among predator species, we used a
+detailed survey of bromeliad communities. in 2008 each bromeliad was dissected
+and washed to remove invertebrates and the resulting water was filtered
+through two sieves (250 and 850 µm), which removed particulate organic matter
+without losing any invertebrates. All invertebrates were counted and
 identified to the lowest taxonomic level possible. The body length of all
 individuals was measured, when possible for small and medium-sized taxa (< 1cm
 final instar) and always for large-bodied taxa (> 1 cm final instar).
 
-### Diet Similarity
+### Question 2: Diet Similarity
 
 
-We tested for similarity in predator diets (Question 2) using a series of laboratory feeding trials. We conducted 314 feeding trials of 10 predator taxa fed 14 prey taxa between March and April 2011.  We  covered all potential predator-prey pairs present in the experiment
+To examine diet similarity among predator species, we fed prey species to predators in laboratory feeding trials. We conducted 314 feeding trials of 10 predator taxa and 14 prey taxa between March and April 2011.  We  covered all potential predator-prey pairs present in the experiment
 (described below), and attempted to perform all other trials whenever possible. However, due to the rarity of some taxa many predator-prey pairs were not possible; we tested 56 pairwise combinations.  Most trials were replicated at least five times, but the number of replicates ranged from 1 to 11. We placed
 predators together with prey in a 50ml vial, with a leaf or stick for
 substrate. The only exception was the tabanid larvae, which we
@@ -138,78 +149,30 @@ or predators (_Monopelopia_ sp.) in which case we increased the density.  We
 replicated each combination up to five times where possible, and allowed 24 hours for
 predation to occur.
 
-### Community effect experiment
+### Question 3: Community effect experiment
 
 Our third question had two parts: (a) how do predator species differ in their
-effects on the whole community and (b) do predators show nonadditive effects on
-the community in combination, and are these related to phylogenetic distance? We
-tested these questions with an experiment involving the four most common
-predators, paired to create a range of phylogenetic relatedness: two congeneric
-damselflies (*Leptagrion andromache* and *Leptagrion elongatum*), two insects
-(*L. elongatum* and a Tabanid predatory fly), and two invertebrates (*L.
-elongatum* and a predatory leech).  Our experiment also included species in
-monoculture, and a predator-free control (total of 8 treatments, n=5).  Treatments were
-substitutive, maintaining the same amount of total predator metabolic capacity
-(see below) to isolate the effects of predator behaviour and traits.
-Substitutive experiments often hold total abundance constant, but when species
-differ substantially in body size - as in this experiment - allometric effects
-of body size on feeding rate can confound detection of effects based on trophic
-traits or species interactions, and standardizing to community metabolic
-capacity is preferred [@Srivastava2009a]. This experiment allows the estimation
-of the effect of each predator species (monoculture treatments), as well as the
-detection of non- additive effects in predator combinations.
+effects on the whole community and (b) does predator diversity show
+nonadditive effects on the community, and do these nonadditive effects
+increase with phylogenetic distance? 
 
-In Feburary 2011, bromeliads between 90 and 200ml in capacity were collected,
-thoroughly washed to remove organisms and detritus and soaked for 12 hours in a
-tub of water. They were then hung for 48 hours to dry.  One bromeliad dissected
-after this procedure contained no insects. Each bromeliad was supplied with
-dried leaves, simulating natural detritus inputs from the canopy. In order to
-track the effects on detrital decomposition on bromeliad nutrition, we enriched
-these leaves with ^15^N by fertilizing five *Plinia cauliflora* (common name: Jabuticaba) 
-plants with 40ml pot^-1^ day^-1^ of 5g L^-1^ ammonium sulphate containing 10%
-atom excess of ^15^N over 21 days. Whole leaves were then picked from plants and
-air-dried until constant weight, and then soaked for three days and the water
-discarded. About 1.5 g of leaves were placed in each bromeliad 
-(1.5g ± 0.02).
+#### Experimental design
 
-Each bromeliad was stocked with a representative insect community. The densities
-of each prey taxon were calculated from the 2008 observational dataset, using
-data from bromeliads of similar size to those in our experiment.  All densities
-used were within the range of these calculated abundances, and all experimental
-bromeliads received the same insect community.  Halfway through the experiment,
-insects were added to bromeliads a second time to simulate the continuous
-oviposition that characterizes the system.  Throughout the experiment, all bromeliads were enclosed
-with a mesh cage topped with a malaise trap and checked daily for emergence of
-adults.
-
-In this experiment we measured five response variables: production of fine
-particulate organic matter (FPOM), decomposition of coarse detritus, bromeliad
-growth, uptake of detrital nitrogen into bromeliad tissue, and survival of invertebrate prey (emerged adults +
-surviving larvae). We analyzed each of these responses with ANOVA.  For each pair of predator species and each response type, we
-calculated the non-additive effect as the difference between the
-response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
-(n=5 for each predator species).  We generated bootstrap confidence intervals for
-these nonadditive effects; confidence intervals which do not overlap zero
-indicate a significant non-additive effect of a predator combination.
-
-### Similarity in community effect
-
-
-Our observational data contains data from 25 bromeliads, containing 
-14 predator taxa. These include two groups of 
-congeneric taxa -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
-(Odonata:Coenagrionidae) with three species. There were also two groups of confamilial taxa -- three species of
-Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
-Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Hirudinidae).
-
-We obtained node age estimates for all seven internal nodes of the tree, using `www.timetree.org`, an online database of published  molecular time estimates [@Hedges2006].    Node age data was available
-for all but the youngest nodes, where either a lack of taxonomic
-information (e.g. Tabanidae) or a lack of phylogenetic study (e.g. _Leptagrion_)
-prevented more information from being included.   These branches were left as
-polytomies, and were all assigned identical, arbitrary and short branch lengths
-(15 Mya).
-
-Species co-occurrence is often measured in terms of non-random patterns of
+In this experiment we focused on the four most abundant large predators found in this community: _Leptagrion andromache_ and _Leptagrion elongatum_ (Odonata: Coenagrionidae), a predatory Tabanid fly (Diptera:Tabanidae:_Stibasoma_ **correct?**) and a predatory leech. We combined these species in eight treatments: predator species alone in bromeliads (relevant to part a) and predator species paired to maximize the
+range of phylogenetic distance (part b). Specifically, these pairs were: two congeneric damselflies (*Leptagrion
+andromache* and *Leptagrion elongatum*), two insects (*L. elongatum* and a
+Tabanid predatory fly), and two invertebrates (*L. elongatum* and a predatory
+leech).  We used five replicate bromeliads for each treatment (8 treatments, n=5).  In order to control for
+differences in body size and feeding rate among predator species, we used a
+substitutive design which maintained the same predator metabolic capacity in all
+replicates (see below). Substitutive experiments often hold total abundance
+constant, but when species differ substantially in body size - as in this
+experiment - allometric effects of body size on feeding rate can confound
+detection of effects based on trophic traits or species interactions, and
+standardizing to community metabolic capacity is preferred [@Srivastava2009a].
+This experiment allows the estimation of the effect of each predator species
+(monoculture treatments), as well as the detection of non- additive effects in
+predator combinations. Species co-occurrence is often measured in terms of non-random patterns of
 species presence/absence or abundance, but such measures will only be poorly related
 to the functional effects of species when species differ substantially in body
 size.  Integrating the allometric relationship between body size and feeding
@@ -223,17 +186,59 @@ of our feeding trial data.  This is because the feeding trials were intended to
 measure which prey our predators ate, rather than their feeding rate (only the
 latter should scale with metabolic capacity).
 
-Questions 1 and 2 above focus on similarity ("niche overlap") between predator species. Question 1 hypothesizes that if habitat preference is phylogenetically conserved and competition between predators unimportant, then distributional similarity will decline with increased phylogenetic distance between a pair of predators. Question 2 hypothesizes that if diet is conserved, then diet similarity declines with increased phylogenetic distance between a pair of predators. We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
+In Feburary 2011 we collected bromeliads with a volume between 90 and 200ml,
+thoroughly washed them to remove organisms and detritus and soaked them for 12 hours in a
+tub of water. We then hung one bromeliad for 48 hours to dry. One bromeliad dissected
+after this procedure contained no insects. Each bromeliad was supplied with
+dried leaves, simulating natural detritus inputs from the canopy. In order to
+track the effects on detrital decomposition on bromeliad nutrition, we enriched
+these leaves with ^15^N by fertilizing five *Plinia cauliflora* (Jabuticaba, Myrtaceae) 
+plants with 40ml pot^-1^ day^-1^ of 5g L^-1^ ammonium sulphate containing 10%
+atom excess of ^15^N over 21 days. Whole leaves were then picked from plants and
+air-dried until constant weight, and then soaked for three days and the water
+discarded. About 1.5 g of leaves were placed in each bromeliad 
+(1.5g ± 0.02). 
+
+Each bromeliad was stocked with a representative insect community. The densities
+of each prey taxon were calculated from the 2008 observational dataset, using
+data from bromeliads of similar size to those in our experiment.  All densities
+used were within the range of these calculated abundances, and all experimental
+bromeliads received the same insect community.  Halfway through the experiment,
+insects were added to bromeliads a second time to simulate the continuous
+oviposition that characterizes the system.  Throughout the experiment, all bromeliads were enclosed
+with a mesh cage topped with a malaise trap and checked daily for emergence of
+adults. At the end of the experiment we completely dissected our bromeliads, collecting all invertebrates and detritus remaining inside.
+
+To quantify the effect of predators on ecosystem function, we measured five community and ecosystem response variables: production of fine
+particulate organic matter (FPOM), decomposition of coarse detritus, bromeliad
+growth, uptake of detrital nitrogen into bromeliad tissue, and survival of invertebrate prey (emerged adults +
+surviving larvae). We measured the decrease in coarse detritus, and the increase in fine, by separating the collected detritus on a sieve and air drying it to constant weight before weighing. We measured uptake of labelled detrital nitrogen by analysing three samples of bromeliad leaves. Finally, we quantified the species composition and survivorship of invertebrate prey by adding together counts of emerging adult insects with counts of surviving larvae.
+
+## Data analysis
+
+### Question 1 and 2: similarity in distribution and diet
+
+We quantified the effect of phylogenetic distance on each of distributional (Question 1) and diet (Question 2) similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to the relationship between phylogenetic diversity an either distributional or diet similarity (linear, constant, and several appropriate nonlinear functions).  We compared these models using AIC, selected the best model, and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively). We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
 
 $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
 For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
-predator $k$ (or $l$) for resource or habitat $i$. When quantifing distributional similarity, $n$=25 bromeliads surveyed in the observational data; when quantifying diet similarity, the number of resources ($n$) is defined as the total number of prey
+predator $k$ (or $l$) for resource or habitat $i$. When quantifying distributional similarity, $n$=25 bromeliads surveyed in the observational data; when quantifying diet similarity, the number of resources ($n$) is defined as the total number of prey
 species assayed with both predator taxa.  In the survey data, preference ($p_{ik}$) is defined as the proportion of a predator's total metabolic capacity found in a particular bromeliad; in diet trials it is the
 proportion of diet trials (see below) for each predator-prey combination that resulted in prey
 mortality.
 
-We quantified the effect of phylogenetic distance on each of distributional and diet similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to the relationship between phylogenetic diversity an either distributional or diet similarity (linear, constant, and several appropriate nonlinear functions).  We compared these models using AIC, selected the best model, and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively).
+### Question 3: similarity in community effect
+
+We tested for effects of predator species on community processes, both alone and in combination, with a manipulative experiment where identical communities were exposed to treatments of either a single predator, or a range of phylogenetically-diverse pairs of predators. We divided the analysis of this experiment into three parts, quantifying the effect of phylogenetic distance on prey community similarity, community responses, and nonadditive effect. First, we used Pianka's index (as above) to measure the similarity between surviving prey communities among the four treatments with single predator species, and related this similarity to phylogenetic distance. If predator feeding choices are phylogenetically conserved, then we expect a negative relationship, with close relatives being found with similar communities of prey. 
+
+Second, we examined how predators affected the five community and ecosystem responses we described above, testing in turn the effect of predator presence, number, species identity, and finally phylogenetic diversity. For each response, we combined our treatment levels into four different contrasts, each of which examine a different aspect of predator impact. To test for an effect of predator presence, we contrasted the control treatment (predators absent) with the mean responses of all seven treatments that did contain predators. To test for an effect of predator species number (one or two predators), we contrasted the means of all monocultures with the means of all pair treatments. We compared all four single-species treatments to test for an effect of predator identity, and finally we tested for an effect of increasing phylogenetic diversity among the three two-species treatments. We analyzed each of these responses with one-way ANOVA. 
+
+In our third and final analysis we quantified the non-additive effect of predator species. We calculated this effect as the difference between the
+response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
+(n=5 for each predator species).  We generated bootstrap confidence intervals for
+these nonadditive effects; confidence intervals which do not overlap zero
+indicate a significant non-additive effect of a predator combination.
 
 ## Results
 
@@ -242,10 +247,16 @@ We quantified the effect of phylogenetic distance on each of distributional and 
 
 
 
-Across all bromeliads, predator species differed widely in metabolic capacity, from 4.5 x 10^-4^ for a species of _Monopelopia_ to 0.15 for large predatory flies (Tabanidae).  Predators often co-occurred in bromeliads (4.4 ± 2.9 predator species per plant).  However, the niche overlap between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance (F~1,89~=2.39, p=0.13).
+
+
+We did not find any significant relationship between niche overlap among pairs of predator species and the phylogenetic distance between those predator species (F~1,89~=2.39, p=0.13). Indeed we often found predator species co-occurring in the same bromeliads (4.4 ± 2.9 predator species per plant).  This indicates that predator species all have roughly similar habitat distributions at the level of the bromeliad. This observational data contains more species than our other datasets: in 25 bromeliads, we found 
+14 predator taxa. These include two groups of 
+congeneric taxa -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
+(Odonata:Coenagrionidae) with three species. There were also two groups of confamilial taxa -- three species of
+Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
+Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Hirudinidae).
 
 ### Diet similarity
-
 
 
 
@@ -321,10 +332,6 @@ overlap zero.
 | Bromeliad growth  | F~1,10~ = 0.51 |F~3,16~ = 0.96 | F~1,5~ = 0.49 | F~1,12~ = 1.29 | 
 | Nitrogen cycling  | F~1,10~ = 2 |F~3,16~ = 1.84 | F~1,5~ = 0.5 | F~1,13~ = 0.15 |  
    
-
-
-
-
 
 ## Discussion
 
