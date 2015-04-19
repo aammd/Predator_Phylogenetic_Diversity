@@ -287,14 +287,12 @@ nspp <- metabolic %>%
 meta_phylo_lm_summary <- lm(overlap~phylodistance, data = metabolic_occur_phylo) %>% summary
 ```
 
-Across all bromeliads, predator species differed widely in metabolic capacity, from 4.5 x 10^-4^ for a species of _Monopelopia_ to `r largesp$value` for large predatory flies (Tabanidae).  Predators often co-occurred in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  However, the niche overlap between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance (`r F_text(meta_phylo_lm_summary)`).
-
-
 ```{r CALC_nodeages}
 n.nodes <- nrow(nodeages)
 nstudies <- sum(nodeages$nstudies)
 ```
-Our observational data contains data from `r ncol(metabolic)-1` bromeliads, containing 
+
+We did not find any significant relationship between niche overlap among pairs of predator species and the phylogenetic distance between those predator species (`r F_text(meta_phylo_lm_summary)`). Indeed we often found predator species co-occurring in the same bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  This indicates that predator species all have roughly similar habitat distributions at the level of the bromeliad. This observational data contains more species than our other datasets: in `r ncol(metabolic)-1` bromeliads, we found 
 `r metabolic$Taxa %>% unique %>% length` predator taxa. These include two groups of 
 congeneric taxa -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
 (Odonata:Coenagrionidae) with three species. There were also two groups of confamilial taxa -- three species of
@@ -339,7 +337,6 @@ dietmat <- diet_overlap_phylo %>%
   data.frame(row.names="phylopred1") %>%
   as.matrix()
 ```
-
 
 Among the most common predator taxa (i.e. those used in our experiment,
 described below) the damselflies (_Leptagrion andromache_ and _Leptagrion
@@ -405,10 +402,6 @@ for(i in test) {
   cat(i, "\n")
 }
 ```
-
-
-
-
 
 ## Discussion
 
