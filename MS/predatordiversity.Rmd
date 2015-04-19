@@ -231,31 +231,11 @@ particulate organic matter (FPOM), decomposition of coarse detritus, bromeliad
 growth, uptake of detrital nitrogen into bromeliad tissue, and survival of invertebrate prey (emerged adults +
 surviving larvae). We measured the decrease in coarse detritus, and the increase in fine, by separating the collected detritus on a sieve and air drying it to constant weight before weighing. We measured uptake of labelled detrital nitrogen by analysing three samples of bromeliad leaves. Finally, we quantified the species composition and survivorship of invertebrate prey by adding together counts of emerging adult insects with counts of surviving larvae.
 
-
 ## Data analysis
-We analyzed each of these responses with ANOVA.  For each pair of predator species and each response type, we
-calculated the non-additive effect as the difference between the
-response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
-(n=5 for each predator species).  We generated bootstrap confidence intervals for
-these nonadditive effects; confidence intervals which do not overlap zero
-indicate a significant non-additive effect of a predator combination.
 
-### Similarity in community effect
+### Question 1 and 2: similarity in distribution and diet
 
-```{r CALC_nodeages}
-n.nodes <- nrow(nodeages)
-nstudies <- sum(nodeages$nstudies)
-```
-Our observational data contains data from `r ncol(metabolic)-1` bromeliads, containing 
-`r metabolic$Taxa %>% unique %>% length` predator taxa. These include two groups of 
-congeneric taxa -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
-(Odonata:Coenagrionidae) with three species. There were also two groups of confamilial taxa -- three species of
-Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
-Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Hirudinidae).
-
-
-
-Questions 1 and 2 above focus on similarity ("niche overlap") between predator species. Question 1 hypothesizes that if habitat preference is phylogenetically conserved and competition between predators unimportant, then distributional similarity will decline with increased phylogenetic distance between a pair of predators. Question 2 hypothesizes that if diet is conserved, then diet similarity declines with increased phylogenetic distance between a pair of predators. We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
+We quantified the effect of phylogenetic distance on each of distributional and diet similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to the relationship between phylogenetic diversity an either distributional or diet similarity (linear, constant, and several appropriate nonlinear functions).  We compared these models using AIC, selected the best model, and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively). We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
 
 $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
@@ -265,7 +245,15 @@ species assayed with both predator taxa.  In the survey data, preference ($p_{ik
 proportion of diet trials (see below) for each predator-prey combination that resulted in prey
 mortality.
 
-We quantified the effect of phylogenetic distance on each of distributional and diet similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to the relationship between phylogenetic diversity an either distributional or diet similarity (linear, constant, and several appropriate nonlinear functions).  We compared these models using AIC, selected the best model, and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively).
+### Question 3: similarity in community effect
+
+We analyzed each of these responses with ANOVA.  For each pair of predator species and each response type, we
+calculated the non-additive effect as the difference between the
+response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
+(n=5 for each predator species).  We generated bootstrap confidence intervals for
+these nonadditive effects; confidence intervals which do not overlap zero
+indicate a significant non-additive effect of a predator combination.
+
 
 ## Results
 
@@ -298,6 +286,18 @@ meta_phylo_lm_summary <- lm(overlap~phylodistance, data = metabolic_occur_phylo)
 ```
 
 Across all bromeliads, predator species differed widely in metabolic capacity, from 4.5 x 10^-4^ for a species of _Monopelopia_ to `r largesp$value` for large predatory flies (Tabanidae).  Predators often co-occurred in bromeliads (`r nspp$meanpred` ± `r nspp$sdpred` predator species per plant).  However, the niche overlap between the total metabolic capacity of pairs of predators did not show any relationship with phylogenetic distance (`r F_text(meta_phylo_lm_summary)`).
+
+
+```{r CALC_nodeages}
+n.nodes <- nrow(nodeages)
+nstudies <- sum(nodeages$nstudies)
+```
+Our observational data contains data from `r ncol(metabolic)-1` bromeliads, containing 
+`r metabolic$Taxa %>% unique %>% length` predator taxa. These include two groups of 
+congeneric taxa -- _Bezzia_ sp. (Diptera:Ceratopogonidae) with two species and _Leptagrion_ sp.
+(Odonata:Coenagrionidae) with three species. There were also two groups of confamilial taxa -- three species of
+Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
+Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Hirudinidae).
 
 ### Diet similarity
 
