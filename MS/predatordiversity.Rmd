@@ -352,35 +352,14 @@ elongatum_) showed the highest rates of prey consumption (prey consumed in `r an
 
 ### Question 3: similarity in community effect
 
-Predators had a large effect on prey survivorship: on average all predator
-treatments showed XX% lower prey emerging or surviving as
-larvae relative to the predator-free control.  Nitrogen transport to bromeliad
-leaves was slightly decreased in bromeliads with predators relative to
-predator-free controls (XX%), and was only higher than the
-control in treatments including Tabanid predators.  We found a similar pattern
-for plant growth: on average, predators had a XX% effect
-on growth of bromeliad leaves (leaf elongation in mm), though Tabanids seemed
-to create a slight increase. The decomposition of coarse detritus and
-production of fine organic matter showed no obvious pattern related to the
-presence of predators.
+We analyzed our five response variables from the manipulative experiment by dividing them into four separate tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. We saw the strongest responses for total prey survivorship (Table 1). Survivorship was reduced by nearly half when predators were present (Figure 2a, Table 1). Surviorship was reduced by the same amount by all predators (Figure 2c, Table 1); however increasing predator phylogenetic diversity caused a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less mortality for prey.  Interestingly, these effects on prey density did not result in a change in the processing of detritus (reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
 
-Predator combinations tended to have a non-additive effect on our response
-variables.  Approximately `r #polyeffect()`% more prey survived in polyculture,
-on average,  compared to all monocultures.  Nitrogen uptake increased by (`r #polyeffect("N")`%) and bromeliad growth by (`r #polyeffect("growth")`%).
-Production of fine particulate organic matter increased by `r #polyeffect("fine")`% more when predators were present in combination.
-
-We tested the hypothesis that increased phylogenetic distance between members
-of a predator pair results in a greater magnitude of nonadditive effect using
-randomization tests.  We contrasted the differences of the mean individual
-predator treatments from the control with the mean difference of their
-pairwise combination from the control. We found the greatest effect for prey
-survival: while effects of _L. andromache_ and _L. elongatum_ in combination
+We tested for nonadditive effects of phylogenetic diversity with a randomization test, and once again found the greatest effect for prey
+survival. While effects of _L. andromache_ and _L. elongatum_ in combination
 were quite similar to the effect of either alone, when _L. elongatum_ was
 placed in the same plant as either a Tabanid larva or leeches, on average five
 more prey individuals (18% of total prey community) survived till the end of
-the experiment (Fig 3).  This effect was smaller among the other variables,
-most of which showed confidence intervals from the randomization test which
-overlap zero.
+the experiment (Fig 3).  Once again, this effect on invertebrate density did not in turn create a significant different in other response variables.
 
 
 ### Figures
