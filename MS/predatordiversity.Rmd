@@ -436,37 +436,45 @@ species survival.
 
 ### Phylogenetic diversity and non-additive effects
 
-Predator pairs which were more phylogenetically distant had a larger negative
-nonadditive effect on prey capture.  This is contrary to our hypothesis that
-more distant predators would show an increase in prey capture via
-complementarity. *L. andromache* did not produce a negative effect in
-combination with *L. elongatum*, while more phylogenetically distinct
-predators did. It may be that these odonates have behavioural traits that
-reduce the probability of their interaction, for example each nymph occupying
-a single leaf-well. If this is the case, each damselfly may not experience
-many cues indicating the presence of other predators, resulting in no non-
-additive interaction.
+We found that the presence of predators reduced prey survival, but that this
+reduction was less for more phylogenetically-diverse combinations of
+predators. This is contrary to our hypothesis that more distant predators
+would show an increase in prey capture via complementarity. *L. andromache*
+did not produce a negative effect in combination with *L. elongatum*, while
+more phylogenetically distinct predators did. It may be that these odonates
+have behavioural traits that reduce the probability of their interaction, for
+example each nymph occupying a single leaf-well. If this is the case, each
+damselfly may not experience many cues indicating the presence of other
+predators, resulting in no non- additive interaction.
 
-The principle cause of the negative non-additive effect may have been a
-reduction in predation by odonates. Odonates can be sensitive to chemical cues
-of potential predators, which causes a decrease in feeding rate (Barry and
-Roberts 2014). However other research in bromeliads has demonstrated that it
-is physical contact with other organisms that reduces damselfly predation rate
-().  This may be the mechanism for reduced predation by *Leptagrion* when
-combined with leeches, as leeches are very active and could make frequent
-physical contact. Tabanids, however, are rarely observed outside of a deep
-leaf axil -- in this case, it may be chemical cues which are responsible.
-There may also be a phylogenetic signal to the chemical cues which the
-damselflies perceive: i.e. close relatives (other _Leptagrion_ sp. in this
-case) might induce less of an effect than other predators. One limitation of
-our approach is that all phylogenetic diversity treatments contained one species in common, *Leptagrion
-elongatum*. It is possible
-that this species is more sensitive to the presence of other predators, and
-therefore shows a larger trait-mediated indirect effect, than would other
-species in this community.  However, this is the most common species in this
-community and our results indicate that its top-down effects are likely to be
-frequently reduced by the presence of other predators.
+We also found that the increase in prey survivorship was caused by a negative
+non-additive effect of predator species. The principle cause of the negative
+non-additive effect may have been a reduction in predation by odonates.
+Odonates can be sensitive to chemical cues of potential predators, which
+causes a decrease in feeding rate (Barry and Roberts 2014). However other
+research in bromeliads has demonstrated that it is physical contact with other
+organisms that reduces damselfly predation rate ().  This may be the mechanism
+for reduced predation by *Leptagrion* when combined with leeches, as leeches
+are very active and could make frequent physical contact. Tabanids, however,
+are rarely observed outside of a deep leaf axil -- in this case, it may be
+chemical cues which are responsible. There may also be a phylogenetic signal
+to the chemical cues which the damselflies perceive: i.e. close relatives
+(other _Leptagrion_ sp. in this case) might induce less of an effect than
+other predators. One limitation of our approach is that all phylogenetic
+diversity treatments contained one species in common, *Leptagrion elongatum*.
+It is possible that this species is more sensitive to the presence of other
+predators, and therefore shows a larger trait-mediated indirect effect, than
+would other species in this community.  However, this is the most common
+species in this community and our results indicate that its top-down effects
+are likely to be frequently reduced by the presence of other predators.
 
-In nature predators species are usually found co-occuring,
+In most natural communities, diverse predator species co-occur and often
+simultaneously affect prey species. There is no clear way to predict how these
+diverse combinations will influence the structure and functioning of lower
+trophic levels. An approach based on phylogenetic diversity offers an
+organizing framework around which to compare diverse datasets on the
+distribution, trophic interactions and combined effect of multiple predator
+species, potentially leading to a means of predicting the top-down effect of
+diverse predator assemblages.
 
 ## References
