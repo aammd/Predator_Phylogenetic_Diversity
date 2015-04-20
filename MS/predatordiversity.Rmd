@@ -395,56 +395,44 @@ slightly different diet preferences (Question 2). Interestingly, these
 apparent diet preferences in the lab did not create a difference in surviving
 species composition in the field (3a).  Phylogenetic diversity caused an increase in prey mortality (i.e. a decrease in predation); phylogenetically diverse predators pairs also showed a significant negative non-additive effect (3b).
 
-### Is there a phylogenetic signal to patch occupancy? 
+### Phylogenetic distance and similarity in distribution? 
 
-Both phylogenetically similar and distinct predators were distributed in a
-similar way. This similarity in distribution could be caused by three processes: low habitat variability among bromeliads, or low preference of predators for different habitats. We already know that bromeliads vary widely in abiotic conditions, size, detritus amount and prey community, therefore it seems unlikely that low patch variation explains the lack of pattern. It appears instead that predators do not possess any strong phylogenectically-conserved preferences for different habitat characteristics. It is more likely that these predator
-species are habitat generalists. Organisms which live in small, fluctuation-
-prone habitats -- especially if they are long-lived -- may evolve a wide
-physiological tolerance to those environmental fluctuations. Therefore we
-would not expect a high degree of habitat specificity among these organisms. Our observational data indicate that at the level of the patch
-(i.e. a single bromeliad) a wide range of predator phylogenetic diversity is
-possible, from very similar to very disparate. This justifies the phylogenetic
-diversities we used in our experimental communities, as these are within the
-range found in nature.
+We found no relationship between phylogenetic distance between predator
+species and similarity in their distribution among habitats. This similarity
+in distribution could be caused by two processes: low habitat variability
+among bromeliads, or low preference of predators for different habitats. We
+already know that bromeliads vary widely in abiotic conditions, size, detritus
+amount and prey community, therefore it seems unlikely that low patch
+variation explains the lack of pattern. It appears instead that predators do
+not possess any strong phylogenectically-conserved preferences for different
+habitat characteristics, showing instead very generalist habitat preferences.
+This is not uncommon among organisms which live in small, fluctuation-prone
+habitats (). Additionally, it appears that predator species are able to co-
+occur in many different combinations, creating a range of phylogenetic
+diversity found within bromeliads. This suggests that the range of
+phylogenetic diversity we tested in our experiment was not unrealistic. It
+also indicates that whatever the effects of interactions between predator
+species, they are not sufficient to limit species distributions.
 
-Although we found some evidence for negative interspecific effects in our
-experiment, these do not appear to limit predator distribution. This could be
-caused by a low encounter rate of predators in natural plants, especially in
-larger bromeliads than those used in our experiment. Additionally, negative
-effects could still be occurring in nature, but not resulting in mortality.
-Indeed, if animals are actually able to adjust their development times and
-feeding rates when conditions are unfavourable (and if the presence of a
-competing predator creates such unfavourable conditions), then we would expect
-to observe more frequent, not less frequent, co-occurances of predators.  Non-
-consumptive negative interactions need not result in dissimilar distributions.
+### Phylogenetic distance and similarity in diet
 
-### Do related organisms have similar diets?
-
-Predators consumed very similar prey, except those most phylogenetically
-distinct. There were some slight taxon-specific diet preferences which
-accounted for this. Leeches and tabanids showed different patterns of
-consumption compared with *Leptagrion* predators: they consumed less
-frequently, and notably consumed prey in less than half of trials with *Culex*
-(leech) or *Scirtes* (Tabanid).  This may be because these predators lack the
-strong jaws and "mask" of odonata, and these two prey species are particularly
-active (in the case of culicids) or difficult to handle (scirtids).  Tabanids
-in particular differ in microhabitat use from odonates; living deep within
-leaf axils, where culicids are rarely found. One of our *Leptagrion*
-morphospecies showed a greater preference for harder-bodied prey species (i.e.
-Ostracoda, Scirtes and *Phylloicus*, which is a caddisfly.)  All of these
-animals are consumed more frequently by this damselfly than by the other
-species of _Leptagrion_, while the other damselflies more frequently consumed
-*Culex* and *Polypedilum* prey. Thus, our data show some evidence of a
-phylogenetic basis for diet dissimilarity, based on the very different traits
-of these invertebrate taxa. Traits can be more important than phylogeny *per
-se* to a predator's diet: [@Moody1993] found that unrelated decapod species
-which were morphologically similar were also functionally similar. Similarly,
-[@Rezende2009] found that both body size and phylogeny determined the food web
-"compartment" (shared predator-prey interactions) of a predator in a marine
-foodweb. In addition, our experimental results are consistent with high
-similarity among predator diets: all predator species had comparable effects
-on all response variables, including prey species survival.
+We observed a negative relationship between phylogenetic distance and overlap
+in diet as measured by laboratory feeding trials. These extreme differences
+were likely due to phylogenetically-distant predator species possessing very
+different feeding habits.  For example, damselflies are visual predators ()
+which consume prey whole using specialized mouthparts; they are gape-limited
+and cannot eat prey that is too large. Leeches, in contrast lack eyes but are
+able to pierce prey and consume it without swallowing. Damselflies showed a
+much stronger preference for culicid larvae than did leeches, while leeches
+were slightly more able to kill and eat scirtids. Such traits can be more
+important than phylogeny *per se* to a predator's diet: [@Moody1993] found
+that unrelated decapod species which were morphologically similar were also
+functionally similar. Similarly, [@Rezende2009] found that both body size and
+phylogeny determined the food web "compartment" (shared predator-prey
+interactions) of a predator in a marine foodweb. In addition, our experimental
+results are consistent with high similarity among predator diets: all predator
+species had comparable effects on all response variables, including prey
+species survival.
 
 ### Phylogenetic diversity and non-additive effects
 
@@ -459,37 +447,26 @@ a single leaf-well. If this is the case, each damselfly may not experience
 many cues indicating the presence of other predators, resulting in no non-
 additive interaction.
 
-Odonates can be sensitive to chemical cues of potential predators, which
-causes a decrease in feeding rate (Barry and Roberts 2014). However other
-research in bromeliads has demonstrated that it is physical contact with other
-organisms that reduces damselfly predation rate (Trish).  If this is the case
-for *Leptagrion*, then when combined with leeches they may be responding to
-frequent contact with those very active predators. Tabanids, however, are
-rarely observed outside of a deep leaf axil -- in this case, it may be
-chemical cues which are responsible. There may also be a phylogenetic signal
-to the chemical cues which the damselflies perceive: i.e. close relatives
-(other _Leptagrion_ sp. in this case) might induce less of an effect than
-other predators.
+The principle cause of the negative non-additive effect may have been a
+reduction in predation by odonates. Odonates can be sensitive to chemical cues
+of potential predators, which causes a decrease in feeding rate (Barry and
+Roberts 2014). However other research in bromeliads has demonstrated that it
+is physical contact with other organisms that reduces damselfly predation rate
+().  This may be the mechanism for reduced predation by *Leptagrion* when
+combined with leeches, as leeches are very active and could make frequent
+physical contact. Tabanids, however, are rarely observed outside of a deep
+leaf axil -- in this case, it may be chemical cues which are responsible.
+There may also be a phylogenetic signal to the chemical cues which the
+damselflies perceive: i.e. close relatives (other _Leptagrion_ sp. in this
+case) might induce less of an effect than other predators. One limitation of
+our approach is that all phylogenetic diversity treatments contained one species in common, *Leptagrion
+elongatum*. It is possible
+that this species is more sensitive to the presence of other predators, and
+therefore shows a larger trait-mediated indirect effect, than would other
+species in this community.  However, this is the most common species in this
+community and our results indicate that its top-down effects are likely to be
+frequently reduced by the presence of other predators.
 
-Interestingly, the pattern of induced defenses do not line up with predation
-risk, as observed in our feeding trials. In feeding trials with leeches,
-actual predation was rarely observed -- except in one instance, where the
-damselfly ate the leech. However, trait-mediated indirect effects may not
-always reflect realized probability of predation: an animal may change
-behaviour when exposed to a "predator" which poses little threat (REF).
-
-One limitation of our approach is the focus on a single focal predator, the
-odonate *Leptagrion elongatum*, which was common in all of our predator
-treatments. It is possible that this species is more sensitive to the presence
-of other predators, and therefore shows a larger trait-mediated indirect
-effect, than would other species in this community.  However, this is the most
-common species in this community and our results indicate that its top-down
-effects are likely to be frequently reduced by the presence of other
-predators.
-
-In our experimental treatments with paired predators we observed little
-predator mortality; this suggests that predator indirect interactions might
-reduce predator feeding rates but do not necessarily result in predator
-mortality. 
+In nature predators species are usually found co-occuring,
 
 ## References
