@@ -388,32 +388,27 @@ for(i in test) {
 
 ## Discussion
 
-In our system, phylogenetically distant pairs of predators are distributed
+We found that in our bromeliad system, phylogenetically distant pairs of predators are distributed
 with the same degree of similarity as phylogenetically similar predators
 (Question 1). However, we did find that phylogenetically distant predators had
 slightly different diet preferences (Question 2). Interestingly, these
 apparent diet preferences in the lab did not create a difference in surviving
-species composition in the field (3a).  When we created increasingly
-phylogenetically distant pairs of predators in experimental communities we
-found that increasing phylogenetic diversity was correlated with an increase
-in prey survival (ie decreased predation) (3b).
+species composition in the field (3a).  Phylogenetic diversity caused an increase in prey mortality (i.e. a decrease in predation); phylogenetically diverse predators pairs also showed a significant negative non-additive effect (3b).
 
-### Do related organisms occur in different bromeliads? 
+### Is there a phylogenetic signal to patch occupancy? 
 
 Both phylogenetically similar and distinct predators were distributed in a
-similar way. This indicates The absence of any signal suggests that either patches do not
-differ in variables which matter to the predators, or that predator taxa do
-not have strong impacts on each other's distribution. The lack of a
-relationship is probably not due to a lack of variation in habitat features
-among patches: We know already (CITE) that bromeliads in this and other
-systems vary considerably in many habitat variables, such as detritus content,
-amount of sunlight, and habitat size. It is more likely that these predator
+similar way. This similarity in distribution could be caused by three processes: low habitat variability among bromeliads, or low preference of predators for different habitats. We already know that bromeliads vary widely in abiotic conditions, size, detritus amount and prey community, therefore it seems unlikely that low patch variation explains the lack of pattern. It appears instead that predators do not possess any strong phylogenectically-conserved preferences for different habitat characteristics. It is more likely that these predator
 species are habitat generalists. Organisms which live in small, fluctuation-
 prone habitats -- especially if they are long-lived -- may evolve a wide
 physiological tolerance to those environmental fluctuations. Therefore we
-would not expect a high degree of habitat specificity among these organisms.
+would not expect a high degree of habitat specificity among these organisms. Our observational data indicate that at the level of the patch
+(i.e. a single bromeliad) a wide range of predator phylogenetic diversity is
+possible, from very similar to very disparate. This justifies the phylogenetic
+diversities we used in our experimental communities, as these are within the
+range found in nature.
 
-Although we found some evidence for negative intraspecific effects in our
+Although we found some evidence for negative interspecific effects in our
 experiment, these do not appear to limit predator distribution. This could be
 caused by a low encounter rate of predators in natural plants, especially in
 larger bromeliads than those used in our experiment. Additionally, negative
@@ -423,15 +418,6 @@ feeding rates when conditions are unfavourable (and if the presence of a
 competing predator creates such unfavourable conditions), then we would expect
 to observe more frequent, not less frequent, co-occurances of predators.  Non-
 consumptive negative interactions need not result in dissimilar distributions.
-
-In our experimental treatments with paired predators we observed little
-predator mortality; this suggests that predator indirect interactions might
-reduce predator feeding rates but do not necessarily result in predator
-mortality. Our observational data indicate that at the level of the patch
-(i.e. a single bromeliad) a wide range of predator phylogenetic diversity is
-possible, from very similar to very disparate. This justifies the phylogenetic
-diversities we used in our experimental communities, as these are within the
-range found in nature.
 
 ### Do related organisms have similar diets?
 
@@ -500,5 +486,10 @@ effect, than would other species in this community.  However, this is the most
 common species in this community and our results indicate that its top-down
 effects are likely to be frequently reduced by the presence of other
 predators.
+
+In our experimental treatments with paired predators we observed little
+predator mortality; this suggests that predator indirect interactions might
+reduce predator feeding rates but do not necessarily result in predator
+mortality. 
 
 ## References
