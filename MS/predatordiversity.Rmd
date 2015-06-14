@@ -39,12 +39,11 @@ modify the behaviour of other predator species or prey via nonconsumptive (i.e. 
 mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001]. These nonadditive effects can be positive or negative: e.g. prey may have an induced a defense against one predator which makes it harder (negative non-additive effect) or easier (positive non-additive effect) for another predator to eat it. While there are many possible mechanisms underlying the effect of predator composition, we lack a means of
 predicting _a priori_ the strenght and direction of predator diversity on communities and ecosystem functions.
 
-One candidate predictor of the effect of predator combinations is predator
-phylogenetic diversity. The measurement of phylogenetic diversity has become a
+Predator phylogenetic diversity could predict the effect of predator richness on ecological communities. Measures of phylogenetic diversity include the evolutionary relationships of species into measures of diversity. The measurement of phylogenetic diversity has become a
 popular means for ecologists to make inferences about ecological and
 evolutionary mechanisms behind observed patterns in natural communities
 [@Cavender-Bares2009]. For example, the phylogenetic diversity of plant
-communities is a better predictor of productivity than is either species
+communities is a better predictor of productivity than either species
 richness or diversity [e.g. @Cadotte2009;@Cadotte2008;@Godoy2014]. A central
 assumption of this approach is that increased phylogenetic distance implies
 increased ecological dissimilarity -- either in the form of differences in
@@ -53,7 +52,7 @@ phylogenetic diversity leads to complementarity between species, resulting in in
 ecosystem functioning [@Srivastava2012c]. Despite the prevalence of phylogenetic
 community ecology and the importance of predators to natural systems, the
 phylogenetic diversity of local predator assemblages has rarely been measured
-[@Bersier2008;@Naisbit2011]. Many studies of phylogenetic signal in predator
+[@Bersier2008;@Naisbit2011]. Many studies of phylogeny and predator
 traits focus on whole clades, rather than local assemblages (e.g. *Anolis*
 lizards [@Knouft2006], warblers [@Bohning- Gaese2003], tree boas
 [@Henderson2013] and wasps [@Udriene2005]) making it difficult to connect these
