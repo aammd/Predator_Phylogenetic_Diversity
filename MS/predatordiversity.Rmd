@@ -30,15 +30,13 @@ pd <- transform(pd, decomp=ifelse(decomp>0.7,NA,decomp))
 ## Introduction
 
 Predators can have strong top-down effects, both on community structure and
-ecosystem processes [@Estes2011]; however their effects in combination are not
-well understood. The effect of predator species diversity on communities is often stronger or weaker than the combined effects of
-individual predator species [@Sih1998a;@Ives2005]. These nonadditive effects of predator
-diversity occur when predators interact directly with each other, or indirectly
-via prey species. For example when predators feed directly on each
+ecosystem processes [@Estes2011]; however the effects of predator species together (i.e., of predator species richness) are not
+well understood. The effect of predator species richness on communities is often stronger or weaker than what might be predicted from a study of those same species in isolation [@Sih1998a;@Ives2005]. These nonadditive effects of predator
+richness occur when predators interact directly with each other, or indirectly
+via prey species. For example, predators feed directly on each
 other (intra-guild predation), consume the same prey (resource competition) or
-modify the behaviour of predators or prey via nonconsumptive (i.e. trait-
-mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001]. Nonadditive effects can be positive or negative: e.g. if one predator causes behavioral shifts
-in prey that increase their chance of being eaten by another predator species. While there are many possible mechanisms underlying the effect of predator composition, we lack a means of
+modify the behaviour of other predator species or prey via nonconsumptive (i.e. trait-
+mediated) interactions [@Sih1998a;@Griswold2006;@Nystrom2001]. These nonadditive effects can be positive or negative: e.g. prey may have an induced a defense against one predator which makes it harder (negative non-additive effect) or easier (positive non-additive effect) for another predator to eat it. While there are many possible mechanisms underlying the effect of predator composition, we lack a means of
 predicting _a priori_ the strenght and direction of predator diversity on communities and ecosystem functions.
 
 One candidate predictor of the effect of predator combinations is predator
@@ -364,15 +362,15 @@ the experiment (Fig 3).  Once again, this effect on invertebrate density did not
 
 ### Figures
 
-![niche overlap](../Figures/FIG_1.pdf)
+![niche overlap](../Figures/FIG_1.png)
 
 **Figure 1**: Phylogenetic distance and niche overlap among predators. Our measures of niche overlap were: (a) distribution among bromeliads; (b) diet preferences and (c) community composition of surviving prey. We measured distributional similarity (a) by counting all predators in 25 bromeliads, estimating their total metabolic capacity, and calculating niche overlap among all pairs of species. We measured diet preferences (b) for a subset of these predators by offering them various prey in no-choice trials. Finally, we measured community composition of surviving prey (c) at the end of an experiment in which predators were placed in bromeliads with standardized communities (see main text for details). We used Pianka's index of niche overlap and fit various nonlinear models (see Appendix) to the relationship between this index and phylogenetic distance. Solid lines show signifigant model fit, and dashed lines show bootstrap 95% quantiles.
 
-![prey survival](../Figures/FIG_2.pdf)
+![prey survival](../Figures/FIG_2.png)
 
 **Figure 2**: The effect of predators on the survival of prey organisms. We show the effects of predator presence (a), increased number of predators (b), predator species identity (c) and predator species pairs (d, arranged in order of increasing phylogenetic distance). Shaded dots represent grand means for each group; unshaded dots are either treatment means (2a and 2b, n = 5) or individual bromeliads (2c and 2d).
 
-![nonadditive](../Figures/FIG_3.pdf)
+![nonadditive](../Figures/FIG_3.png)
 
 **Figure 3**: Phylogenetic distance and non-additive effects of predator combinations. We calculated non-additive effect size by first subtracting treatment means from control (no predators), then subtracting the mean of single-predator treatments from two-predator treatments. A difference of 0 indicates that two-predator treatments resulted in no more prey mortality than would be expected from simply averaging single-predator treatments. Error bars represent bootstrap 95% confidence intervals.
 
