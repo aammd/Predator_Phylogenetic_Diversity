@@ -241,7 +241,7 @@ proportion of feeding trials in which it ate a particular prey (Question 2).
 
 ### Question 3: similarity in community effect
 
-We tested effects of both single or multiple predator species on community responses with a manipulative experiment where identical communities were exposed to treatments of either a single predator, or a range of phylogenetically-diverse pairs of predators. We divided the analysis of this experiment into three parts, quantifying the effect of phylogenetic distance on prey community similarity, community responses, and non-additive effect. First, we compared the four treatments with single predator species by calculating the similarity in species composition (Pianka's index) between surviving prey communities and relating this to the phylogenetic distance between predators. If predator feeding choices are phylogenetically conserved, that diet similarity will decline with increasing phylogenetic distance.
+We tested effects of both single or multiple predator species on community responses with a manipulative experiment where identical communities were exposed to treatments of either a single predator, or pairs of predators representing increasing phylogenetic diversity. We divided the analysis of this experiment into three parts, quantifying the effect of phylogenetic distance on prey community similarity, community responses, and non-additive effect. First, we compared the four treatments with single predator species by calculating the similarity in species composition (Pianka's index) between surviving prey communities and relating this to the phylogenetic distance between predators. If predator feeding choices are phylogenetically conserved, that diet similarity will decline with increasing phylogenetic distance.
 
 Second, we examined how predators affected the five community and ecosystem responses we described above, testing in turn the effect of predator presence, number, species identity, and finally phylogenetic diversity. For each response, we combined our treatment levels into four different contrasts, each of which examine a different aspect of predator impact. To test for an effect of predator presence, we contrasted the control treatment (predators absent) with the mean responses of all seven treatments that did contain predators. To test for an effect of predator species number (one or two predators), we contrasted the means of all monocultures with the means of all pair treatments. We compared all four single-species treatments to test for an effect of predator identity, and finally we tested for an effect of increasing phylogenetic diversity among the three two-species treatments. We analyzed each of these responses with one-way ANOVA. 
 
@@ -292,7 +292,7 @@ We did not find any significant relationship between habitat distribution (measu
 congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
 (Odonata:Coenagrionidae). There were also two groups of confamilials -- three species of
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
-Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Hirudinidae).
+Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Annelida:Arhynchobdellida).
 
 ```{r CALC_diet_numbers}
 ## Diet numbers for text:
@@ -343,19 +343,19 @@ More phylogenetically distant predators differed in their preference of prey
 species, as measured by the niche overlap index (Fig 1b, `r F_text(diet_phylo_lm_summary)`), regression weighted by the number of prey
 species assayed.). Among the most common predator taxa (i.e. those used in our experiment,
 described below) the damselflies (_Leptagrion andromache_ and _Leptagrion
-elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). Despite this decline in diet similiarity with  phylogenetic distance, the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
+elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). Despite the decline in diet Similarityy with  phylogenetic distance, the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
 (Fig 1c, `r F_text(exper_phylo_lm_summary)`)
 
 ### Question 3: similarity in community effect
 
-We analyzed our five response variables from the manipulative experiment by dividing them into four separate tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. We saw the strongest responses for total prey survivorship (Table 1). Survivorship was reduced by nearly half when predators were present (Figure 2a, Table 1). Surviorship was reduced by the same amount by all predators (Figure 2c, Table 1); however increasing predator phylogenetic diversity caused a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less mortality for prey.  Interestingly, these effects on prey density did not result in a change in the processing of detritus (reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
+We analyzed our five response variables from the manipulative experiment by dividing them into four separate tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. Across all four tests, we saw the strongest responses for total prey survivorship (Table 1). Survivorship was reduced by nearly half when predators were present (Figure 2a, Table 1). Survivorship was reduced by the same amount by all predators (Figure 2c, Table 1); however increasing predator phylogenetic diversity caused a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less mortality for prey.  Interestingly, these effects on prey density did not result in a change in the processing of detritus (reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
 
 We tested for non-additive effects of phylogenetic diversity with a randomization test, and once again found the greatest effect for prey
 survival. While effects of _L. andromache_ and _L. elongatum_ in combination
 were quite similar to the effect of either alone, when _L. elongatum_ was
 placed in the same plant as either a Tabanid larva or leeches, on average five
 more prey individuals (18% of total prey community) survived till the end of
-the experiment (Fig 3).  Once again, this effect on invertebrate density did not in turn create a significant different in other response variables.
+the experiment (Fig 3).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
 
 
 ### Figures
