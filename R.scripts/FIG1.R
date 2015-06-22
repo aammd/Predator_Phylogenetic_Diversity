@@ -82,4 +82,4 @@ rbind(distribution, diet, exper) %>%
   mytheme + theme(strip.text = element_text(hjust = 0.01),
                   strip.background = element_blank())
 
-ggsave("../Figures/FIG_1.pdf", height = 6, width = 6, units = "in")
+ggsave("../Figures/FIG_1.png", height = 6, width = 6, units = "in")

@@ -16,4 +16,4 @@ summarize_randoms_phylo %>%
   theme_minimal() +   
   theme(axis.ticks = element_blank(), text = element_text(size=20))
 
-ggsave("../Figures/FIG_3_N.png", height = 21, width = 28, units = "cm")
+ggsave("../Figures/FIG_3.png", height = 21, width = 28, units = "cm")

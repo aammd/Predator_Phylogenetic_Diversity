@@ -129,7 +129,7 @@ pred_combo_plot <- pred_combo %>%
   mytheme
 
   
-pdf("../Figures/FIG_2.pdf", height = 6, width = 6)
+png("../Figures/FIG_2.png", height = 500, width = 500)
 grid.arrange(pred_present_plot, pred_number_plot, pred_identity_plot, pred_combo_plot,
              ncol=2,
              left = textGrob("Mean prey survival", rot = 90, vjust = 1))

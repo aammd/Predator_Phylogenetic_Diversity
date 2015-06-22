@@ -24,6 +24,7 @@ targets:
       - MS/predatordiversity.md
       - MS/predatordiversity.pdf
       - MS/TABLE1.md
+      - MS/predatordiversity.docx
 
 # occurrance data -- abundance
   occur:
@@ -73,12 +74,16 @@ targets:
       - data/exper.Rdata
     knitr: true
     
-  MS/predatordiversity.pdf:
+#  MS/predatordiversity.pdf:
+#    depends:
+#      - Figures/FIG_1.pdf
+#      - Figures/FIG_2.pdf
+#      - Figures/FIG_3.pdf
+#    command: render("MS/predatordiversity.md")
+    
+  MS/predatordiversity.docx:
     depends:
-      - Figures/FIG_1.pdf
-      - Figures/FIG_2.pdf
-      - Figures/FIG_3.pdf
-    command: render("MS/predatordiversity.md")
-  
-  
-
+      - Figures/FIG_1.png
+      - Figures/FIG_2.png
+      - Figures/FIG_3.png
+    command: render("MS/predatordiversity.md", output_format = I("word_document"))
