@@ -16,14 +16,8 @@ bibliography: /home/andrew/Documents/reference/Mendeley_reference_lists/@MS_pdpa
 ---
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
-# ## set chunk options
-# knitr::opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE, fig.cap=TRUE,
-#                cache = TRUE, cache.path = "./cache/",
-#                dev='pdf', fig.path = './figure/')
-# 
-# #dropping a record that seems to have been 90% decomposed!
-# pd2 <- transform(pd, decomp=ifelse(decomp>0.7,NA,decomp))
-
+## set chunk options
+knitr::opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE)
 
 ```
 
