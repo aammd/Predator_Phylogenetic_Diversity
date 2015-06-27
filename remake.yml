@@ -24,6 +24,7 @@ sources:
   - R.scripts/FIG1.R
   - R.scripts/FIG2.R
   - R.scripts/FIG3.R
+  - R.scripts/DATA_summarize_randomization.R
   
 targets:
   all: 
@@ -64,10 +65,9 @@ targets:
     
   ## calculated from the previous stuff
   
+  rand.means:
+    command: read.csv("raw-data/predator.div.experiment/randomizations.group.means.csv")
 
-  summarize_randoms_phylo:
-    command: read.csv("data/summarize_randoms_phylo.csv")
-  
   phylogenetic_distance:
     command: read_csv("data/phylogenetic_distance.csv")
     
@@ -75,6 +75,10 @@ targets:
     command: read_csv("data/diet_predictions.csv")
 
 ## calculations
+
+  summarize_randoms_phylo:
+    command: make_randomization_summary(rand.means)
+  
 
   pd_no_out:
     command: drop_outlier(pd)
