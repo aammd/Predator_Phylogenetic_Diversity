@@ -1,8 +1,3 @@
-library("dplyr")
-library("tidyr")
-
-
-
 #dropping a record that seems to have been 90% decomposed!
 drop_outlier <- function(.pd){
   transform(.pd, decomp = ifelse(decomp>0.7, NA, decomp))
