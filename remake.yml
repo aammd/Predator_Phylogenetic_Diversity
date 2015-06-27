@@ -17,7 +17,9 @@ packages:
 sources: 
   - R.scripts/FUNCTIONS_predator_diversity.R
   - R.scripts/FUNCTIONS_text.R
-
+  - R.scripts/CALC_pd_experiment_models.R
+  
+  
 targets:
   all: 
     depends:
@@ -54,9 +56,20 @@ targets:
   pd:
     command: read_csv("data/pd_exp_cleaned_data.csv")
     
-  modlist:
-    command: load("data/modlist.RData")
+  phylogenetic_distance:
+    command: read.csv("data/phylogenetic_distance.csv", stringsAsFactors = FALSE)
+
+## calculations
+
+  pd_no_out:
+    command: drop_outlier(pd)
     
+  pd_experiment_phylo_dist:
+    command: experiment_and_phylo(pd_no_out, phylogenetic_distance)
+    
+  modlist:
+    command: make_modlist(pd_experiment_phylo_dist)
+  
   MS/TABLE1.md:
     depends:
       - modlist
@@ -64,7 +77,7 @@ targets:
     
   MS/predatordiversity.md:
     depends: 
-      - pd
+      - pd_no_out
       - feeding_trials
       - nodeages
       - metabolic
