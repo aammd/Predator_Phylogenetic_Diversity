@@ -1,10 +1,6 @@
 ### functions for analyzing predator diversity experiment 2011
 ## June 2011, Andrew MacDonald
 
-#dropping a record that seems to have been 90% decomposed!
-drop_outlier <- function(.pd){
-  transform(.pd, decomp = ifelse(decomp>0.7, NA, decomp))
-}
 
 fit_some_models <- function(data_phylo_overlap){
 
