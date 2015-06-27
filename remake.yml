@@ -13,12 +13,14 @@ packages:
   - rmarkdown
   - vegan
   - readr
+  - gridExtra
 
 sources: 
   - R.scripts/FUNCTIONS_predator_diversity.R
   - R.scripts/FUNCTIONS_text.R
   - R.scripts/CALC_pd_experiment_models.R
-  
+  - R.scripts/FIGURE_themes.R
+  - R.scripts/FIG2.R
   
 targets:
   all: 
@@ -94,6 +96,14 @@ targets:
 #      - Figures/FIG_3.pdf
 #    command: render("MS/predatordiversity.md")
     
+    
+  Figures/FIG_2.png:
+    command: make_fig_2(pd_no_out)
+    plot:
+      width: 500
+      height: 500
+      
+      
   MS/predatordiversity.docx:
     depends:
       - Figures/FIG_1.png
