@@ -1,5 +1,4 @@
-## All R files that are used must be listed here:
-
+## load packages
 packages:
   - dplyr
   - magrittr
@@ -14,13 +13,17 @@ packages:
   - vegan
   - readr
   - gridExtra
+  - reshape2
 
+## source in R functions
 sources: 
   - R.scripts/FUNCTIONS_predator_diversity.R
   - R.scripts/FUNCTIONS_text.R
   - R.scripts/CALC_pd_experiment_models.R
   - R.scripts/FIGURE_themes.R
+  - R.scripts/FIG1.R
   - R.scripts/FIG2.R
+  - R.scripts/FIG3.R
   
 targets:
   all: 
@@ -29,8 +32,9 @@ targets:
       - MS/predatordiversity.pdf
       - MS/TABLE1.md
       - MS/predatordiversity.docx
+      - Figures/FIG_2.pdf
 
-# occurrance data -- abundance
+  # occurrance data -- abundance
   occur:
     command: read_csv("data/predator.cooccur.txt")
     
@@ -41,25 +45,34 @@ targets:
   metabolic_occur_phylo:
     command: read_csv("data/metabolic_occur_phylo.csv")
 
-# feeding trial data
+  # feeding trial data
   feeding_trials:
     command: read_csv("data/reorganized.feeding.trial.data.csv")
 
+  #
   diet_overlap_phylo:
     command: read_csv("data/diet_overlap_phylo.csv")
 
-# enriched leaves -- ie just the N data for the detritus we put in.
-# enriched <- read.csv("../data/enriched_leaves.csv",
-#                      stringsAsFactors=FALSE) %>%   tbl_df()
-# phylogeny data
+  # phylogeny data
   nodeages:
     command: read_csv("data/nodeages.csv")
     
+  # experiment results
   pd:
     command: read_csv("data/pd_exp_cleaned_data.csv")
     
+    
+  ## calculated from the previous stuff
+  
+
+  summarize_randoms_phylo:
+    command: read.csv("data/summarize_randoms_phylo.csv")
+  
   phylogenetic_distance:
-    command: read.csv("data/phylogenetic_distance.csv", stringsAsFactors = FALSE)
+    command: read_csv("data/phylogenetic_distance.csv")
+    
+  diet_predictions:
+    command: read_csv("data/diet_predictions.csv")
 
 ## calculations
 
@@ -71,6 +84,10 @@ targets:
     
   modlist:
     command: make_modlist(pd_experiment_phylo_dist)
+    
+  distribution:
+    command: metabolic_distribution()
+  
   
   MS/TABLE1.md:
     depends:
@@ -95,10 +112,24 @@ targets:
 #      - Figures/FIG_2.pdf
 #      - Figures/FIG_3.pdf
 #    command: render("MS/predatordiversity.md")
+
+  experiment_phylo:
+    command: pd_exper_responses(pd_no_out)
     
-    
-  Figures/FIG_2.png:
+  Figures/FIG_1.png:
+    command: make_fig_1(metabolic_occur_phylo, diet_overlap_phylo, experiment_phylo, diet_predictions)
+    plot:
+      width: 500
+      height: 500
+ 
+  Figures/FIG_2.pdf:
     command: make_fig_2(pd_no_out)
+    plot:
+      width: 8
+      height: 4
+      
+  Figures/FIG_3.png:
+    command: make_fig_3(summarize_randoms_phylo)
     plot:
       width: 500
       height: 500
