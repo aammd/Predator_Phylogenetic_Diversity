@@ -1,9 +1,9 @@
 ## ggplot2 theme
-mytheme <- theme_bw() + theme(strip.text = element_text(hjust = 0.01),
-                              strip.background = element_blank(),
-                              axis.title.y = element_blank(),
-                              axis.text.x = element_text(size = 7))
+mytheme <- ggplot2::theme_bw() + ggplot2::theme(strip.text = ggplot2::element_text(hjust = 0.01),
+                              strip.background = ggplot2::element_blank(),
+                              axis.title.y = ggplot2::element_blank(),
+                              axis.text.x = ggplot2::element_text(size = 7))
 
-one_point <- geom_point(colour = "black", 
+one_point <- ggplot2::geom_point(colour = "black", 
                         fill = NA, shape = 21, colour = "black", 
-                        size = 5, position = position_jitter(w = 0.1))
+                        size = 5, position = ggplot2::position_jitter(w = 0.1))
