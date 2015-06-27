@@ -129,6 +129,13 @@ diet_sim %>%
 #   print(include.rownames = TRUE, size = 5, comment = FALSE)
 ```
 
+<!--
+calculates the the difference in feeding rate.
+Among the most common predator taxa (i.e. those used in our experiment,
+described below) the damselflies (_Leptagrion andromache_ and _Leptagrion
+elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). 
+-->
+
 # Predator diversity experiment
 
 ## Prey community composition 
