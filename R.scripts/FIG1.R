@@ -55,7 +55,7 @@ make_fig_1 <- function(.metabolic_occur_phylo, .diet_overlap_phylo,
     facet_wrap( ~ category, scales = "free_y", nrow = 3) + 
     xlab("Phylogenetic distance") + 
     ylab("Similarity (Pianka's index)") + 
-    scale_size(range = c(3,9),name = "Number of\nprey") +
+    scale_size(range = c(3,9),name = "Number of\nresources") +
     geom_line(aes(x = phylodistance, y = pred_m2), 
               size = 0.5, data = .diet_predictions) +
     geom_line(aes(x = phylodistance, y = upper),

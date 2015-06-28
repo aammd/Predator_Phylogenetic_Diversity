@@ -126,11 +126,11 @@ targets:
       width: 500
       height: 500
  
-  Figures/FIG_2.pdf:
+  Figures/FIG_2.png:
     command: make_fig_2(pd_no_out)
     plot:
-      width: 8
-      height: 4
+      width: 500
+      height: 500
       
   Figures/FIG_3.png:
     command: make_fig_3(summarize_randoms_phylo)

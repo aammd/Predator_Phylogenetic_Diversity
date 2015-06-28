@@ -20,7 +20,7 @@ make_fig_2 <- function(pd){
     #              data = subset(pred_present, treatment == "control")) + 
     xlab("Predator presence") + 
     facet_grid(~ plotcode) +
-    mytheme
+    theme_bw()
   
   
   # number ------------------------------------------------------------------
@@ -37,7 +37,7 @@ make_fig_2 <- function(pd){
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
     xlab("Predator number") + 
     facet_grid(~ plotcode) +
-    mytheme
+    theme_bw()
   
   
   # identity ----------------------------------------------------------------
@@ -85,7 +85,7 @@ make_fig_2 <- function(pd){
     scale_x_discrete(labels = x_cat)+
     xlab("Predator identity") +
     facet_grid(~ plotcode) +
-    mytheme
+    theme_bw()
   
   
   # Combinations ------------------------------------------------------------
@@ -102,7 +102,7 @@ make_fig_2 <- function(pd){
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
     xlab("Phylogenetic diversity") +
     facet_grid(~ plotcode) + 
-    mytheme
+    theme_bw()
   
   
   # png("../Figures/FIG_2.png", height = 500, width = 500)
