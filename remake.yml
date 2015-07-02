@@ -26,6 +26,7 @@ sources:
   - R.scripts/FIG3.R
   - R.scripts/DATA_summarize_randomization.R
   - R.scripts/DATA_prop_eaten.R
+  - R.scripts/CALC_meta_dist.R
   
 targets:
   all: 
