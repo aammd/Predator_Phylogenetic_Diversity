@@ -29,6 +29,7 @@ sources:
   - R.scripts/CALC_meta_dist.R
   - R.scripts/CALC_dist_aic.R
   - R.scripts/CALC_diet_aic.R
+  - R.scripts/CALC_diet_nlsconfint.R
   
 targets:
   all: 
@@ -64,8 +65,6 @@ targets:
   phylogenetic_distance:
     command: read_csv("data/phylogenetic_distance.csv")
     
-  diet_predictions:
-    command: read_csv("data/diet_predictions.csv")
 
 ## calculations -- data merging
   ## distribution
@@ -93,6 +92,9 @@ targets:
   ## diet model fitting
   diet_similarity_AIC:
     command: make_diet_models(diet_overlap_phylo)
+    
+  diet_predictions:
+    command: make_diet_predictions(diet_overlap_phylo)
 
   summarize_randoms_phylo:
     command: make_randomization_summary(rand.means)
