@@ -27,6 +27,7 @@ sources:
   - R.scripts/DATA_summarize_randomization.R
   - R.scripts/DATA_prop_eaten.R
   - R.scripts/CALC_meta_dist.R
+  - R.scripts/CALC_dist_aic.R
   
 targets:
   all: 
@@ -65,7 +66,7 @@ targets:
   diet_predictions:
     command: read_csv("data/diet_predictions.csv")
 
-## calculations
+## calculations -- data merging
   ## distribution
   metabolic_distance:
     command: make_metabolic_dist_pianka(metabolic)
@@ -83,7 +84,10 @@ targets:
   diet_overlap_phylo:
     command: left_join(diet_overlap, phylogenetic_distance)
     
-  
+## analysis
+  ## metabolic model fitting
+  distributional_similarity_AIC:
+    command: make_dist_sim_AIC(metabolic_occur_phylo)
 
   summarize_randoms_phylo:
     command: make_randomization_summary(rand.means)
