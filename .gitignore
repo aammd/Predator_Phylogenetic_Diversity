@@ -36,7 +36,7 @@ MS/predatordiversity.pdf
 out*.png
 
 Figures/*.svg
-Figures/*.png
+
 
 cache/
 .remake/
