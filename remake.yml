@@ -25,6 +25,7 @@ sources:
   - R.scripts/FIG2.R
   - R.scripts/FIG3.R
   - R.scripts/DATA_summarize_randomization.R
+  - R.scripts/DATA_prop_eaten.R
   
 targets:
   all: 
@@ -50,10 +51,6 @@ targets:
   feeding_trials:
     command: read_csv("data/reorganized.feeding.trial.data.csv")
 
-  #
-  diet_overlap_phylo:
-    command: read_csv("data/diet_overlap_phylo.csv")
-
   # phylogeny data
   nodeages:
     command: read_csv("data/nodeages.csv")
@@ -75,6 +72,15 @@ targets:
     command: read_csv("data/diet_predictions.csv")
 
 ## calculations
+
+  prop_eaten:
+    command: calc_prop_eaten(feeding_trials)
+    
+  diet_overlap:
+    command: make_prop_eaten_pianka(prop_eaten)
+    
+  diet_overlap_phylo:
+    command: left_join(diet_overlap,phylogenetic_distance)
 
   summarize_randoms_phylo:
     command: make_randomization_summary(rand.means)
@@ -118,7 +124,7 @@ targets:
 #    command: render("MS/predatordiversity.md")
 
   experiment_phylo:
-    command: pd_exper_responses(pd_no_out)
+    command: pd_exper_responses(pd_no_out, phylogenetic_distance)
     
   Figures/FIG_1.png:
     command: make_fig_1(metabolic_occur_phylo, diet_overlap_phylo, experiment_phylo, diet_predictions)
