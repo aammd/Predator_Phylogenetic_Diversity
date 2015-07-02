@@ -1,5 +1,5 @@
 
-pd_exper_responses <- function(.pd){
+pd_exper_responses <- function(.pd, .phylogenetic_distance){
   .pd %>%
     filter(treatment %in% c("andro","elong","tabanid","leech")) %>%
     select(treatment, Culicidae:Scirtidae) %>%
@@ -25,7 +25,7 @@ pd_exper_responses <- function(.pd){
            species_pair = ifelse(species_pair == "leech_tabanid",
                                  "Tabanidae.spA_Hirudinidae",
                                  species_pair)) %>%
-    left_join(phylogenetic_distance)
+    left_join(.phylogenetic_distance)
 }
 
 make_fig_1 <- function(.metabolic_occur_phylo, .diet_overlap_phylo,
