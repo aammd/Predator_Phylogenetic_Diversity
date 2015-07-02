@@ -39,9 +39,6 @@ targets:
   # occurrance data -- metabolic capacity
   metabolic:
     command: read_csv("data/predator.cooccur.metabolic.txt")
-    
-  metabolic_occur_phylo:
-    command: read_csv("data/metabolic_occur_phylo.csv")
 
   # feeding trial data
   feeding_trials:
@@ -68,7 +65,14 @@ targets:
     command: read_csv("data/diet_predictions.csv")
 
 ## calculations
+  ## distribution
+  metabolic_distance:
+    command: make_metabolic_dist_pianka(metabolic)
 
+  metabolic_occur_phylo:
+    command: left_join(metabolic_distance, phylogenetic_distance)
+
+  ## feeding trials
   prop_eaten:
     command: calc_prop_eaten(feeding_trials)
     
@@ -76,11 +80,12 @@ targets:
     command: make_prop_eaten_pianka(prop_eaten)
     
   diet_overlap_phylo:
-    command: left_join(diet_overlap,phylogenetic_distance)
+    command: left_join(diet_overlap, phylogenetic_distance)
+    
+  
 
   summarize_randoms_phylo:
     command: make_randomization_summary(rand.means)
-  
 
   pd_no_out:
     command: drop_outlier(pd)
