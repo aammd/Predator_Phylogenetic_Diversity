@@ -62,10 +62,7 @@ targets:
     command: read.tree("data/predator_tree_time.newick")
     
     
-  ## calculated from the previous stuff
-  
-  rand.means:
-    command: read.csv("raw-data/predator.div.experiment/randomizations.group.means.csv")
+  ## Phylogenetic distance
 
   phylogenetic_distance:
     command: calc_phylogenetic_dist(predtree_timetree_ages) 
@@ -101,19 +98,26 @@ targets:
   diet_predictions:
     command: make_diet_predictions(diet_overlap_phylo)
 
-  summarize_randoms_phylo:
-    command: make_randomization_summary(rand.means)
-
+## experiment models 
   pd_no_out:
     command: drop_outlier(pd)
     
   pd_experiment_phylo_dist:
-    command: experiment_and_phylo(pd_no_out, phylogenetic_distance)
+    command: experiment_and_phylo(pd_no_out, phylogenetic_distance) 
     
   modlist:
     command: make_modlist(pd_experiment_phylo_dist)
+    
+## randomization test
+  rand.means:
+    command: responses.means(pd_no_out)
+    
+  summarize_randoms_phylo:
+    command: make_randomization_summary(rand.means)
 
-  
+  summarize_randoms_phylo_pd:
+    command: left_join(summarize_randoms_phylo, phylogenetic_distance)
+
   MS/TABLE1.md:
     depends:
       - modlist
@@ -154,7 +158,7 @@ targets:
       height: 500
       
   Figures/FIG_3.png:
-    command: make_fig_3(summarize_randoms_phylo)
+    command: make_fig_3(summarize_randoms_phylo_pd)
     plot:
       width: 500
       height: 500
