@@ -23,12 +23,6 @@ knitr::opts_chunk$set(message = FALSE,
 
 mytheme <- theme_bw()
 
-# experimental data
-pd <- read.csv("../data/reorganized_data/pd_exp_cleaned_data.csv",
-               stringsAsFactors=FALSE) %>%
-  tbl_df() %>%
-  transform(decomp=ifelse(decomp>0.7,NA,decomp))
-
 predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
 
 dist_sim <- read.csv(file = "analyses/distributional_similarity.csv", 
@@ -154,7 +148,7 @@ We calculated means and standard error for every experimental treatment and resp
 
 **Table S5**: Means and standard errors for all response variables for each predator treatment in our manipulative experiment. n = 5 for every pair of numbers, with only two exceptions due to missing values: `elong + leech` x `growth`, and `leech` x `decomp`.
 ```{r exp summary, results='asis'}
-pd %>%
+pd_no_out %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   gather(response,value,-treatment) %>%
   filter(!is.na(value)) %>%
@@ -222,7 +216,7 @@ trtnames <- c("total.surv" = "Total prey survival",
 mean_na <- function(x) mean(x, na.rm = TRUE)
 
 ## average every treatment 
-ctrl_single_pair <- pd %>% 
+ctrl_single_pair <- pd_no_out %>% 
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(treatment = treatment %>% 
            equals("control") %>% 
@@ -305,7 +299,7 @@ Within the single-predator treatments, we tested for difference in our response 
 
 **Table S9** : Contrasting predator species effects. These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
 ```{r TEST_experiment_single_pred, results='asis'}
-singlepred <- pd %>%
+singlepred <- pd_no_out %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(trt_type = trt_lkp[treatment]) %>%
   filter(trt_type == "one") 
@@ -384,7 +378,7 @@ Our two-species combinations represent a range of increasing phylogenetic distan
 
 **Table S11**: Effects of increasing phylogenetic diversity of the predator assemblage on 5 response variables.  We used linear contrasts, ranking the independent variable by increasing predator PD (see Figure S4).  Linear model coefficients (standard error) are shown for Linear, Quadratic and Constant contrasts.
 ```{r TABLE_twopred, results='asis'}
-twopred <- pd %>%
+twopred <- pd_no_out %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
   mutate(trt_type = trt_lkp[treatment]) %>%
   filter(trt_type == "two") %>%
@@ -505,7 +499,7 @@ twopred %>%
 **Table S13**: Correlation matrix of all variables in our experiment. n = 30 for most of these values. Bold type indicates values of Pearson's product moment correlation with p < 0.05.
 
 ```{r include=FALSE}
-pd %>%
+pd_no_out %>%
   select(total.surv,fine,decomp,growth,N) %>% cor(use = "pairwise")
 ```
 
@@ -518,7 +512,7 @@ cortable <- c("total.surv","fine","decomp","growth","N") %>%
   data.frame(stringsAsFactors = FALSE) %>%
   set_names(c("var1","var2")) %>%
   group_by(var1,var2) %>%
-  do(cor.test(pd[[.$var1]],pd[[.$var2]])[1:4] %>% as.data.frame) %>%
+  do(cor.test(pd_no_out[[.$var1]],pd_no_out[[.$var2]])[1:4] %>% as.data.frame) %>%
   mutate(est = estimate %>% round(digits = 2) %>% as.character,
          est = ifelse(p.value < 0.000001,"",est),
          est = ifelse(p.value < 0.05,
