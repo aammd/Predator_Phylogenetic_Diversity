@@ -32,6 +32,7 @@ sources:
   - R.scripts/CALC_diet_aic.R
   - R.scripts/CALC_diet_nlsconfint.R
   - R.scripts/DATA_phylo_distance.R
+  - R.scripts/renew_rando.R
   
 targets:
   all: 
@@ -108,15 +109,15 @@ targets:
   modlist:
     command: make_modlist(pd_experiment_phylo_dist)
     
-## randomization test
-  rand.means:
-    command: responses.means(pd_no_out)
+## bootstrap CI on differences
+  mean_diffs_boot:
+    command: make_nonadditive_bootCI(pd_no_out)
     
-  summarize_randoms_phylo:
-    command: make_randomization_summary(rand.means)
+  nonadd_effect:
+    command: relevel_nonadd_boot(mean_diffs_boot)
 
-  summarize_randoms_phylo_pd:
-    command: left_join(summarize_randoms_phylo, phylogenetic_distance)
+  nonadd_effect_pd:
+    command: left_join(nonadd_effect, phylogenetic_distance)
 
   MS/TABLE1.md:
     depends:
@@ -158,7 +159,7 @@ targets:
       height: 500
       
   Figures/FIG_3.png:
-    command: make_fig_3(summarize_randoms_phylo_pd)
+    command: make_fig_3(nonadd_effect_pd)
     plot:
       width: 500
       height: 500

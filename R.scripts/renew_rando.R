@@ -1,4 +1,4 @@
-make_nonadditive_randomization <- function(experiment_data){
+make_nonadditive_bootCI <- function(experiment_data){
   
   ## select responses and gather these into a single column
   long_responses <- experiment_data %>% 
@@ -39,14 +39,18 @@ make_nonadditive_randomization <- function(experiment_data){
               lower = quantile(value, prob = .025, na.rm = TRUE))
   
   ## combine with obseved means
-  left_join(true_means, means_boot_ci)
+  left_join(obs_means, means_boot_ci)
 }
 
 
 ## we need to relevel this so it can be merged and also used
 ## for the FIG3.R function
-relevel_nonadd_rando <- function(nonadd_means){
+relevel_nonadd_boot <- function(nonadd_means){
+  new_combo_names <- c("andro_non" = "Leptagrion.elongatum_Leptagrion.andromache",
+                       "leech_non" = "Leptagrion.elongatum_Hirudinidae",
+                       "tab_non" = "Leptagrion.elongatum_Tabanidae.spB") 
   
   nonadd_means %>% 
+    mutate(species_pair = new_combo_names[nonadd])
     
 }
