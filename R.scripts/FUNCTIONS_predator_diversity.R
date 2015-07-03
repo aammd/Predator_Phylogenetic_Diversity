@@ -146,7 +146,7 @@ list_to_df <- function(listfordf){
 # This function turns a matrix into a dataframe
 matrix_to_df <- function(matrix_for_df){
   matrix_for_df %>% 
-    melt(as.is=TRUE) %>%                    # as.is important for preventing factors
+    melt(as.is=TRUE) %>%      # as.is important for preventing factors
     filter(matrix_for_df %>% 
              upper.tri %>% 
              melt %>% 
@@ -306,49 +306,55 @@ responses <- function(runs)
 ## would do it like this with raw data, anyway.
 
 
-randomz.diff.means <- function(sp.1,sp.2,combo,resp,runs=10)
-{
+randomz.diff.means <- function(.pd, sp.1, sp.2, combo, resp, runs) {
   ##this function applies diffs to two monocultures and one polyculture.
   ## sp.1 = one monoculture
   ## sp.2 = the other monoculture
   ## combo = the combined treatments
   ## resp = the desired response variable
   ## runs = the number of simulations
-  sp.A <- which(pd$treatment==sp.1)
-  sp.B <- which(pd$treatment==sp.2)
-  poly <- which(pd$treatment==combo)
+  sp.A <- which(.pd$treatment == sp.1)
+  sp.B <- which(.pd$treatment == sp.2)
+  poly <- which(.pd$treatment == combo)
   
-  outs <- numeric(length=runs)
+  outs <- numeric(length = runs)
   for (i in 1:runs)
   {
     ##make a matrix of randomized subscripts
-    subs.mat <- cbind(sample(sp.A,5,replace=T),
-                      sample(sp.B,5,replace=T),
-                      sample(poly,5,replace=T))
+    subs.mat <- cbind(sample(sp.A, 5, replace = TRUE),
+                      sample(sp.B, 5, replace = TRUE),
+                      sample(poly, 5, replace = TRUE))
     ## take the mean of each group,
     ## then the mean of both groups (the additive combination)
     ## then substraction of the polyculture mean
     outs[i] <- mean(
-      mean(pd[subs.mat[,1],resp],na.rm=T),
-      mean(pd[subs.mat[,2],resp],na.rm=T)
-    )-mean(pd[subs.mat[,3],resp],na.rm=T)
+      mean(.pd[subs.mat[,1],resp],na.rm = TRUE),
+      mean(.pd[subs.mat[,2],resp],na.rm = TRUE)
+    )-mean(.pd[subs.mat[,3],resp],na.rm = TRUE)
   }
   outs
 }
 
 
-randomize.resp.means  <- function(resp.var,runs)
-{
-  el <-data.frame(diffs=randomz.diff.means("leech","elong",
-                                           "elong + leech",resp=resp.var,runs=runs),
-                  trt='elong + leech')
-  et <-data.frame(diffs=randomz.diff.means("tabanid","elong",
-                                           "elong + tab",resp=resp.var,runs=runs),
-                  trt='elong + tab')
+randomize.resp.means  <- function(resp.var,runs){
+  el <- data.frame(diffs = randomz.diff.means("leech","elong",
+                                              "elong + leech",
+                                              resp = resp.var,
+                                              runs = runs),
+                  trt = 'elong + leech')
   
-  ea <- data.frame(diffs=randomz.diff.means("andro","elong",
-                                            "elong + andro",resp=resp.var,runs=runs),
-                   trt='elong + andro')
+  et <- data.frame(diffs = randomz.diff.means("tabanid","elong",
+                                              "elong + tab",
+                                              resp = resp.var,
+                                              runs = runs),
+                  trt = 'elong + tab')
+  
+  ea <- data.frame(diffs = randomz.diff.means("andro","elong",
+                                              "elong + andro",
+                                              resp = resp.var,
+                                              runs = runs),
+                   trt = 'elong + andro')
+  
   outs <- rbind(el,et,ea)
   outs
 }
@@ -356,19 +362,18 @@ randomize.resp.means  <- function(resp.var,runs)
 
 
 
-responses.means <- function(runs)
-{
-  survival=randomize.resp.means(resp.var="total.surv",runs=runs)
-  fine=randomize.resp.means(resp.var="fine",runs=runs)
-  decomp=randomize.resp.means(resp.var="decomp",runs=runs)
-  growth=randomize.resp.means(resp.var="growth",runs=runs)
-  N=randomize.resp.means(resp.var="X15N",runs=runs)
-  out <- data.frame(survival=survival[,1],
-                    fine=fine[,1],
-                    decomp=decomp[,1],
-                    growth=growth[,1],
-                    N=N[,1],
-                    sp.pair=growth$trt)
+responses.means <- function(runs){
+  survival = randomize.resp.means(resp.var = "total.surv", runs = runs)
+  fine = randomize.resp.means(resp.var = "fine", runs = runs)
+  decomp = randomize.resp.means(resp.var = "decomp", runs = runs)
+  growth = randomize.resp.means(resp.var = "growth", runs = runs)
+  N = randomize.resp.means(resp.var = "X15N", runs = runs)
+  out <- data.frame(survival = survival[,1],
+                    fine = fine[,1],
+                    decomp = decomp[,1],
+                    growth = growth[,1],
+                    N = N[,1],
+                    sp.pair = growth$trt)
   out
 }
 
