@@ -23,8 +23,6 @@ knitr::opts_chunk$set(message = FALSE,
 
 mytheme <- theme_bw()
 
-dist_sim <- read.csv(file = "analyses/distributional_similarity.csv", 
-                     stringsAsFactors = FALSE)
 
 diet_sim <- read.csv(file = "analyses/diet_similarity.csv",
                      stringsAsFactors = FALSE)
@@ -76,7 +74,7 @@ formulae <- c("quadratic" = "$a \\times (PD)^2 + b \\times PD + c$",
               "constant" = "$a$"
               )
 
-dist_sim %>%
+distributional_similarity_AIC %>%
   mutate(Equation = formulae[model]) %>%
   select(model,Equation,AIC) %>%
   pander
