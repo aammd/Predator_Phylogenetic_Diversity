@@ -300,10 +300,7 @@ responses <- function(runs)
 
 # analyze the means -------------------------------------------------------
 
-## at this point, Diane and I decided to change the analysis.  We
-## chose instead to take the average of each group after randomizing,
-## and _then_ to take the subtraction.  This seems logical since we
-## would do it like this with raw data, anyway.
+
 
 
 randomz.diff.means <- function(.pd, sp.1, sp.2, combo, resp, runs) {

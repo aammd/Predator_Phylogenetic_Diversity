@@ -1,3 +1,9 @@
+## Diane and I decided to take the average of each group 
+## after randomizing, and _then_ to take the subtraction. 
+## This similar to the way an effect size would be
+## calculated on raw data, and we use bootstrapping to
+## create confidence intervals
+
 make_nonadditive_bootCI <- function(experiment_data){
   
   ## select responses and gather these into a single column
