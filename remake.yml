@@ -14,6 +14,7 @@ packages:
   - readr
   - gridExtra
   - reshape2
+  - picante
 
 ## source in R functions
 sources: 
@@ -30,6 +31,7 @@ sources:
   - R.scripts/CALC_dist_aic.R
   - R.scripts/CALC_diet_aic.R
   - R.scripts/CALC_diet_nlsconfint.R
+  - R.scripts/DATA_phylo_distance.R
   
 targets:
   all: 
@@ -56,6 +58,9 @@ targets:
   pd:
     command: read_csv("data/pd_exp_cleaned_data.csv")
     
+  predtree_timetree_ages:
+    command: read.tree("data/predator_tree_time.newick")
+    
     
   ## calculated from the previous stuff
   
@@ -63,7 +68,7 @@ targets:
     command: read.csv("raw-data/predator.div.experiment/randomizations.group.means.csv")
 
   phylogenetic_distance:
-    command: read_csv("data/phylogenetic_distance.csv")
+    command: calc_phylogenetic_dist(predtree_timetree_ages) 
     
 
 ## calculations -- data merging
@@ -107,10 +112,7 @@ targets:
     
   modlist:
     command: make_modlist(pd_experiment_phylo_dist)
-    
-  distribution:
-    command: metabolic_distribution()
-  
+
   
   MS/TABLE1.md:
     depends:
