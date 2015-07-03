@@ -23,8 +23,6 @@ knitr::opts_chunk$set(message = FALSE,
 
 mytheme <- theme_bw()
 
-predtree_timetree_ages <- read.tree("../data/reorganized_data/predator_tree_time.newick")
-
 dist_sim <- read.csv(file = "analyses/distributional_similarity.csv", 
                      stringsAsFactors = FALSE)
 
