@@ -42,3 +42,5 @@ cache/
 .remake/
 MS/TABLE1.md
 data/exper.Rdata
+
+methods/toc.md
