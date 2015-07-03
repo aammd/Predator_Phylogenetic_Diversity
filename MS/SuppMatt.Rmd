@@ -23,10 +23,6 @@ knitr::opts_chunk$set(message = FALSE,
 
 mytheme <- theme_bw()
 
-
-diet_sim <- read.csv(file = "analyses/diet_similarity.csv",
-                     stringsAsFactors = FALSE)
-
 prop.eaten <- read.csv(file = "analyses/proportion.eaten.csv")
 
 timetree <- list.files("../data/TreeData/", full.names = TRUE, pattern = "*.csv") %>%
@@ -105,7 +101,7 @@ prop.eaten %>%
 
 **Table S3** Linear, nonlinear and constant functions fit to the relationship of diet similarity and predator phylogenetic distance. These models are weighted by the number of prey species tested, but do not correct for the phylogenetic non-independence of the predator taxa.
 ```{r results='asis',echo=FALSE}
-diet_sim %>% 
+diet_similarity_AIC %>% 
   mutate(Equation = formulae[model]) %>%
   select(model,Equation,AIC) %>%
   pander
