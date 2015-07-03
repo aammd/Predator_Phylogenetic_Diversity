@@ -324,8 +324,7 @@ dietmat <- diet_overlap_phylo %>%
 ```
 
 ```{r TEST_community-sim_as_PD,results='asis'}
-load("../data/exper.Rdata")
-exper_phylo_lm_summary <- exper %>%
+exper_phylo_lm_summary <- experiment_phylo %>%
   #filter(nspp>1) %>%
   lm(overlap~phylodistance, weights = nspp, data = .) %>%
   summary()
