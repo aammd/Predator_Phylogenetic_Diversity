@@ -185,12 +185,10 @@ paired_predator_pianka <- function(pred_x_resource,pred_colname,...){
 }
 
 
-## then we calculate similarity for each.  for the predation data, we must first
-## remove animals not assayed with both predators. the `pianka` function does
-## this by removing those with NA colSums.
-
-## then we merge with phylogenetic data.
-
+## then we calculate similarity for each.  for the predation
+## data, we must first remove animals not assayed with both
+## predators. the `pianka` function does this by removing
+## those with NA colSums.
 
 ## both ecopath and ecosim documentation (and those sources derived from them)
 ## imply a different formula for Pianka's index.
