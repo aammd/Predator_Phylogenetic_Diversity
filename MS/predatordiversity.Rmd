@@ -99,7 +99,7 @@ allow coexistence.
 
 ## Methods
 
-## Study Design
+### Study Design
 
 We conducted this work in Parque Estadual da Ilha do
 Cardoso in São Paulo state, Brazil, in 2011. We collected three datasets to address each of these questions. We examined distributional similarity among predator species (Question 1) by making observations of predator distribution among habitat patches. We examined diet similarity (Question 2) with a series of no-choice feeding trials in under laboratory conditions. Finally, we examined the effects on predators on whole communities (Question 3) with a field experiment, in which predators were added to habitat patches containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
