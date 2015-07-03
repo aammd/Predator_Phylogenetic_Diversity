@@ -318,8 +318,7 @@ randomz.diff.means <- function(.pd, sp.1, sp.2, combo, resp, runs) {
   poly <- which(.pd$treatment == combo)
   
   outs <- numeric(length = runs)
-  for (i in 1:runs)
-  {
+  for (i in 1:runs) {
     ##make a matrix of randomized subscripts
     subs.mat <- cbind(sample(sp.A, 5, replace = TRUE),
                       sample(sp.B, 5, replace = TRUE),
@@ -328,28 +327,34 @@ randomz.diff.means <- function(.pd, sp.1, sp.2, combo, resp, runs) {
     ## then the mean of both groups (the additive combination)
     ## then substraction of the polyculture mean
     outs[i] <- mean(
-      mean(.pd[subs.mat[,1],resp],na.rm = TRUE),
-      mean(.pd[subs.mat[,2],resp],na.rm = TRUE)
-    )-mean(.pd[subs.mat[,3],resp],na.rm = TRUE)
+      mean(.pd[subs.mat[,1],resp][[1]],na.rm = TRUE),
+      mean(.pd[subs.mat[,2],resp][[1]],na.rm = TRUE)
+    ) - mean(.pd[subs.mat[,3],resp][[1]],na.rm = TRUE)
   }
   outs
 }
 
 
-randomize.resp.means  <- function(resp.var,runs){
-  el <- data.frame(diffs = randomz.diff.means("leech","elong",
+randomize.resp.means  <- function(.pd, resp.var,runs){
+  el <- data.frame(diffs = randomz.diff.means(.pd = .pd,
+                                              "leech",
+                                              "elong",
                                               "elong + leech",
                                               resp = resp.var,
                                               runs = runs),
                   trt = 'elong + leech')
   
-  et <- data.frame(diffs = randomz.diff.means("tabanid","elong",
+  et <- data.frame(diffs = randomz.diff.means(.pd = .pd,
+                                              "tabanid",
+                                              "elong",
                                               "elong + tab",
                                               resp = resp.var,
                                               runs = runs),
                   trt = 'elong + tab')
   
-  ea <- data.frame(diffs = randomz.diff.means("andro","elong",
+  ea <- data.frame(diffs = randomz.diff.means(.pd = .pd,
+                                              "andro",
+                                              "elong",
                                               "elong + andro",
                                               resp = resp.var,
                                               runs = runs),
@@ -362,12 +367,22 @@ randomize.resp.means  <- function(resp.var,runs){
 
 
 
-responses.means <- function(runs){
-  survival = randomize.resp.means(resp.var = "total.surv", runs = runs)
-  fine = randomize.resp.means(resp.var = "fine", runs = runs)
-  decomp = randomize.resp.means(resp.var = "decomp", runs = runs)
-  growth = randomize.resp.means(resp.var = "growth", runs = runs)
-  N = randomize.resp.means(resp.var = "X15N", runs = runs)
+responses.means <- function(.pd, runs = 500){
+  survival = randomize.resp.means(.pd = .pd,
+                                  resp.var = "total.surv",
+                                  runs = runs)
+  fine = randomize.resp.means(.pd = .pd,
+                              resp.var = "fine",
+                              runs = runs)
+  decomp = randomize.resp.means(.pd = .pd,
+                                resp.var = "decomp",
+                                runs = runs)
+  growth = randomize.resp.means(.pd = .pd,
+                                resp.var = "growth",
+                                runs = runs)
+  N = randomize.resp.means(.pd = .pd,
+                           resp.var = "X15N",
+                           runs = runs)
   out <- data.frame(survival = survival[,1],
                     fine = fine[,1],
                     decomp = decomp[,1],
