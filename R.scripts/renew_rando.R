@@ -41,3 +41,12 @@ make_nonadditive_randomization <- function(experiment_data){
   ## combine with obseved means
   left_join(true_means, means_boot_ci)
 }
+
+
+## we need to relevel this so it can be merged and also used
+## for the FIG3.R function
+relevel_nonadd_rando <- function(nonadd_means){
+  
+  nonadd_means %>% 
+    
+}
