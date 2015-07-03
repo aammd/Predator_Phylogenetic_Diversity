@@ -17,16 +17,10 @@ fontsize: 12pt
 
 
 ```{r packages_data, results='asis', echo=FALSE,message=FALSE}
-library(magrittr)
-library(dplyr)
-library(pander)
-library(picante)
-library(stargazer)
-library(xtable)
-library(tidyr)
-library(knitr)
-opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE)
-library(ggplot2)
+knitr::opts_chunk$set(message = FALSE,
+                      warning = FALSE,
+                      echo = FALSE)
+
 mytheme <- theme_bw()
 
 # experimental data
