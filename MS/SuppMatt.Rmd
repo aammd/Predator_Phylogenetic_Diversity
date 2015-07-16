@@ -23,7 +23,6 @@ knitr::opts_chunk$set(message = FALSE,
 
 mytheme <- theme_bw()
 
-prop.eaten <- read.csv(file = "analyses/proportion.eaten.csv")
 
 timetree <- list.files("../data/TreeData/", full.names = TRUE, pattern = "*.csv") %>%
   function(d) {basename(d) %>% gsub(".csv","",.) %>% set_names(d,.)} %>%
@@ -86,7 +85,7 @@ distributional_similarity_AIC %>%
 preds <- c("leech","L.andro","L.elong","L.tan","Monopelopia","Tab.A","Tab.B","Tab.C") %>%
   set_names(c("Hirudinidae","Leptagrion.andromache","Leptagrion.elongatum","Leptagrion.tan","Monopelopia","Tabanidae.spA","Tabanidae.spB","Tabanidae.spC"))
 
-prop.eaten %>% 
+prop_eaten %>% 
   select(-X) %>%
   mutate(predator.names = predator.names %>% as.character %>% preds[.]) %>%
   data.frame(row.names = "predator.names") %>% 
