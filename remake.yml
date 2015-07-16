@@ -4,15 +4,16 @@ packages:
   - magrittr
   - lubridate
   - tidyr
-  - mvabund
   - ggplot2
-  - lubridate
   - pryr
   - rmarkdown
   - readr
   - gridExtra
   - reshape2
   - picante
+  - stargazer
+  - pander
+  - xtable
 
 ## source in R functions
 sources: 
@@ -35,11 +36,7 @@ sources:
 targets:
   all: 
     depends:
-      - MS/predatordiversity.md
-      - MS/predatordiversity.pdf
-      - MS/TABLE1.md
       - MS/predatordiversity.docx
-      - Figures/FIG_2.pdf
 
   # occurrance data -- metabolic capacity
   metabolic:
