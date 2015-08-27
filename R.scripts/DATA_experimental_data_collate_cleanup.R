@@ -89,7 +89,7 @@ fine.mass <- fine.mass[!is.na(fine.mass)]
 
 ## combining the final mass data with the full dataset (pd)!
 fine.mass<-data.frame(eu=names(fine.mass),fine=fine.mass)
-pd<-merge(pd,fine.mass,by = "eu")
+pd<-merge(pd,fine.mass,by = "eu",all.x = TRUE)
 
 pd$final_fine <- pd$fine - pd$org_fine_mass
 rm(fine.mass)
@@ -101,6 +101,13 @@ rm(fine.mass)
 # for (i in 2:length(pd)) pd[[i]] <- as.numeric(pd[[i]])
 
 #with(pd, plot(final_fine, fine))
+
+library(dplyr)
+library(magrittr)
+pd %<>% 
+  select(-fine) %>% 
+  rename(fine = final_fine)
+
 
 # EMERGENCE ---------------------------------------------------------------
 
