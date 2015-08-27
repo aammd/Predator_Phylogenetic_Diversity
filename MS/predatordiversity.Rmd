@@ -202,7 +202,7 @@ track the effects of detrital decomposition on bromeliad N cycling, we enriched
 these leaves with ^15^N by fertilizing five *Plinia cauliflora* (Jabuticaba, Myrtaceae; a common Brazilian tree) 
 plants with 40ml pot^-1^ day^-1^ of 5g L^-1^ ammonium sulphate containing 10%
 atom excess of ^15^N. After 21 days we then collected *P. cauliflora* leaves,
-air-dried until constant weight, and then soaked them for three days discarded. This procedure removes excess nutrients from the artificial fertilization.  
+air-dried until constant weight, and then soaked them for three days discarded. This procedure removes excess nutrients from the artificial fertilization. Because some of our prey species consume fine detritus, not coarse, we also added a standard amount of dried fine detritus to our bromeliads (`r round(mean(pd_no_out$org_fine_mass, na.rm = TRUE), 2)`g bromeliad ^-1^ ± `r round(sd(pd_no_out$org_fine_mass, na.rm = TRUE), 2)`) 
 
 Each bromeliad was stocked with a representative insect community. The densities
 of each prey taxon were calculated from the 2008 observational dataset, using
@@ -211,7 +211,7 @@ used were within the range of these calculated abundances, and all experimental
 bromeliads received the same insect community.  Halfway through the experiment,
 insects were added to bromeliads a second time to simulate the continuous
 oviposition that characterizes the system.  Throughout the experiment, all bromeliads were enclosed
-with a mesh cage topped with a malaise trap and checked daily for emergence of
+with a mesh cage topped with a malaise trap an?d checked daily for emergence of
 adults. At the end of the experiment we completely dissected our bromeliads, collecting all invertebrates and detritus remaining inside.
 
 We used a substitutive design which maintained the same predator
