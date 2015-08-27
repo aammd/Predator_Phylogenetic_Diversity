@@ -17,6 +17,7 @@ n15<-read.csv("../raw-data/predator.div.experiment/n15.csv")
 emerg<-read.csv("../raw-data/predator.div.experiment/emerg.csv")
 surv <- read.csv("../raw-data/predator.div.experiment/survived.csv", comment.char="#")
 samp <- read.table("../raw-data/predator.div.experiment/Samples.csv", comment.char="#", sep=",", flush=TRUE, header=TRUE)
+orignal_fine <- read.csv("../raw-data/predator.div.experiment/fine.csv")
 
 ## correctly order the treatment factor
 pd$treatment<-factor(pd$treatment,
@@ -72,18 +73,34 @@ pd$decomp<-with(pd,(mass.g.-leaf.mass)/mass.g.)
 
 # FINE DETRITUS -----------------------------------------------------------
 
+### initial detritus
+orignal_fine %>% head
+names(orignal_fine)[2] <- "org_fine_mass"
+
+pd <- merge(pd, orignal_fine, by.x = "fine.detritus", by.y = "bag")
+
+### final detritus
 fine$fine.mass<-with(fine,full-empty)
 
 fine.mass<-with(subset(fine,experiment=="pred.div"),
-                tapply(fine.mass,eu,sum,na.rm=T))
+                tapply(fine.mass,eu,sum,na.rm=FALSE))
 #cleans it a bit
 fine.mass <- fine.mass[!is.na(fine.mass)]
 
 ## combining the final mass data with the full dataset (pd)!
 fine.mass<-data.frame(eu=names(fine.mass),fine=fine.mass)
-pd<-merge(fine.mass,pd)
-rm(fine.mass)
+pd<-merge(pd,fine.mass,by = "eu")
 
+pd$final_fine <- pd$fine - pd$org_fine_mass
+rm(fine.mass)
+# 
+# #### just to check
+# pdff <- pd
+# ## pd by skipping line 76 to 80
+# for (i in 2:length(pdff)) pdff[[i]] <- as.numeric(pdff[[i]])
+# for (i in 2:length(pd)) pd[[i]] <- as.numeric(pd[[i]])
+
+#with(pd, plot(final_fine, fine))
 
 # EMERGENCE ---------------------------------------------------------------
 
