@@ -332,7 +332,7 @@ elong <- percentpredation %>%
   as.numeric()
 ```
 
-```{r TEST_diet-sim_as_PD,results='asis'}
+```{r TEST_diet-sim_as_PD}
 diet_phylo_lm_summary <- diet_overlap_phylo %>%
   #filter(nspp>1) %>%
   lm(overlap~phylodistance, weights = nspp, data = .) %>%
@@ -346,7 +346,7 @@ dietmat <- diet_overlap_phylo %>%
   as.matrix()
 ```
 
-```{r TEST_community-sim_as_PD,results='asis'}
+```{r TEST_community-sim_as_PD}
 exper_phylo_lm_summary <- experiment_phylo %>%
   #filter(nspp>1) %>%
   lm(overlap~phylodistance, weights = nspp, data = .) %>%
@@ -358,6 +358,8 @@ species, as measured by the niche overlap index (Fig 1b, regression weighted by 
 (Fig 1c, `r F_text(exper_phylo_lm_summary)`)
 
 ### Question 3: similarity in top-down effects
+
+
 
 We analyzed our five response variables from the manipulative experiment by dividing them into four separate and orthogonal tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. Across all four tests, we saw the strongest responses for total prey survivorship (Table 1). Prey survivorship was halved when predators were present (Figure 2a, Table 1). Although individually predator species had similar effects on survivorship (Figure 2c, Table 1), combination of predators with higher phylogenetic diversity showed a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less mortality for prey.  Interestingly, these effects on prey surviorship did not result in a change in the processing of detritus (measured either as reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
 
