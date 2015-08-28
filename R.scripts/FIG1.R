@@ -29,7 +29,7 @@ pd_exper_responses <- function(.pd, .phylogenetic_distance){
 }
 
 make_fig_1 <- function(.metabolic_occur_phylo, .diet_overlap_phylo,
-                       .experiment_phylo, .diet_predictions){
+                       .experiment_phylo, .diet_predictions, .mytheme){
   
   distribution <- .metabolic_occur_phylo %>% 
     ungroup %>% 
@@ -60,7 +60,7 @@ make_fig_1 <- function(.metabolic_occur_phylo, .diet_overlap_phylo,
   
   p1 <- distribution %>% 
     make_nice_gg + 
-    mytheme + 
+    .mytheme + 
     theme(axis.title.x = element_blank(),
           axis.text.x = element_blank())
   
@@ -72,12 +72,12 @@ make_fig_1 <- function(.metabolic_occur_phylo, .diet_overlap_phylo,
               size = 0.5, data = .diet_predictions, linetype = "dashed") +
     geom_line(aes(x = phylodistance, y = lower),
               size = 0.5, data = .diet_predictions, linetype = "dashed") + 
-    mytheme + 
+    .mytheme + 
     theme(axis.title.x = element_blank(),
           axis.text.x = element_blank())
     
   p3 <- make_nice_gg(exper, .ylab = "Community similarity") +
-    mytheme 
+    .mytheme 
   
   g1 <- ggplotGrob(p1)
   g1[["grobs"]][[which(g1$layout$name=="guide-box")]][["grobs"]] <- NULL

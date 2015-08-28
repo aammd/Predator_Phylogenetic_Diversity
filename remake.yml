@@ -39,6 +39,13 @@ targets:
       - MS/predatordiversity.docx
       - MS/predatordiversity.pdf
       
+  ## Figure themes
+  mytheme:
+    command: maketheme()
+    
+  one_point:
+    command: makept()
+      
   # occurrance data -- metabolic capacity
   metabolic:
     command: read_csv("data/predator.cooccur.metabolic.txt")
@@ -149,7 +156,7 @@ targets:
     command: pd_exper_responses(pd_no_out, phylogenetic_distance)
     
   Figures/FIG_1.png:
-    command: make_fig_1(metabolic_occur_phylo, diet_overlap_phylo, experiment_phylo, diet_predictions)
+    command: make_fig_1(metabolic_occur_phylo, diet_overlap_phylo, experiment_phylo, diet_predictions, mytheme)
     plot:
       width: 500
       height: 500
