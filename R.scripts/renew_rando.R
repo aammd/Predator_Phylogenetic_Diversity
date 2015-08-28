@@ -45,9 +45,21 @@ make_nonadditive_bootCI <- function(experiment_data){
               lower = quantile(value, prob = .025, na.rm = TRUE))
   
   ## combine with obseved means
-  left_join(obs_means, means_boot_ci)
+  list(obs_ci = left_join(obs_means, means_boot_ci),
+       randos = randomized_means)
 }
 
+extract_obs_ci <- function(list_obj){
+  list_obj[["obs_ci"]]
+}
+
+make_rando_pvals <- function(.mean_diffs_boot_list){
+  .mean_diffs_boot_list[[2]] %>% 
+    group_by(response, nonadd) %>% 
+    summarize(rando_p  = sum(value > 0, na.rm = TRUE)/n()) %>% 
+    arrange(desc(rando_p)) %>% 
+    data.frame
+}  
 
 ## we need to relevel this so it can be merged and also used
 ## for the FIG3.R function
