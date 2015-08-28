@@ -233,10 +233,18 @@ production of fine particulate organic matter (FPOM),  bromeliad growth,
 uptake of detrital nitrogen into bromeliad tissue, and survival of
 invertebrate prey (emerged adults + surviving larvae). We measured decomposition by once again passing the bromeliad water through a 850 µm sieve, collecting the detritus on top, drying in an oven and weighing. We measured the
 production of FPOM by taking the remaining liquid and filtering it on pre-weighed coffee filters, which were then dried and reweighed. We measured bromeliad growth by measuring five leaves per plant from axil to tip, and averaging the increase in length. We
-measured uptake of labeled detrital nitrogen by analysing three innermost
+measured uptake of labeled detrital nitrogen by analyzing three innermost
 (closest to meristem) bromeliad leaves. Finally, we quantified the species
 composition and survivorship of invertebrate prey by adding together counts of
-emerging adult insects with counts of surviving larvae.
+emerging adult insects with counts of surviving larvae. 
+
+Labeled bean leaves were oven-dried at 70C before their mass was determined.
+At the end of experiment, we sampled three new bromeliad leaves for isotopic
+(^15^N) and nitrogen concentration analyses. These analyses were performed at
+the Stable Isotope Facility laboratory (UC Davis, CA, USA) using continuous
+flow isotope ratio mass spectrometer (20–20 mass spectrometer; PDZ Europa,
+Sandbach, England) after sample combustion to N~2~ at 1000C by an on-line
+elemental analyzer (PDZ Europa ANCA-GSL).
 
 ## Data analysis
 
