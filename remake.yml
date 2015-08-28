@@ -162,7 +162,7 @@ targets:
       height: 500
  
   Figures/FIG_2.png:
-    command: make_fig_2(pd_no_out)
+    command: make_fig_2(pd_no_out, mytheme, one_point)
     plot:
       width: 500
       height: 500
