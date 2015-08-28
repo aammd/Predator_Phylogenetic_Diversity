@@ -137,7 +137,7 @@ Odonata:Coenagrionidae), two species of Horse Fly larvae
 To examine distributional similarity among predator species, we used a
 detailed survey of bromeliad communities. In 2008, each bromeliad was dissected
 and washed to remove invertebrates and the resulting water was filtered
-through two sieves (250 and 850 µm), which removed particulate organic matter
+through two sieves (150 and 850 µm), which removed particulate organic matter
 without losing any invertebrates. All invertebrates were counted and
 identified to the lowest taxonomic level possible. The body length of all
 individuals was measured when possible for small and medium-sized taxa (< 1cm
@@ -183,24 +183,21 @@ of the effect of each predator species (single-species treatments), as well as t
 detection of non-additive effects in predator combinations.
 
 
-To evaluate the effect of these predators on natural bromeliad systems, we created bromeliad communities that were as similar as possible to each other, and also the the average composition of a bromeliad. In Feburary 2011 we collected bromeliads with a volume between 90 and 200ml,
+To evaluate the effect of these predators on natural bromeliad systems, we created bromeliad communities that were as similar as possible to each other, and also the the average composition of a bromeliad. In February 2011 we collected bromeliads with a volume between 90 and 200ml,
 thoroughly washed them to remove organisms and detritus, and soaked them for 12 hours in a
-tub of water. We then hung all bromeliads for 48 hours to dry. This procedure was indended to remove all existing insects; one bromeliad dissected
+tub of water. We then hung all bromeliads for 48 hours to dry. This procedure was intended to remove all existing insects; one bromeliad dissected
 afterwards contained no insects. We simulated natural detritus inputs from the canopy by adding a standard mass of dried leaves of the species _Plinia cauliflora_ (1.5g bromeliad ^-1^ ± 0.02, mean ± sd). In order to
 track the effects of detrital decomposition on bromeliad N cycling, we enriched
 these leaves with ^15^N by fertilizing five *Plinia cauliflora* (Jabuticaba, Myrtaceae; a common Brazilian tree) 
 plants with 40ml pot^-1^ day^-1^ of 5g L^-1^ ammonium sulphate containing 10%
 atom excess of ^15^N. After 21 days we then collected *P. cauliflora* leaves,
-air-dried until constant weight, and then soaked them for three days discarded. This procedure removes excess nutrients from the artificial fertilization. Because some of our prey species consume fine detritus, not coarse, we also added a standard amount of dried fine detritus to our bromeliads (0.23g bromeliad ^-1^ ± 0.02) 
+air-dried until constant weight, and then soaked them for three days discarded. This procedure removes excess nutrients from the artificial fertilization. Because some of our prey species consume fine detritus, not coarse, we also added a standard amount of dried fine detritus to our bromeliads (0.23g bromeliad ^-1^ ± 0.02). Throughout the experiment We separated coarse and fine detritus by passing water from bromeliads through two sieves (as above for observational work, 150 and 850 µm). We defined "coarse detritus" as anything retained on the 850 µm sieve, and "fine detritus" as anything found on the 150 µm sieve.
 
-Each bromeliad was stocked with a representative insect community. The densities
-of each prey taxon were calculated from the 2008 observational dataset, using
-data from bromeliads of similar size to those in our experiment.  All densities
-used were within the range of these calculated abundances, and all experimental
-bromeliads received the same insect community.  Halfway through the experiment,
-insects were added to bromeliads a second time to simulate the continuous
-oviposition that characterizes the system.  Throughout the experiment, all bromeliads were enclosed
-with a mesh cage topped with a malaise trap an?d checked daily for emergence of
+Each bromeliad was stocked with a representative insect community (See supplementary material). The densities
+of each prey taxon were calculated from the observational dataset (Question 1), using
+data from bromeliads of similar size to those in our experiment. We ran this experiment in two temporal blocks: three complete replicates of all treatments were set up on 20 February 2011, and two on 08 March 2011. We placed the prey species into the bromeliad, allowed two days for the prey to adjust, then added predators. After 26 days from the beginning of each block, we added the same prey community a second time to simulate the continuous
+oviposition that characterizes the system. We concluded the experiment 43 days from the first planting (20 April 2011). Throughout the experiment, all bromeliads were enclosed
+with a mesh cage topped with a malaise trap and checked daily for emergence of
 adults. At the end of the experiment we completely dissected our bromeliads, collecting all invertebrates and detritus remaining inside.
 
 We used a substitutive design which maintained the same predator
@@ -216,10 +213,24 @@ of "metabolic capacity", or the potential energy requirements of a species
 mass raised to the power of 0.69 (an invertebrate-specific exponent determined by Peters 19xx for invertebrates and confirmed by Chown et al, [-@Chown2007]); this reflects the nonlinearity of feeding rate
 on body size across many invertebrate taxa. 
 
-To quantify the effect of predators on ecosystem function, we measured five community and ecosystem response variables: production of fine
-particulate organic matter (FPOM), decomposition of coarse detritus, bromeliad
-growth, uptake of detrital nitrogen into bromeliad tissue, and survival of invertebrate prey (emerged adults +
-surviving larvae). At the end of the experiment, we measured the decrease in coarse detritus, and the increase in fine, by separating the collected detritus on a sieve and air drying it to constant weight before weighing. We measured uptake of labelled detrital nitrogen by analysing three innermost (closest to meristem) bromeliad leaves. Finally, we quantified the species composition and survivorship of invertebrate prey by adding together counts of emerging adult insects with counts of surviving larvae.
+At the end of the experiment, to quantify the effect of predators on ecosystem function, we measured five
+community and ecosystem response variables: decomposition of coarse detritus,
+production of fine particulate organic matter (FPOM),  bromeliad growth,
+uptake of detrital nitrogen into bromeliad tissue, and survival of
+invertebrate prey (emerged adults + surviving larvae). We measured decomposition by once again passing the bromeliad water through a 850 µm sieve, collecting the detritus on top, drying in an oven and weighing. We measured the
+production of FPOM by taking the remaining liquid and filtering it on pre-weighed coffee filters, which were then dried and reweighed. We measured bromeliad growth by measuring five leaves per plant from axil to tip, and averaging the increase in length. We
+measured uptake of labeled detrital nitrogen by analyzing three innermost
+(closest to meristem) bromeliad leaves. Finally, we quantified the species
+composition and survivorship of invertebrate prey by adding together counts of
+emerging adult insects with counts of surviving larvae. 
+
+Labeled bean leaves were oven-dried at 70C before their mass was determined.
+At the end of experiment, we sampled three new bromeliad leaves for isotopic
+(^15^N) and nitrogen concentration analyses. These analyses were performed at
+the Stable Isotope Facility laboratory (UC Davis, CA, USA) using continuous
+flow isotope ratio mass spectrometer (20–20 mass spectrometer; PDZ Europa,
+Sandbach, England) after sample combustion to N~2~ at 1000C by an on-line
+elemental analyzer (PDZ Europa ANCA-GSL).
 
 ## Data analysis
 
@@ -271,14 +282,17 @@ species, as measured by the niche overlap index (Fig 1b, regression weighted by 
 
 ### Question 3: similarity in top-down effects
 
+
+
+
 We analyzed our five response variables from the manipulative experiment by dividing them into four separate and orthogonal tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. Across all four tests, we saw the strongest responses for total prey survivorship (Table 1). Prey survivorship was halved when predators were present (Figure 2a, Table 1). Although individually predator species had similar effects on survivorship (Figure 2c, Table 1), combination of predators with higher phylogenetic diversity showed a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less mortality for prey.  Interestingly, these effects on prey surviorship did not result in a change in the processing of detritus (measured either as reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
 
 In order to further understand the effects of predator combinations, we tested for non-additive effects of predator phylogenetic diversity with a randomization test, and once again found the greatest effect for prey
-survival. When we compared the actual effects of predator combination with that expected from the appropriate predator monocultures, we found again that predator pairs wit the greatest phylogenetic diversity had the highest prey survival. While effects of _L. andromache_ and _L. elongatum_ in combination
+survival. When we compared the actual effects of predator combination with that expected from the appropriate predator monocultures, we found again that predator pairs with the greatest phylogenetic diversity had the highest prey survival. While effects of _L. andromache_ and _L. elongatum_ in combination
 were quite similar to the effect of either alone, when _L. elongatum_ was
 placed in the same plant as either a Tabanid larva or leeches, on average five
 more prey individuals (18% of total prey community) survived till the end of
-the experiment (Fig 3).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
+the experiment (Fig 3; Tabanid randomization p = 0.01, Leech randomization p = 0.032).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
 
 
 ### Figures
