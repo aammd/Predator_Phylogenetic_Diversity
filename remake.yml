@@ -37,7 +37,8 @@ targets:
   all: 
     depends:
       - MS/predatordiversity.docx
-
+      - MS/predatordiversity.pdf
+      
   # occurrance data -- metabolic capacity
   metabolic:
     command: read_csv("data/predator.cooccur.metabolic.txt")
@@ -166,3 +167,11 @@ targets:
       - Figures/FIG_2.png
       - Figures/FIG_3.png
     command: render("MS/predatordiversity.md", output_format = I("word_document"))
+    
+  MS/predatordiversity.pdf:
+    depends:
+      - Figures/FIG_1.png
+      - Figures/FIG_2.png
+      - Figures/FIG_3.png
+    command: render("MS/predatordiversity.md", output_format = I("pdf_document"))
+
