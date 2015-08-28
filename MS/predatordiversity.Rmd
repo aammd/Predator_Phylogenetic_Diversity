@@ -355,7 +355,7 @@ exper_phylo_lm_summary <- experiment_phylo %>%
 
 Phylogenetically distant predators differed in their preference of prey
 species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, `r F_text(diet_phylo_lm_summary)`). Despite the decline in diet similarity with phylogenetic distance, the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
-(Fig 1c, `r F_text(exper_phylo_lm_summary)`)
+(Fig 1c, `r F_text(exper_phylo_lm_summary)`, distance measured as **euclidian**)
 
 ### Question 3: similarity in top-down effects
 ```{r summarize_randos}

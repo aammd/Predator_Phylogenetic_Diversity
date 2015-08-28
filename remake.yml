@@ -135,6 +135,7 @@ targets:
     
   MS/predatordiversity.md:
     depends: 
+      - rando_pvals
       - pd_no_out
       - feeding_trials
       - nodeages
@@ -176,7 +177,6 @@ targets:
       
   MS/predatordiversity.docx:
     depends:
-      - rando_pvals
       - Figures/FIG_1.png
       - Figures/FIG_2.png
       - Figures/FIG_3.png
@@ -184,7 +184,6 @@ targets:
     
   MS/predatordiversity.pdf:
     depends:
-      - rando_pvals
       - Figures/FIG_1.png
       - Figures/FIG_2.png
       - Figures/FIG_3.png

@@ -278,7 +278,7 @@ Chironomidae) and the deepest taxonomic divide is between all insects present an
 
 Phylogenetically distant predators differed in their preference of prey
 species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, F~1,26~=5.98, p=0.022). Despite the decline in diet similarity with phylogenetic distance, the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
-(Fig 1c, F~1,4~=0.6, p=0.48)
+(Fig 1c, F~1,4~=0.6, p=0.48, distance measured as **euclidian**)
 
 ### Question 3: similarity in top-down effects
 
