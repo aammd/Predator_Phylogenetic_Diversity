@@ -106,8 +106,14 @@ targets:
     command: make_modlist(pd_experiment_phylo_dist)
     
 ## bootstrap CI on differences
-  mean_diffs_boot:
+  mean_diffs_boot_list:
     command: make_nonadditive_bootCI(pd_no_out)
+    
+  mean_diffs_boot:
+    command: extract_obs_ci(mean_diffs_boot_list)
+    
+  rando_pvals:
+    command: make_rando_pvals(mean_diffs_boot_list)
     
   nonadd_effect:
     command: relevel_nonadd_boot(mean_diffs_boot)
@@ -163,6 +169,7 @@ targets:
       
   MS/predatordiversity.docx:
     depends:
+      - rando_pvals
       - Figures/FIG_1.png
       - Figures/FIG_2.png
       - Figures/FIG_3.png
@@ -170,6 +177,7 @@ targets:
     
   MS/predatordiversity.pdf:
     depends:
+      - rando_pvals
       - Figures/FIG_1.png
       - Figures/FIG_2.png
       - Figures/FIG_3.png
