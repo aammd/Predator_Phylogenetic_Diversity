@@ -227,14 +227,12 @@ of "metabolic capacity", or the potential energy requirements of a species
 mass raised to the power of 0.69 (an invertebrate-specific exponent determined by Peters 19xx for invertebrates and confirmed by Chown et al, [-@Chown2007]); this reflects the nonlinearity of feeding rate
 on body size across many invertebrate taxa. 
 
-To quantify the effect of predators on ecosystem function, we measured five
+At the end of the experiment, to quantify the effect of predators on ecosystem function, we measured five
 community and ecosystem response variables: decomposition of coarse detritus,
 production of fine particulate organic matter (FPOM),  bromeliad growth,
 uptake of detrital nitrogen into bromeliad tissue, and survival of
-invertebrate prey (emerged adults + surviving larvae). We measured the
-production of FPOM by At the end of the experiment, we measured the decrease
-in coarse detritus, and the increase in fine, by separating the collected
-detritus on a sieve and air drying it to constant weight before weighing. We
+invertebrate prey (emerged adults + surviving larvae). We measured decomposition by once again passing the bromeliad water through a 850 µm sieve, collecting the detritus on top, drying in an oven and weighing. We measured the
+production of FPOM by taking the remaining liquid and filtering it on pre-weighed coffee filters, which were then dried and reweighed. We measured bromeliad growth by measuring five leaves per plant from axil to tip, and averaging the increase in length. We
 measured uptake of labeled detrital nitrogen by analysing three innermost
 (closest to meristem) bromeliad leaves. Finally, we quantified the species
 composition and survivorship of invertebrate prey by adding together counts of
