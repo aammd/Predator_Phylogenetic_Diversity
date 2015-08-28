@@ -358,17 +358,21 @@ species, as measured by the niche overlap index (Fig 1b, regression weighted by 
 (Fig 1c, `r F_text(exper_phylo_lm_summary)`)
 
 ### Question 3: similarity in top-down effects
+```{r summarize_randos}
+tab_nonadd <- subset(rando_pvals, response == "total.surv" & nonadd == "tab_non")[["rando_p"]]
+leech_nonadd <- subset(rando_pvals, response == "total.surv" & nonadd == "leech_non")[["rando_p"]]
+```
 
 
 
 We analyzed our five response variables from the manipulative experiment by dividing them into four separate and orthogonal tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. Across all four tests, we saw the strongest responses for total prey survivorship (Table 1). Prey survivorship was halved when predators were present (Figure 2a, Table 1). Although individually predator species had similar effects on survivorship (Figure 2c, Table 1), combination of predators with higher phylogenetic diversity showed a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less mortality for prey.  Interestingly, these effects on prey surviorship did not result in a change in the processing of detritus (measured either as reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
 
 In order to further understand the effects of predator combinations, we tested for non-additive effects of predator phylogenetic diversity with a randomization test, and once again found the greatest effect for prey
-survival. When we compared the actual effects of predator combination with that expected from the appropriate predator monocultures, we found again that predator pairs wit the greatest phylogenetic diversity had the highest prey survival. While effects of _L. andromache_ and _L. elongatum_ in combination
+survival. When we compared the actual effects of predator combination with that expected from the appropriate predator monocultures, we found again that predator pairs with the greatest phylogenetic diversity had the highest prey survival. While effects of _L. andromache_ and _L. elongatum_ in combination
 were quite similar to the effect of either alone, when _L. elongatum_ was
 placed in the same plant as either a Tabanid larva or leeches, on average five
 more prey individuals (18% of total prey community) survived till the end of
-the experiment (Fig 3).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
+the experiment (Fig 3; Tabanid randomization p = `r tab_nonadd`, Leech randomization p = `r leech_nonadd`).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
 
 
 ### Figures
