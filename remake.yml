@@ -144,6 +144,7 @@ targets:
       - diet_overlap_phylo
       - MS/TABLE1.md
       - experiment_phylo
+      - MS/formatting/pdef.bib
     knitr: true
     
 #  MS/predatordiversity.pdf:

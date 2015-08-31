@@ -255,7 +255,7 @@ In our third and final analysis we quantified the nondditive effect of predator 
 response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
 (n=5 for each predator species).  We generated bootstrap confidence intervals for
 these non-additive effects; confidence intervals which do not overlap zero
-indicate a significant non-additive effect of a predator combination. We used R version 3.2.0 [@rcore] for most calculations, and vegan [@vegan] for the distance metrics.
+indicate a significant non-additive effect of a predator combination. We used R version 3.2.0 [@rcore] for most calculations, picante [@picante] for calculation phylogenetic distances matrices, and vegan [@vegan] for distance metrics.
 
 ## Results
 
