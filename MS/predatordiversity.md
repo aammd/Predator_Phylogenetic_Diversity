@@ -12,8 +12,11 @@ output:
   word_document:
     reference_docx: formatting/reference.docx
 geometry: margin=1in
-bibliography: /home/andrew/Documents/reference/Mendeley_reference_lists/@MS_pdpaper.bib
+bibliography: formatting/pdef.bib
+csl: formatting/the-american-naturalist.csl
 ---
+
+
 
 
 
