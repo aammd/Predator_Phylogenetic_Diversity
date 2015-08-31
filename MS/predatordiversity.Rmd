@@ -12,7 +12,8 @@ output:
   word_document:
     reference_docx: formatting/reference.docx
 geometry: margin=1in
-bibliography: /home/andrew/Documents/reference/Mendeley_reference_lists/@MS_pdpaper.bib
+bibliography: formatting/pdef.bib
+csl: formatting/the-american-naturalist.csl
 ---
 
 ```{r options_packages_data, message=FALSE, echo=FALSE}
@@ -20,6 +21,8 @@ bibliography: /home/andrew/Documents/reference/Mendeley_reference_lists/@MS_pdpa
 knitr::opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE)
 
 ```
+
+
 
 ## Introduction
 
