@@ -169,7 +169,7 @@ targets:
       height: 500
       
   Figures/FIG_3.png:
-    command: make_fig_3(nonadd_effect_pd)
+    command: make_fig_3(nonadd_effect_pd, mytheme)
     plot:
       width: 500
       height: 500
