@@ -50,7 +50,7 @@ results to predator effects at the scale of a local community. These
 clade specific studies often find weak evidence for phylogenetic signal in
 ecologically relevant traits. In contrast, studies at the level of the whole biosphere
 [@Gomez2010;@Bersier2008] demonstrate that related organisms often have similar
-interspecific interactions, i.e. related predators often consume similar prey. At the local scale, only a few studes have examined how phylogeny may shape food webs (**Rezende et al 2009, Cagnolo et al**)
+interspecific interactions, i.e. related predators often consume similar prey. At the local scale, only a few studies have examined how phylogeny may shape food webs [@Rezende2009;@Cagnolo2011].
 
 Within a local community, the effect of predator species diversity will depend on three factors: how predators are distributed among habitats, how they interact with prey, and how they interact with each other. To the extent that phylogenetic relationships are correlated with all of these factors, phylogeny may be able to predict the impact of predator diversity on communities. For instance, phylogeny could constrain predator species co-occurrence if more distant phylogenetic 
 relatives have more distinct fundamental niches, while close relatives are too
@@ -74,7 +74,7 @@ Odonata:Coenagrionidae) are important predators, dramatically reducing insect
 colonization **Hammill et al Ecosystems** and reducing insect emergence [@Starzomski2010] and increases
 nutrient cycling [@Ngai2006]). However, other predators are also found in
 bromeliads, including large predaceous fly larvae (Diptera: Tabanidae) and
-predatory leeches (**Frank and Lounibos**). Predators have been shown to have large top0down effects on ecosystem functions in bromelaids, including nitrogen uptake by the plant (**ngai and Srivastava**), detrital decomposition (**Srivastava oecologia, srivastava and Bell**) and CO~2~ flux (**Atwood et al nature Geosci, Atwood et al Oecologia**).
+predatory leeches [@Frank2009]. Predators have been shown to have large top-down effects on ecosystem functions in bromelaids, including nitrogen uptake by the plant [@Ngai2006], detrital decomposition [] and CO~2~ flux (**Atwood et al nature Geosci, Atwood et al Oecologia**).
 
 We used a series of observations, lab feeding trials, and manipulative field
 experiments to measure how the phylogenetic diversity of the predator
