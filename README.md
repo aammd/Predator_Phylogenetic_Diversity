@@ -8,3 +8,6 @@ The original data, analysis techniques and writing in these documents are copyri
 
 <a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/deed.en_GB"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Predator phylogenetic diversity</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">A. Andrew M. MacDonald, D.S. Srivastava and G.Q. Romero</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/deed.en_GB">Creative Commons Attribution 2.5 Canada License</a>.
 
+Data (contents of xxx) are under CC-0 waiver
+Writing (files ending in .md) licenced are under CC-BY
+Code (all other files) licenced by MIT/Apache/whatevs
