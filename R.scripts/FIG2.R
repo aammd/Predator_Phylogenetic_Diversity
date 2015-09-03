@@ -2,6 +2,8 @@
 make_fig_2 <- function(pd, .mytheme, .one_point){
   .mytheme <- .mytheme + theme(axis.title.y = ggplot2::element_blank())
   # presence ----------------------------------------------------------------
+  topy <- c(4, 16)
+  boty <- c(0, 14)
   
   pred_present <- pd %>%
     select(treatment, total.surv) %>%
@@ -20,7 +22,8 @@ make_fig_2 <- function(pd, .mytheme, .one_point){
     #              data = subset(pred_present, treatment == "control")) + 
     xlab("Predator presence") + 
     facet_grid(~ plotcode) +
-    .mytheme
+    .mytheme + 
+    coord_cartesian(ylim = topy)
   
   
   # number ------------------------------------------------------------------
@@ -37,7 +40,8 @@ make_fig_2 <- function(pd, .mytheme, .one_point){
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
     xlab("Predator number") + 
     facet_grid(~ plotcode) +
-    .mytheme
+    .mytheme + 
+    coord_cartesian(ylim = topy)
   
   
   # identity ----------------------------------------------------------------
@@ -85,7 +89,8 @@ make_fig_2 <- function(pd, .mytheme, .one_point){
     scale_x_discrete(labels = x_cat)+
     xlab("Predator identity") +
     facet_grid(~ plotcode) +
-    .mytheme
+    .mytheme + 
+    coord_cartesian(ylim = boty)
   
   
   # Combinations ------------------------------------------------------------
@@ -102,7 +107,8 @@ make_fig_2 <- function(pd, .mytheme, .one_point){
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
     xlab("Phylogenetic diversity") +
     facet_grid(~ plotcode) + 
-    .mytheme
+    .mytheme + 
+    coord_cartesian(ylim = boty)
   
   
   # png("../Figures/FIG_2.png", height = 500, width = 500)
