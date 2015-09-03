@@ -107,6 +107,7 @@ make_fig_2 <- function(pd, .mytheme, .one_point){
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
     xlab("Phylogenetic diversity") +
     facet_grid(~ plotcode) + 
+    scale_x_discrete(labels = list("Low", "Medium", "High")) +
     .mytheme + 
     coord_cartesian(ylim = boty)
   
