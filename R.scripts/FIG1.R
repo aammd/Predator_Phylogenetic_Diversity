@@ -1,30 +1,44 @@
 
 pd_exper_responses <- function(.pd, .phylogenetic_distance){
-  .pd %>%
+  pd_spp_resp <- .pd %>%
     filter(treatment %in% c("andro","elong","tabanid","leech")) %>%
     select(treatment, Culicidae:Scirtidae) %>%
-    group_by(treatment) %>%
-    summarise_each(funs(mean)) %>%
-    paired_predator_pianka(pred_colname = "treatment", ... = -treatment) %>%
-    ungroup %>%
-    mutate(species_pair = ifelse(species_pair == "andro_elong",
-                                 "Leptagrion.andromache_Leptagrion.elongatum",
-                                 species_pair),
-           species_pair = ifelse(species_pair == "andro_leech",
-                                 "Leptagrion.andromache_Hirudinidae",
-                                 species_pair),
-           species_pair = ifelse(species_pair == "andro_tabanid",
-                                 "Leptagrion.andromache_Tabanidae.spA",
-                                 species_pair),
-           species_pair = ifelse(species_pair == "elong_leech",
-                                 "Leptagrion.elongatum_Hirudinidae",
-                                 species_pair),
-           species_pair = ifelse(species_pair == "elong_tabanid",
-                                 "Leptagrion.elongatum_Tabanidae.spA",
-                                 species_pair),
-           species_pair = ifelse(species_pair == "leech_tabanid",
-                                 "Tabanidae.spA_Hirudinidae",
-                                 species_pair)) %>%
+    group_by(treatment)
+  
+  rns <- pd_spp_resp[[1]]
+  spp_resp_mat <- as.matrix(pd_spp_resp[-1])
+  rownames(spp_resp_mat) <- rns
+  
+  dist_resp <- vegan::vegdist(spp_resp_mat)
+  
+  df_dist_resp <- dist_resp %>% 
+    as.matrix %>% 
+    as.data.frame %>% 
+    add_rownames %>% 
+    gather(colname, distval, -rowname) %>% 
+    distinct
+  
+  ### filter out intraspecific variation
+  answers <- df_dist_resp %>% 
+    filter(rowname != colname) %>% 
+    ## group by species pairs. mean and sd
+    unite(rowname, colname, col = species_pair) %>% 
+    group_by(species_pair) %>% 
+    summarize(overlap = mean(distval), sd_dist = sd(distval), nspp = n()) 
+  
+  answers %>% 
+    ungroup %>% 
+    mutate(species_pair = ifelse(species_pair == "andro_elong", "Leptagrion.andromache_Leptagrion.elongatum", 
+                                 species_pair), 
+           species_pair = ifelse(species_pair == "andro_leech", "Leptagrion.andromache_Hirudinidae", species_pair), 
+           species_pair = ifelse(species_pair == "andro_tabanid", 
+                                 "Leptagrion.andromache_Tabanidae.spA", species_pair), 
+           species_pair = ifelse(species_pair == "elong_leech", 
+                                 "Leptagrion.elongatum_Hirudinidae", species_pair), 
+           species_pair = ifelse(species_pair == "elong_tabanid", 
+                                 "Leptagrion.elongatum_Tabanidae.spA", species_pair), 
+           species_pair = ifelse(species_pair == "leech_tabanid", 
+                                 "Tabanidae.spA_Hirudinidae", species_pair)) %>% 
     left_join(.phylogenetic_distance)
 }
 
@@ -76,8 +90,9 @@ make_fig_1 <- function(.metabolic_occur_phylo, .diet_overlap_phylo,
     theme(axis.title.x = element_blank(),
           axis.text.x = element_blank())
     
-  p3 <- make_nice_gg(exper, .ylab = "Community similarity") +
-    .mytheme 
+  p3 <- make_nice_gg(exper, .ylab = "Community dissimilarity\n(Bray-Curtis) ") +
+    .mytheme +
+    coord_cartesian(ylim = c(0,1))
   
   g1 <- ggplotGrob(p1)
   g1[["grobs"]][[which(g1$layout$name=="guide-box")]][["grobs"]] <- NULL
