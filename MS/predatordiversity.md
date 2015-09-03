@@ -281,7 +281,7 @@ Chironomidae) and the deepest taxonomic divide is between all insects present an
 
 Phylogenetically distant predators differed in their preference of prey
 species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, F~1,26~=5.98, p=0.022). Despite the decline in diet similarity with phylogenetic distance, the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
-(Fig 1c, F~1,4~=0.6, p=0.48, distance measured as **euclidian**)
+(Fig 1c, F~1,4~=1.46, p=0.29, distance measured as Bray-Curtis dissimilarity)
 
 ### Question 3: similarity in top-down effects
 
@@ -302,7 +302,7 @@ the experiment (Fig 3; Tabanid randomization p = 0.01, Leech randomization p = 0
 
 ![niche overlap](../Figures/FIG_1.png)
 
-**Figure 1**: Phylogenetic distance and niche overlap among predators. Our measures of niche overlap were: (a) distribution among bromeliads; (b) diet preferences and (c) community composition of surviving prey. We measured distributional similarity (a) by counting all predators in 25 bromeliads, estimating their total metabolic capacity, and calculating niche overlap (Pianka's index) among all pairs of species. We measured diet preferences (b) for a subset of these predators by offering them various prey in no-choice trials, and again calculated niche overlap among them. Finally, we measured community composition of surviving prey (c) at the end of an experiment in which predators were placed in bromeliads with standardized communities (see main text for details). We used Pianka's index of niche overlap (1 = complete niche overlap) and tested various nonlinear and linear models (see Appendix) to the relationship between this index and phylogenetic distance. Solid lines show significant model fit, and dashed lines show bootstrap 95% quantiles.
+**Figure 1**: Phylogenetic distance and niche overlap among predators. Our measures of niche overlap were: (a) distribution among bromeliads and  (b) diet preferences. We then show the effect of predatory similarity on (c) community dissimilarity of surviving prey (Bray-Curtis dissimilarity). We measured distributional similarity (a) by counting all predators in 25 bromeliads, estimating their total metabolic capacity, and calculating niche overlap (Pianka's index) among all pairs of species. We measured diet preferences (b) for a subset of these predators by offering them various prey in no-choice trials, and again calculated niche overlap among them. Finally, we measured community composition of surviving prey (c) at the end of an experiment in which predators were placed in bromeliads with standardized communities (see main text for details). For (a) and (b) we used Pianka's index of niche overlap (1 = complete niche overlap) and tested various nonlinear and linear models (see Appendix) of the relationship between this index and phylogenetic distance. Solid lines show significant model fit, and dashed lines show bootstrap 95% quantiles.
 
 ![prey survival](../Figures/FIG_2.png)
 
