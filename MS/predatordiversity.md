@@ -72,7 +72,7 @@ manipulations which would be difficult in most natural systems.  Within this
 aquatic food web, damselfly larvae (e.g. *Leptagrion* spp.,
 Odonata:Coenagrionidae) are important predators, dramatically reducing insect
 colonization **Hammill et al Ecosystems** and reducing insect emergence [@Starzomski2010] and increases
-nutrient cycling [@Ngai2006]). However, other predators are also found in
+nutrient cycling [@Ngai2006]. However, other predators are also found in
 bromeliads, including large predaceous fly larvae (Diptera: Tabanidae) and
 predatory leeches [@Frank2009]. Predators have been shown to have large top-down effects on ecosystem functions in bromelaids, including nitrogen uptake by the plant [@Ngai2006], detrital decomposition [] and CO~2~ flux (**Atwood et al nature Geosci, Atwood et al Oecologia**).
 
@@ -362,7 +362,7 @@ functionally similar. Similarly, Rezende et al. [-@Rezende2009] found that both 
 phylogeny determined the food web "compartment" (shared predator-prey
 interactions) of predators in a marine foodweb. 
 
-### Phylogenetic diversity and non-additive effects
+### Phylogenetic distance and non-additive effects
 
 We found that the presence of predators reduced prey survival, but that this
 reduction was less for more phylogenetically-diverse combinations of
@@ -383,6 +383,10 @@ predators, and therefore shows a larger effect, than
 would other species in this community.  However, this is the most common
 predator in this community and our results indicate that its top-down effects
 are likely to be frequently reduced by the presence of other predators.
+
+These differences in survival did not create differences in decomposition, nor
+subsequent Nitrogen uptake by bromeliads. This contrasts with the increase in N updake found by Ngai and Srivastava
+[-@Ngai2006] in Costa Rican bromeliads. 
 
 In most natural communities, diverse predator species co-occur and often
 simultaneously affect prey species. By combining an observational study,
