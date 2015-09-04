@@ -71,10 +71,10 @@ of these habitats permits direct manipulations of entire food webs,
 manipulations which would be difficult in most natural systems.  Within this
 aquatic food web, damselfly larvae (e.g. *Leptagrion* spp.,
 Odonata:Coenagrionidae) are important predators, dramatically reducing insect
-colonization **Hammill et al Ecosystems** and reducing insect emergence [@Starzomski2010] and increases
+colonization [@Hammill2015] and reducing insect emergence [@Starzomski2010] and increases
 nutrient cycling [@Ngai2006]. However, other predators are also found in
 bromeliads, including large predaceous fly larvae (Diptera: Tabanidae) and
-predatory leeches [@Frank2009]. Predators have been shown to have large top-down effects on ecosystem functions in bromelaids, including nitrogen uptake by the plant [@Ngai2006], detrital decomposition [] and CO~2~ flux (**Atwood et al nature Geosci, Atwood et al Oecologia**).
+predatory leeches [@Frank2009]. Predators have been shown to have large top-down effects on ecosystem functions in bromelaids, including nitrogen uptake by the plant [@Ngai2006], detrital decomposition and CO~2~ flux [@Atwood2014; Atwood2013].
 
 We used a series of observations, lab feeding trials, and manipulative field
 experiments to measure how the phylogenetic diversity of the predator
@@ -328,7 +328,7 @@ the experiment (Fig 3; Tabanid randomization p = 0.01, Leech randomization p = 0
 
 We found that in our bromeliad system, phylogenetically distant pairs of predators are distributed
 with the same degree of similarity as phylogenetically similar predators
-(Question 1). However, as phylogenetic distance between predator species increased <!-- distance-->, diet overlap decreased by 20% (Question 2). Interestingly, these
+(Question 1). However, as phylogenetic distance between predator species increased, diet overlap decreased by 20% (Question 2). Interestingly, these
 apparent diet preferences in the lab did not generate a difference in composition of surviving species in the field (Question  3a).  Phylogenetic diversity caused an increase in prey survival (i.e. a decrease in predation); phylogenetically distant pairs of predators that co-occurred in bromeliads had less impact on prey than expected from their performance in isolation (Question 3b).
 
 ### Phylogenetic distance and similarity in distribution
@@ -342,7 +342,7 @@ variation explains the lack of pattern. It appears instead that predators do
 not possess any strong phylogenetically-conserved  preferences for different
 habitat characteristics, showing instead very generalist habitat preferences.
 This is not surprising, given that these organisms live in small, fluctuation-prone
-habitats. Although, turnover in species composition along a bromeliad size gradient can be predicted from their drought tolerance abilities (**Amundrud and Srivastava 2015**) Additionally, it appears that predator species are able to co-
+habitats. Although, turnover in species composition along a bromeliad size gradient can be predicted from their drought tolerance abilities [@Amundrud2015] Additionally, it appears that predator species are able to co-
 occur in many different combinations, creating a range of phylogenetic
 diversities found within bromeliads. This suggests that the range of
 phylogenetic diversity we tested in our experiment was realistic. The co-occurrence of predator species within bromeliads suggests that antagonistic interactions among predators do not limit species distributions.
@@ -374,14 +374,14 @@ more phylogenetically diverse combinations (*L. elongatum* with the Tabanid or l
 
 In our experiment we did not see any effect of predator presence, nor of
 increasing predator phylogenetic diversity, on ecosystem function. This was
-contrary to our predictions based on the results of [NGAI AND SRIVASTAVA], who
+contrary to our predictions based on the results of Ngai and Srivastava 2006 [@Ngai2006], who
 found that adding predators to a community increased the rates of nitrogen
 fixation. In predicting a synergistic nonadditive effect of predators, we were
-imagining an outcome much like [**stonefly study**]. They found that
+imagining an outcome much like [@Nilsson2006c]. They found that
 stoneflies caused prey to move into habitats where fish predators could
 consume them, increasing total predation (a synergistic effect, caused by a
 phylogenetically distinct predator). Our results are more consistent with
-those of  Finke and Denno [CITATION], who studied the invertebrate predators
+those of  Finke and Denno [-@Finke2005], who studied the invertebrate predators
 of leafhoppers in a salt marsh. Their study, like ours, demonstrated that
 increased negative interactions among predators had the effect of releasing
 lower trophic levels from predation. Interestingly, a phylogenetic
@@ -396,10 +396,10 @@ However, in our experimental bromeliads these changes in detritivore density
 did not cause differences in decomposition of detritus; this difference may be
 due to leaf traits of the _restinga_ vegetation. In _restinga_ vegetation,
 leaves are generally extremely tough and waxy, while in rainforests (e.g.
-Northwest Costa Rica, the site of [**NGAI and SRIVASTAVA**]), leaves tend to
+Northwest Costa Rica, the site of Ngai and Srivastava [-@Ngai2006]), leaves tend to
 be softer -- with the result that, in _restinga_, invertebrates are unable to
 consume leaves directly while in rainforests they are. Several lines of
-evidence support this assertion. Romero and Srivastava [-@**CITATION**]
+evidence support this assertion. Romero and Srivastava [-@Romero2010]
 studied the effects of the spider _Corinna_ gr. _rubripes_ (Corinnidae) on
 bromeliad ecosystems. This spider has no effect on the composition of
 detritivore communities, nor on decomposition rates, but increases Nitrogen
@@ -419,7 +419,7 @@ tree, not the _restinga_ tree.
 
 When _L. elongatum_ occured with more distantly related predators, prey survivorship was greater than expected. This
 non-additive effect may have been due to a reduction in predation by odonates in the presence of non-odonate predators.
-Odonates have been shown to be sensitive to chemical cues (**Barry and Roberts 2014**) or tactile cues [@Atwood2014] of potential predators, which
+Odonates have been shown to be sensitive to chemical cues [@Barry2014] or tactile cues [@Atwood2014] of potential predators, which
 causes a decrease in feeding rate. For example, a different species of bromeliad damselfly -- _Mecistogaster modesta_ Selys -- reduces predation when it is housed with Dytiscid adults [@Atwood2014]. If there is a phylogenetic signal
 to the chemical cues released by predators, individuals of one species might be unable to distinguish close relatives
 (congenerics in our case) from conspecifics. One limitation of our approach is that all phylogenetic
