@@ -371,6 +371,52 @@ would show an increase in prey capture via complementarity. *L. andromache*
 did not produce a negative effect in combination with *L. elongatum*, while the two
 more phylogenetically diverse combinations (*L. elongatum* with the Tabanid or leech) did. _Leptagrion_ species may not distinguish between conspecifics and congenerics. <!-- feeding Trials -->
 
+
+In our experiment we did not see any effect of predator presence, nor of
+increasing predator phylogenetic diversity, on ecosystem function. This was
+contrary to our predictions based on the results of [NGAI AND SRIVASTAVA], who
+found that adding predators to a community increased the rates of nitrogen
+fixation. In predicting a synergistic nonadditive effect of predators, we were
+imagining an outcome much like [**stonefly study**]. They found that
+stoneflies caused prey to move into habitats where fish predators could
+consume them, increasing total predation (a synergistic effect, caused by a
+phylogenetically distinct predator). Our results are more consistent with
+those of  Finke and Denno [CITATION], who studied the invertebrate predators
+of leafhoppers in a salt marsh. Their study, like ours, demonstrated that
+increased negative interactions among predators had the effect of releasing
+lower trophic levels from predation. Interestingly, a phylogenetic
+interpretation of some of their treatments is also consistent with our
+results. Among predator combinations composed of simple predators (as opposed
+to intra-guild predators), they found that combinations with two insects had a
+higher per-capita effect on prey than combinations with an insect and a
+spider. That is, more phylogenetically diverse combinations of predators
+showed more predation on lower trophic levels.
+
+However, in our experimental bromeliads these changes in detritivore density
+did not cause differences in decomposition of detritus; this difference may be
+due to leaf traits of the _restinga_ vegetation. In _restinga_ vegetation,
+leaves are generally extremely tough and waxy, while in rainforests (e.g.
+Northwest Costa Rica, the site of [**NGAI and SRIVASTAVA**]), leaves tend to
+be softer -- with the result that, in _restinga_, invertebrates are unable to
+consume leaves directly while in rainforests they are. Several lines of
+evidence support this assertion. Romero and Srivastava [-@**CITATION**]
+studied the effects of the spider _Corinna_ gr. _rubripes_ (Corinnidae) on
+bromeliad ecosystems. This spider has no effect on the composition of
+detritivore communities, nor on decomposition rates, but increases Nitrogen
+content in bromeliads, probably by depositing feces or the carcasses of
+terrestrial prey. This indicates that _restinga_ bromeliads may derive less of
+their Nitrogen from terrestrial detritus, but may benefit more from
+terrestrial inputs. Additionally, detritus breakdown rates are lower in
+_restinga_ than in rainforest, and less dependent on invertebrates (R. Lecraw,
+pers comm). A separate experiment (GQ Romero, pers comm) supports the
+hypothesis that lower decomposition in _restinga_ is due to plant traits. This
+second experiment contrasted decomposition caused by invertebrates and
+bacteria with that caused by bacteria alone (by comparing bagged detritus
+enclosed in coarse vs fine mesh). The experiment used two species of detritus:
+leaves from a rainforest tree, and leaves from a _restinga_ tree.
+Invertebrates only caused an increase in decomposition for the rainforest
+tree, not the _restinga_ tree.
+
 When _L. elongatum_ occured with more distantly related predators, prey survivorship was greater than expected. This
 non-additive effect may have been due to a reduction in predation by odonates in the presence of non-odonate predators.
 Odonates have been shown to be sensitive to chemical cues (**Barry and Roberts 2014**) or tactile cues [@Atwood2014] of potential predators, which
