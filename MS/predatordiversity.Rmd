@@ -444,14 +444,7 @@ reduction was less for phylogenetically-diverse combinations of
 predators. This was contrary to our hypothesis that more distant predators
 would show an increase in prey capture via complementarity. *L. andromache*
 did not produce an antagonistic (i.e. less than additive) effect in combination with *L. elongatum*, while the two
-more phylogenetically diverse combinations (*L. elongatum* with the Tabanid or leech) did. _Leptagrion_ species may not distinguish between conspecifics and congenerics. <!-- feeding Trials -->
-
-
-In our experiment we did not see any effect of predator presence, nor of
-increasing predator phylogenetic diversity, on ecosystem function. This was
-contrary to our predictions based on the results of Ngai and Srivastava [-@Ngai2006], who
-found that adding predators to a community increased the rates of nitrogen
-fixation. In predicting a synergistic nonadditive effect of predators, we were
+more phylogenetically diverse combinations (*L. elongatum* with the Tabanid or leech) did. _Leptagrion_ species may not distinguish between conspecifics and congenerics. In predicting a synergistic nonadditive effect of predators, we were
 imagining an outcome much like those reported by Nilsson et al. [-@Nilsson2006c]. They found that
 stoneflies caused prey to move into habitats where fish predators could
 consume them, increasing total predation (a synergistic effect, caused by a
@@ -461,8 +454,13 @@ higher per-capita effect on prey than combinations with an insect and a
 spider. That is, more phylogenetically diverse combinations of predators
 showed more predation on lower trophic levels.
 
-However, in our experimental bromeliads these changes in detritivore density
-did not cause differences in decomposition of detritus; this difference may be
+
+In our experiment we did not see any effect of predator presence, nor of
+increasing predator phylogenetic diversity, on ecosystem function. This was
+contrary to our predictions based on the results of Ngai and Srivastava [-@Ngai2006], who
+found that adding predators to a community increased the rates of nitrogen
+fixation. While we did observe differences in prey consumption, the resulting changes in detritivore density
+did not cause differences in decomposition of detritus. This difference may be
 due to leaf traits of the _restinga_ vegetation. In _restinga_ vegetation,
 leaves are generally extremely tough and waxy, while in rainforests (e.g.
 Northwest Costa Rica, the site of Ngai and Srivastava [-@Ngai2006]), leaves tend to
