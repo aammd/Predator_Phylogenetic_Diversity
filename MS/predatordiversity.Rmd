@@ -452,17 +452,11 @@ increasing predator phylogenetic diversity, on ecosystem function. This was
 contrary to our predictions based on the results of Ngai and Srivastava [-@Ngai2006], who
 found that adding predators to a community increased the rates of nitrogen
 fixation. In predicting a synergistic nonadditive effect of predators, we were
-imagining an outcome much like [@Nilsson2006c]. They found that
+imagining an outcome much like those reported by Nilsson et al. [-@Nilsson2006c]. They found that
 stoneflies caused prey to move into habitats where fish predators could
 consume them, increasing total predation (a synergistic effect, caused by a
 phylogenetically distinct predator). Our results are more consistent with
-those of  Finke and Denno [-@Finke2005], who studied the invertebrate predators
-of leafhoppers in a salt marsh. Their study, like ours, demonstrated that
-increased negative interactions among predators had the effect of releasing
-lower trophic levels from predation. Interestingly, a phylogenetic
-interpretation of some of their treatments is also consistent with our
-results. Among predator combinations composed of simple predators (as opposed
-to intra-guild predators), they found that combinations with two insects had a
+those of  Finke and Denno [-@Finke2005], who found that combinations with two insects had a
 higher per-capita effect on prey than combinations with an insect and a
 spider. That is, more phylogenetically diverse combinations of predators
 showed more predation on lower trophic levels.
