@@ -52,7 +52,7 @@ prF <- function(resp,test,.modlist){
   F_format <- paste0("F~",fv[["numdf"]],",",fv[["dendf"]],"~", " = ")
   pv <- pf(fv[1],fv[2],fv[3],lower.tail=F)
   
-  fval <- signif(fv[["value"]], 2)
+  fval <- sprintf("%.2f", fv[["value"]])
   
   if (pv < 0.05 & pv > 0.01) {
     paste0(F_format,fval,"\\*")
