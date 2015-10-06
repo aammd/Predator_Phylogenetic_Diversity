@@ -38,6 +38,7 @@ targets:
     depends:
       - MS/predatordiversity.docx
       - MS/predatordiversity.pdf
+      - MS/SuppMatt.pdf
       
   ## Figure themes
   mytheme:
@@ -191,3 +192,12 @@ targets:
       - MS/formatting/pdef.bib
     command: render("MS/predatordiversity.md", output_format = I("pdf_document"))
 
+#### supplementary materials
+
+  MS/SuppMatt.md:
+  # depends:
+  #   - modlist
+    knitr: true
+    
+  MS/SuppMatt.pdf:
+    command: render("MS/predatordiversity.md", output_format = I("pdf_document"))
