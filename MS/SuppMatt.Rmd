@@ -38,7 +38,7 @@ timetree <- list.files("../data/TreeData/", full.names = TRUE, pattern = "*.csv"
 
 # Predator phylogeny
 
-We used information from timetree.org (link) to add node ages to our tree.  This web service provides age estimates from the literature for all available pairs of taxa from the same groups as the searched taxa. Thus deeper nodes are estimated from more taxa and studies than shallower nodes.  
+We used information from timetree.org to add node ages to our tree.  This web service provides age estimates from the literature for all available pairs of taxa from the same groups as the searched taxa. Thus deeper nodes are estimated from more taxa and studies than shallower nodes.  
 
 **Table S1** Studies used to date nodes on our predator phylogeny.  When more than one study was available, we used the median value.  
 
@@ -82,7 +82,7 @@ distributional_similarity_AIC %>%
 
 **Table S3** Proportion of predation in feeding trials. Each cell of the graph represents a predator-prey pair; note that some pairs are represented more than others (not shown).  Composition of these trials was limited by the abundance of organisms in the field.
 ```{r prop.eaten.table, results='asis'}
-preds <- c("leech","L.andro","L.elong","L.tan","Monopelopia","Tab.A","Tab.B","Tab.C") %>%
+preds <- c("leech","L.andro","L.elong","L.tan","Monopelopia","Stibasoma sp.","Tab.B","Tab.C") %>%
   set_names(c("Hirudinidae","Leptagrion.andromache","Leptagrion.elongatum","Leptagrion.tan","Monopelopia","Tabanidae.spA","Tabanidae.spB","Tabanidae.spC"))
 
 prop_eaten %>% 
@@ -126,9 +126,9 @@ We estimated the densities of these common prey species based on their abundance
 |  Species                 | density |
 |:------------------------:|:-------:|
 | *Chironomus detriticula* |  10     |
-| *Polypedium* sp. 1       |  4      |
-| *Polypedium* sp. 2       |  2      |
-| Psychodid sp. 1        |  1      |
+| *Polypedium marcondesi*  |  4      |
+| *Polypedium kaingang*    |  2      |
+| Psychodid sp. 1          |  1      |
 | *Scyrtes* sp. A          |  5      |
 | *Culex* spp.             |  4      |
 | *Trentepholia* sp.       |  1      |
@@ -225,7 +225,7 @@ ctrl_single_pair <- pd_no_out %>%
 ctrl_single_pair_lm <- ctrl_single_pair %>% 
   group_by(resp) %>%
   do(anova_ord = lm(val ~ treatment, data = .)) %>%
-  function(df) split(df$anova_ord,df$resp) %>%
+  (function(df) split(df$anova_ord,df$resp)) %>%
   lapply(function(x) x[[1]])
 
 
@@ -243,20 +243,20 @@ stargazer(ctrl_single_pair_lm,label = "",
 ctrl_single_pair %>% 
   group_by(resp) %>%
   do(anova_ord = aov(val ~ treatment, data = .)) %>%
-  function(g) {
+  (function(g) {
     g %>% 
       extract2("anova_ord") %>% 
       set_names(g %>% extract2("resp"))
-    } %>%
+    }) %>%
   lapply(TukeyHSD) %>%
   lapply(function(x) x[["treatment"]]) %>%
   lapply(as.data.frame) %>%
   lapply(function(x) data.frame(comparison = row.names(x),x)) %>%
-  function(m) {
+  (function(m) {
     comps <- rbind_all(m)
     r <- names(m) %>% rep(times = sapply(m,nrow) %>% as.numeric)
     data.frame(r,comps)
-    } %>% 
+    }) %>% 
   select(response = r, comparison:p.adj) %>%
   mutate(response = response %>% as.character %>% trtnames[.]) %>%
   xtable %>% 
