@@ -200,4 +200,4 @@ targets:
     knitr: true
     
   MS/SuppMatt.pdf:
-    command: render("MS/predatordiversity.md", output_format = I("pdf_document"))
+    command: render("MS/SuppMatt.md", output_format = I("pdf_document"))
