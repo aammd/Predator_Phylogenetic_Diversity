@@ -1,5 +1,8 @@
 # Predator phylogenetic diversity decreases predation rate via antagonistic interactions
 
+Manuscript: [md](MS/predatordiversity.md), [pdf](MS/predatordiversity.pdf)
+Supplementary material : [md](MS/SuppMatt.md), [pdf](MS/SuppMatt.pdf)
+
 ## About this project
 
 When predator species occur in the same place, what happens? A single predator species can have important impacts on the prey species in a community. But, when two or more predators are present, those effects become more uncertain. This is because the predators can interact with each other -- either directly, by eating each other, or indirectly, by modifying prey behaviour. Is there any way to predict what will happen?
