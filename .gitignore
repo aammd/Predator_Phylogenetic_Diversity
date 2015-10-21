@@ -36,6 +36,12 @@ MS/predatordiversity.pdf
 out*.png
 
 Figures/*.svg
+Figures/slide*
+Figures/web*
+
+R.scripts/dav_method.R
+R.scripts/webfig.R
+
 
 
 cache/
