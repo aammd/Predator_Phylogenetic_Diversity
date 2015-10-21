@@ -6,8 +6,9 @@ This is a manuscript describing a field experiment in 2011, along with a few oth
 
 The original data, analysis techniques and writing in these documents are copyright &copy; MacDonald, Srivastava and Romero 2013.
 
+We licence all original text in this repository under CC-BY:
 <a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/deed.en_GB"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Predator phylogenetic diversity</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">A. Andrew M. MacDonald, D.S. Srivastava and G.Q. Romero</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/deed.en_GB">Creative Commons Attribution 2.5 Canada License</a>.
 
-Data (contents of xxx) are under CC-0 waiver
-Writing (files ending in .md) licenced are under CC-BY
-Code (all other files) licenced by MIT/Apache/whatevs
+We release Data (contents of [`data`](data/)) are under CC-0 waiver
+
+We release all dode (all other files, including `.R` scripts in [`R.scripts`](R.scripts/)) under the MIT [license](LICENSE)
