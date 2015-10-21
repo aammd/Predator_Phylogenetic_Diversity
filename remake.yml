@@ -195,9 +195,16 @@ targets:
 #### supplementary materials
 
   MS/SuppMatt.md:
-  # depends:
-  #   - modlist
-    knitr: true
-    
+    knitr: 
+      auto_figure_prefix: true
+      chdir: true
+    depends:
+      - predtree_timetree_ages
+      - distributional_similarity_AIC
+      - prop_eaten
+      - diet_similarity_AIC
+      - pd_no_out
+
+
   MS/SuppMatt.pdf:
     command: render("MS/SuppMatt.md", output_format = I("pdf_document"))

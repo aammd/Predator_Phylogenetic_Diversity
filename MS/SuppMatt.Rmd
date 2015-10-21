@@ -10,9 +10,9 @@ output:
   html_document: default
   word_document:
     reference_docx: reference.docx
-bibliography: /home/andrew/Documents/Mendeley_reference_lists/@MS_pdpaper.bib
 geometry: margin=1in
-fontsize: 12pt
+bibliography: formatting/pdef.bib
+csl: formatting/the-american-naturalist.csl
 ---
 
 
@@ -24,8 +24,8 @@ knitr::opts_chunk$set(message = FALSE,
 mytheme <- theme_bw()
 
 
-timetree <- list.files("../data/TreeData/", full.names = TRUE, pattern = "*.csv") %>%
-  function(d) {basename(d) %>% gsub(".csv","",.) %>% set_names(d,.)} %>%
+timetree <- list.files("../raw-data/TreeData", full.names = TRUE, pattern = "*.csv") %>%
+  (function(d) {basename(d) %>% gsub(".csv","",.) %>% set_names(d,.)}) %>%
   lapply(read.csv,stringsAsFactors = FALSE) %>%
   plyr::ldply() %>%
   mutate(foo = seq_along(Taxon.A)) %>%
@@ -86,13 +86,13 @@ preds <- c("leech","L.andro","L.elong","L.tan","Monopelopia","Stibasoma sp.","Ta
   set_names(c("Hirudinidae","Leptagrion.andromache","Leptagrion.elongatum","Leptagrion.tan","Monopelopia","Tabanidae.spA","Tabanidae.spB","Tabanidae.spC"))
 
 prop_eaten %>% 
-  select(-X) %>%
+  # select(-X) %>%
   mutate(predator.names = predator.names %>% as.character %>% preds[.]) %>%
   data.frame(row.names = "predator.names") %>% 
   t %>% 
   signif(digits = 2) %>%
-  function(mat) mat[mat %>% is.na %>% rowSums %>% order,
-                    mat %>% is.na %>% colSums %>% order] %>%
+  (function(mat) mat[mat %>% is.na %>% rowSums %>% order,
+                     mat %>% is.na %>% colSums %>% order]) %>%
   xtable %>%
   print(include.rownames = TRUE, size = 5, comment = FALSE)
 ```
@@ -112,7 +112,7 @@ diet_similarity_AIC %>%
 calculates the the difference in feeding rate.
 Among the most common predator taxa (i.e. those used in our experiment,
 described below) the damselflies (_Leptagrion andromache_ and _Leptagrion
-elongatum_) showed the highest rates of prey consumption (prey consumed in `r andro`% and `r elong`% of trials, respectively). 
+elongatum_) showed the highest rates of prey consumption (prey consumed in ` r andro`% and ` r elong`% of trials, respectively). 
 -->
 
 # Predator diversity experiment
@@ -387,7 +387,7 @@ twopred <- pd_no_out %>%
 ## linear models
 twopred_lm <- twopred %>%
   do(anova_ord = lm(val ~ treatment, data = .)) %>%
-  function(df) split(df$anova_ord,df$resp) %>%
+  (function(df) split(df$anova_ord,df$resp)) %>%
   lapply(function(x) x[[1]])
 
 ## randomization test for growth:
@@ -434,20 +434,20 @@ stargazer(twopred_lm,label = "",
 twopred %>% 
   group_by(resp) %>%
   do(anova_ord = aov(val ~ treatment, data = .)) %>%
-  function(g) {
+  (function(g) {
     g %>% 
       extract2("anova_ord") %>% 
       set_names(g %>% extract2("resp"))
-    } %>%
+    }) %>%
   lapply(TukeyHSD) %>%
   lapply(function(x) x[["treatment"]]) %>%
   lapply(as.data.frame) %>%
   lapply(function(x) data.frame(comparison = row.names(x),x)) %>%
-  function(m) {
+  (function(m) {
     comps <- rbind_all(m)
     r <- names(m) %>% rep(times = sapply(m,nrow) %>% as.numeric)
     data.frame(r,comps)
-    } %>% 
+    }) %>% 
   select(response = r, comparison:p.adj) %>%
   mutate(response = response %>% as.character %>% trtnames[.]) %>%
   xtable %>% 
@@ -497,7 +497,7 @@ pd_no_out %>%
 
 ```{r results='asis'}
 cortable <- c("total.surv","fine","decomp","growth","N") %>%
-  l(x -> expand.grid(x,x,stringsAsFactors = FALSE)) %>%
+  (function(x) expand.grid(x,x,stringsAsFactors = FALSE)) %>%
   #combn(2,simplify = FALSE) %>% 
   #do.call(rbind,.) %>% 
   data.frame(stringsAsFactors = FALSE) %>%
