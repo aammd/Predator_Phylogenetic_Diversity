@@ -24,20 +24,20 @@ csl: formatting/the-american-naturalist.csl
 
 Predators can have strong top-down effects, both on community structure and
 ecosystem processes [@Estes2011]; however the combined effects of different predator species are not
-well understood. The combined effect of predator species on communities is often stronger or weaker than that predicted from a study of those same species in isolation [@Sih1998a;@Ives2005]. These non-additive effects of predators occur when predators interact with each other directly, or
+well understood [COMMENT: I DON'T THINK YOU CAN REALLY SAY THIS ANYMORE. THERE IS A WHOLE BUNCH OF LITERATURE ON PREDATOR DIVERSITY / ECOSYSTEM FUNCTION, MULTIPLE PREDATOR EFFECTS, ETC. AS YOU REFERENCE BELOW. SO I SUGGEST CUTTING THE 'HOWEVER...UNDERTSOOD']. The combined effect of predator species on communities is often stronger or weaker than that predicted from a study of those same species in isolation [@Sih1998a;@Ives2005]. These non-additive effects of predators occur when predators interact with each other directly, or
 via the prey species. For example, predators can feed directly on each
 other (intra-guild predation), consume the same prey (resource competition) or
 modify the behaviour of prey or the other predator species [@Sih1998a;@Griswold2006;@Nystrom2001]. These non-additive effects can be positive or negative. For example, prey may have an induced defense against one predator which increases (negative non-additive effect) or decreases (positive non-additive effect) the likelihood of consumption by a second predator. While there are many possible mechanisms underlying the effect of predator composition, we lack a means of
-predicting _a priori_ the strength and direction of this effect on community structure and ecosystem function.
+predicting _a priori_ the strength and direction of this effect on community structure and ecosystem function. [COMMENT: GOOD, THIS IS CLEAR]
 
-Phylogenetic diversity could provide a framework for making these predictions about predators. Phylogenetic diversity incorporates the evolutionary relationships of species into measures of diversity. This approach was first used to interpret observations of community structure, as ecologists interpreted nonrandom phylogenetic structure (i.e. under- or over dispersion) as evidence for the processes (i.e., habitat filtering or competition) which structure communities [@Webb2002;@Cavender-Bares2009]. Recently, this approach has been applied to manipulative experiments. For example, the phylogenetic diversity of plant
+Phylogenetic diversity could provide a framework for making these predictions about [COMBINED EFFECTS OF] predators. [WOULD BE NICE HERE TO EXPAND A BIT MORE ON CONCEPTUALLY WHY PHYLOGENETIC DIVERSITY COULD HELP SOLVE THE PROBLEM YOU INTRODUCE ABOVE, BEFORE GETTING INTO MORE OF THE EXAMPLES; THE CONCEPTUAL UNDERPINNINGS ARE RICH] Phylogenetic diversity incorporates the evolutionary relationships of species into measures of diversity. This approach was first used to interpret observations of community structure, as ecologists interpreted nonrandom phylogenetic structure (i.e. under- or over dispersion) as evidence for the processes (i.e., habitat filtering or competition) which structure communities [@Webb2002;@Cavender-Bares2009]. Recently, this approach has been applied to manipulative experiments. For example, the phylogenetic diversity of plant
 communities is a better predictor of productivity than either species
 richness or diversity [e.g. @Cadotte2009;@Cadotte2008;@Godoy2014]. In all cases, an implicit
 assumption is that increased phylogenetic distance is associated with
 increased ecological dissimilarity -- either in the form of differences in
 species niches, interactions, or functional traits. When this is true, high
 phylogenetic diversity should lead to complementarity in resource use between species, resulting in increased
-ecosystem functioning [@Srivastava2012c]. Despite the prevalence of phylogenetic
+ecosystem functioning [@Srivastava2012c][ONE CRITICISM OF THE PHYLOGENETIC APPROACH IS THAT THIS ASSUMED CORRELATION BETWEEN DISSIMILARITY AND DISTANCE IS JUST THAT - AN ASSUMPTION, AND AN APPEALING ONE AT THAT. CAN YOU BOLSTER THIS HERE WITH A BRIEF REFERENCE TO WHY THIS ASSUMPTION MIGHT BE JUSTIFIED?]. Despite the prevalence of phylogenetic
 community ecology and the importance of predators to natural systems, the
 phylogenetic diversity of local predator assemblages has rarely been measured
 [@Bersier2008;@Naisbit2011]. Many studies of phylogeny and predator
@@ -58,10 +58,10 @@ phylogenetic diversity will show a greater range of prey consumed and therefore 
 down effects [@Finke2008a]. In some cases, predator
 diets may extend to include other predators, leading to direct negative
 interactions such as intraguild predation, which may also have a phylogenetic
-signal [@Pfennig2000]. 
+signal [@Pfennig2000]. [THIS PARAGRAPH, LIKE THE WHOLE INTRODUCTION, IS WELL WRITTEN AND RICH WITH EXAMPLES. HOWEVER, THIS PARAGRAPH TOO GIVES THE SENSE THAT PHYLOGENETIC APPROACHES ARE HOPEFUL - USEFUL *IF* THE PHYLOGENETIC DISTANCES ARE ALSO CORRELATED WITH TRAITS WE BELIEVE MATTER. BUT WHAT IF THEY'RE NOT? HOW DO WE KNOW THEY ARE? SEE IF YOU CAN'T DIG IN A LITTLE DEEPER TO PRESENT A STRONG ARGUMENT FOR WHY THIS IS A GOOD NEXT STEP FOR THE FIELD (RATHER THAN A NEAT, HOPEFUL NEXT STEP).]
 
-We examined the consequences of phylogenetic diversity using a natural mesocosm:
-the community of macroinvertebrates living within bromeliads. Bromeliads
+We examined the consequences of [TESTED THE EFFECTS OF?] phylogenetic diversity using a natural mesocosm:
+the community of macroinvertebrates living within bromeliads. [INTRODUCE THE PREDATOR ASSEMBLAGE FIRST, THAT'S WHAT' WE'RE TALKING ABOUT HERE, THEN MOVE TO WHAT THE ENVIRONMENT IS] Bromeliads
 (Bromeliaceae) are flowering plants abundant in the Neotropics. Many bromeliad
 species contain water and trapped, terrestrial detritus; the decomposition of
 this detritus supplies nutrients for the bromeliad [@Reich2003a]. The small size
@@ -75,7 +75,7 @@ bromeliads, including large predaceous fly larvae (Diptera: Tabanidae) and
 predatory leeches (Hirudinae:Arhynchobdellida) (see Frank et al. [-@Frank2009]). Predators have been shown to have large top-down effects on ecosystem functions in bromelaids, including nitrogen uptake by the plant [@Ngai2006], detrital decomposition and CO~2~ flux [@Atwood2014; @Atwood2013].
 
 We used a series of observations, lab feeding trials, and manipulative field
-experiments to measure how the phylogenetic diversity of the predator
+experiments to measure how [RATHER THAN *MEASURE HOW*, CAN YOU EXPRESS THIS IN TERMS OF A HYPOTHESIS, EVEN AT THIS LEVEL?] the phylogenetic diversity of the predator
 assemblage predicts community composition and ecosystem function.  We test
 three related hypotheses concerning similarity in distribution, diet and top-
 down ecosystem effects of predators:
@@ -84,13 +84,13 @@ down ecosystem effects of predators:
 frequently than less-related predators if there is a strong phylogenetic
 signal to habitat requirements. Alternatively, very closely related species
 may never co-occur because high overlap in ecological niches results in
-competitive exclusion.
+competitive exclusion. [I WOULD STATE A HYPOTHESIS LIKE THIS: A STRONG PHYLOGENETIC CORRELATION BETWEEN RELATEDNESS AND HABITAT PREFERENCE LEADS TO CLOSELY RELATED PREDATORS OCCURRING TOGETHER MORE FREQUENTLY THAN EXPECTED? / THAN LESS-RELATED PREDATORS?. I WOULD SAY IT THIS WAY BECAUSE THE STRONG CORRELATION IS THE PATTERN YOU HOPE TO FIND, AND YOU THINK THIS PATTERN REFLECTS A PROCESS THAT PREDICTS ANOTHER PATTERN (PREDATORS OCCURING TOGETHER MORE FREQUENTLY THAN EXPECTED)]
 
-2. *Diet similarity*: Closely-related predators will eat similar prey at similar rates.
+2. *Diet similarity*: Closely-related predators will eat similar prey at similar rates. [GOOD; IS IT WORTH HAVING SOME WAY TO ASSESS 'SIMILARITY' HERE?]
 Alternatively,  closely related species may have evolved different diets to
 facilitate coexistence.
 
-3. *Ecosystem-level effects*: We performed experiments at the scale at which organisms
+3. *Ecosystem-level effects*: [I'D SAVE THIS EXPERIMENT PART FOR LATER, AND JUST INTRODUCE THE HYPOTHESES FIRST, THEN THE EXPERIMENT AND HOW SPECIFIC COMPARISONS PROVIDE TESTS OF THE HPYOTHESES] We performed experiments at the scale at which organisms
 interact (i.e. within a single bromeliad) to test hypotheses about
 direct and indirect effects of predator combinations (on prey consumption, bromeliad nitrogen uptake and detrital
 decomposition), predicting:
@@ -102,7 +102,7 @@ decomposition), predicting:
 
 ### Study Design
 
-We collected three datasets to address each of the questions posed in the Introduction. We examined distributional similarity among predator species (Question 1) by sampling bromeliads for invertebrates. We examined diet similarity (Question 2) with a series of no-choice feeding trials. Finally, we examined the effects of predators on invertebrate communities (Question 3) with a field experiment, in which predators were added to bromeliads containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
+We collected three datasets to address each of the questions [WE TOOK THREE EMPIRICAL APPRAOCHES TO TEST THE HYPOTHESES OUTLINED ABOVE. TO TEST HYPOTHESIS 1, WE EXAMPLED SPATIAL PATTERNS OF PREDATOR SPECIES IN THE FIELD. TO TEST HYPOTHESIS 2... ] posed in the Introduction. We examined distributional similarity among predator species (Question 1) by sampling bromeliads for invertebrates. We examined diet similarity (Question 2) with a series of no-choice feeding trials. Finally, we examined the effects of predators on invertebrate communities (Question 3) with a field experiment, in which predators were added to bromeliads containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
 
 In each dataset, we related the results to published phylogenies accessed from
 "timetree.org", an online database of published  molecular time estimates
@@ -133,7 +133,7 @@ Odonata:Coenagrionidae), two species of Horse Fly larvae
 
 ### Question 1: Distributional similarity
 
-To examine distributional similarity among predator species, we used a
+To examine [EXAMINE SOUNDS LIKE THE RESEARCHER IS A PASSIVE PARTICIPANT HERE. WOULD YOU CONSIDER USING 'TESTED OUR HYPOTHESIS, ADDRESSED OUR QUESTION, ETC' THROUGHOUT?] distributional similarity among predator species, we used a
 detailed survey of bromeliad communities. In 2008, each bromeliad was dissected
 and washed to remove invertebrates and the resulting water was filtered
 through two sieves (150 and 850 µm), which removed particulate organic matter
@@ -145,7 +145,7 @@ final instar) and always for large-bodied taxa (> 1 cm final instar).
 ### Question 2: Diet Similarity
 
 
-To examine diet similarity among predator species, we fed prey species to predators in laboratory feeding trials. We conducted 314 feeding trials of 10 predator taxa and 14 prey taxa between March and April 2011.  We  included all potential predator-prey pairs present in the experiment
+To examine [AHHH!] diet [EXPERIMENTALLY QUANTIFIED DIET] similarity among predator species, we fed prey species to predators in laboratory feeding trials. We conducted 314 feeding trials of 10 predator taxa and 14 prey taxa between March and April 2011.  We  included all potential predator-prey pairs present in the experiment
 (described below), and attempted to perform all other combinations whenever possible. However, due to the rarity of some taxa, many predator-prey pairs were not possible; we tested 56 pairwise combinations.  Most trials were replicated at least five times, but the number of replicates ranged from 1 to 11. To conduct the trials, we placed
 predators together with prey in a 50ml vial, with a stick for
 substrate. The only exception was the tabanid larvae, which we
