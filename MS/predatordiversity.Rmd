@@ -86,22 +86,18 @@ with greater difference in predator impacts on the bromeliad community.  We test
 three related hypotheses concerning similarity in distribution, diet and top-
 down ecosystem effects of predators:
 
-1. *Distributional similarity*: Closely-related predators may occur together more
-frequently than less-related predators if there is a strong phylogenetic
-signal to habitat requirements. Alternatively, very closely related species
-may never co-occur because high overlap in ecological niches results in
-competitive exclusion.
+1. *Distributional similarity*: Closely related predators occur in the same habitat patch more
+frequently than less related predators. Alternatively, closely related species
+may never co-occur.
 
-2. *Diet similarity*: Closely-related predators will eat similar prey at similar rates.
+2. *Diet similarity*: Closely related predators will eat similar prey at similar rates.
 Alternatively,  closely related species may have evolved different diets to
 facilitate coexistence.
 
-3. *Ecosystem-level effects*: We performed experiments at the scale at which organisms
-interact (i.e. within a single bromeliad) to test hypotheses about
-direct and indirect effects of predator combinations (on prey consumption, bromeliad nitrogen uptake and detrital
-decomposition), predicting:
+3. *Ecosystem-level effects*: We tested two sets of hypotheses about
+direct and indirect effects of predator combinations on ecosystems, predicting:
 
-    (a) Closely-related predators will have similar effects on the community. This will occur if related predators have similar trophic interactions (e.g. predation rate, diet similarity). Our single-species treatments allow us to assess the effect of each predator both on prey survival and on ecosystem functions. 
+    (a) Closely related predators will have similar effects on the community. This will occur if related predators have similar trophic interactions (e.g. predation rate, diet similarity). Our single-species treatments allow us to assess the effect of each predator both on prey survival and on ecosystem functions. 
     (b) Predator assemblages with higher phylogenetic diversity will have synergistic (greater than additive) effects on prey consumption and associated ecosystem functions. This will occur if phylogenetic distance correlates with increasing trait difference, and if this trait difference in turn results in niche complementarity. However, at the extreme, different predators may consume each other, thus creating antagonistic (less than additive) effects on prey consumption. By comparing treatments with pairs of predators to treatments that received each predator alone, we are able to estimate additive and non-additive effects. 
 
 ## Methods
