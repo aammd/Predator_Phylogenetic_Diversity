@@ -143,7 +143,7 @@ length of all individuals was measured when possible for small and medium-sized
 taxa (< 1cm final instar) and always for large-bodied taxa (> 1 cm final
 instar).
 
-### Question 2: Diet Similarity
+### Hypothesis 2: Diet Similarity
 ```{r CALC_feeding_trials}
 ## numbers for text
 ntrials <- sum(feeding_trials$number.trials)
@@ -162,9 +162,9 @@ bromeliad leaf axils (their preferred microhabitat, necessary for successful fee
 single prey individual, except in the case of very small prey (_Elpidium_ sp.)
 or predators (_Monopelopia_ sp.) in which case we increased the density.  We recorded whether prey was consumed after 24 hours.
 
-### Question 3: Community effect experiment
+### Hypothesis 3: Community effect experiment
 
-Our third question had two parts: (a) how do predator species differ in their
+Our third hypothesis had two parts: (a) how do predator species differ in their
 effects on the invertebrate community and ecosystem processes and (b) do predator combinations show non-
 additive effects on community and ecosystem processes, and do these non-additive effects increase or
 decrease with phylogenetic distance? We measured five community and ecosystem
@@ -199,7 +199,7 @@ these leaves with ^15^N by fertilizing five plants with 40ml pot^-1^ day^-1^ of 
 air-dried until constant weight, and then soaked them for three days. This procedure removes excess nutrients from the artificial fertilization. Because some of our prey species consume fine detritus, not coarse, we also added a standard amount of dried fine detritus to our bromeliads (`r round(mean(pd_no_out$org_fine_mass, na.rm = TRUE), 2)`g bromeliad ^-1^ ± `r round(sd(pd_no_out$org_fine_mass, na.rm = TRUE), 2)`). We separated coarse and fine detritus by passing water from bromeliads through two sieves (as above for observational work, 150 and 850 µm). We defined "coarse detritus" as anything retained on the 850 µm sieve, and "fine detritus" as anything found on the 150 µm sieve.
 
 Each bromeliad was stocked with a representative insect community (See supplementary material). The densities
-of each prey taxon were calculated from the observational dataset (Question 1), using
+of each prey taxon were calculated from the observational dataset (Hypothesis 1), using
 data from bromeliads of similar size to those in our experiment. We ran this experiment in two temporal blocks for logistical reasons: three complete replicates of all treatments were set up on 20 February 2011, and two on 08 March 2011. We first placed the prey species into the bromeliad, allowed two days for the prey to adjust, then added predators. After 26 days from the beginning of each block, we added the same prey community a second time to simulate the continuous
 oviposition that characterizes the system. We concluded the experiment 43 days from the first addition of prey (20 April 2011). Throughout the experiment, all bromeliads were enclosed
 with a mesh cage topped with a malaise trap and checked daily for emergence of
@@ -239,13 +239,13 @@ analyzer (PDZ Europa ANCA-GSL).
 
 ## Data analysis
 
-We quantified the effect of phylogenetic distance on each of distributional (Question 1) and diet (Question 2) similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to the relationship between phylogenetic diversity an either distributional or diet similarity. We used linear, constant, and several appropriate nonlinear functions (nonlinear, because our measures of similarity are bounded by 0 and 1; see below). We compared these models using AIC and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively). We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
+We quantified the effect of phylogenetic distance on each of distributional (Hypothesis 1) and diet (Hypothesis 2) similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to the relationship between phylogenetic diversity an either distributional or diet similarity. We used linear, constant, and several appropriate nonlinear functions (nonlinear, because our measures of similarity are bounded by 0 and 1; see below). We compared these models using AIC and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively). We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
 
 $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
 For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
-predator $k$ or $l$ for resource or habitat $i$. The value $O_{kl}$ represents similarity (in our case, in either distribution or diet) and ranges from 0 (complete dissimilarity) to 1 (complete similarity). The $n$ resources represent the different habitats surveyed for Question 1 (distributional similarity), or the different prey species assayed for Question 2 (diet similarity). Preference ($p_{ik}$) represents the proportion of a predator's total metabolic capacity found in a particular bromeliad (Question 1); or the 
-proportion of feeding trials in which it ate a particular prey (Question 2).
+predator $k$ or $l$ for resource or habitat $i$. The value $O_{kl}$ represents similarity (in our case, in either distribution or diet) and ranges from 0 (complete dissimilarity) to 1 (complete similarity). The $n$ resources represent the different habitats surveyed for Hypothesis 1 (distributional similarity), or the different prey species assayed for Hypothesis 2 (diet similarity). Preference ($p_{ik}$) represents the proportion of a predator's total metabolic capacity found in a particular bromeliad (Hypothesis 1); or the 
+proportion of feeding trials in which it ate a particular prey (Hypothesis 2).
 
 We tested effects of both single and multiple predator species on community responses with a manipulative experiment where identical prey communities were exposed to treatments of either a single predator, or pairs of predators representing increasing phylogenetic diversity. We divided the analysis of this experiment into three parts: quantifying the effect of phylogenetic distance on prey community similarity, on community and ecosystem responses responses, and on non-additive effects. First, we compared the four treatments with single predator species by calculating the similarity in species composition (Pianka's index) between surviving prey communities and relating this to the phylogenetic distance between predators. If predator feeding choices are phylogenetically conserved, that diet similarity will decline with increasing phylogenetic distance.
 
@@ -259,7 +259,7 @@ indicate a significant non-additive effect of a predator combination. We used R 
 
 ## Results
 
-### Question 1 similarity in distribution
+### Hypothesis 1: similarity in distribution
 ```{r CALC_metabolic_numbers}
 ## numbers for text:
 meta_range <- metabolic %>%
@@ -299,7 +299,7 @@ We did not find any significant relationship between predator co-occurrence in b
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Arhynchobdellida:Hirudinidae).
 
-### Question 2: Similarity in diet
+### Hypothesis 2: Similarity in diet
 
 ```{r CALC_diet_numbers}
 ## Diet numbers for text:
@@ -349,7 +349,7 @@ Phylogenetically distant predators differed in their preference of prey
 species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, `r F_text(diet_phylo_lm_summary)`). Despite the decline in diet similarity with phylogenetic distance, the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
 (Fig 1c, `r F_text(exper_phylo_lm_summary)`, distance measured as Bray-Curtis dissimilarity)
 
-### Question 3: similarity in top-down effects
+### Hypothesis 3: similarity in top-down effects
 ```{r summarize_randos}
 tab_nonadd <- subset(rando_pvals, response == "total.surv" & nonadd == "tab_non")[["rando_p"]]
 leech_nonadd <- subset(rando_pvals, response == "total.surv" & nonadd == "leech_non")[["rando_p"]]
@@ -391,8 +391,8 @@ for(i in test) {
 
 ## Discussion
 
-We found that in our bromeliad system the phylogenetic distance between predators had variable importance. The phylogenetic distance between them predators was unrelated to co-occurrence (Question 1). However, as phylogenetic distance between predator species increased, diet overlap decreased by 20% (Question 2). Interestingly, these
-apparent diet preferences in the lab did not generate a difference in composition of surviving species in the field (Question  3a).  Phylogenetic diversity caused an increase in prey survival (i.e. a decrease in predation); phylogenetically distant pairs of predators that co-occurred in bromeliads had less impact on prey than expected from their performance in isolation (Question 3b).
+We found that in our bromeliad system the phylogenetic distance between predators had variable importance. The phylogenetic distance between them predators was unrelated to co-occurrence (Hypothesis 1). However, as phylogenetic distance between predator species increased, diet overlap decreased by 20% (Hypothesis 2). Interestingly, these
+apparent diet preferences in the lab did not generate a difference in composition of surviving species in the field (Hypothesis  3a).  Phylogenetic diversity caused an increase in prey survival (i.e. a decrease in predation); phylogenetically distant pairs of predators that co-occurred in bromeliads had less impact on prey than expected from their performance in isolation (Hypothesis 3b).
 
 ### Phylogenetic distance and similarity in distribution
 
