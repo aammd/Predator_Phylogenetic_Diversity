@@ -391,13 +391,12 @@ for(i in test) {
 
 ## Discussion
 
-We found that in our bromeliad system the phylogenetic distance between predators had variable importance. The phylogenetic distance between them predators was unrelated to co-occurrence (Hypothesis 1). However, as phylogenetic distance between predator species increased, diet overlap decreased by 20% (Hypothesis 2). Interestingly, these
+We found that in our bromeliad system the phylogenetic distance between predators had variable importance. The phylogenetic distance between predators was unrelated to co-occurrence (Hypothesis 1). However, as phylogenetic distance between predator species increased, diet overlap decreased by 20% (Hypothesis 2). Interestingly, these
 apparent diet preferences in the lab did not generate a difference in composition of surviving species in the field (Hypothesis  3a).  Phylogenetic diversity caused an increase in prey survival (i.e. a decrease in predation); phylogenetically distant pairs of predators that co-occurred in bromeliads had less impact on prey than expected from their performance in isolation (Hypothesis 3b).
 
 ### Phylogenetic distance and similarity in distribution
 
-We found no relationship between the phylogenetic distance between predator
-species and the overlap in their habitat distribution. This similarity
+Phylogenetic distance between predators did not explain overlap in habitat distribution. This similarity
 in distribution could be caused by two processes: low habitat variability
 among bromeliads, or low variability in preference of predators for different habitats. A concurrent observational study (AAMMD, unpublished) showed that bromeliads vary widely in abiotic conditions, size, detritus
 amount and prey community; therefore it seems unlikely that low patch
@@ -439,7 +438,7 @@ phylogenetically distinct predator). Our results are more consistent with
 those of  Finke and Denno [-@Finke2005], who found that combinations with two insect predators had a
 higher per-capita effect on leafhopper prey than combinations with an insect and a
 spider. That is, more phylogenetically diverse combinations of predators
-showed more predation on lower trophic levels.
+showed less predation on lower trophic levels.
 
 
 In our experiment we did not see any effect of predator presence, nor of
@@ -486,7 +485,7 @@ are likely to be frequently reduced by the presence of other predators. These di
 subsequent nitrogen uptake by bromeliads. This contrasts with the increase in N uptake found by Ngai and Srivastava
 [-@Ngai2006] in Costa Rican bromeliads. 
 
-In most natural communities, diverse predator species co-occur and often
+In most natural communities, multiple predator species co-occur and often
 simultaneously affect prey species. By combining an observational study,
 laboratory trials and a field experiment we have shown that phylogenetic
 relatedness of species can help predict some aspects of lower trophic level
