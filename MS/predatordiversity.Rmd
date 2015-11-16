@@ -104,7 +104,7 @@ direct and indirect effects of predator combinations on ecosystems, predicting:
 
 ### Study Design
 
-We collected three datasets to address each of the questions posed in the Introduction. We examined distributional similarity among predator species (Question 1) by sampling bromeliads for invertebrates. We examined diet similarity (Question 2) with a series of no-choice feeding trials. Finally, we examined the effects of predators on invertebrate communities (Question 3) with a field experiment, in which predators were added to bromeliads containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
+We used three empirical approaches to test the hypotheses outlined above. To test hypothesis 1 (distribution) we sampled bromeliads for predator species. To test hypothesis 2 (diet similarity), we conducted a series of laboratory feeding trials. Finally, we tested hypothesis 3 (similarity of community effect and interaction) with a field experiment in which predators were added to bromeliads containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
 
 In each dataset, we related the results to published phylogenies accessed from
 "timetree.org", an online database of published  molecular time estimates
@@ -133,16 +133,15 @@ Odonata:Coenagrionidae), two species of Horse Fly larvae
 
 ## Data collection
 
-### Question 1: Distributional similarity
+### Hypothesis 1: Distributional similarity
 
-To examine distributional similarity among predator species, we used a
-detailed survey of bromeliad communities. In 2008, each bromeliad was dissected
-and washed to remove invertebrates and the resulting water was filtered
-through two sieves (150 and 850 µm), which removed particulate organic matter
-without losing any invertebrates. All invertebrates were counted and
-identified to the lowest taxonomic level possible. The body length of all
-individuals was measured when possible for small and medium-sized taxa (< 1cm
-final instar) and always for large-bodied taxa (> 1 cm final instar).
+We asked whether closely related predators were found in the same bromeliads. In
+2008, each bromeliad was dissected and washed to remove invertebrates. We passed this water through two sieves (150 and 850 µm), which removed
+particulate organic matter without losing any invertebrates. All invertebrates
+were counted and identified to the lowest taxonomic level possible. The body
+length of all individuals was measured when possible for small and medium-sized
+taxa (< 1cm final instar) and always for large-bodied taxa (> 1 cm final
+instar).
 
 ### Question 2: Diet Similarity
 ```{r CALC_feeding_trials}
@@ -154,7 +153,7 @@ ncombos <- nrow(feeding_trials)
 rep_range <- range(feeding_trials$number.trials)
 ```
 
-To examine diet similarity among predator species, we fed prey species to predators in laboratory feeding trials. We conducted `r ntrials` feeding trials of `r npred` predator taxa and `r nprey` prey taxa between March and April 2011.  We  included all potential predator-prey pairs present in the experiment
+To test whether related predators eat similar prey, we fed prey to predators in laboratory feeding trials. We conducted `r ntrials` feeding trials of `r npred` predator taxa and `r nprey` prey taxa between March and April 2011.  We  included all potential predator-prey pairs present in the experiment
 (described below), and attempted to perform all other combinations whenever possible. However, due to the rarity of some taxa, many predator-prey pairs were not possible; we tested `r ncombos` pairwise combinations.  Most trials were replicated at least five times, but the number of replicates ranged from `r rep_range[[1]]` to `r rep_range[[2]]`. To conduct the trials, we placed
 predators together with prey in a 50ml vial, with a stick for
 substrate. The only exception was the tabanid larvae, which we
@@ -250,7 +249,7 @@ proportion of feeding trials in which it ate a particular prey (Question 2).
 
 We tested effects of both single and multiple predator species on community responses with a manipulative experiment where identical prey communities were exposed to treatments of either a single predator, or pairs of predators representing increasing phylogenetic diversity. We divided the analysis of this experiment into three parts: quantifying the effect of phylogenetic distance on prey community similarity, on community and ecosystem responses responses, and on non-additive effects. First, we compared the four treatments with single predator species by calculating the similarity in species composition (Pianka's index) between surviving prey communities and relating this to the phylogenetic distance between predators. If predator feeding choices are phylogenetically conserved, that diet similarity will decline with increasing phylogenetic distance.
 
-Second, we examined how predators affected the five community and ecosystem responses measured in this experiment, testing in turn the effect of predator presence, number, species identity, and finally phylogenetic diversity. To test for an effect of predator presence, we compared the control treatment (predators absent) with the mean responses of all seven treatments that did contain predators. To test for an effect of predator species number (one or two predators), we compared the means of all single-species treatments with the means of all two-species treatments. To test for an effect of predator identity, we compared all four single-species treatments. Finally, to test for an effect of predator combinations we compared all two-species treatments (3 pairs total). We analyzed each of these of these orthogonal comparisons with one-way ANOVA. 
+Second, we measured five community and ecosystem responses measured in this experiment, testing in turn the effect of predator presence, number, species identity, and finally phylogenetic diversity. To test for an effect of predator presence, we compared the control treatment (predators absent) with the mean responses of all seven treatments that did contain predators. To test for an effect of predator species number (one or two predators), we compared the means of all single-species treatments with the means of all two-species treatments. To test for an effect of predator identity, we compared all four single-species treatments. Finally, to test for an effect of predator combinations we compared all two-species treatments (3 pairs total). We analyzed each of these of these orthogonal comparisons with one-way ANOVA. 
 
 In our third and final analysis we quantified the non-additive effect of predator species. We calculated this effect as the difference between the
 response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
