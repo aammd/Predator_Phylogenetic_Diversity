@@ -27,8 +27,8 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE)
 ## Introduction
 
 Predators can have strong top-down effects, both on community structure and
-ecosystem processes [@Estes2011]. The combined effect of predator species on communities is often stronger or weaker than that predicted from a study of those same species in isolation [@Sih1998a;@Ives2005]. These non-additive effects of predators occur when predators interact with each other directly, or
-via the prey species. For example, predators can feed directly on each
+ecosystem processes [@Estes2011]. The combined effect of predator species on communities is often stronger or weaker than that predicted from a study of those same species in isolation [@Sih1998a;@Ives2005]. These non-additive effects occur when predators interact with each other directly, or
+via the prey species. For example, predators feed directly on each
 other (intra-guild predation), consume the same prey (resource competition) or
 modify the behaviour of prey or the other predator species [@Sih1998a;@Griswold2006;@Nystrom2001]. These non-additive effects can be positive or negative. For example, prey may have an induced defense against one predator which increases (negative non-additive effect) or decreases (positive non-additive effect) the likelihood of consumption by a second predator. While there are many possible mechanisms underlying the effect of predator composition, we lack a means of
 predicting _a priori_ the strength and direction of this effect on community structure and ecosystem function.
@@ -346,8 +346,7 @@ exper_phylo_lm_summary <- experiment_phylo %>%
 ```
 
 Phylogenetically distant predators differed in their preference of prey
-species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, `r F_text(diet_phylo_lm_summary)`). Despite the decline in diet similarity with phylogenetic distance, the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
-(Fig 1c, `r F_text(exper_phylo_lm_summary)`, distance measured as Bray-Curtis dissimilarity)
+species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, `r F_text(diet_phylo_lm_summary)`). 
 
 ### Hypothesis 3: similarity in top-down effects
 ```{r summarize_randos}
@@ -355,7 +354,8 @@ tab_nonadd <- subset(rando_pvals, response == "total.surv" & nonadd == "tab_non"
 leech_nonadd <- subset(rando_pvals, response == "total.surv" & nonadd == "leech_non")[["rando_p"]]
 ```
 
-We analyzed our five univariate response variables from the manipulative experiment by dividing them into four separate and orthogonal tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. Across all four tests, we saw the strongest responses for total prey survivorship (Table 1). Prey survivorship was halved when predators were present (Figure 2a, Table 1). Although individually predator species had similar effects on survivorship (Figure 2c, Table 1), combinations of predators with higher phylogenetic diversity showed a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less prey mortality.  Interestingly, these effects on prey surviorship did not result in a change in the processing of detritus (measured either as reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
+We analyzed our five univariate response variables from the manipulative experiment by dividing them into four separate and orthogonal tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. Across all four tests, we saw the strongest responses for total prey survivorship (Table 1). Prey survivorship was halved when predators were present (Figure 2a, Table 1). Despite the decline in diet similarity with phylogenetic distance (Question 2), the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
+(Fig 1c, `r F_text(exper_phylo_lm_summary)`, distance measured as Bray-Curtis dissimilarity). Although individually predator species had similar effects on survivorship (Figure 2c, Table 1), combinations of predators with higher phylogenetic diversity showed a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less prey mortality.  Interestingly, these effects on prey surviorship did not result in a change in the processing of detritus (measured either as reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
 
 We tested for non-additive effects of predator phylogenetic diversity with a randomization test. When we compared the actual effects of predator combination with those expected from the mean of each single-species treatment, we found that predator pairs with the greatest phylogenetic diversity had the highest prey survival. While effects of _L. andromache_ and _L. elongatum_ in combination
 were quite similar to the effect of either alone, when _L. elongatum_ was
@@ -376,11 +376,11 @@ the experiment (Fig 3; Tabanid randomization p = `r tab_nonadd`, Leech randomiza
 
 ![non-additive](../Figures/FIG_3.png)
 
-**Figure 3**: Non-additive effects of predator combinations on prey decrease with increasing phylogenetic distance between predators. A difference of 0 indicates that two-predator treatments resulted in no more prey mortality than would be expected from simply averaging single-predator treatments. Error bars represent bootstrap 95% confidence intervals.
+**Figure 3**: Non-additive effects of predator combinations on prey decrease with increasing phylogenetic distance between predators. A difference of 0 indicates that two-predator treatments resulted in no more prey mortality than would be expected from simply averaging single-predator treatments. A negative difference indicates that two-predator treatments resulted in less mortality than expected. Error bars represent bootstrap 95% confidence intervals.
 
 
 **Table 1** Predator diversity effects on community and ecosystem variables. We measured five community-level variables: total prey survival (both emerged adults and surviving larvae; see Figure 1), the breakdown of coarse detritus (decomposition), the production of fine particulate organic matter (FPOM), the cycling of nitrogen, and the growth of the bromeliad itself. We contrast treatments in our experimental design in four ways: comparing treatments with predators to those without ("
-Predator Presence"), contrasting predator species ("Identity"), comparing predator communities of 1 or 2 species ("Richness"), and considering the effects of phylogenetic distance between predators ("Pairwise PD").  \* = p < 0.05.wic
+Predator Presence"), contrasting predator species ("Identity"), comparing predator communities of 1 or 2 species ("Richness"), and considering the effects of phylogenetic distance between predators ("Pairwise PD").  \* = p < 0.05
 
 ```{r results="asis"}
 test <- readLines("TABLE1.md")
@@ -440,6 +440,19 @@ higher per-capita effect on leafhopper prey than combinations with an insect and
 spider. That is, more phylogenetically diverse combinations of predators
 showed less predation on lower trophic levels.
 
+When _L. elongatum_ occurred with more distantly related predators, prey survivorship was greater than expected. This
+non-additive effect may have been due to a reduction in predation by odonates in the presence of non-odonate predators.
+Odonates have been shown to be sensitive to chemical cues [@Barry2014] or tactile cues [@Atwood2014] of potential predators, which
+causes a decrease in feeding rate. For example, a different species of bromeliad damselfly -- _Mecistogaster modesta_ Selys -- reduces predation when it is housed with Dytiscid adults [@Atwood2014]. If there is a phylogenetic signal
+to the chemical cues released by predators, individuals of one species might be unable to distinguish close relatives
+(congenerics in our case) from conspecifics. One limitation of our approach is that all phylogenetic
+diversity treatments contained one species in common, *Leptagrion elongatum*.
+It is possible that this species is more sensitive to the presence of other
+predators, and therefore shows a larger effect, than
+would other species in this community.  However, this is the most common
+predator in this community and our results indicate that its top-down effects
+are likely to be frequently reduced by the presence of other predators. These differences in survival did not create differences in decomposition, nor
+subsequent nitrogen uptake by bromeliads.
 
 In our experiment we did not see any effect of predator presence, nor of
 increasing predator phylogenetic diversity, on ecosystem function. This was
@@ -469,21 +482,6 @@ enclosed in coarse vs fine mesh). The experiment used two species of detritus:
 leaves from a rainforest tree, and leaves from a _restinga_ tree.
 Invertebrates only caused an increase in decomposition for the rainforest
 tree, not the _restinga_ tree.
-
-When _L. elongatum_ occurred with more distantly related predators, prey survivorship was greater than expected. This
-non-additive effect may have been due to a reduction in predation by odonates in the presence of non-odonate predators.
-Odonates have been shown to be sensitive to chemical cues [@Barry2014] or tactile cues [@Atwood2014] of potential predators, which
-causes a decrease in feeding rate. For example, a different species of bromeliad damselfly -- _Mecistogaster modesta_ Selys -- reduces predation when it is housed with Dytiscid adults [@Atwood2014]. If there is a phylogenetic signal
-to the chemical cues released by predators, individuals of one species might be unable to distinguish close relatives
-(congenerics in our case) from conspecifics. One limitation of our approach is that all phylogenetic
-diversity treatments contained one species in common, *Leptagrion elongatum*.
-It is possible that this species is more sensitive to the presence of other
-predators, and therefore shows a larger effect, than
-would other species in this community.  However, this is the most common
-predator in this community and our results indicate that its top-down effects
-are likely to be frequently reduced by the presence of other predators. These differences in survival did not create differences in decomposition, nor
-subsequent nitrogen uptake by bromeliads. This contrasts with the increase in N uptake found by Ngai and Srivastava
-[-@Ngai2006] in Costa Rican bromeliads. 
 
 In most natural communities, multiple predator species co-occur and often
 simultaneously affect prey species. By combining an observational study,
