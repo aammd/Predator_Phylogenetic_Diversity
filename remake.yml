@@ -16,6 +16,9 @@ packages:
   - xtable
   - vegan
   - grid
+  - stringr
+  - rentrez
+  - knitcitations
 
 ## source in R functions
 sources: 
