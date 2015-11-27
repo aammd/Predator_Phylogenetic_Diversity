@@ -1,9 +1,18 @@
 
 pd_exper_responses <- function(.pd, .phylogenetic_distance){
+  
+  ## first, get just the single-species treatments from the experiment
   pd_spp_resp <- .pd %>%
     filter(treatment %in% c("andro","elong","tabanid","leech")) %>%
-    select(treatment, Culicidae:Scirtidae) %>%
-    group_by(treatment)
+    select(eu, Culicidae:Scirtidae) %>%
+    group_by(eu)
+  
+  ## then, get these treatment names in a vector, named with the "eu" code:
+  pred_species_trt <- .pd %>%
+    filter(treatment %in% c("andro","elong","tabanid","leech")) %>%
+    select(eu,treatment) %>% 
+    {setNames(.[["treatment"]], .[["eu"]])} ## vector of predators, named with eu
+  
   
   rns <- pd_spp_resp[[1]]
   spp_resp_mat <- as.matrix(pd_spp_resp[-1])
@@ -20,6 +29,9 @@ pd_exper_responses <- function(.pd, .phylogenetic_distance){
   
   ### filter out intraspecific variation
   answers <- df_dist_resp %>% 
+    ## give species names back
+    mutate(rowname = pred_species_trt[rowname],
+           colname = pred_species_trt[colname]) %>% 
     filter(rowname != colname) %>% 
     ## group by species pairs. mean and sd
     unite(rowname, colname, col = species_pair) %>% 
