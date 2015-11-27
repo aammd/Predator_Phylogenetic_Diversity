@@ -15,6 +15,7 @@ packages:
   - pander
   - xtable
   - vegan
+  - grid
 
 ## source in R functions
 sources: 
