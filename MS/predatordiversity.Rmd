@@ -107,11 +107,10 @@ direct and indirect effects of predator combinations on ecosystems, predicting:
 We used three empirical approaches to test the hypotheses outlined above. To test hypothesis 1 (distribution) we sampled bromeliads for predator species. To test hypothesis 2 (diet similarity), we conducted a series of laboratory feeding trials. Finally, we tested hypothesis 3 (similarity of community effect and interaction) with a field experiment in which predators were added to bromeliads containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
 
 We included phylogenetic information in our analyses of all three datasets. We obtained this phylogenetic information first from classification alone. Next we added information about the age of each node from "timetree.org", an online database of published  molecular time estimates
-[@Hedges2006]. Node age data was available for all but the youngest nodes,
+[@Hedges2006]. The timetree online database collects information from multiple independent phylogenetic studies. These studies provide independent estimates of the age of the most recent common ancestor for two lineages. Lineages which diverged a long time ago have been dated by muliple studies, and such nodes we used the median age. At least one study all but the youngest nodes,
 where either a lack of taxonomic information (e.g. Tabanidae) or a lack of
 phylogenetic study (e.g. _Leptagrion_) prevented more information from being
-included. These branches were left unresolved (i.e., as polytomies) and were all assigned
-identical, arbitrary and short branch lengths (15 Mya).
+included. These branches were left unresolved (i.e., as polytomies) and were all assigned identical, arbitrary and short branch lengths (15 Mya). The result was a phylogeny which closely resembled the qualitative, taxonomy-based tree with which we began. Because the node ages between our major predators (leeches, tabanids and odonata) are so deep, variation between studies in the estimated age of these nodes was minor compared to the differences between them.
 
 We conducted all three experiments in Parque Estadual da Ilha do Cardoso (25^o^
 03' S, 47^o^ 53' W), a 22.5 ha island off the south coast of São Paulo state,
