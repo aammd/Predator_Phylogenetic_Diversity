@@ -41,7 +41,7 @@ make_mantel_test <- function(distance_df, .predtree_timetree_ages){
       rownames(sortedmat)),
     c(
       colnames(sortedmat),
-      rownames(sortedmat)[13]
+      rownames(sortedmat)[nrow(sortedmat)]
     )
   )
   
@@ -64,5 +64,6 @@ make_mantel_test <- function(distance_df, .predtree_timetree_ages){
   
   mantel(pd_dist, newmat_dist)
 }
+
 
 

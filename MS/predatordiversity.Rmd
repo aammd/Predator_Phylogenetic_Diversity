@@ -243,7 +243,7 @@ $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}
 
 For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
 predator $k$ or $l$ for resource or habitat $i$. The value $O_{kl}$ represents similarity (in our case, in either distribution or diet) and ranges from 0 (complete dissimilarity) to 1 (complete similarity). The $n$ resources represent the different habitats surveyed for Hypothesis 1 (distributional similarity), or the different prey species assayed for Hypothesis 2 (diet similarity). Preference ($p_{ik}$) represents the proportion of a predator's total metabolic capacity found in a particular bromeliad (Hypothesis 1); or the 
-proportion of feeding trials in which it ate a particular prey (Hypothesis 2).
+proportion of feeding trials in which it ate a particular prey (Hypothesis 2). We also compared these effects via a Mantel test, to check for overall correlation between the phylogenetic distance matrix and dissimilarity in either predator distribution or diet preferences.
 
 We tested effects of both single and multiple predator species on community responses with a manipulative experiment where identical prey communities were exposed to treatments of either a single predator, or pairs of predators representing increasing phylogenetic diversity. We divided the analysis of this experiment into three parts: quantifying the effect of phylogenetic distance on prey community similarity, on community and ecosystem responses responses, and on non-additive effects. First, we compared the four treatments with single predator species by calculating the similarity in species composition (Pianka's index) between surviving prey communities and relating this to the phylogenetic distance between predators. If predator feeding choices are phylogenetically conserved, that diet similarity will decline with increasing phylogenetic distance.
 
@@ -292,7 +292,7 @@ n.nodes <- nrow(nodeages)
 nstudies <- sum(nodeages$nstudies)
 ```
 
-We did not find any significant relationship between predator co-occurrence in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between them (Figure 1a, `r F_text( meta_phylo_lm_summary)`).  This indicates that all `r metabolic$Taxa %>% unique %>% length` predator species have roughly similar habitat distributions at the level of the bromeliad. Indeed we often found multiple predator species co-occurring in the same bromeliads (mean `r nspp$meanpred` ± `r nspp$sdpred` predator species per plant). We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
+We did not find any significant relationship between predator co-occurrence in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between them (Figure 1a, `r F_text( meta_phylo_lm_summary)`).  This indicates that all `r metabolic$Taxa %>% unique %>% length` predator species have roughly similar habitat distributions at the level of the bromeliad. Indeed we often found multiple predator species co-occurring in the same bromeliads (mean `r nspp$meanpred` ± `r nspp$sdpred` predator species per plant). A Mantel test also found no evidence of correlation between different taxa (correlation `r sprintf("%.2f", meta_pd_mantel$statistic)`, p = `r sprintf("%.2f", meta_pd_mantel$signif)`, `r meta_pd_mantel$control$nperm` permutations) We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
 (Odonata:Coenagrionidae). There were also two groups of confamilials -- three species of
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Arhynchobdellida:Hirudinidae).
@@ -344,7 +344,7 @@ exper_phylo_lm_summary <- experiment_phylo %>%
 ```
 
 Phylogenetically distant predators differed in their preference of prey
-species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, `r F_text(diet_phylo_lm_summary)`). 
+species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, `r F_text(diet_phylo_lm_summary)`). However a Mantel test found no evidence of correlation (correlation `r sprintf("%.2f", diet_pd_mantel$statistic)`, p = `r sprintf("%.2f", diet_pd_mantel$signif)`, `r diet_pd_mantel$control$nperm` permutations)
 
 ### Hypothesis 3: similarity in top-down effects
 ```{r summarize_randos}
