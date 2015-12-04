@@ -1,12 +1,12 @@
 ```{r echo=FALSE}
 make_pF <- function(Modlist) function(one, two) prF(one, two, .modlist=Modlist)
-pF <- make_pf(modlist)
+pF <- make_pF(modlist)
 ```
 
 | Response | Predator Presence | Identity | Richness | Pairwise PD |
 | -------- | ------------------| ---------|--------- | ---------- |
-| Total prey survival  |   `r prF("total.surv", "presence")` | `r pF("total.surv", "identity")`  | `r pF("total.surv", "number")` | `r pF("total.surv", "phylodist")` | 
-| Decomposition (g)  | `r pF("decomp", "presence")` | `r prF("decomp", "identity")`| `r prF("decomp", "number")` | `r prF("decomp", "phylodist")` | 
-| FPOM (g)     | `r prF("fine", "presence")` | `r prF("fine", "identity")` | `r prF("fine", "number")` | `r prF("fine", "phylodist")` |
-| Bromeliad growth  | `r prF("growth", "presence")` |`r prF("growth", "identity")` | `r prF("growth", "number")` | `r prF("growth", "phylodist")` |
-| Nitrogen cycling  | `r prF("N", "presence")` |`r prF("N", "identity")` | `r prF("N", "number")` | `r prF("N", "phylodist")` |
+| Total prey survival  |   `r pF("total.surv", "presence")` | `r pF("total.surv", "identity")`  | `r pF("total.surv", "number")` | `r pF("total.surv", "phylodist")` | 
+| Decomposition (g)  | `r pF("decomp", "presence")` | `r pF("decomp", "identity")`| `r pF("decomp", "number")` | `r pF("decomp", "phylodist")` | 
+| FPOM (g)     | `r pF("fine", "presence")` | `r pF("fine", "identity")` | `r pF("fine", "number")` | `r pF("fine", "phylodist")` |
+| Bromeliad growth  | `r pF("growth", "presence")` |`r pF("growth", "identity")` | `r pF("growth", "number")` | `r pF("growth", "phylodist")` |
+| Nitrogen cycling  | `r pF("N", "presence")` |`r pF("N", "identity")` | `r pF("N", "number")` | `r pF("N", "phylodist")` |
