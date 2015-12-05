@@ -220,7 +220,7 @@ were oven-dried at 70$^\circ$C before their mass was determined. At the end of
 experiment, we sampled three new bromeliad leaves for isotopic (^15^N) and
 nitrogen concentration analyses. These analyses were performed at the Stable
 Isotope Facility laboratory (UC Davis, CA, USA) using continuous flow isotope
-ratio mass spectrometer (20–20 mass spectrometer; PDZ Europa, Sandbach,
+ratio mass spectrometer (20-20 mass spectrometer; PDZ Europa, Sandbach,
 England) after sample combustion to N~2~ at 1000C by an on-line elemental
 analyzer (PDZ Europa ANCA-GSL).
 
@@ -253,7 +253,7 @@ indicate a significant non-additive effect of a predator combination. We used R 
 
 
 
-We did not find any significant relationship between predator co-occurrence in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between them (Figure 1a, F~1,89~=2.39, p=0.13).  This indicates that all 14 predator species have roughly similar habitat distributions at the level of the bromeliad. Indeed we often found multiple predator species co-occurring in the same bromeliads (mean 4.4 ± 2.9 predator species per plant). A Mantel test also found no evidence of correlation between different taxa (correlation -0.16, p = 0.82, 999 permutations) We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
+We did not find any significant relationship between predator co-occurrence in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between them (Figure 1a, F~1,89~=2.39, p=0.13).  This indicates that all 14 predator species have roughly similar habitat distributions at the level of the bromeliad. Indeed we often found multiple predator species co-occurring in the same bromeliads (mean 4.4 ± 2.9 predator species per plant). A Mantel test also found no evidence of correlation between different taxa (correlation -0.16, p = 0.81, 999 permutations) We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
 (Odonata:Coenagrionidae). There were also two groups of confamilials -- three species of
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Arhynchobdellida:Hirudinidae).
@@ -267,7 +267,7 @@ Chironomidae) and the deepest taxonomic divide is between all insects present an
 
 
 Phylogenetically distant predators differed in their preference of prey
-species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, F~1,26~=5.98, p=0.022). However a Mantel test found no evidence of correlation (correlation -0.27, p = 0.89, 999 permutations)
+species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, F~1,26~=5.98, p=0.022). However a Mantel test found no evidence of correlation (correlation -0.27, p = 0.90, 999 permutations)
 
 ### Hypothesis 3: similarity in top-down effects
 
@@ -279,7 +279,7 @@ We tested for non-additive effects of predator phylogenetic diversity with a ran
 were quite similar to the effect of either alone, when _L. elongatum_ was
 placed in the same plant as either a _Stibasoma_ larva or leeches, on average five
 more prey individuals (18% of total prey community) survived till the end of
-the experiment (Fig 3; Tabanid randomization p = 0.012, Leech randomization p = 0.018).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
+the experiment (Fig 3; Tabanid randomization p = 0.006, Leech randomization p = 0.026).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
 
 
 ### Figures
@@ -297,17 +297,17 @@ the experiment (Fig 3; Tabanid randomization p = 0.012, Leech randomization p = 
 **Figure 3**: Non-additive effects of predator combinations on prey decrease with increasing phylogenetic distance between predators. A difference of 0 indicates that two-predator treatments resulted in no more prey mortality than would be expected from simply averaging single-predator treatments. A negative difference indicates that two-predator treatments resulted in less mortality than expected. Error bars represent bootstrap 95% confidence intervals.
 
 
-**Table 1** Predator diversity effects on community and ecosystem variables. We measured five community-level variables: total prey survival (both emerged adults and surviving larvae; see Figure 1), the breakdown of coarse detritus (decomposition), the production of fine particulate organic matter (FPOM), the cycling of nitrogen, and the growth of the bromeliad itself. We contrast treatments in our experimental design in four ways: comparing treatments with predators to those without ("
-Predator Presence"), contrasting predator species ("Identity"), comparing predator communities of 1 or 2 species ("Richness"), and considering the effects of phylogenetic distance between predators ("Pairwise PD").  \* = p < 0.05
+**Table 1** Predator diversity effects on community and ecosystem variables. We measured five community-level variables: total prey survival (both emerged adults and surviving larvae; see Figure 1), the breakdown of coarse detritus (decomposition), the production of fine particulate organic matter (FPOM), the cycling of nitrogen, and the growth of the bromeliad itself. We contrast treatments in our experimental design in four ways: comparing treatments with predators to those without ("Predator Presence"), contrasting predator species ("Identity"), comparing predator communities of 1 or 2 species ("Richness"), and considering the effects of phylogenetic distance between predators ("Pairwise PD").  Values are slope ±  standard error and \* = p < 0.05
 
+ 
  
 | Response | Predator Presence | Identity | Richness | Pairwise PD | 
 | -------- | ------------------| ---------|--------- | ---------- | 
-| Total prey survival  |   F~1,10~ = 9.07\* | F~3,16~ = 0.60  | F~1,5~ = 1.96 | F~1,13~ = 7.64\* |  
-| Decomposition (g)  | F~1,10~ = 0.47 | F~3,15~ = 1.29| F~1,5~ = 0.21 | F~1,13~ = 0.40 |  
-| FPOM (g)     | F~1,10~ = 0.46 | F~3,15~ = 0.28 | F~1,5~ = 6.19 | F~1,13~ = 1.45 | 
-| Bromeliad growth  | F~1,10~ = 0.51 |F~3,16~ = 0.96 | F~1,5~ = 0.49 | F~1,12~ = 1.29 | 
-| Nitrogen cycling  | F~1,10~ = 2.00 |F~3,16~ = 1.84 | F~1,5~ = 0.50 | F~1,13~ = 0.15 | 
+| Total prey survival  |   -7.37 ± 2.45; F~1,10~ = 9.07\* | 2.00 ± 2.07; F~3,16~ = 0.60  | 2.05 ± 1.46; F~1,5~ = 1.96 | 0.01 ± 0.00; F~1,13~ = 7.64\* |  
+| Decomposition (g)  | 0.01 ± 0.02; F~1,10~ = 0.47 | -0.01 ± 0.03; F~3,15~ = 1.29| -0.01 ± 0.02; F~1,5~ = 0.21 | 0.00 ± 0.00; F~1,13~ = 0.40 |  
+| FPOM (g)     | -0.06 ± 0.09; F~1,10~ = 0.46 | -0.06 ± 0.11; F~3,15~ = 0.28 | 0.18 ± 0.07; F~1,5~ = 6.19 | -0.00 ± 0.00; F~1,13~ = 1.45 | 
+| Bromeliad growth  | -0.79 ± 1.10; F~1,10~ = 0.51 |-1.08 ± 1.62; F~3,16~ = 0.96 | 0.59 ± 0.84; F~1,5~ = 0.49 | 0.00 ± 0.00; F~1,12~ = 1.29 | 
+| Nitrogen cycling  | -5.69 ± 4.03; F~1,10~ = 2.00 |-0.22 ± 8.66; F~3,16~ = 1.84 | 3.97 ± 5.63; F~1,5~ = 0.50 | -0.00 ± 0.01; F~1,13~ = 0.15 | 
 
 ## Discussion
 
