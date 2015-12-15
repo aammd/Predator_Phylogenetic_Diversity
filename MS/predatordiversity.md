@@ -29,28 +29,28 @@ other (intra-guild predation), consume the same prey (resource competition) or
 modify the behaviour of prey or the other predator species [@Sih1998a;@Griswold2006;@Nystrom2001]. These non-additive effects can be positive or negative. For example, prey may have an induced defense against one predator which increases (negative non-additive effect) or decreases (positive non-additive effect) the likelihood of consumption by a second predator. While there are many possible mechanisms underlying the effect of predator composition, we lack a means of
 predicting _a priori_ the strength and direction of this effect on community structure and ecosystem function.
 
-Phylogenetic diversity could provide a framework for making these predictions about combined effects of predators. Phylogenetic diversity extends the measurement of diversity to include the evolutionary relationships between species. Two closely related species may be similar ecologically; two distant species might be very different. Very similar species may compete strongly, and/or may interfere with each other while very different species may not be able to occur in the same patch. This approach was first used to interpret observations of community structure, as ecologists interpreted nonrandom phylogenetic structure (i.e. under- or over dispersion) as evidence for the processes (i.e., habitat filtering or competition) which structure communities [@Webb2002;@Cavender-Bares2009]. Recently, this approach has been applied to manipulative experiments. For example, the phylogenetic diversity of plant
+Phylogenetic diversity could provide a framework for making these predictions about combined effects of predators. Phylogenetic diversity extends the measurement of diversity to include the evolutionary relationships between species. Two closely related species may be similar ecologically; two distant species might be very different. Very similar species may compete strongly, and/or may interfere with each other while very different species may not be able to occur in the same patch. This approach was first used to interpret observations of community structure, as ecologists interpreted nonrandom phylogenetic structure (i.e. under- or over- dispersion) as evidence for the processes, such as habitat filtering or competition, which structure communities [@Webb2002;@Cavender-Bares2009]. Recently, this approach has been applied to manipulative experiments. For example, the phylogenetic diversity of plant
 communities is a better predictor of productivity than either species
 richness or diversity [e.g. @Cadotte2009;@Cadotte2008;@Godoy2014]. In all cases, an implicit
 assumption is that increased phylogenetic distance is associated with
 increased ecological dissimilarity -- either in the form of differences in
 species niches, interactions, or functional traits. When this is true, high
 phylogenetic diversity should lead to complementarity in resource use between species, resulting in increased
-ecosystem functioning [@Srivastava2012c]. [ BRIEF REFERENCE TO WHY THIS ASSUMPTION MIGHT BE JUSTIFIED] Despite the prevalence of phylogenetic
-community ecology and the importance of predators to natural systems, the
+ecosystem functioning [@Srivastava2012c]. For example, studies of plants have shown that in both experimental [@Cadotte2008] and natural communities **cadotte and strauss**, ecosystem function in plant communities is positively related to the phylogenetic diversity of plants. Although there have been many studies taking a phylogenetic approach to
+community ecology and although predators have large effects on many communities, the
 phylogenetic diversity of local predator assemblages has rarely been measured
 [@Bersier2008;@Naisbit2011]. Many studies of phylogeny and predator
 traits focus on whole clades, rather than local assemblages (e.g. *Anolis*
 lizards [@Knouft2006], warblers [@Bohning-Gaese2003], tree boas
-[@Henderson2013] and wasps [@Udriene2005]) making it difficult to connect these
+[@Henderson2013] and wasps [@Udriene2005]), making it difficult to connect these
 results to predator effects at the scale of a local community. These 
 clade specific studies often find weak evidence for phylogenetic signal in
 ecologically relevant traits. In contrast, studies at the level of the whole biosphere
 [@Gomez2010;@Bersier2008] demonstrate that related organisms often have similar
-interspecific interactions, i.e. related predators often consume similar prey. At the local scale, only a few studies have examined how phylogeny may shape food webs [@Rezende2009;@Cagnolo2011]; these observational studies found that models containing both relatedness (either phylogenetic or taxonomic) and body size were better at predicting which predator-prey interactions occurred than models with body size alone. As observational studies, however, they cannot isolate if it is differences in predator distribution or diet that leads to a phylogenetic signal in predator-prey interactions, nor how these interactions affect the whole community. 
+interspecific interactions, i.e. related predators often consume similar prey. At the local scale, only a few studies have examined how phylogeny may shape food webs [@Rezende2009;@Cagnolo2011]; these observational studies found that models containing both relatedness (either from taxonomic rank or phylogenetic trees) and body size were better at predicting which predator-prey interactions occurred than models with body size alone. As observational studies, however, they cannot isolate if it is differences in predator distribution or diet that leads to a phylogenetic signal in predator-prey interactions, nor how these interactions affect the whole community. 
 
 Within a local community, the effect of predator species diversity will depend on three factors: how predators are distributed among habitats, how they interact with prey, and how they interact with each other. Can phylogeny help us predict how these three factors vary among predators within a community? To the extent that phylogenetic relationships are correlated with these three factors they enable us to predict the impact of predator diversity on communities. For instance, phylogeny could constrain predator species co-occurrence if more distant phylogenetic 
-relatives have more distinct fundamental niches, while close relatives are too
+relatives have more distinct fundamental niches, whereas close relatives are too
 similar to co-exist [@Webb2002;@Emerson2008]. When predators do co-occur, phylogeny may correlate with their feeding behavior, such that closely related predators consume similar prey. For example, diet overlap (shared prey species between predators) will depend on the feeding traits and nutritional 
 requirements of predators -- both of which may be phylogenetically conserved. If this is the case, then predator assemblages with higher
 phylogenetic diversity will show a greater range of prey consumed and therefore stronger top-
@@ -60,14 +60,13 @@ interactions such as intraguild predation, which may also have a phylogenetic
 signal [@Pfennig2000]. To our knowledge, the relationship of phylogeny to predator distribution, diet, and intraguild interactions has never been investigated in a single study.
 
 We tested for the effects of phylogenetic distance on distribution, diet and
-interactions of predators living in a natural mesocosm. Within this aquatic food
+interactions of predators living in a natural mesocosm: water reservoirs found inside bromeliad leaves. Bromeliads (Bromeliaceae) are flowering plants abundant in the Neotropics. Within this aquatic food
 web, damselfly larvae (e.g. *Leptagrion* spp., Odonata:Coenagrionidae) are
-important predators, dramatically reducing insect colonization [@Hammill2015]
-and emergence [@Starzomski2010], and increasing nutrient cycling [@Ngai2006].
-However, other predators are also found in bromeliads, including large
+important predators that dramatically reduce insect colonization [@Hammill2015]
+and emergence [@Starzomski2010], and increase nutrient cycling [@Ngai2006].
+In addition to damselfly larvae, other predators are also found in bromeliads, including large
 predaceous fly larvae (Diptera: Tabanidae) and predatory leeches
-(Hirudinae:Arhynchobdellida) (see Frank et al. [-@Frank2009]). These animals are
-found in bromeliads (Bromeliaceae), flowering plants abundant in the Neotropics.
+(Hirudinae:Arhynchobdellida) (see Frank et al. [-@Frank2009]). 
 Many bromeliads contain water and trapped, terrestrial detritus which supplies
 nutrients for the bromeliad [@Reich2003a]. The small size of these habitats
 permits direct manipulations of entire food webs, manipulations which would be
@@ -76,11 +75,9 @@ top-down effects on ecosystem functions in bromelaids, including nitrogen uptake
 by the plant [@Ngai2006], detrital decomposition and CO~2~ flux [@Atwood2014;
 @Atwood2013].
 
-We used a series of observations, lab feeding trials, and manipulative field
-experiments to test the hypothesis that greater phylogenetic distance correlates
-with greater difference in predator impacts on the bromeliad community.  We test
-three related hypotheses concerning similarity in distribution, diet and top-
-down ecosystem effects of predators:
+We tested for a relationship between the distribution, diet and ecosystem effect of predators and their phylogenetic distance using observations, lab feeding trials, and manipulative field
+experiments, respectively. We observed predator distribution by dissecting a sample of natural bromeliads. We quantified diet preferences in a series of no-choice feeding trials. Ecosystem-level effects were measured with a manipulative experiment, where predators were placed alone or in combination within standardized communities. In each approach, we test the hypothesis that greater phylogenetic distance correlates
+with greater difference in predator impacts on the bromeliad community:
 
 1. *Distributional similarity*: Closely related predators occur in the same habitat patch more
 frequently than less related predators. Alternatively, closely related species
@@ -103,10 +100,9 @@ direct and indirect effects of predator combinations on ecosystems, predicting:
 We used three empirical approaches to test the hypotheses outlined above. To test hypothesis 1 (distribution) we sampled bromeliads for predator species. To test hypothesis 2 (diet similarity), we conducted a series of laboratory feeding trials. Finally, we tested hypothesis 3 (similarity of community effect and interaction) with a field experiment in which predators were added to bromeliads containing standardized communities of prey. This experiment included both single species treatments and two species treatments; the latter were chosen to create the widest possible range of phylogenetic diversity. 
 
 We included phylogenetic information in our analyses of all three datasets. We obtained this phylogenetic information first from classification alone. Next we added information about the age of each node from "timetree.org", an online database of published  molecular time estimates
-[@Hedges2006]. The timetree online database collects information from multiple independent phylogenetic studies. These studies provide independent estimates of the age of the most recent common ancestor for two lineages. Lineages which diverged a long time ago have been dated by muliple studies, and such nodes we used the median age. At least one study all but the youngest nodes,
-where either a lack of taxonomic information (e.g. Tabanidae) or a lack of
+[@Hedges2006]. The timetree online database collects information from multiple independent phylogenetic studies. These studies provide independent estimates of the age of the most recent common ancestor for two lineages. Lineages that diverged a long time ago have been dated by multiple studies; for such nodes we used the median age. All internal nodes were dated by at least one study, however data was unavailable for the youngest nodes (i.e. tips) of the tree. For these nodes, either a lack of taxonomic information (e.g. Tabanidae) or a lack of
 phylogenetic study (e.g. _Leptagrion_) prevented more information from being
-included. These branches were left unresolved (i.e., as polytomies) and were all assigned identical, arbitrary and short branch lengths (15 Mya). The result was a phylogeny which closely resembled the qualitative, taxonomy-based tree with which we began. Because the node ages between our major predators (leeches, tabanids and odonata) are so deep, variation between studies in the estimated age of these nodes was minor compared to the differences between them.
+included. These branches were left unresolved (i.e., as polytomies) and were all assigned identical, arbitrary and short branch lengths (15 Mya). The result is a phylogeny that closely resembles the qualitative, taxonomy-based tree with which we began. Because the node ages between our major predators (leeches, tabanids and odonata) are so deep, variation among studies in the estimated age of these nodes was minor compared to the differences between them.
 
 We conducted all three experiments in Parque Estadual da Ilha do Cardoso (25^o^
 03' S, 47^o^ 53' W), a 22.5 ha island off the south coast of São Paulo state,
@@ -127,7 +123,7 @@ Odonata:Coenagrionidae), two species of Horse Fly larvae
 
 ## Data collection
 
-### Hypothesis 1: Distributional similarity
+### Distributional similarity
 
 We asked whether closely related predators were found in the same bromeliads. In
 2008, each bromeliad was dissected and washed to remove invertebrates. We passed this water through two sieves (150 and 850 µm), which removed
@@ -137,7 +133,7 @@ length of all individuals was measured when possible for small and medium-sized
 taxa (< 1cm final instar) and always for large-bodied taxa (> 1 cm final
 instar).
 
-### Hypothesis 2: Diet Similarity
+### Diet Similarity
 
 
 To test whether related predators eat similar prey, we fed prey to predators in laboratory feeding trials. We conducted 314 feeding trials of 10 predator taxa and 14 prey taxa between March and April 2011.  We  included all potential predator-prey pairs present in the experiment
@@ -149,25 +145,21 @@ bromeliad leaf axils (their preferred microhabitat, necessary for successful fee
 single prey individual, except in the case of very small prey (_Elpidium_ sp.)
 or predators (_Monopelopia_ sp.) in which case we increased the density.  We recorded whether prey was consumed after 24 hours.
 
-### Hypothesis 3: Community effect experiment
+### Community effect experiment
 
 Our third hypothesis had two parts: (a) how do predator species differ in their
 effects on the invertebrate community and ecosystem processes and (b) do predator combinations show non-
 additive effects on community and ecosystem processes, and do these non-additive effects increase or
-decrease with phylogenetic distance? We measured five community and ecosystem
-response variables: production of fine particulate organic matter (FPOM),
-decomposition of coarse detritus, bromeliad growth, uptake of detrital nitrogen
-into bromeliad tissue, and survival of invertebrate prey (emerged adults +
-surviving larvae)
+decrease with phylogenetic distance?
 
 #### Experimental design
 
-In this experiment we focused on the four most abundant large predators found in
+We tested effects of both single and multiple predator species on community responses with a manipulative experiment where identical prey communities were exposed to treatments of either a single predator, or pairs of predators representing increasing phylogenetic diversity. In this experiment we focused on the four most abundant large predators found in
 the community: _Leptagrion andromache_ and _Leptagrion elongatum_ (Odonata:
 Coenagrionidae), a predatory Tabanid fly (Diptera:Tabanidae:_Stibasoma_ sp.) and
 a predatory leech. We combined these species in eight treatments: predator-free
 control (no predators), each of the four predator species alone (3a) and
-pairs of predator species chosen to maximize the range of phylogenetic distance
+pairs of predator species chosen to maximize variation in phylogenetic distance
 (3b). Specifically, these pairs were: two congeneric damselflies
 (*Leptagrion andromache* and *Leptagrion elongatum*), two insects (*L.
 elongatum* and _Stibasoma_), and two invertebrates (*L. elongatum*
@@ -177,9 +169,9 @@ of the effect of each predator species (single-species treatments), as well as t
 detection of non-additive effects in predator combinations.
 
 
-To evaluate the effect of these predators on natural bromeliad systems, we created bromeliad communities that were as similar as possible to each other, and also to the average composition of a bromeliad. In February 2011 we collected bromeliads with a volume between 90 and 200ml,
+We created bromeliad communities that were as similar as possible to each other, and also to the average composition of a bromeliad. In February 2011 we collected bromeliads with a volume between 90 and 200ml,
 thoroughly washed the plants to remove organisms and detritus, and soaked them for 12 hours in a
-tub of water. We then hung all bromeliads for 48 hours to dry. This procedure was intended to remove all existing insects; one bromeliad dissected
+tub of water. We then hung all bromeliads for 48 hours to dry. This procedure was intended to remove all existing macroinvertebrates; one bromeliad dissected
 afterwards contained no insects (a similar technique was used by Romero and Srivastava [-@Romero2010]). We simulated natural detritus inputs from the canopy by adding a standard mass of dried leaves of the species _Plinia cauliflora_ (Jabuticaba, Myrtaceae; a common Brazilian tree; 1.5g bromeliad ^-1^ ± 0.02, mean ± sd). In order to
 track the effects of detrital decomposition on bromeliad N cycling, we enriched
 these leaves with ^15^N by fertilizing five plants with 40ml pot^-1^ day^-1^ of 5g L^-1^ ammonium sulphate containing 10% atom excess of ^15^N. After 21 days we then collected *P. cauliflora* leaves,
@@ -192,19 +184,15 @@ oviposition that characterizes the system. We concluded the experiment 43 days f
 with a mesh cage topped with a malaise trap and checked daily for emergence of
 adults. At the end of the experiment we completely dissected our bromeliads, collecting all invertebrates and detritus remaining inside.
 
-We used a substitutive design which maintained the same predator
-metabolic capacity in all replicates (see below). Substitutive experiments often
-hold total abundance constant, but when species differ substantially in body
-size - as in this experiment - allometric effects of body size on feeding rate
-can confound detection of effects based on trophic traits or species
-interactions, and standardizing to community metabolic capacity is preferred
-[@Srivastava2009a]. Integrating the allometric relationship between body size and feeding
+We used a substitutive design, maintaining the same predator
+metabolic capacity in all replicates (see below). In a substitutive experiment, all experimental units receive the same "amount" of predators -- usually standardized by abundance -- and only species composition varies. However, when species differ substantially in body
+size - as in this experiment - abundance does not standardize the their effects on the community. We chose to standardize using metabolic capacity instead (after Srivastava [-@Srivastava2009a]). Integrating the allometric relationship between body size and feeding
 rate [@Brown2004; @Wilby2005] over all individuals of a species allows estimates
 of "metabolic capacity", or the potential energy requirements of a species
 [@Srivastava2009a]. Metabolic capacity is equal to individual body
 mass raised to the power of 0.69 (an invertebrate-specific exponent determined by Peters [-@Peters1986] for invertebrates and confirmed by Chown et al, [-@Chown2007]); this reflects the nonlinear relationship between feeding rate and body size across many invertebrate taxa. 
 
-At the end of the experiment, to quantify the effect of predators on ecosystem function, we measured five
+To quantify the effect of predators on ecosystem function, at the end of the experiment we measured five
 community and ecosystem response variables: decomposition of coarse detritus,
 production of fine particulate organic matter (FPOM),  bromeliad growth,
 uptake of detrital nitrogen into bromeliad tissue, and survival of
@@ -234,15 +222,15 @@ For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
 predator $k$ or $l$ for resource or habitat $i$. The value $O_{kl}$ represents similarity (in our case, in either distribution or diet) and ranges from 0 (complete dissimilarity) to 1 (complete similarity). The $n$ resources represent the different habitats surveyed for Hypothesis 1 (distributional similarity), or the different prey species assayed for Hypothesis 2 (diet similarity). Preference ($p_{ik}$) represents the proportion of a predator's total metabolic capacity found in a particular bromeliad (Hypothesis 1); or the 
 proportion of feeding trials in which it ate a particular prey (Hypothesis 2). We also compared these effects via a Mantel test, to check for overall correlation between the phylogenetic distance matrix and dissimilarity in either predator distribution or diet preferences.
 
-We tested effects of both single and multiple predator species on community responses with a manipulative experiment where identical prey communities were exposed to treatments of either a single predator, or pairs of predators representing increasing phylogenetic diversity. We divided the analysis of this experiment into three parts: quantifying the effect of phylogenetic distance on prey community similarity, on community and ecosystem responses responses, and on non-additive effects. First, we compared the four treatments with single predator species by calculating the similarity in species composition (Pianka's index) between surviving prey communities and relating this to the phylogenetic distance between predators. If predator feeding choices are phylogenetically conserved, that diet similarity will decline with increasing phylogenetic distance.
+We divided the analysis of this experiment into three parts: quantifying the effect of phylogenetic distance on prey community similarity, on community and ecosystem responses, and on non-additive effects of predator combinations. First, we compared the four treatments with single predator species by calculating the similarity in species composition (Pianka's index) between surviving prey communities and relating this to the phylogenetic distance between predators with a linear regression. If predator feeding choices are phylogenetically conserved, that diet similarity will decline with increasing phylogenetic distance.
 
-Second, we measured five community and ecosystem responses measured in this experiment, testing in turn the effect of predator presence, number, species identity, and finally phylogenetic diversity. To test for an effect of predator presence, we compared the control treatment (predators absent) with the mean responses of all seven treatments that did contain predators. To test for an effect of predator species number (one or two predators), we compared the means of all single-species treatments with the means of all two-species treatments. To test for an effect of predator identity, we compared all four single-species treatments. Finally, to test for an effect of predator combinations we compared all two-species treatments (3 pairs total). We analyzed each of these of these orthogonal comparisons with one-way ANOVA. 
+Second, we measured five community and ecosystem responses, testing in turn the effect of predator presence, number, species identity, and finally phylogenetic diversity. To test for an effect of predator presence, we compared the control treatment (predators absent) with the mean responses of all seven treatments that did contain predators. To test for an effect of predator species number (one or two predators), we compared the means of all single-species treatments with the means of all two-species treatments. To test for an effect of predator identity, we compared all four single-species treatments. Finally, to test for an effect of predator combinations we compared all two-species treatments (3 pairs total). We analyzed each of these of these orthogonal comparisons with one-way ANOVA. 
 
-In our third and final analysis we quantified the non-additive effect of predator species. We calculated this effect as the difference between the
+In our third and final analysis we quantified the non-additive effect of predator species on our responses. We calculated this effect as the difference between the
 response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
 (n=5 for each predator species).  We generated bootstrap confidence intervals for
-these non-additive effects; confidence intervals which do not overlap zero
-indicate a significant non-additive effect of a predator combination. We used R version 3.2.0 [@rcore] for most calculations, and two packages: picante [@picante] for calculation phylogenetic distances matrices, and vegan [@vegan] for distance metrics.
+these non-additive effects; confidence intervals that do not overlap zero
+indicate a significant non-additive effect of a predator combination. We used R version 3.2.0 [@rcore] for most calculations, and two packages: picante [@picante] for calculating phylogenetic distances matrices, and vegan [@vegan] for distance metrics.
 
 ## Results
 
@@ -253,10 +241,10 @@ indicate a significant non-additive effect of a predator combination. We used R 
 
 
 
-We did not find any significant relationship between predator co-occurrence in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between them (Figure 1a, F~1,89~=2.39, p=0.13).  This indicates that all 14 predator species have roughly similar habitat distributions at the level of the bromeliad. Indeed we often found multiple predator species co-occurring in the same bromeliads (mean 4.4 ± 2.9 predator species per plant). A Mantel test also found no evidence of correlation between different taxa (correlation -0.16, p = 0.81, 999 permutations) We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
+We did not find any significant relationship between predator co-occurrence in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between them (Figure 1a, F~1,89~=2.39, p=0.13).  This indicates that all 14 predator species have roughly similar habitat distributions at the level of the bromeliad. Indeed we often found multiple predator species co-occurring in the same bromeliads (mean 4.4 ± 2.9 predator species per plant). A Mantel test also found no evidence of correlation between differences among predators in habitat use, and phylogenetic distance (correlation -0.16, p = 0.84, 999 permutations). We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
 (Odonata:Coenagrionidae). There were also two groups of confamilials -- three species of
-Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera are represented by a single predator species each (Dolichopodidae, Corethrellidae and
-Chironomidae) and the deepest taxonomic divide is between all insects present and the predatory leeches (Arhynchobdellida:Hirudinidae).
+Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera were represented by a single predator species each (Dolichopodidae, Corethrellidae and
+Chironomidae) and the deepest taxonomic divide was between all insects present and the predatory leeches (Arhynchobdellida:Hirudinidae).
 
 ### Hypothesis 2: Similarity in diet
 
@@ -267,19 +255,19 @@ Chironomidae) and the deepest taxonomic divide is between all insects present an
 
 
 Phylogenetically distant predators differed in their preference of prey
-species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, F~1,26~=5.98, p=0.022). However a Mantel test found no evidence of correlation (correlation -0.27, p = 0.90, 999 permutations)
+species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, F~1,26~=5.98, p=0.022). However a Mantel test found no evidence of correlation between dissimilarity in diet and phylogenetic distance among predators (correlation -0.27, p = 0.87, 999 permutations).
 
 ### Hypothesis 3: similarity in top-down effects
 
 
-We analyzed our five univariate response variables from the manipulative experiment by dividing them into four separate and orthogonal tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. Across all four tests, we saw the strongest responses for total prey survivorship (Table 1). Prey survivorship was halved when predators were present (Figure 2a, Table 1). Despite the decline in diet similarity with phylogenetic distance (Question 2), the variation in predator feeding behaviour did not translate into a significant difference in the composition of prey species surviving the manipulative experiment 
-(Fig 1c, F~1,4~=0.71, p=0.45, distance measured as Bray-Curtis dissimilarity). Although individually predator species had similar effects on survivorship (Figure 2c, Table 1), combinations of predators with higher phylogenetic diversity showed a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less prey mortality.  Interestingly, these effects on prey surviorship did not result in a change in the processing of detritus (measured either as reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
+We analyzed our five univariate response variables from the manipulative experiment by dividing them into four separate and orthogonal tests: predator presence, predator number, predator species identity and, increasing predator phylogenetic diversity. Across all four tests, we saw the strongest responses for total prey survivorship (Table 1). Prey survivorship was halved when predators were present (Figure 2a, Table 1). Despite the decline in diet similarity with phylogenetic distance (Question 2), the variation in predator feeding behaviour did not translate into a significant differences in the composition of prey species surviving the manipulative experiment 
+(Fig 1c, F~1,4~=0.71, p=0.45, distance measured as Bray-Curtis dissimilarity). Although single predator species had similar effects on survivorship (Figure 2c, Table 1), combinations of predators with higher phylogenetic diversity showed a significant increase in total prey survivorship (Fig 2d). That is, more phylogenetically diverse predator combinations caused less prey mortality.  Interestingly, these effects on prey surviorship did not result in a change in the processing of detritus (measured either as reduction in coarse detritus or production of fine detritus), bromeliad growth or nitrogen cycling (Table 1). 
 
-We tested for non-additive effects of predator phylogenetic diversity with a randomization test. When we compared the actual effects of predator combination with those expected from the mean of each single-species treatment, we found that predator pairs with the greatest phylogenetic diversity had the highest prey survival. While effects of _L. andromache_ and _L. elongatum_ in combination
+We tested for non-additive effects of predator phylogenetic diversity with bootstrap confidence intervals. When we compared the actual effects of predator combinations with those expected from the mean of each single-species treatment, we found that predator pairs with the greatest phylogenetic diversity had the highest prey survival. Whereas effects of _L. andromache_ and _L. elongatum_ in combination
 were quite similar to the effect of either alone, when _L. elongatum_ was
 placed in the same plant as either a _Stibasoma_ larva or leeches, on average five
 more prey individuals (18% of total prey community) survived till the end of
-the experiment (Fig 3; Tabanid randomization p = 0.006, Leech randomization p = 0.026).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
+the experiment (Fig 3; Tabanid, p = 0.012, Leech, p = 0.022).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
 
 
 ### Figures
@@ -312,7 +300,7 @@ the experiment (Fig 3; Tabanid randomization p = 0.006, Leech randomization p = 
 ## Discussion
 
 We found that in our bromeliad system the phylogenetic distance between predators had variable importance. The phylogenetic distance between predators was unrelated to co-occurrence (Hypothesis 1). However, as phylogenetic distance between predator species increased, diet overlap decreased by 20% (Hypothesis 2). Interestingly, these
-apparent diet preferences in the lab did not generate a difference in composition of surviving species in the field (Hypothesis  3a).  Phylogenetic diversity caused an increase in prey survival (i.e. a decrease in predation); phylogenetically distant pairs of predators that co-occurred in bromeliads had less impact on prey than expected from their performance in isolation (Hypothesis 3b).
+apparent diet preferences in the lab did not generate a difference in species composition of surviving prey in the field (Hypothesis  3a).  Greater phylogenetic diversity caused an increase in prey survival (i.e. a decrease in predation); phylogenetically distant pairs of predators that co-occurred in bromeliads had less impact on prey than expected from their performance in isolation (Hypothesis 3b).
 
 ### Phylogenetic distance and similarity in distribution
 
@@ -325,18 +313,18 @@ not possess any strong phylogenetically-conserved  preferences for different
 habitat characteristics, showing instead very generalist habitat preferences.
 This is not surprising, given that these organisms live in small, fluctuation-prone
 habitats. As a group, predatory invertebrates in bromeliads do not show more sensitivity to bromeliad size or drought than other invertebrates  [@Amundrud2015]. The co-occurrence of predator species within bromeliads suggests that antagonistic interactions among predators do not limit species distributions. Additionally, it appears that predator species are able to co-occur in many different combinations, creating a range of phylogenetic
-diversities found within bromeliads. This suggests that the range of
+diversities within bromeliads. This suggests that the range of
 phylogenetic diversity we tested in our experiment was realistic.
 
 ### Phylogenetic distance and similarity in diet
 
 We observed a negative relationship between phylogenetic distance and overlap
 in diet as measured by laboratory feeding trials. This suggests that there is a phylogenetic signal to predator feeding traits.  For example, damselflies are visual predators
-which engulf prey whole using specialized mouthparts; they are gape-limited
+that engulf prey whole using specialized mouthparts; they are gape-limited
 and cannot eat prey that are too large. Leeches, in contrast, lack eyes but are
 able to pierce prey and consume them without swallowing. Damselflies showed a
-much stronger preference for culicid larvae than did leeches, while leeches
-were slightly more able to kill and consume scirtids. Culicid larvae are free swimming in the water column, and are therefore easily captured by engulfing predators, whereas scirtid larvae crawl on surfaces and are difficult to remove. Although in this study such feeding traits are phylogenetically structures, in other studies functional traits can be more
+much stronger preference for culicid larvae than did leeches, whereas leeches
+were slightly better able to kill and consume scirtids. Culicid larvae are free swimming in the water column, and are therefore easily captured by engulfing predators, whereas scirtid larvae crawl on surfaces and are difficult to remove. Although in this study such feeding traits are phylogenetically structured, in other studies functional traits can be more
 important than phylogeny *per se* to a predator's diet: Moody [-@Moody1993] found
 that unrelated decapod species which were morphologically similar were also
 functionally similar. Similarly, Rezende et al. [-@Rezende2009] found that both body size and
@@ -349,7 +337,7 @@ We found that the presence of predators reduced prey survival, but that this
 reduction was less for phylogenetically-diverse combinations of
 predators. This was contrary to our hypothesis that more distant predators
 would show an increase in prey capture via complementarity. *L. andromache*
-did not produce an antagonistic (i.e. less than additive) effect in combination with *L. elongatum*, while the two
+did not produce an antagonistic (i.e. less than additive) effect in combination with *L. elongatum*, whereas the two
 more phylogenetically diverse combinations (*L. elongatum* with the Tabanid or leech) did. _Leptagrion_ species may not distinguish between conspecifics and congenerics. In predicting a synergistic non-additive effect of predators, we were
 imagining an outcome much like those reported by Nilsson et al. [-@Nilsson2006c]. They found that
 stoneflies caused prey to move into habitats where fish predators could
@@ -368,23 +356,20 @@ to the chemical cues released by predators, individuals of one species might be 
 (congenerics in our case) from conspecifics. One limitation of our approach is that all phylogenetic
 diversity treatments contained one species in common, *Leptagrion elongatum*.
 It is possible that this species is more sensitive to the presence of other
-predators, and therefore shows a larger effect, than
+predators, and therefore shows a larger effect in combination than
 would other species in this community.  However, this is the most common
 predator in this community and our results indicate that its top-down effects
-are likely to be frequently reduced by the presence of other predators. These differences in survival did not create differences in decomposition, nor
-subsequent nitrogen uptake by bromeliads.
+are likely to be frequently reduced by the presence of other predators. 
 
 In our experiment we did not see any effect of predator presence, nor of
-increasing predator phylogenetic diversity, on ecosystem function. This was
+increasing predator phylogenetic diversity, on ecosystem function (defined here as Nitrogen cycling, detritus decomposition and bromeliad growth). This was
 contrary to our predictions based on the results of Ngai and Srivastava [-@Ngai2006], who
-found that adding predators to a community increased the rates of nitrogen
-fixation. While we did observe differences in prey consumption, the resulting changes in detritivore density
+found that adding predators to a community increased Nitrogen cycling. While we did observe differences in prey consumption, the resulting changes in detritivore density
 did not cause differences in decomposition of detritus. This difference may be
 due to leaf traits of the _restinga_ vegetation. In _restinga_ vegetation,
-leaves are generally extremely tough and waxy, while in rainforests (e.g.
-Northwest Costa Rica, the site of Ngai and Srivastava [-@Ngai2006]), leaves tend to
+leaves are generally extremely tough and waxy, whereas in rainforests, leaves tend to
 be softer -- with the result that, in _restinga_, invertebrates are unable to
-consume leaves directly while in rainforests they are. Several lines of
+consume leaves directly. Several lines of
 evidence support this assertion. Romero and Srivastava [-@Romero2010]
 studied the effects of the spider _Corinna_ gr. _rubripes_ (Corinnidae) on
 bromeliad ecosystems. This spider has no effect on the composition of
@@ -392,9 +377,7 @@ detritivore communities, nor on decomposition rates, but increases nitrogen
 content in bromeliads, probably by depositing feces or the carcasses of
 terrestrial prey. This indicates that _restinga_ bromeliads may derive less of
 their nitrogen from terrestrial detritus, but may benefit more from
-terrestrial inputs. Additionally, detritus breakdown rates are lower in
-_restinga_ than in rainforest, and less dependent on invertebrates (R. Lecraw,
-pers comm). A separate experiment (GQ Romero, pers comm) supports the
+terrestrial inputs. A separate experiment (GQ Romero, pers comm) supports the
 hypothesis that lower decomposition in _restinga_ is due to plant traits. This
 second experiment contrasted decomposition caused by invertebrates and
 bacteria with that caused by bacteria alone (by comparing bagged detritus
@@ -405,11 +388,12 @@ tree, not the _restinga_ tree.
 
 In most natural communities, multiple predator species co-occur and often
 simultaneously affect prey species. By combining an observational study,
-laboratory trials and a field experiment we have shown that phylogenetic
-relatedness of species can help predict some aspects of lower trophic level
-responses. An approach based on phylogenetic diversity offers an organizing
-framework around which to compare diverse datasets on the distribution,
-trophic interactions and combined effect of multiple predator species, to
-predict the top-down effect of diverse predator assemblages.
+laboratory trials, and a field experiment that controlled number and
+phylogenetic diversity of predators we have shown that phylogenetic relatedness
+of species can help predict some aspects of lower trophic level responses. An
+approach based on phylogenetic diversity offers an organizing framework around
+which to compare diverse datasets on the distribution, trophic interactions and
+combined effect of multiple predator species, to predict the top-down effect of
+diverse predator assemblages.
 
 ## References
