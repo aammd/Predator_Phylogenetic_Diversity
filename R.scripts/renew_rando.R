@@ -36,7 +36,7 @@ make_nonadditive_bootCI <- function(experiment_data){
       sample_n(5, TRUE) %>% 
       calc_means_difference
   }, simplify = FALSE) %>% 
-    unnest(col = "rep")
+    bind_rows(.id = "rep")
   
   ## take quantiles
   means_boot_ci <- randomized_means %>% 

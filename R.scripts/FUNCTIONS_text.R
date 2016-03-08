@@ -63,6 +63,21 @@ prF <- function(resp,test,.modlist){
   }
 }
 
+## Extract pretty slopes from the `modlist` object, which is a list of models.
+slope_se <- function(resp,test,.modlist){
+  modsum <- .modlist[[test]] %>%
+    filter(response == resp) %>%
+    extract2("m") %>%
+    extract2(1)
+  
+  nice <- broom::tidy(modsum)
+  
+  
+  sprintf("%.2f ± %.2f",  nice[["estimate"]][2], nice[["std.error"]][2])
+}
+
+
+
 ## polyculture effect sizes
 polyeffect <- function(resp="total.surv"){
   diffeffect <- (mean(pd[[resp]][pd$treatment%in%c("elong + andro","elong + leech","elong + tab")],na.rm=TRUE)-mean(pd[[resp]][pd$treatment%in%c("andro","tabanid","leech","elong")],na.rm=TRUE))/mean(pd[[resp]][pd$treatment=="control"],na.rm=TRUE)

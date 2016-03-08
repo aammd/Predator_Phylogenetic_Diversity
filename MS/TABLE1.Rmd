@@ -1,8 +1,15 @@
+```{r echo=FALSE}
+make_pF <- function(Modlist) function(one, two) prF(one, two, .modlist=Modlist)
+pF <- make_pF(modlist)
+
+make_se <- function(Modlist) function(one, two) slope_se(one, two, .modlist=Modlist)
+se <- make_se(modlist)
+```
 
 | Response | Predator Presence | Identity | Richness | Pairwise PD |
 | -------- | ------------------| ---------|--------- | ---------- |
-| Total prey survival  |   `r prF("total.surv", "presence", .modlist = modlist)` | `r prF("total.surv", "identity", .modlist = modlist)`  | `r prF("total.surv", "number", .modlist = modlist)` | `r prF("total.surv", "phylodist", .modlist = modlist)` | 
-| Decomposition (g)  | `r prF("decomp", "presence", .modlist = modlist)` | `r prF("decomp", "identity", .modlist = modlist)`| `r prF("decomp", "number", .modlist = modlist)` | `r prF("decomp", "phylodist", .modlist = modlist)` | 
-| FPOM (g)     | `r prF("fine", "presence", .modlist = modlist)` | `r prF("fine", "identity", .modlist = modlist)` | `r prF("fine", "number", .modlist = modlist)` | `r prF("fine", "phylodist", .modlist = modlist)` |
-| Bromeliad growth  | `r prF("growth", "presence", .modlist = modlist)` |`r prF("growth", "identity", .modlist = modlist)` | `r prF("growth", "number", .modlist = modlist)` | `r prF("growth", "phylodist", .modlist = modlist)` |
-| Nitrogen cycling  | `r prF("N", "presence", .modlist = modlist)` |`r prF("N", "identity", .modlist = modlist)` | `r prF("N", "number", .modlist = modlist)` | `r prF("N", "phylodist", .modlist = modlist)` |
+| Total prey survival  |   `r se("total.surv", "presence")`; `r pF("total.surv", "presence")` | `r se("total.surv", "identity")`; `r pF("total.surv", "identity")`  | `r se("total.surv", "number")`; `r pF("total.surv", "number")` | `r se("total.surv", "phylodist")`; `r pF("total.surv", "phylodist")` | 
+| Decomposition (g)  | `r se("decomp", "presence")`; `r pF("decomp", "presence")` | `r se("decomp", "identity")`; `r pF("decomp", "identity")`| `r se("decomp", "number")`; `r pF("decomp", "number")` | `r se("decomp", "phylodist")`; `r pF("decomp", "phylodist")` | 
+| FPOM (g)     | `r se("fine", "presence")`; `r pF("fine", "presence")` | `r se("fine", "identity")`; `r pF("fine", "identity")` | `r se("fine", "number")`; `r pF("fine", "number")` | `r se("fine", "phylodist")`; `r pF("fine", "phylodist")` |
+| Bromeliad growth  | `r se("growth", "presence")`; `r pF("growth", "presence")` |`r se("growth", "identity")`; `r pF("growth", "identity")` | `r se("growth", "number")`; `r pF("growth", "number")` | `r se("growth", "phylodist")`; `r pF("growth", "phylodist")` |
+| Nitrogen cycling  | `r se("N", "presence")`; `r pF("N", "presence")` |`r se("N", "identity")`; `r pF("N", "identity")` | `r se("N", "number")`; `r pF("N", "number")` | `r se("N", "phylodist")`; `r pF("N", "phylodist")` |
