@@ -48,7 +48,7 @@ targets:
       
   ## Figure themes
   mytheme:
-    command: maketheme()
+    command: theme_minimal()
     
   one_point:
     command: makept()
