@@ -28,7 +28,7 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE)
 
 Predators can have strong top-down effects, both on community structure and
 ecosystem processes [@Estes2011]. The combined effect of predator species on communities is often stronger or weaker than that predicted from a study of those same species in isolation [@Sih1998a;@Ives2005]. These non-additive effects occur when predators interact with each other directly, or
-via their shared prey species. For example, predators feed directly on each
+via the prey species. For example, predators feed directly on each
 other (intra-guild predation), consume the same prey (resource competition) or
 modify the behaviour of prey or the other predator species [@Sih1998a;@Griswold2006;@Nystrom2001]. These non-additive effects can be positive or negative. For example, prey may have an induced defense against one predator which increases (negative non-additive effect) or decreases (positive non-additive effect) the likelihood of consumption by a second predator. While there are many possible mechanisms underlying the effect of predator composition, we lack a means of
 predicting _a priori_ the strength and direction of this effect on community structure and ecosystem function.
@@ -40,7 +40,7 @@ assumption is that increased phylogenetic distance is associated with
 increased ecological dissimilarity -- either in the form of differences in
 species niches, interactions, or functional traits. When this is true, high
 phylogenetic diversity should lead to complementarity in resource use between species, resulting in increased
-ecosystem functioning [@Srivastava2012c]. For example, studies of plants have shown that in both experimental [@Cadotte2008] and natural communities [], ecosystem function in plant communities is positively related to the phylogenetic diversity of plants. Although there have been many studies taking a phylogenetic approach to
+ecosystem functioning [@Srivastava2012c]. For example, studies of plants have shown that in both experimental [@Cadotte2008] and natural communities **cadotte and strauss**, ecosystem function in plant communities is positively related to the phylogenetic diversity of plants. Although there have been many studies taking a phylogenetic approach to
 community ecology and although predators have large effects on many communities, the
 phylogenetic diversity of local predator assemblages has rarely been measured
 [@Bersier2008;@Naisbit2011]. Many studies of phylogeny and predator
@@ -63,7 +63,7 @@ diets may extend to include other predators, leading to direct negative
 interactions such as intraguild predation, which may also have a phylogenetic
 signal [@Pfennig2000]. To our knowledge, the relationship of phylogeny to predator distribution, diet, and intraguild interactions has never been investigated in a single study.
 
-We tested for effects of phylogenetic distance on distribution, diet and
+We tested for the effects of phylogenetic distance on distribution, diet and
 interactions of predators living in a natural mesocosm: water reservoirs found inside bromeliad leaves. Bromeliads (Bromeliaceae) are flowering plants abundant in the Neotropics. Within this aquatic food
 web, damselfly larvae (e.g. *Leptagrion* spp., Odonata:Coenagrionidae) are
 important predators that dramatically reduce insect colonization [@Hammill2015]

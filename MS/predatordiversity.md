@@ -24,7 +24,7 @@ csl: formatting/the-american-naturalist.csl
 
 Predators can have strong top-down effects, both on community structure and
 ecosystem processes [@Estes2011]. The combined effect of predator species on communities is often stronger or weaker than that predicted from a study of those same species in isolation [@Sih1998a;@Ives2005]. These non-additive effects occur when predators interact with each other directly, or
-via their shared prey species. For example, predators feed directly on each
+via the prey species. For example, predators feed directly on each
 other (intra-guild predation), consume the same prey (resource competition) or
 modify the behaviour of prey or the other predator species [@Sih1998a;@Griswold2006;@Nystrom2001]. These non-additive effects can be positive or negative. For example, prey may have an induced defense against one predator which increases (negative non-additive effect) or decreases (positive non-additive effect) the likelihood of consumption by a second predator. While there are many possible mechanisms underlying the effect of predator composition, we lack a means of
 predicting _a priori_ the strength and direction of this effect on community structure and ecosystem function.
@@ -36,7 +36,7 @@ assumption is that increased phylogenetic distance is associated with
 increased ecological dissimilarity -- either in the form of differences in
 species niches, interactions, or functional traits. When this is true, high
 phylogenetic diversity should lead to complementarity in resource use between species, resulting in increased
-ecosystem functioning [@Srivastava2012c]. For example, studies of plants have shown that in both experimental [@Cadotte2008] and natural communities [], ecosystem function in plant communities is positively related to the phylogenetic diversity of plants. Although there have been many studies taking a phylogenetic approach to
+ecosystem functioning [@Srivastava2012c]. For example, studies of plants have shown that in both experimental [@Cadotte2008] and natural communities **cadotte and strauss**, ecosystem function in plant communities is positively related to the phylogenetic diversity of plants. Although there have been many studies taking a phylogenetic approach to
 community ecology and although predators have large effects on many communities, the
 phylogenetic diversity of local predator assemblages has rarely been measured
 [@Bersier2008;@Naisbit2011]. Many studies of phylogeny and predator
@@ -241,7 +241,7 @@ indicate a significant non-additive effect of a predator combination. We used R 
 
 
 
-We did not find any significant relationship between predator co-occurrence in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between them (Figure 1a, F~1,89~=2.39, p=0.13).  This indicates that all 14 predator species have roughly similar habitat distributions at the level of the bromeliad. Indeed we often found multiple predator species co-occurring in the same bromeliads (mean 4.4 ± 2.9 predator species per plant). A Mantel test also found no evidence of correlation between differences among predators in habitat use, and phylogenetic distance (correlation -0.16, p = 0.81, 999 permutations). We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
+We did not find any significant relationship between predator co-occurrence in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between them (Figure 1a, F~1,89~=2.39, p=0.13).  This indicates that all 14 predator species have roughly similar habitat distributions at the level of the bromeliad. Indeed we often found multiple predator species co-occurring in the same bromeliads (mean 4.4 ± 2.9 predator species per plant). A Mantel test also found no evidence of correlation between differences among predators in habitat use, and phylogenetic distance (correlation -0.16, p = 0.84, 999 permutations). We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
 (Odonata:Coenagrionidae). There were also two groups of confamilials -- three species of
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera were represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide was between all insects present and the predatory leeches (Arhynchobdellida:Hirudinidae).
@@ -255,7 +255,7 @@ Chironomidae) and the deepest taxonomic divide was between all insects present a
 
 
 Phylogenetically distant predators differed in their preference of prey
-species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, F~1,26~=5.98, p=0.022). However a Mantel test found no evidence of correlation between dissimilarity in diet and phylogenetic distance among predators (correlation -0.27, p = 0.90, 999 permutations).
+species, as measured by the niche overlap index (Fig 1b, regression weighted by the number of prey assayed, F~1,26~=5.98, p=0.022). However a Mantel test found no evidence of correlation between dissimilarity in diet and phylogenetic distance among predators (correlation -0.27, p = 0.87, 999 permutations).
 
 ### Hypothesis 3: similarity in top-down effects
 
@@ -267,7 +267,7 @@ We tested for non-additive effects of predator phylogenetic diversity with boots
 were quite similar to the effect of either alone, when _L. elongatum_ was
 placed in the same plant as either a _Stibasoma_ larva or leeches, on average five
 more prey individuals (18% of total prey community) survived till the end of
-the experiment (Fig 3; Tabanid, p = 0.006, Leech, p = 0.026).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
+the experiment (Fig 3; Tabanid, p = 0.012, Leech, p = 0.022).  Once again, this effect on invertebrate density did not in turn create a significant difference in other response variables.
 
 
 ### Figures
