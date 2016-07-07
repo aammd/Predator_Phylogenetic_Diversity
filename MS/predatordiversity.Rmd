@@ -40,7 +40,7 @@ assumption is that increased phylogenetic distance is associated with
 increased ecological dissimilarity -- either in the form of differences in
 species niches, interactions, or functional traits. When this is true, high
 phylogenetic diversity should lead to complementarity in resource use between species, resulting in increased
-ecosystem functioning [@Srivastava2012c]. For example, studies of plants have shown that in both experimental [@Cadotte2008] and natural communities [], ecosystem function in plant communities is positively related to the phylogenetic diversity of plants. Although there have been many studies taking a phylogenetic approach to
+ecosystem functioning [@Srivastava2012c]. For example, studies of plants have shown that in experimental communities [@Cadotte2008; @Flynn2011], ecosystem function is positively related to the phylogenetic diversity. Although there have been many studies taking a phylogenetic approach to
 community ecology and although predators have large effects on many communities, the
 phylogenetic diversity of local predator assemblages has rarely been measured
 [@Bersier2008;@Naisbit2011]. Many studies of phylogeny and predator
