@@ -5,6 +5,7 @@
 \linespread{1.7}
 \usepackage[utf8]{inputenc}
 \usepackage{lineno}
+\usepackage{booktabs}
 
 %%%%%%%%%%%%%%%%%%%%%
 % LaTeX packages
@@ -627,30 +628,6 @@ not in turn create a significant difference in other response variables.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%555
 
-Aenean pulvinar malesuada commodo (see \citealt{DavisEtAl2011}; 
-table~\ref{Table:Okapi}). Sed aliquet mauris odio, in tristique dui 
-egestas a. Etiam eu malesuada quam. Suspendisse tincidunt eu erat sit 
-amet vulputate. Duis at arcu et nisl dictum mattis. Maecenas vel cursus 
-ante. Cras eleifend elit nec velit sollicitudin fermentum in ac mauris. 
-Pellentesque rutrum magna vel elit maximus hendrerit. All data are 
-available in the Dryad Digital Repository (\citealt{CookEtAl2015}).
-
-\subsection*{The height of the jump}
-
-Aenean eu pellentesque quam (fig.~\ref{Fig:OkapiHorn}). Nam pellentesque 
-augue eu finibus lacinia. Nullam nec justo vitae odio imperdiet rhoncus 
-vitae vitae quam. Pellentesque porttitor metus et lectus ornare, ac 
-cursus urna efficitur (fig~\ref{Fig:Jumps}B). 
-
-\subsection*{The laziness of the dog}
-
-Sed sit amet pharetra nisi (fig.~\ref{Fig:AnotherFigure}). Praesent 
-quis dolor in dolor molestie cursus et ac nisi. Vestibulum ante purus, 
-semper eget est vitae, vehicula ornare nisl. Morbi efficitur euismod 
-enim, nec feugiat tellus cursus eget. Donec mauris nibh, volutpat 
-vehicula viverra at, iaculis congue sem. Praesent eget erat rhoncus erat 
-sollicitudin volutpat. 
-
 \section*{Discussion}
 
 Nam pulvinar lorem at lorem ultrices, vel accumsan massa feugiat 
@@ -812,22 +789,40 @@ pretium, dolor ex interdum ante, sed luctus quam eros ac nulla.
 \setcounter{table}{0}
 
 \begin{table}[h]
-\caption{Animals in various cities with equations}
-\label{Table:Okapi}
+\caption{Predator diversity effects on community and ecosystem
+variables. We measured five community-level variables: total prey
+survival (both emerged adults and surviving larvae; see Figure \ref{fig:ortho_pred_effect}), the
+breakdown of coarse detritus (decomposition), the production of fine
+particulate organic matter (FPOM), the cycling of nitrogen, and the
+growth of the bromeliad itself. We contrast treatments in our
+experimental design in four ways: comparing treatments with predators to
+those without (``Predator Presence''), contrasting predator species
+(``Identity''), comparing predator communities of 1 or 2 species
+(``Richness''), and considering the effects of phylogenetic distance
+between predators (``Pairwise PD''). Values are slope $\pm$ standard error
+and * = p \textless{} 0.05, from ANOVA}
+\label{tab:pdeffects}
 \centering
-\begin{tabular}{llc}\hline
-Animal    & City         & Equation \\ \hline
-Dog       & Springfield  & $x+y=z$ \\
-Fox       & Indianapolis & $2x+2y=2z$ \\
-Okapi$^a$ & Chicago      & $x-y<z$ \\
-Badger    & Madison      & $x+2y>z$ \\ \hline
+\begin{tabular}{rrrrr}
+
+\toprule 
+Response                & Predator Presence               & Identity                         & Richness                      & Pairwise PD             \\ 
+\midrule
+Total prey survival   & -7.37 $\pm$ 2.45               & 2.00 $\pm$ 2.07              & 2.05 $\pm$ 1.46              & 0.01 $\pm$ 0.00                 \\
+                      & F\textsubscript{1,10} = 9.07*  & F\textsubscript{3,16} = 0.60 & F\textsubscript{1,5} = 1.96  & F\textsubscript{1,13} = 7.64*   \\
+Decomposition (g)     & 0.01 $\pm$ 0.02                & -0.01 $\pm$ 0.03             & -0.01 $\pm$ 0.02             & 0.00 $\pm$ 0.00                 \\
+                      & F\textsubscript{1,10} = 0.47   & F\textsubscript{3,15} = 1.29 & F\textsubscript{1,5} = 0.21  & F\textsubscript{1,13} = 0.40    \\
+FPOM (g)              & -0.06 $\pm$ 0.09               & -0.06 $\pm$ 0.11             & 0.18 $\pm$ 0.07              & -0.00 $\pm$ 0.00                \\
+                      & F\textsubscript{1,10} = 0.46   & F\textsubscript{3,15} = 0.28 & F\textsubscript{1,5} = 6.19  & F\textsubscript{1,13} = 1.45    \\
+Bromeliad growth      & -0.79 $\pm$ 1.10               & -1.08 $\pm$ 1.62             & 0.59 $\pm$ 0.84              & 0.00 $\pm$ 0.00                 \\
+                      & F\textsubscript{1,10} = 0.51   & F\textsubscript{3,16} = 0.96 & F\textsubscript{1,5} = 0.49  & F\textsubscript{1,12} = 1.29    \\
+Nitrogen cycling      & -5.69 $\pm$ 4.03               & -0.22 $\pm$ 8.66             & 3.97 $\pm$ 5.63              & -0.00 $\pm$ 0.01                \\
+                      & F\textsubscript{1,10} = 2.00   & F\textsubscript{3,16} = 1.84 & F\textsubscript{1,5} = 0.50  &  F\textsubscript{1,13} = 0.15   \\
+\bottomrule
 \end{tabular}
 \bigskip{}
 \\
-{\footnotesize Note: Table titles should be short. Further details 
-should go in a `notes' area after the tabular environment, as shown 
-here. $^a$ Okapis are not native to Chicago, but they are to be met with 
-in both of the major Chicagoland zoos.}
+% {\footnotesize Note: .}
 \end{table}
 
 \newpage{}
@@ -848,43 +843,86 @@ in both of the major Chicagoland zoos.}
 
 \section*{Figure legends}
 
-\begin{figure}[h!]
-%\includegraphics{horn-of-okapi}
-\caption{Figure 
-legends should be concise, though they can be longer than the titles of 
-tables.}
-\label{Fig:OkapiHorn}
+\begin{figure}[htbp]
+% \includegraphics[width=5.5in]{figures/FIG_1.pdf}
+\caption[Phylogenetic distance between predators as a
+predictor of niche overlap among predators and impacts on prey
+composition.]{Phylogenetic distance between predators as a
+predictor of niche overlap among predators and impacts on prey
+composition. Our measures of niche overlap were: (a) distribution among
+bromeliads and (b) diet preferences. We also show the effect of
+phylogenetic distance between predators on (c) community dissimilarity
+of surviving prey (Bray-Curtis dissimilarity). We measured
+distributional similarity (a) by counting all predators in 25
+bromeliads, estimating their total metabolic capacity, and calculating
+niche overlap (Pianka's index) among all pairs of species. We measured
+diet preferences (b) for a subset of these predators by offering them
+various prey in no-choice trials, and again calculated niche overlap
+among them. Finally, we measured community composition of surviving prey
+(c) at the end of an experiment in which predators were placed in
+bromeliads with standardized prey communities. For (a) and (b) we used
+Pianka's index of niche overlap (1 = complete niche overlap) and tested
+various nonlinear and linear models (see Appendix) of the relationship
+between this index and phylogenetic distance. Solid lines show
+significant model fit, and dashed lines show bootstrap 95\% quantiles.}
+\label{fig:phylo_niche_overlap}
 \end{figure}
 
-\begin{figure}[h!]
-%\includegraphics{elegance}
-\caption{In this way, figure legends can be listed at the end of the 
-document, with references that work, even if the graphic itself is uploaded
-separately.}
-\label{Fig:AnotherFigure}
+
+\begin{figure}[htbp]
+% \includegraphics[width=5.5in]{figures/FIG_2.pdf}
+\caption[Orthogonal comparisons of the effect of predators on
+prey survival. ]{Orthogonal comparisons of the effect of predators on
+prey survival. We show the effects of predator presence (a), and then
+within predator present treatments the effects of predator species
+number (b). Within treatments with one predator species, we show effects
+of predator identity (c). Within treatments with two predator species,
+we show the effect of increasing phylogenetic diversity (d, arranged in
+order of increasing phylogenetic distance: Low = \emph{L. andromache} +
+\emph{L. elongatum}, Medium = \emph{L. elongatum} + tabanid, High =
+\emph{L. elongatum} + leech). Shaded dots represent grand means for each
+group; unshaded dots are either treatment means (2a and 2b, n = 5) or
+individual bromeliads (2c and 2d). Points are jittered horizontally
+slightly to reveal all datapoints.}
+\label{fig:ortho_pred_effect}
 \end{figure}
 
-\subsection*{Online figure legends}
 
-\renewcommand{\thefigure}{A\arabic{figure}}
-\setcounter{figure}{0}
-
-\begin{figure}[h!]
-%\includegraphics{jumps20m}
-\caption{\textit{A}, the quick red fox proceeding to jump 20~m straight 
-into the air over not one, but several lazy dogs. \textit{B}, the quick 
-red fox landing gracefully despite the skepticism of naysayers.}
-\label{Fig:Jumps}
+\begin{figure}[htbp]
+% \includegraphics[width=5.5in]{figures/FIG_3.pdf}
+\caption[Non-additive effects of predator combinations on prey
+decrease with increasing phylogenetic distance between predators]{Non-additive effects of predator combinations on prey
+decrease with increasing phylogenetic distance between predators. A
+difference of 0 indicates that two-predator treatments resulted in no
+more prey mortality than would be expected from simply averaging
+single-predator treatments. A negative difference indicates that
+two-predator treatments resulted in less mortality than expected. Error
+bars represent bootstrap 95\% confidence intervals.}
+\label{fig:non_additive}
 \end{figure}
 
-\begin{figure}[h!]
-%\includegraphics{jumps-nr-okapi}
-\caption{The quicker the red fox jumps, the likelier it is to land near 
-an okapi. For further details, see \citet{LemKapEx07}.}
-\label{Fig:JumpsOk}
-\end{figure}
 
-\renewcommand{\thefigure}{B\arabic{figure}}
-\setcounter{figure}{0}
+% \subsection*{Online figure legends}
+
+% \renewcommand{\thefigure}{A\arabic{figure}}
+% \setcounter{figure}{0}
+
+% \begin{figure}[h!]
+% %\includegraphics{jumps20m}
+% \caption{\textit{A}, the quick red fox proceeding to jump 20~m straight 
+% into the air over not one, but several lazy dogs. \textit{B}, the quick 
+% red fox landing gracefully despite the skepticism of naysayers.}
+% \label{Fig:Jumps}
+% \end{figure}
+
+% \begin{figure}[h!]
+% %\includegraphics{jumps-nr-okapi}
+% \caption{The quicker the red fox jumps, the likelier it is to land near 
+% an okapi. For further details, see \citet{LemKapEx07}.}
+% \label{Fig:JumpsOk}
+% \end{figure}
+
+% \renewcommand{\thefigure}{B\arabic{figure}}
+% \setcounter{figure}{0}
 
 \end{document}
