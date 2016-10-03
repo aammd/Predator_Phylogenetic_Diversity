@@ -1,6 +1,7 @@
 .Rproj.user
 .Rhistory
 .RData
+.DS_Store
 
 *.ps
 *~
@@ -53,3 +54,6 @@ methods/toc.md
 PredatorDiversity.sublime*
 
 raw-data/feeding.rearing/datafromFish/North Americans/.~lock*
+*.xlsx
+MS/MacDonald_romero_srivastava.dvi
+MS/MacDonald_romero_srivastava.pdf
