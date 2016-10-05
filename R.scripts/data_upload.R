@@ -41,6 +41,6 @@ View(tree_data)
 ### Experimental data
 
 pd_raw %>% 
-  select(Id, treatment, eu, mass.g., org_fine_mass, total.surv, decomp, fine, X15N,  N, growth, contains("idae")) %>% 
+  select(Id, treatment, eu, mass.g., org_fine_mass, total.surv, decomp, fine, N, growth, contains("idae")) %>% 
   csvy::write_csvy("data/predator_diversity_experiment_metadata_blank.csvy",
                  quote = FALSE, row.names = FALSE)
