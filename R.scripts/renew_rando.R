@@ -9,7 +9,7 @@ make_nonadditive_bootCI <- function(experiment_data){
   ## select responses and gather these into a single column
   long_responses <- experiment_data %>% 
     tbl_df %>% 
-    select(treatment, X15N, total.surv, fine, decomp, growth) %>% 
+    select(treatment, N, total.surv, fine, decomp, growth) %>% 
     gather(response, value, -treatment) %>% 
     ## groups contain all 5 replicates
     group_by(response, treatment)
