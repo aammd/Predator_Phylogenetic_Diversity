@@ -211,8 +211,6 @@ bromeliad leaf axils (their preferred microhabitat, necessary for successful fee
 single prey individual, except in the case of very small prey (_Elpidium_ sp.)
 or predators (_Monopelopia_ sp.) in which case we increased the density.  We recorded whether prey was consumed after 24 hours. We tested for a relationship between predator divergence time and diet similarity with a regression weighted by the number of prey assayed (to correct for unequal numbers of replicates). All feeding trial data is available at https://dx.doi.org/10.6084/m9.figshare.3978783.v1
 
-Retrieved: 13 27, Oct 05, 2016 (GMT)
-
 ### Community effect experiment
 
 Our third hypothesis had two parts: (a) how do predator species differ
