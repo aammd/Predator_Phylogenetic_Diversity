@@ -1,6 +1,6 @@
 
-make_fig_2 <- function(pd, .mytheme, .one_point){
-  .mytheme <- .mytheme + theme(axis.title.y = ggplot2::element_blank())
+make_fig_2 <- function(pd, .one_point){
+  .mytheme <- theme_minimal() + theme(axis.title.y = ggplot2::element_blank())
   # presence ----------------------------------------------------------------
   topy <- c(4, 16)
   boty <- c(0, 14)

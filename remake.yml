@@ -21,6 +21,7 @@ packages:
   - knitcitations
   - csvy
   - rfigshare
+  - purrr
 
 ## source in R functions
 sources: 
@@ -50,8 +51,6 @@ targets:
       - MS/SuppMatt.pdf
       
   ## Figure themes
-  mytheme:
-    command: theme_minimal()
     
   one_point:
     command: makept()
@@ -176,19 +175,19 @@ targets:
     command: pd_exper_responses(pd_no_out, phylogenetic_distance)
     
   Figures/FIG_1.png:
-    command: make_fig_1(metabolic_occur_phylo, diet_overlap_phylo, experiment_phylo, diet_predictions, mytheme)
+    command: make_fig_1(metabolic_occur_phylo, diet_overlap_phylo, experiment_phylo, diet_predictions)
     plot:
       width: 500
       height: 500
  
   Figures/FIG_2.png:
-    command: make_fig_2(pd_no_out, mytheme, one_point)
+    command: make_fig_2(pd_no_out, one_point)
     plot:
       width: 500
       height: 500
       
   Figures/FIG_3.png:
-    command: make_fig_3(nonadd_effect_pd, mytheme)
+    command: make_fig_3(nonadd_effect_pd)
     plot:
       width: 500
       height: 500
