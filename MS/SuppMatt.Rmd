@@ -253,7 +253,7 @@ ctrl_single_pair %>%
   lapply(as.data.frame) %>%
   lapply(function(x) data.frame(comparison = row.names(x),x)) %>%
   (function(m) {
-    comps <- rbind_all(m)
+    comps <- bind_rows(m)
     r <- names(m) %>% rep(times = sapply(m,nrow) %>% as.numeric)
     data.frame(r,comps)
     }) %>% 
@@ -332,7 +332,7 @@ tukies <- lapply(singlepred_resp_aov,TukeyHSD)
 trts <- lapply(tukies,function(x) x$treatment)
 
 lapply(trts,function(x) data.frame(comparison = rownames(x),x)) %>%
-  rbind_all %>%
+  bind_rows %>%
   cbind(response = names(trts) %>% rep(each = 6),
         .) %>%
   mutate(response = response %>% as.character %>% trtnames[.]) %>%
@@ -400,7 +400,7 @@ replicate(1000,{
     summary %>% extract2("coefficients")
 },FALSE) %>% 
   lapply(function(d) data.frame(param = rownames(d),d)) %>%
-  rbind_all %>%
+  bind_rows %>%
   filter(param == "treatment.L") %>%
   extract2("Estimate") %>%
   quantile(probs = c(0.025,0.975))
@@ -444,7 +444,7 @@ twopred %>%
   lapply(as.data.frame) %>%
   lapply(function(x) data.frame(comparison = row.names(x),x)) %>%
   (function(m) {
-    comps <- rbind_all(m)
+    comps <- bind_rows(m)
     r <- names(m) %>% rep(times = sapply(m,nrow) %>% as.numeric)
     data.frame(r,comps)
     }) %>% 
