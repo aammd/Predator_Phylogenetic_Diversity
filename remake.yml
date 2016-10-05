@@ -19,6 +19,8 @@ packages:
   - stringr
   - rentrez
   - knitcitations
+  - csvy
+  - rfigshare
 
 ## source in R functions
 sources: 
@@ -38,6 +40,7 @@ sources:
   - R.scripts/DATA_phylo_distance.R
   - R.scripts/renew_rando.R
   - R.scripts/mantel.R
+  - R.scripts/READING_data_published.R
   
 targets:
   all: 
@@ -58,22 +61,23 @@ targets:
     command: read_csv("data/predator.cooccur.metabolic.txt")
 
   # feeding trial data
+  #feeding_trials:
+  #  command: read_csv("data/reorganized.feeding.trial.data.csv")
   feeding_trials:
-    command: read_csv("data/reorganized.feeding.trial.data.csv")
-
+    command: read_published_data(I("3978783")) 
   # phylogeny data
   nodeages:
     command: read_csv("data/nodeages.csv")
     
-  # experiment results
-  pd:
-    command: read_csv("data/pd_exp_cleaned_data.csv")
+# experiment results
+  pd_raw:
+    command: read_csv("data/predator_diversity_experiment_metadata_blank.csvy", comment = I("#"))
     
   predtree_timetree_ages:
-    command: read.tree("data/predator_tree_time.newick")
+    #command: read.tree("data/predator_tree_time.newick")
+    command: read_published_newick(I("3980349"))
     
-    
-  ## Phylogenetic distance
+# Phylogenetic distance
 
   phylogenetic_distance:
     command: calc_phylogenetic_dist(predtree_timetree_ages) 
@@ -117,7 +121,7 @@ targets:
 
 ## experiment models 
   pd_no_out:
-    command: drop_outlier(pd)
+    command: drop_outlier(pd_raw)
     
   pd_experiment_phylo_dist:
     command: experiment_and_phylo(pd_no_out, phylogenetic_distance) 
