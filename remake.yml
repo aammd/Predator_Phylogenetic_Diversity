@@ -192,6 +192,21 @@ targets:
       width: 500
       height: 500
       
+### PDF versions
+
+  Figures/FIG_1.pdf:
+    command: make_fig_1(metabolic_occur_phylo, diet_overlap_phylo, experiment_phylo, diet_predictions)
+    plot: true
+ 
+  Figures/FIG_2.pdf:
+    command: make_fig_2(pd_no_out, one_point)
+    plot: true
+    
+  Figures/FIG_3.pdf:
+    command: make_fig_3(nonadd_effect_pd)
+    plot: true
+      
+      
       
   MS/predatordiversity.docx:
     depends:
@@ -201,11 +216,12 @@ targets:
       - MS/formatting/pdef.bib
     command: render("MS/predatordiversity.md", output_format = I("word_document"))
     
+
   MS/predatordiversity.pdf:
     depends:
-      - Figures/FIG_1.png
-      - Figures/FIG_2.png
-      - Figures/FIG_3.png
+      - Figures/FIG_1.pdf
+      - Figures/FIG_2.pdf
+      - Figures/FIG_3.pdf
       - MS/formatting/pdef.bib
     command: render("MS/predatordiversity.md", output_format = I("pdf_document"))
 
