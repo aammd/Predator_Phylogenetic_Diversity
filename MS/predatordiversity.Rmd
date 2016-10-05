@@ -23,6 +23,33 @@ knitr::opts_chunk$set(message=FALSE,warning=FALSE,echo=FALSE)
 ```
 
 
+## Abstract
+
+Predator assemblages can differ substantially in their top-down effects on
+community composition and ecosystem function, but few studies have sought to
+explain this variation in terms of the phylogenetic distance (PD) between
+predators. The effect of a local predator assemblage will depend on three things -- which predators tend to co-occur, how similar their prey preferences are, and how they interact with each other and the whole community. Phylogenetic distance may correlate with each of these processes, providing a unifying framework for predicting how predators will impact ecosystems. Which predators are found in any local assemblage will be determined by the degree of overlap in their fundamental niches, which may in turn relate to the amount of PD between them. If 
+distantly-related predators overlap less in their diet, then predator
+assemblages with high pairwise PD should consume more of the prey community.
+Alternatively, if distantly-related predators show more antagonistic
+interactions, predator assemblages with high PD should consume less of the
+prey community. Either effect of predator PD on prey mortality could have
+cascading effects on the ecosystem functions mediated by prey. We examined
+predator PD in macroinvertebrate food webs found in bromeliads. We use measures of predator PD to combine three datasets:
+observations of predator distribution among bromeliads, experimental feeding
+trials, and a manipulation of predator PD. We found that phylogenetic distance
+does not predict differences in predator distribution, indicating that a range
+of predator PD is found in nature. We did, however, find a tendency for
+distantly-related predators to eat different prey, a prerequisite for
+synergistic effects of predators on prey mortality. However, our manipulative
+experiment showed that instead increasing predator PD reduced prey mortality,
+reflecting antagonistic interactions among more distant predators. These
+effects of PD on prey mortality did not translate into effects on ecosystem
+function, as measured by rates of decomposition and nitrogen cycling. In
+conclusion, the effects of predator PD on the bromeliad food web are primarily
+determined by antagonistic predator-predator interactions, rather than habitat
+distribution or diet overlap. This study illustrates the potential of a
+phylogenetic community approach to understanding food webs dynamics.
 
 ## Introduction
 
