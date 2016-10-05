@@ -22,3 +22,25 @@ csvy::write_csvy(feeding_trials, "data/feeding_trials_metadata_blank.csvy",
 
 fs_upload(id, "data/feeding_trials.csvy")
 
+
+## both phylogeny and tree data:
+
+### put the tree data together
+
+library(purrr)
+
+## on second thought maybe this is not the right idea. This should probably go into the Supp Matt and we can get it later. 
+tree_data <- dir("raw-data/TreeData/", full.names = TRUE) %>% 
+  keep(~ stringr::str_detect(.x, "csv")) %>% 
+  set_names() %>% 
+  map_df(readr::read_csv, .id = "filename")
+
+View(tree_data)
+
+
+### Experimental data
+
+pd_raw %>% 
+  select(Id, treatment, eu, mass.g., org_fine_mass, total.surv, decomp, fine, X15N,  N, growth, contains("idae")) %>% 
+  csvy::write_csvy("data/predator_diversity_experiment_metadata_blank.csvy",
+                 quote = FALSE, row.names = FALSE)
