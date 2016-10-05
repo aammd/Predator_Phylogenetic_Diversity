@@ -198,7 +198,7 @@ substrate. The only exception was the tabanid larvae, which we
 placed between two vertical surfaces to imitate the narrow space found in
 bromeliad leaf axils (their preferred microhabitat, necessary for successful feeding).  Generally our trials contained a single predator and a
 single prey individual, except in the case of very small prey (_Elpidium_ sp.)
-or predators (_Monopelopia_ sp.) in which case we increased the density.  We recorded whether prey was consumed after 24 hours. We tested for a relationship between predator divergence time and diet similarity with a regression weighted by the number of prey assayed (to correct for unequal numbers of replicates)
+or predators (_Monopelopia_ sp.) in which case we increased the density.  We recorded whether prey was consumed after 24 hours. We tested for a relationship between predator divergence time and diet similarity with a regression weighted by the number of prey assayed (to correct for unequal numbers of replicates). All feeding trial data is available at https://dx.doi.org/10.6084/m9.figshare.3978783.v1
 
 ### Community effect experiment
 
@@ -260,7 +260,7 @@ flow isotope ratio mass spectrometer (20-20 mass spectrometer; PDZ Europa, Sandb
 after sample combustion to N2 at 1000C by an on-line elemental analyzer (PDZ Europa ANCA
 GSL). Finally, we quantified the species composition
 and survivorship of invertebrate prey by combining counts of emerging
-adult insects and surviving larvae.
+adult insects and surviving larvae. All experimental data is available at https://dx.doi.org/10.6084/m9.figshare.3983964.
 
 ## Data analysis
 
@@ -280,7 +280,7 @@ In our third and final analysis we quantified the non-additive effect of predato
 response in bromeliads with both predator species (n=5) and the mean response in bromeliads with either one of these two predator species 
 (n=5 for each predator species).  We generated bootstrap confidence intervals for
 these non-additive effects; confidence intervals that do not overlap zero
-indicate a significant non-additive effect of a predator combination. We used R version 3.2.0 [@rcore] for most calculations, and two packages: picante [@picante] for calculating phylogenetic distances matrices, and vegan [@vegan] for distance metrics.
+indicate a significant non-additive effect of a predator combination. We used R version 3.2.0 [@rcore] for most calculations, and two packages: picante [@picante] for calculating phylogenetic distances matrices, and vegan [@vegan] for distance metrics. 
 
 ## Results
 
@@ -317,7 +317,7 @@ We tested for non-additive effects of predator phylogenetic diversity with boots
 were quite similar to the effect of either alone, when _L. elongatum_ was
 placed in the same plant as either a _Stibasoma_ larva or leeches, on average five
 more prey individuals (18% of total prey community) survived till the end of
-the experiment (Fig 3; Tabanid, p = 0.022, Leech, p = 0.032).  Once again, this effect on invertebrate density did
+the experiment (Fig 3; Tabanid, p = 0.01, Leech, p = 0.018).  Once again, this effect on invertebrate density did
 not in turn create a significant difference in the ecosystem function variables.
 
 
