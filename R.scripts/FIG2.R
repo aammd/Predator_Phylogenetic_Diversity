@@ -16,7 +16,7 @@ make_fig_2 <- function(pd, .mytheme, .one_point){
   pred_present_plot <- pred_present %>%
     mutate(plotcode = "(a)") %>%
     ggplot(aes(x = ispred, y = trtmeans)) + 
-    .one_point + 
+    .one_point() + 
     geom_point(aes(y = presence_mean), fill = "#00A08A", shape = 21, colour = "black", size = 5) + 
     #   geom_point(aes(y = total.surv), fill = NA, shape = 21, colour = "black", size = 5,
     #              data = subset(pred_present, treatment == "control")) + 
@@ -36,7 +36,7 @@ make_fig_2 <- function(pd, .mytheme, .one_point){
   pred_number_plot <- pred_number %>%
     mutate(plotcode = "(b)") %>%
     ggplot(aes(x = npred, y = trtmeans)) +
-    .one_point + 
+    .one_point() + 
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
     xlab("Predator number") + 
     facet_grid(~ plotcode) +
@@ -84,7 +84,7 @@ make_fig_2 <- function(pd, .mytheme, .one_point){
   pred_identity_plot <- pred_identity %>%
     mutate(plotcode = "(c)") %>%
     ggplot(aes(x = treatment, y = total.surv)) +
-    .one_point + 
+    .one_point() + 
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") + 
     scale_x_discrete(labels = x_cat)+
     xlab("Predator identity") +
@@ -103,14 +103,13 @@ make_fig_2 <- function(pd, .mytheme, .one_point){
   pred_combo_plot <- pred_combo %>%
     mutate(plotcode = "(d)") %>%
     ggplot(aes(x = treatment, y = total.surv)) +
-    .one_point + 
+    .one_point() + 
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
     xlab("Phylogenetic diversity") +
     facet_grid(~ plotcode) + 
     scale_x_discrete(labels = list("Low", "Medium", "High")) +
     .mytheme + 
     coord_cartesian(ylim = boty)
-  
   
   # png("../Figures/FIG_2.png", height = 500, width = 500)
   grid.arrange(pred_present_plot, pred_number_plot, pred_identity_plot, pred_combo_plot,

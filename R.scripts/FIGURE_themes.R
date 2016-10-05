@@ -11,7 +11,7 @@ maketheme <- function(){
 
 makept <- function(){
   set.seed(4812)
-  ggplot2::geom_point(colour = "black", 
-                      fill = NA, shape = 21,
-                      size = 5, position = ggplot2::position_jitter(w = 0.1))
+  f <- function(...) ggplot2::geom_point(..., colour = "black", 
+                                         fill = NA, shape = 21,
+                                         size = 5, position = ggplot2::position_jitter(w = 0.1))
 }
