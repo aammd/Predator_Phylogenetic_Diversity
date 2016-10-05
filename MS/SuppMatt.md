@@ -28,33 +28,33 @@ We used information from timetree.org to add node ages to our tree.  This web se
 \centering
 \begin{tabular}{llllll}
   \hline
-study taxa & Time & Taxon.A & Taxon.B & Reference & Year \\ 
+study taxa & Reference & Taxon.A & Taxon.B & Time & Year \\ 
   \hline
-Ceratopogonidae\_Chironomidae & 213 & Ceratopogonidae  & Chironomidae  & Bertone et al.  & 2008 \\ 
-  CulicidaetoChironomidae & 220 & Chaoborinae  & Chironomoidea  & Bertone et al.  & 2008 \\ 
-  dolicho\_tabanid & 216 & Nemestrinoidea  & Pelecorhynchidae  & Wiegmann et al.  & 2003 \\ 
-  empididaeDolichopodidae & 86 & Gloma  & Liancalus  & Wiegmann et al.  & 2003 \\ 
-  insects.to.leeches & 610 & Anophelinae  & Capitellidae  & Peterson et al.  & 2008 \\ 
-  insects.to.leeches & 561 & Arthropoda  & Chaetopteridae  & Foto et al.  & 2005 \\ 
-  insects.to.leeches & 560 & Arthropoda  & Annelida  & Peterson et al.  & 2004 \\ 
-  insects.to.leeches & 700 & Crustacea  & Annelida  & Otsuka et al.  & 2003 \\ 
-  insects.to.leeches & 543 & Culicidae  & Lumbricidae  & Aris-Brosou et al.  & 2002 \\ 
-  odonata-Tabanidae & 385 & Coenagrionidae  & Anophelinae  & Peterson et al.  & 2008 \\ 
-  odonata-Tabanidae & 151 & Hexagenia  & Forficulidae  & Regier et al.  & 2005 \\ 
-  odonata-Tabanidae & 543 & Enallagma  & gambiae species complex  & Blair et al.  & 2005 \\ 
-  odonata-Tabanidae & 376.5 & Hexagenia  & Forficulidae  & Regier et al.  & 2004 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & 196 & Trichoceroidea  & Oestroidea  & Bertone et al.  & 2008 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & 280 & Anopheles  & Drosophila  & Peterson et al.  & 2008 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & 419 & Anopheles gambiae  & Drosophila melanogaster  & Blair et al.  & 2005 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & 474 & Anopheles  & Drosophila  & Blair et al.  & 2005 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & 184 & Aedes  & Drosophila  & Aris-Brosou et al.  & 2002 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & 265.2 & Anopheles  & Ceratitidini  & Gaunt et al.  & 2002 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & 106.2 & Culicini  & Drosophila  & Foley et al.  & 1998 \\ 
+Ceratopogonidae\_Chironomidae & Bertone et al.  & Ceratopogonidae  & Chironomidae  & 213 & 2008 \\ 
+  CulicidaetoChironomidae & Bertone et al.  & Chaoborinae  & Chironomoidea  & 220 & 2008 \\ 
+  dolicho\_tabanid & Wiegmann et al.  & Nemestrinoidea  & Pelecorhynchidae  & 216 & 2003 \\ 
+  empididaeDolichopodidae & Wiegmann et al.  & Gloma  & Liancalus  & 86 & 2003 \\ 
+  insects.to.leeches & Peterson et al.  & Anophelinae  & Capitellidae  & 610 & 2008 \\ 
+  insects.to.leeches & Foto et al.  & Arthropoda  & Chaetopteridae  & 561 & 2005 \\ 
+  insects.to.leeches & Peterson et al.  & Arthropoda  & Annelida  & 560 & 2004 \\ 
+  insects.to.leeches & Otsuka et al.  & Crustacea  & Annelida  & 700 & 2003 \\ 
+  insects.to.leeches & Aris-Brosou et al.  & Culicidae  & Lumbricidae  & 543 & 2002 \\ 
+  odonata-Tabanidae & Peterson et al.  & Coenagrionidae  & Anophelinae  & 385 & 2008 \\ 
+  odonata-Tabanidae & Regier et al.  & Hexagenia  & Forficulidae  & 151 & 2005 \\ 
+  odonata-Tabanidae & Blair et al.  & Enallagma  & gambiae species complex  & 543 & 2005 \\ 
+  odonata-Tabanidae & Regier et al.  & Hexagenia  & Forficulidae  & 376.5 & 2004 \\ 
+  tabanidae\_culidicae\_ie\_Diptera & Bertone et al.  & Trichoceroidea  & Oestroidea  & 196 & 2008 \\ 
+  tabanidae\_culidicae\_ie\_Diptera & Peterson et al.  & Anopheles  & Drosophila  & 280 & 2008 \\ 
+  tabanidae\_culidicae\_ie\_Diptera & Blair et al.  & Anopheles gambiae  & Drosophila melanogaster  & 419 & 2005 \\ 
+  tabanidae\_culidicae\_ie\_Diptera & Blair et al.  & Anopheles  & Drosophila  & 474 & 2005 \\ 
+  tabanidae\_culidicae\_ie\_Diptera & Aris-Brosou et al.  & Aedes  & Drosophila  & 184 & 2002 \\ 
+  tabanidae\_culidicae\_ie\_Diptera & Gaunt et al.  & Anopheles  & Ceratitidini  & 265.2 & 2002 \\ 
+  tabanidae\_culidicae\_ie\_Diptera & Foley et al.  & Culicini  & Drosophila  & 106.2 & 1998 \\ 
    \hline
 \end{tabular}
 \end{table}
 
-![plot of chunk FIG_predatorphylo](figure/SuppMatt__FIG_predatorphylo-1.png) 
+![plot of chunk FIG_predatorphylo](figure/SuppMatt__FIG_predatorphylo-1.png)
 
 **Figure S1** Predator phylogeny, with dated nodes derived from data in Table 1.  When multiple time estimates were available for the same internal node, we used the median estimate.
 
@@ -165,16 +165,16 @@ We calculated means and standard error for every experimental treatment and resp
 \centering
 \begin{tabular}{llllll}
   \hline
-treatment & total.surv & fine & decomp & growth & N \\ 
+treatment & decomp & fine & growth & N & total.surv \\ 
   \hline
-andro & 5.8 ± 1.9 & 0.26 ± 0.041 & 0.37 ± 0.028 & 4 ± 0.45 & 45 ± 6.2 \\ 
-  control & 14 ± 2.7 & 0.38 ± 0.081 & 0.33 ± 0.023 & 4.7 ± 1.2 & 53 ± 2.9 \\ 
-  elong & 7.8 ± 1.7 & 0.19 ± 0.054 & 0.36 ± 0.0077 & 2.9 ± 1.3 & 45 ± 6 \\ 
-  elong + andro & 5.2 ± 1.4 & 0.58 ± 0.14 & 0.33 ± 0.024 & 3.3 ± 1.2 & 52 ± 4.8 \\ 
-  elong + leech & 9 ± 1.1 & 0.32 ± 0.044 & 0.32 ± 0.0083 & 5.4 ± 0.62 & 43 ± 7.5 \\ 
-  elong + tab & 10 ± 1.5 & 0.36 ± 0.25 & 0.37 ± 0.024 & 4 ± 0.98 & 54 ± 7.8 \\ 
-  leech & 5.2 ± 0.58 & 0.29 ± 0.092 & 0.35 ± 0.019 & 2.6 ± 1.6 & 36 ± 5.2 \\ 
-  tabanid & 5.8 ± 1.4 & 0.24 ± 0.12 & 0.31 ± 0.027 & 5.1 ± 0.95 & 56 ± 7 \\ 
+andro & 0.37 ± 0.028 & 0.26 ± 0.041 & 4 ± 0.45 & 45 ± 6.2 & 5.8 ± 1.9 \\ 
+  control & 0.33 ± 0.023 & 0.38 ± 0.081 & 4.7 ± 1.2 & 53 ± 2.9 & 14 ± 2.7 \\ 
+  elong & 0.36 ± 0.0077 & 0.19 ± 0.054 & 2.9 ± 1.3 & 45 ± 6 & 7.8 ± 1.7 \\ 
+  elong + andro & 0.33 ± 0.024 & 0.58 ± 0.14 & 3.3 ± 1.2 & 52 ± 4.8 & 5.2 ± 1.4 \\ 
+  elong + leech & 0.32 ± 0.0083 & 0.32 ± 0.044 & 5.4 ± 0.62 & 43 ± 7.5 & 9 ± 1.1 \\ 
+  elong + tab & 0.37 ± 0.024 & 0.36 ± 0.25 & 4 ± 0.98 & 54 ± 7.8 & 10 ± 1.5 \\ 
+  leech & 0.35 ± 0.019 & 0.29 ± 0.092 & 2.6 ± 1.6 & 36 ± 5.2 & 5.2 ± 0.58 \\ 
+  tabanid & 0.31 ± 0.027 & 0.24 ± 0.12 & 5.1 ± 0.95 & 56 ± 7 & 5.8 ± 1.4 \\ 
    \hline
 \end{tabular}
 \end{table}
@@ -219,24 +219,24 @@ none & control \\
 \hline \\[-1.8ex] 
  & \multicolumn{5}{c}{\textit{Dependent variable:}} \\ 
 \cline{2-6} 
-\\[-1.8ex] & Total prey survival & FPOM (g) & Decomposition (g) & Bromeliad growth & Nitrogen cycling \\ 
+\\[-1.8ex] & Decomposition (g) & FPOM (g) & Bromeliad growth & Nitrogen cycling & Total prey survival \\ 
 \\[-1.8ex] & (1) & (2) & (3) & (4) & (5)\\ 
 \hline \\[-1.8ex] 
- Linear & $-$4.384$^{*}$ & 0.029 & 0.007 & $-$0.317 & $-$2.418 \\ 
-  & (2.228) & (0.072) & (0.020) & (1.015) & (3.634) \\ 
+ Linear & 0.007 & 0.029 & $-$0.317 & $-$2.418 & $-$4.384$^{*}$ \\ 
+  & (0.020) & (0.072) & (1.015) & (3.634) & (2.228) \\ 
   & & & & & \\ 
- Quadratic & 4.205$^{*}$ & 0.127 & $-$0.011 & 0.664 & 4.638 \\ 
-  & (2.181) & (0.070) & (0.020) & (0.993) & (3.557) \\ 
+ Quadratic & $-$0.011 & 0.127 & 0.664 & 4.638 & 4.205$^{*}$ \\ 
+  & (0.020) & (0.070) & (0.993) & (3.557) & (2.181) \\ 
   & & & & & \\ 
- Constant & 9.583$^{***}$ & 0.349$^{***}$ & 0.339$^{***}$ & 4.175$^{***}$ & 49.277$^{***}$ \\ 
-  & (1.273) & (0.041) & (0.011) & (0.580) & (2.076) \\ 
+ Constant & 0.339$^{***}$ & 0.349$^{***}$ & 4.175$^{***}$ & 49.277$^{***}$ & 9.583$^{***}$ \\ 
+  & (0.011) & (0.041) & (0.580) & (2.076) & (1.273) \\ 
   & & & & & \\ 
 \hline \\[-1.8ex] 
 Observations & 12 & 12 & 12 & 12 & 12 \\ 
-R$^{2}$ & 0.497 & 0.267 & 0.055 & 0.064 & 0.214 \\ 
-Adjusted R$^{2}$ & 0.385 & 0.104 & $-$0.156 & $-$0.143 & 0.039 \\ 
-Residual Std. Error (df = 9) & 4.315 & 0.139 & 0.039 & 1.965 & 7.037 \\ 
-F Statistic (df = 2; 9) & 4.450$^{**}$ & 1.636 & 0.260 & 0.310 & 1.226 \\ 
+R$^{2}$ & 0.055 & 0.267 & 0.064 & 0.214 & 0.497 \\ 
+Adjusted R$^{2}$ & $-$0.156 & 0.104 & $-$0.143 & 0.039 & 0.385 \\ 
+Residual Std. Error (df = 9) & 0.039 & 0.139 & 1.965 & 7.037 & 4.315 \\ 
+F Statistic (df = 2; 9) & 0.260 & 1.636 & 0.310 & 1.226 & 4.450$^{**}$ \\ 
 \hline 
 \hline \\[-1.8ex] 
 \textit{Note:}  & \multicolumn{5}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
@@ -251,27 +251,27 @@ F Statistic (df = 2; 9) & 4.450$^{**}$ & 1.636 & 0.260 & 0.310 & 1.226 \\
   \hline
 response & comparison & diff & lwr & upr & p.adj \\ 
   \hline
-Total prey survival & one-none & -8.25 & -16.33 & -0.17 & 0.05 \\ 
-  Total prey survival & two-none & -6.20 & -15.00 & 2.60 & 0.18 \\ 
-  Total prey survival & two-one & 2.05 & -7.15 & 11.25 & 0.81 \\ 
+Decomposition (g) & one-none & 0.02 & -0.05 & 0.09 & 0.76 \\ 
+  Decomposition (g) & two-none & 0.01 & -0.07 & 0.09 & 0.94 \\ 
+  Decomposition (g) & two-one & -0.01 & -0.09 & 0.07 & 0.95 \\ 
   FPOM (g) & one-none & -0.14 & -0.40 & 0.13 & 0.36 \\ 
   FPOM (g) & two-none & 0.04 & -0.24 & 0.32 & 0.92 \\ 
   FPOM (g) & two-one & 0.18 & -0.12 & 0.47 & 0.27 \\ 
-  Decomposition (g) & one-none & 0.02 & -0.05 & 0.09 & 0.76 \\ 
-  Decomposition (g) & two-none & 0.01 & -0.07 & 0.09 & 0.94 \\ 
-  Decomposition (g) & two-one & -0.01 & -0.09 & 0.07 & 0.95 \\ 
   Bromeliad growth & one-none & -1.04 & -4.72 & 2.64 & 0.72 \\ 
   Bromeliad growth & two-none & -0.45 & -4.46 & 3.56 & 0.95 \\ 
   Bromeliad growth & two-one & 0.59 & -3.60 & 4.78 & 0.92 \\ 
   Nitrogen cycling & one-none & -7.39 & -20.57 & 5.79 & 0.31 \\ 
   Nitrogen cycling & two-none & -3.42 & -17.77 & 10.93 & 0.79 \\ 
   Nitrogen cycling & two-one & 3.97 & -11.04 & 18.98 & 0.75 \\ 
+  Total prey survival & one-none & -8.25 & -16.33 & -0.17 & 0.05 \\ 
+  Total prey survival & two-none & -6.20 & -15.00 & 2.60 & 0.18 \\ 
+  Total prey survival & two-one & 2.05 & -7.15 & 11.25 & 0.81 \\ 
    \hline
 \end{tabular}
 \end{table}
 
 
-![plot of chunk FIG_spp_number](figure/SuppMatt__FIG_spp_number-1.png) 
+![plot of chunk FIG_spp_number](figure/SuppMatt__FIG_spp_number-1.png)
 
 **Figure S2**: The effect of predator species number on each of our response variables.  Each dot represents the mean (n = 5) for different predator treatments.  Green dots represent group (i.e. species number) means.  
 
@@ -355,7 +355,7 @@ FPOM (g) & elong-andro & -0.06 & -0.37 & 0.25 & 0.94 \\
 \end{table}
 
 
-![plot of chunk FIG_predspp](figure/SuppMatt__FIG_predspp-1.png) 
+![plot of chunk FIG_predspp](figure/SuppMatt__FIG_predspp-1.png)
 
 **Figure S3**: The effect of predator species identity on each of our response variables.  Each dot represents the observed value for a different predator treatment.  Green dots represent group means.  
 
@@ -374,24 +374,24 @@ Our two-species combinations represent a range of increasing phylogenetic distan
 \hline \\[-1.8ex] 
  & \multicolumn{5}{c}{\textit{Dependent variable:}} \\ 
 \cline{2-6} 
-\\[-1.8ex] & Total prey survival & FPOM (g) & Decomposition (g) & Bromeliad growth & Nitrogen cycling \\ 
+\\[-1.8ex] & Decomposition (g) & FPOM (g) & Bromeliad growth & Nitrogen cycling & Total prey survival \\ 
 \\[-1.8ex] & (1) & (2) & (3) & (4) & (5)\\ 
 \hline \\[-1.8ex] 
- treatment.L & 2.687$^{*}$ & $-$0.179 & $-$0.006 & 1.486 & $-$6.138 \\ 
-  & (1.354) & (0.167) & (0.020) & (1.027) & (6.841) \\ 
+ treatment.L & $-$0.006 & $-$0.179 & 1.486 & $-$6.138 & 2.687$^{*}$ \\ 
+  & (0.020) & (0.167) & (1.027) & (6.841) & (1.354) \\ 
   & & & & & \\ 
- treatment.Q & $-$2.694$^{*}$ & 0.075 & $-$0.037$^{*}$ & 0.227 & $-$5.242 \\ 
-  & (1.354) & (0.167) & (0.020) & (0.988) & (6.841) \\ 
+ treatment.Q & $-$0.037$^{*}$ & 0.075 & 0.227 & $-$5.242 & $-$2.694$^{*}$ \\ 
+  & (0.020) & (0.167) & (0.988) & (6.841) & (1.354) \\ 
   & & & & & \\ 
- Constant & 8.200$^{***}$ & 0.421$^{***}$ & 0.340$^{***}$ & 4.222$^{***}$ & 49.460$^{***}$ \\ 
-  & (0.782) & (0.096) & (0.012) & (0.582) & (3.950) \\ 
+ Constant & 0.340$^{***}$ & 0.421$^{***}$ & 4.222$^{***}$ & 49.460$^{***}$ & 8.200$^{***}$ \\ 
+  & (0.012) & (0.096) & (0.582) & (3.950) & (0.782) \\ 
   & & & & & \\ 
 \hline \\[-1.8ex] 
-Observations & 15 & 15 & 15 & 14 & 15 \\ 
-R$^{2}$ & 0.397 & 0.102 & 0.229 & 0.161 & 0.104 \\ 
-Adjusted R$^{2}$ & 0.296 & $-$0.048 & 0.101 & 0.009 & $-$0.045 \\ 
-Residual Std. Error & 3.028 (df = 12) & 0.372 (df = 12) & 0.045 (df = 12) & 2.164 (df = 11) & 15.297 (df = 12) \\ 
-F Statistic & 3.949$^{**}$ (df = 2; 12) & 0.681 (df = 2; 12) & 1.787 (df = 2; 12) & 1.056 (df = 2; 11) & 0.696 (df = 2; 12) \\ 
+Observations & 15 & 15 & 14 & 15 & 15 \\ 
+R$^{2}$ & 0.229 & 0.102 & 0.161 & 0.104 & 0.397 \\ 
+Adjusted R$^{2}$ & 0.101 & $-$0.048 & 0.009 & $-$0.045 & 0.296 \\ 
+Residual Std. Error & 0.045 (df = 12) & 0.372 (df = 12) & 2.164 (df = 11) & 15.297 (df = 12) & 3.028 (df = 12) \\ 
+F Statistic & 1.787 (df = 2; 12) & 0.681 (df = 2; 12) & 1.056 (df = 2; 11) & 0.696 (df = 2; 12) & 3.949$^{**}$ (df = 2; 12) \\ 
 \hline 
 \hline \\[-1.8ex] 
 \textit{Note:}  & \multicolumn{5}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
@@ -405,27 +405,27 @@ F Statistic & 3.949$^{**}$ (df = 2; 12) & 0.681 (df = 2; 12) & 1.787 (df = 2; 12
   \hline
 response & comparison & diff & lwr & upr & p.adj \\ 
   \hline
-Total prey survival & elong + tab-elong + andro & 5.20 & 0.09 & 10.31 & 0.05 \\ 
-  Total prey survival & elong + leech-elong + andro & 3.80 & -1.31 & 8.91 & 0.16 \\ 
-  Total prey survival & elong + leech-elong + tab & -1.40 & -6.51 & 3.71 & 0.75 \\ 
+Decomposition (g) & elong + tab-elong + andro & 0.04 & -0.03 & 0.12 & 0.34 \\ 
+  Decomposition (g) & elong + leech-elong + andro & -0.01 & -0.08 & 0.07 & 0.96 \\ 
+  Decomposition (g) & elong + leech-elong + tab & -0.05 & -0.13 & 0.03 & 0.22 \\ 
   FPOM (g) & elong + tab-elong + andro & -0.22 & -0.85 & 0.41 & 0.63 \\ 
   FPOM (g) & elong + leech-elong + andro & -0.25 & -0.88 & 0.37 & 0.55 \\ 
   FPOM (g) & elong + leech-elong + tab & -0.03 & -0.66 & 0.59 & 0.99 \\ 
-  Decomposition (g) & elong + tab-elong + andro & 0.04 & -0.03 & 0.12 & 0.34 \\ 
-  Decomposition (g) & elong + leech-elong + andro & -0.01 & -0.08 & 0.07 & 0.96 \\ 
-  Decomposition (g) & elong + leech-elong + tab & -0.05 & -0.13 & 0.03 & 0.22 \\ 
   Bromeliad growth & elong + tab-elong + andro & 0.77 & -2.92 & 4.47 & 0.84 \\ 
   Bromeliad growth & elong + leech-elong + andro & 2.10 & -1.82 & 6.02 & 0.35 \\ 
   Bromeliad growth & elong + leech-elong + tab & 1.33 & -2.59 & 5.25 & 0.64 \\ 
   Nitrogen cycling & elong + tab-elong + andro & 2.08 & -23.73 & 27.89 & 0.97 \\ 
   Nitrogen cycling & elong + leech-elong + andro & -8.68 & -34.49 & 17.13 & 0.65 \\ 
   Nitrogen cycling & elong + leech-elong + tab & -10.76 & -36.57 & 15.05 & 0.53 \\ 
+  Total prey survival & elong + tab-elong + andro & 5.20 & 0.09 & 10.31 & 0.05 \\ 
+  Total prey survival & elong + leech-elong + andro & 3.80 & -1.31 & 8.91 & 0.16 \\ 
+  Total prey survival & elong + leech-elong + tab & -1.40 & -6.51 & 3.71 & 0.75 \\ 
    \hline
 \end{tabular}
 \end{table}
 
 
-![plot of chunk FIG_twopred](figure/SuppMatt__FIG_twopred-1.png) 
+![plot of chunk FIG_twopred](figure/SuppMatt__FIG_twopred-1.png)
 
 **Figure S4**: The effect of increasing phylogenetic signal on each of our response variables in our community experiment.  In each treatment category, *Leptagrion elongatum* is paired with another predator; these treatments are ordered by increasing phylogenetic diversity.  For clarity the axes are labelled with abbreviations for species names: andro = *Leptagrion andromache*, tab = Tabanidae, leech = Hirudinidae.
 
