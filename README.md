@@ -48,9 +48,16 @@ This will run all the models and simulations, build figures, and compile the fin
 
 ## Data
 
-All of the data for this paper is available on Figshare:
+All of the data for this paper is available on Figshare under a CC-BY licence:
 
-<iframe src="https://widgets.figshare.com/articles/3978783/embed?show_title=1" width="568" height="351" frameborder="0"></iframe>
+* MacDonald, Andrew; Romero, Gustavo; Srivastava, Diane (2016): Feeding trials of bromeliad invertebrates. figshare.
+https://dx.doi.org/10.6084/m9.figshare.3978783.v1
+
+* MacDonald, Andrew (2016): Bromeliad predator phylogeny. figshare.
+https://dx.doi.org/10.6084/m9.figshare.3980349.v1
+
+* MacDonald, Andrew; Srivastava, Diane; Romero, Gustavo (2016): Predator diversity and bromeliad communities: experimental results. figshare.
+https://dx.doi.org/10.6084/m9.figshare.3983964.v2
 
 ## Licenses
 
