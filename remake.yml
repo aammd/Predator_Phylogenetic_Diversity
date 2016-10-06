@@ -46,7 +46,6 @@ sources:
 targets:
   all: 
     depends:
-      - MS/predatordiversity.docx
       - MS/predatordiversity.pdf
       - MS/SuppMatt.pdf
       
@@ -143,11 +142,6 @@ targets:
 
   nonadd_effect_pd:
     command: left_join(nonadd_effect, phylogenetic_distance)
-
-  MS/TABLE1.md:
-    depends:
-      - modlist
-    knitr: true
     
   MS/predatordiversity.md:
     depends: 
@@ -162,6 +156,7 @@ targets:
       - experiment_phylo
       - diet_pd_mantel
       - meta_pd_mantel
+      - modlist
     knitr: true
     
 #  MS/predatordiversity.pdf:
