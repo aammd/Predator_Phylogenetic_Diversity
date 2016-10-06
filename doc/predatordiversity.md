@@ -1,6 +1,6 @@
 ---
 title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
-author: "A. Andrew M. MacDonald; Gustavo Q. Romero; Diane S. Srivastava"
+author: 
 csl: formatting/the-american-naturalist.csl
 output:
   pdf_document:
@@ -21,9 +21,25 @@ bibliography: formatting/pdef.bib
 
 
 
+A. Andrew M. MacDonald$^{1,\ast}$  
+
+Gustavo Q. Romero$^{1,\dag}$  
+
+Diane S. Srivastava$^{2,\ddag}$
+
+\noindent{}1. Biodiversity Research Centre, Department of Zoology, University of British Columbia, Vancouver, British Columbia, V6T1Z4, Canada;
+
+\noindent{}2. Departamento de Biologia Animal, Instituto de Biologia, Universidade Estadual de Campinas (UNICAMP), CP 6109, CEP 13083-970 Campinas, Sāo Paulo, Brazil.
+
+\noindent{}$\ast$ Corresponding author; e-mail: macdonald@zoology.ubc.ca
+
+\noindent{}$\ddag$ ORCIDs: MacDonald, orcid.org/0000-0003-1162-169X;
+
+\pagebreak
+
 ## Abstract
 
-Predator assemblages can differ substantially in their top-down effects on
+**Background** Predator assemblages can differ substantially in their top-down effects on
 community composition and ecosystem function, but few studies have sought to
 explain this variation in terms of the phylogenetic distance (PD) between
 predators. The effect of a local predator assemblage will depend on three things -- which predators tend to co-occur, how similar their prey preferences are, and how they interact with each other and the whole community. Phylogenetic distance may correlate with each of these processes, providing a unifying framework for predicting how predators will impact ecosystems. Which predators are found in any local assemblage will be determined by the degree of overlap in their fundamental niches, which may in turn relate to the amount of PD between them. If 
@@ -32,10 +48,12 @@ assemblages with high pairwise PD should consume more of the prey community.
 Alternatively, if distantly-related predators show more antagonistic
 interactions, predator assemblages with high PD should consume less of the
 prey community. Either effect of predator PD on prey mortality could have
-cascading effects on the ecosystem functions mediated by prey. We examined
+cascading effects on the ecosystem functions mediated by prey.  
+**Methods** We examined
 predator PD in macroinvertebrate food webs found in bromeliads. We use measures of predator PD to combine three datasets:
 observations of predator distribution among bromeliads, experimental feeding
-trials, and a manipulation of predator PD. We found that phylogenetic distance
+trials, and a manipulation of predator PD.  
+**Results** We found that phylogenetic distance
 does not predict differences in predator distribution, indicating that a range
 of predator PD is found in nature. We did, however, find a tendency for
 distantly-related predators to eat different prey, a prerequisite for
@@ -43,7 +61,8 @@ synergistic effects of predators on prey mortality. However, our manipulative
 experiment showed that instead increasing predator PD reduced prey mortality,
 reflecting antagonistic interactions among more distant predators. These
 effects of PD on prey mortality did not translate into effects on ecosystem
-function, as measured by rates of decomposition and nitrogen cycling. In
+function, as measured by rates of decomposition and nitrogen cycling.   
+**Discussion** In
 conclusion, the effects of predator PD on the bromeliad food web are primarily
 determined by antagonistic predator-predator interactions, rather than habitat
 distribution or diet overlap. This study illustrates the potential of a
@@ -348,18 +367,20 @@ not in turn create a significant difference in the ecosystem function variables.
 
 
 \begin{table}[htbp]
-  \resizebox{0.7\textwidth}{!}{\begin{minipage}{\textwidth}
+  \resizebox{0.7\textwidth}{!}{
+    \begin{minipage}{\textwidth}
     \begin{tabular}{lllll}
 Response & Predator Presence & Identity & Richness & Pairwise PD \\
+      \hline
 Total prey survival  &   -7.37 ± 2.45; $F_{1,10} = 9.07 $\* & 2.00 ± 2.07; $F_{3,16} = 0.60 $  & 2.05 ± 1.46; $F_{1,5} = 1.96 $ & 0.01 ± 0.00; $F_{1,13} = 7.64 $\* \\
 Decomposition (g)  & 0.01 ± 0.02; $F_{1,10} = 0.47 $ & -0.01 ± 0.03; $F_{3,15} = 1.29 $& -0.01 ± 0.02; $F_{1,5} = 0.21 $ & 0.00 ± 0.00; $F_{1,13} = 0.40 $ \\ 
 FPOM (g)     & -0.06 ± 0.09; $F_{1,10} = 0.46 $ & -0.06 ± 0.11; $F_{3,15} = 0.28 $ & 0.18 ± 0.07; $F_{1,5} = 6.19 $ & -0.00 ± 0.00; $F_{1,13} = 1.45 $ \\
 Bromeliad growth  & -0.79 ± 1.10; $F_{1,10} = 0.51 $ &-1.08 ± 1.62; $F_{3,16} = 0.96 $ & 0.59 ± 0.84; $F_{1,5} = 0.49 $ & 0.00 ± 0.00; $F_{1,12} = 1.29 $ \\
 Nitrogen cycling  & -5.69 ± 4.03; $F_{1,10} = 2.00 $ &-0.22 ± 8.66; $F_{3,16} = 1.84 $ & 3.97 ± 5.63; $F_{1,5} = 0.50 $ & -0.00 ± 0.01; $F_{1,13} = 0.15 $ \\
-
-          \hline
-        \end{tabular}
-      \end{minipage}}
+      \hline
+    \end{tabular}
+    \end{minipage}
+    }
 \end{table}
 
 
