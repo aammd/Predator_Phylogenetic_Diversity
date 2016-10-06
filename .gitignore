@@ -29,7 +29,7 @@ Figures/*.svg
 Figures/slide*
 Figures/web*
 R.scripts/dav_method.R
-R.scripts/webfig.R
+src/webfig.R
 cache/
 .remake/
 MS/TABLE1.md
