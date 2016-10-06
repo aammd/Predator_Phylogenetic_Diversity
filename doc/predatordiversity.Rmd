@@ -577,6 +577,10 @@ which to compare diverse datasets on the distribution, trophic interactions and
 combined effect of multiple predator species, to predict the top-down effect of
 diverse predator assemblages.
 
+## Acknowledgements
+
+We thank Aline Nishi, Robin Lecraw, Alathea Letaw, Gustavo Cauê and Tiago Bernabé for support during field work. We also gratefully acknowledge the support of the Parque Estadual da Ilha do Cardoso and its residents, especially Eduardo Pereira. AAMMD was supported by and NSERC CGS D during this work. 
+
 ## References
 
 <div id = 'refs'></div>
