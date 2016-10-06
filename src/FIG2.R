@@ -3,7 +3,7 @@ make_fig_2 <- function(pd, .one_point){
   .mytheme <- theme_minimal() + theme(axis.title.y = ggplot2::element_blank())
   # presence ----------------------------------------------------------------
   topy <- c(4, 16)
-  boty <- c(0, 14)
+  boty <- c(0, 16)
   
   pred_present <- pd %>%
     select(treatment, total.surv) %>%
@@ -14,7 +14,7 @@ make_fig_2 <- function(pd, .one_point){
     mutate(presence_mean = mean(trtmeans))
   
   pred_present_plot <- pred_present %>%
-    mutate(plotcode = "(a)") %>%
+    mutate(plotcode = "(A)") %>%
     ggplot(aes(x = ispred, y = trtmeans)) + 
     .one_point() + 
     geom_point(aes(y = presence_mean), fill = "#00A08A", shape = 21, colour = "black", size = 5) + 
@@ -23,7 +23,8 @@ make_fig_2 <- function(pd, .one_point){
     xlab("Predator presence") + 
     facet_grid(~ plotcode) +
     .mytheme + 
-    coord_cartesian(ylim = topy)
+    coord_cartesian(ylim = topy) +
+    theme(strip.text.x = element_text(hjust = 0.05))
   
   
   # number ------------------------------------------------------------------
@@ -34,14 +35,15 @@ make_fig_2 <- function(pd, .one_point){
     mutate(npred = ifelse(grepl(" \\+ ", treatment), "Two", "One")) 
   
   pred_number_plot <- pred_number %>%
-    mutate(plotcode = "(b)") %>%
+    mutate(plotcode = "(B)") %>%
     ggplot(aes(x = npred, y = trtmeans)) +
     .one_point() + 
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
     xlab("Predator number") + 
     facet_grid(~ plotcode) +
     .mytheme + 
-    coord_cartesian(ylim = topy)
+    coord_cartesian(ylim = topy) +
+    theme(strip.text.x = element_text(hjust = 0.05))
   
   
   # identity ----------------------------------------------------------------
@@ -82,7 +84,7 @@ make_fig_2 <- function(pd, .one_point){
   x_cat <- list("Leptagrion \n andromache", "Leptagion \n elongatum", "Tabanid", "Leech")
   
   pred_identity_plot <- pred_identity %>%
-    mutate(plotcode = "(c)") %>%
+    mutate(plotcode = "(C)") %>%
     ggplot(aes(x = treatment, y = total.surv)) +
     .one_point() + 
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") + 
@@ -90,7 +92,8 @@ make_fig_2 <- function(pd, .one_point){
     xlab("Predator identity") +
     facet_grid(~ plotcode) +
     .mytheme + 
-    coord_cartesian(ylim = boty)
+    coord_cartesian(ylim = boty) +
+    theme(strip.text.x = element_text(hjust = 0.05))
   
   
   # Combinations ------------------------------------------------------------
@@ -101,7 +104,7 @@ make_fig_2 <- function(pd, .one_point){
   
   
   pred_combo_plot <- pred_combo %>%
-    mutate(plotcode = "(d)") %>%
+    mutate(plotcode = "(D)") %>%
     ggplot(aes(x = treatment, y = total.surv)) +
     .one_point() + 
     stat_summary(fun.y = mean, fill = "#00A08A", shape = 21, size = 5, geom = "point") +
@@ -109,7 +112,8 @@ make_fig_2 <- function(pd, .one_point){
     facet_grid(~ plotcode) + 
     scale_x_discrete(labels = list("Low", "Medium", "High")) +
     .mytheme + 
-    coord_cartesian(ylim = boty)
+    coord_cartesian(ylim = boty) +
+    theme(strip.text.x = element_text(hjust = 0.05))
   
   # png("../Figures/FIG_2.png", height = 500, width = 500)
   grid.arrange(pred_present_plot, pred_number_plot, pred_identity_plot, pred_combo_plot,

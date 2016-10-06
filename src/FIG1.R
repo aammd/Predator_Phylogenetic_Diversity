@@ -65,18 +65,18 @@ make_fig_1 <- function(.metabolic_occur_phylo, .diet_overlap_phylo,
   distribution <- .metabolic_occur_phylo %>% 
     ungroup %>% 
     select(phylodistance,overlap) %>%
-    mutate(category = "(a)", nspp = 2)
+    mutate(category = "(A)", nspp = 2)
   
   diet <- .diet_overlap_phylo %>% 
     ungroup %>%
     select(phylodistance,overlap,nspp) %>%
-    mutate(category = "(b)") %>%
+    mutate(category = "(B)") %>%
     as.data.frame
   
   exper <- .experiment_phylo %>% 
     ungroup %>%
     select(phylodistance,overlap,nspp) %>%
-    mutate(category = "(c)")
+    mutate(category = "(C)")
   
   list(diet, distribution, exper) %>% 
     map(~ .x %>% select(phylodistance, overlap, nspp, category)) %>% 
