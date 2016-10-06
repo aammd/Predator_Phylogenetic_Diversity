@@ -25,29 +25,29 @@ packages:
 
 ## source in R functions
 sources: 
-  - R.scripts/FUNCTIONS_predator_diversity.R
-  - R.scripts/FUNCTIONS_text.R
-  - R.scripts/CALC_pd_experiment_models.R
-  - R.scripts/FIGURE_themes.R
-  - R.scripts/FIG1.R
-  - R.scripts/FIG2.R
-  - R.scripts/FIG3.R
-  - R.scripts/DATA_summarize_randomization.R
-  - R.scripts/DATA_prop_eaten.R
-  - R.scripts/CALC_meta_dist.R
-  - R.scripts/CALC_dist_aic.R
-  - R.scripts/CALC_diet_aic.R
-  - R.scripts/CALC_diet_nlsconfint.R
-  - R.scripts/DATA_phylo_distance.R
-  - R.scripts/renew_rando.R
-  - R.scripts/mantel.R
-  - R.scripts/READING_data_published.R
+  - src/FUNCTIONS_predator_diversity.R
+  - src/FUNCTIONS_text.R
+  - src/CALC_pd_experiment_models.R
+  - src/FIGURE_themes.R
+  - src/FIG1.R
+  - src/FIG2.R
+  - src/FIG3.R
+  - src/DATA_summarize_randomization.R
+  - src/DATA_prop_eaten.R
+  - src/CALC_meta_dist.R
+  - src/CALC_dist_aic.R
+  - src/CALC_diet_aic.R
+  - src/CALC_diet_nlsconfint.R
+  - src/DATA_phylo_distance.R
+  - src/renew_rando.R
+  - src/mantel.R
+  - src/READING_data_published.R
   
 targets:
   all: 
     depends:
-      - MS/predatordiversity.pdf
-      - MS/SuppMatt.pdf
+      - doc/predatordiversity.pdf
+      - doc/SuppMatt.pdf
       
   ## Figure themes
     
@@ -143,7 +143,7 @@ targets:
   nonadd_effect_pd:
     command: left_join(nonadd_effect, phylogenetic_distance)
     
-  MS/predatordiversity.md:
+  doc/predatordiversity.md:
     depends: 
       - rando_pvals
       - pd_no_out
@@ -152,19 +152,19 @@ targets:
       - metabolic
       - metabolic_occur_phylo
       - diet_overlap_phylo
-      - MS/TABLE1.md
+      - doc/TABLE1.md
       - experiment_phylo
       - diet_pd_mantel
       - meta_pd_mantel
       - modlist
     knitr: true
     
-#  MS/predatordiversity.pdf:
+#  doc/predatordiversity.pdf:
 #    depends:
 #      - Figures/FIG_1.pdf
 #      - Figures/FIG_2.pdf
 #      - Figures/FIG_3.pdf
-#    command: render("MS/predatordiversity.md")
+#    command: render("doc/predatordiversity.md")
 
   experiment_phylo:
     command: pd_exper_responses(pd_no_out, phylogenetic_distance)
@@ -203,29 +203,29 @@ targets:
       
       
       
-  MS/predatordiversity.docx:
+  doc/predatordiversity.docx:
     depends:
       - Figures/FIG_1.png
       - Figures/FIG_2.png
       - Figures/FIG_3.png
-      - MS/formatting/pdef.bib
-    command: render("MS/predatordiversity.md", output_format = I("word_document"))
+      - doc/formatting/pdef.bib
+    command: render("doc/predatordiversity.md", output_format = I("word_document"))
     
 
-  MS/predatordiversity.pdf:
+  doc/predatordiversity.pdf:
     depends:
       - Figures/FIG_1.pdf
       - Figures/FIG_2.pdf
       - Figures/FIG_3.pdf
-      - MS/formatting/pdef.bib
-    command: render("MS/predatordiversity.md", output_format = I("pdf_document"))
+      - doc/formatting/pdef.bib
+    command: render("doc/predatordiversity.md", output_format = I("pdf_document"))
 
 #### supplementary materials
 
-  MS/SuppMatt.md:
+  doc/SuppMatt.md:
     knitr: 
-      auto_figure_prefix: true
       chdir: true
+      dev: pdf
     depends:
       - predtree_timetree_ages
       - distributional_similarity_AIC
@@ -234,5 +234,5 @@ targets:
       - pd_no_out
 
 
-  MS/SuppMatt.pdf:
-    command: render("MS/SuppMatt.md", output_format = I("pdf_document"))
+  doc/SuppMatt.pdf:
+    command: render("doc/SuppMatt.md", output_format = I("pdf_document"))
