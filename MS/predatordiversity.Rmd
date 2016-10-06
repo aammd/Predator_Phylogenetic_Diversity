@@ -8,6 +8,7 @@ output:
       in_header: formatting/myheader.tex
     latex_engine: xelatex
     fig_caption: false
+    keep_tex: true
   md_document: default
   html_document: default
   word_document:
@@ -430,12 +431,30 @@ knitr::include_graphics("../Figures/FIG_3.pdf")
 
 **Table 1** Predator diversity effects on community and ecosystem variables. We measured five community-level variables: total prey survival (both emerged adults and surviving larvae; see Figure 1), the breakdown of coarse detritus (decomposition), the production of fine particulate organic matter (FPOM), the cycling of nitrogen, and the growth of the bromeliad itself. We contrast treatments in our experimental design in four ways: comparing treatments with predators to those without ("Predator Presence"), contrasting predator species ("Identity"), comparing predator communities of 1 or 2 species ("Richness"), and considering the effects of phylogenetic distance between predators ("Pairwise PD").  Values are slope ±  standard error and \* = p < 0.05
 
-```{r results="asis"}
-test <- readLines("TABLE1.md")
-for(i in test) {
-  cat(i, "\n")
-}
+```{r echo=FALSE}
+make_pF <- function(Modlist) function(one, two) prF(one, two, .modlist=Modlist)
+pF <- make_pF(modlist)
+
+make_se <- function(Modlist) function(one, two) slope_se(one, two, .modlist=Modlist)
+se <- make_se(modlist)
 ```
+
+\begin{table}[htbp]
+  \resizebox{0.7\textwidth}{!}{\begin{minipage}{\textwidth}
+    \begin{tabular}{lllll}
+Response & Predator Presence & Identity & Richness & Pairwise PD \\
+Total prey survival  &   `r se("total.surv", "presence")`; `r pF("total.surv", "presence")` & `r se("total.surv", "identity")`; `r pF("total.surv", "identity")`  & `r se("total.surv", "number")`; `r pF("total.surv", "number")` & `r se("total.surv", "phylodist")`; `r pF("total.surv", "phylodist")` \\
+Decomposition (g)  & `r se("decomp", "presence")`; `r pF("decomp", "presence")` & `r se("decomp", "identity")`; `r pF("decomp", "identity")`& `r se("decomp", "number")`; `r pF("decomp", "number")` & `r se("decomp", "phylodist")`; `r pF("decomp", "phylodist")` \\ 
+FPOM (g)     & `r se("fine", "presence")`; `r pF("fine", "presence")` & `r se("fine", "identity")`; `r pF("fine", "identity")` & `r se("fine", "number")`; `r pF("fine", "number")` & `r se("fine", "phylodist")`; `r pF("fine", "phylodist")` \\
+Bromeliad growth  & `r se("growth", "presence")`; `r pF("growth", "presence")` &`r se("growth", "identity")`; `r pF("growth", "identity")` & `r se("growth", "number")`; `r pF("growth", "number")` & `r se("growth", "phylodist")`; `r pF("growth", "phylodist")` \\
+Nitrogen cycling  & `r se("N", "presence")`; `r pF("N", "presence")` &`r se("N", "identity")`; `r pF("N", "identity")` & `r se("N", "number")`; `r pF("N", "number")` & `r se("N", "phylodist")`; `r pF("N", "phylodist")` \\
+
+          \hline
+        \end{tabular}
+      \end{minipage}}
+\end{table}
+
+
 
 
 ## Discussion
