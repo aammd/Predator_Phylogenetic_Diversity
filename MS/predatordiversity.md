@@ -1,19 +1,21 @@
 ---
 title: "Predator phylogenetic diversity decreases predation rate via antagonistic interactions"
 author: "A. Andrew M. MacDonald; Gustavo Q. Romero; Diane S. Srivastava"
-fontsize: 12pt
+csl: formatting/the-american-naturalist.csl
 output:
-  html_document: default
-  md_document: default
   pdf_document:
     includes:
       in_header: formatting/myheader.tex
     latex_engine: xelatex
+    fig_caption: false
+    keep_tex: true
+  md_document: default
+  html_document: default
   word_document:
     reference_docx: formatting/reference.docx
 geometry: margin=1in
+fontsize: 12pt
 bibliography: formatting/pdef.bib
-csl: formatting/the-american-naturalist.csl
 ---
 
 
@@ -264,13 +266,13 @@ adult insects and surviving larvae. All experimental data is available at https:
 
 ## Data analysis
 
-We quantified the effect of phylogenetic distance on each of distributional (Hypothesis 1) and diet (Hypothesis 2) similarity.  First, we calculated phylogenetic distance between each pair of species, then fit several functions to the relationship between phylogenetic diversity an either distributional or diet similarity. We used linear, constant, and several appropriate nonlinear functions (nonlinear, because our measures of similarity are bounded by 0 and 1; see below). We compared these models using AIC and generated confidence intervals as appropriate (parametric or bootstrap for linear and nonlinear, respectively). We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
+We quantified the effect of phylogenetic distance on each of distributional (Hypothesis 1) and diet (Hypothesis 2) similarity.  First, we calculated phylogenetic distance between each pair of species. We evaluated both distributional and diet similarity between predators using Pianka's index of niche overlap [@Pianka1974]:
 
 $O_{kl}=\dfrac{\sum_i^n{p_{il} p_{ik}}}{\sqrt{\sum_i^n{p_{il}^2} \sum_i^n{p_{ik}^2}}}$
 
 For each pair of predators, $p_{ik}$ and $p_{il}$ represent the preference of
 predator $k$ or $l$ for resource or habitat $i$. The value $O_{kl}$ represents similarity (in our case, in either distribution or diet) and ranges from 0 (complete dissimilarity) to 1 (complete similarity). The $n$ resources represent the different habitats surveyed for Hypothesis 1 (distributional similarity), or the different prey species assayed for Hypothesis 2 (diet similarity). Preference ($p_{ik}$) represents the proportion of a predator's total metabolic capacity found in a particular bromeliad (Hypothesis 1); or the 
-proportion of feeding trials in which it ate a particular prey (Hypothesis 2). We also compared these effects via a Mantel test, to check for overall correlation between the phylogenetic distance matrix and dissimilarity in either predator distribution or diet preferences.
+proportion of feeding trials in which it ate a particular prey (Hypothesis 2). We then compared these effects via a Mantel test, to check for overall correlation between the phylogenetic distance matrix and dissimilarity in either predator distribution or diet preferences.
 
 We divided the analysis of this experiment into three parts: quantifying the effect of phylogenetic distance on prey community similarity, on community and ecosystem responses, and on non-additive effects of predator combinations. First, we compared the four treatments with single predator species by calculating the similarity in species composition (Pianka's index) between surviving prey communities and relating this to the phylogenetic distance between predators with a linear regression. If predator feeding choices are phylogenetically conserved, that diet similarity will decline with increasing phylogenetic distance.
 
@@ -320,33 +322,48 @@ more prey individuals (18% of total prey community) survived till the end of
 the experiment (Fig 3; Tabanid, p = 0.01, Leech, p = 0.018).  Once again, this effect on invertebrate density did
 not in turn create a significant difference in the ecosystem function variables.
 
+\pagebreak 
 
 ### Figures
 
-![niche overlap](../Figures/FIG_1.png)
+![plot of chunk unnamed-chunk-1](../Figures/FIG_1.pdf)
 
 **Figure 1**: Phylogenetic distance between predators as a predictor of niche overlap among predators and impacts on prey composition. Our measures of niche overlap were: (a) distribution among bromeliads and  (b) diet preferences. We also show the effect of phylogenetic distance between predators on (c) community dissimilarity of surviving prey (Bray-Curtis dissimilarity). We measured distributional similarity (a) by counting all predators in 25 bromeliads, estimating their total metabolic capacity, and calculating niche overlap (Pianka's index) among all pairs of species. We measured diet preferences (b) for a subset of these predators by offering them various prey in no-choice trials, and again calculated niche overlap among them. Finally, we measured community composition of surviving prey (c) at the end of an experiment in which predators were placed in bromeliads with standardized prey communities. For (a) and (b) we used Pianka's index of niche overlap (1 = complete niche overlap) and tested various nonlinear and linear models (see Appendix) of the relationship between this index and phylogenetic distance. Solid lines show significant model fit, and dashed lines show bootstrap 95% quantiles.
 
-![prey survival](../Figures/FIG_2.png)
+\pagebreak
+
+![plot of chunk unnamed-chunk-2](../Figures/FIG_2.pdf)
 
 **Figure 2**: Orthogonal comparisons of the effect of predators on prey survival. We show the effects of predator presence (a), and then within predator present treatments the effects of predator species number (b). Within treatments with one predator species, we show effects of predator identity (c). Within treatments with two predator species, we show the effect of increasing phylogenetic diversity (d, arranged in order of increasing phylogenetic distance: Low = _L. andromache_ + _L. elongatum_, Medium = _L. elongatum_ + tabanid, High = _L. elongatum_ + leech). Shaded dots represent grand means for each group; unshaded dots are either treatment means (2a and 2b, n = 5) or individual bromeliads (2c and 2d). Points are jittered horizontally slightly to reveal all datapoints.
 
-![non-additive](../Figures/FIG_3.png)
+\pagebreak
+
+![plot of chunk unnamed-chunk-3](../Figures/FIG_3.pdf)
 
 **Figure 3**: Non-additive effects of predator combinations on prey decrease with increasing phylogenetic distance between predators. A difference of 0 indicates that two-predator treatments resulted in no more prey mortality than would be expected from simply averaging single-predator treatments. A negative difference indicates that two-predator treatments resulted in less mortality than expected. Error bars represent bootstrap 95% confidence intervals.
 
 
 **Table 1** Predator diversity effects on community and ecosystem variables. We measured five community-level variables: total prey survival (both emerged adults and surviving larvae; see Figure 1), the breakdown of coarse detritus (decomposition), the production of fine particulate organic matter (FPOM), the cycling of nitrogen, and the growth of the bromeliad itself. We contrast treatments in our experimental design in four ways: comparing treatments with predators to those without ("Predator Presence"), contrasting predator species ("Identity"), comparing predator communities of 1 or 2 species ("Richness"), and considering the effects of phylogenetic distance between predators ("Pairwise PD").  Values are slope ±  standard error and \* = p < 0.05
 
- 
- 
-| Response | Predator Presence | Identity | Richness | Pairwise PD | 
-| -------- | ------------------| ---------|--------- | ---------- | 
-| Total prey survival  |   -7.37 ± 2.45; F~1,10~ = 9.07\* | 2.00 ± 2.07; F~3,16~ = 0.60  | 2.05 ± 1.46; F~1,5~ = 1.96 | 0.01 ± 0.00; F~1,13~ = 7.64\* |  
-| Decomposition (g)  | 0.01 ± 0.02; F~1,10~ = 0.47 | -0.01 ± 0.03; F~3,15~ = 1.29| -0.01 ± 0.02; F~1,5~ = 0.21 | 0.00 ± 0.00; F~1,13~ = 0.40 |  
-| FPOM (g)     | -0.06 ± 0.09; F~1,10~ = 0.46 | -0.06 ± 0.11; F~3,15~ = 0.28 | 0.18 ± 0.07; F~1,5~ = 6.19 | -0.00 ± 0.00; F~1,13~ = 1.45 | 
-| Bromeliad growth  | -0.79 ± 1.10; F~1,10~ = 0.51 |-1.08 ± 1.62; F~3,16~ = 0.96 | 0.59 ± 0.84; F~1,5~ = 0.49 | 0.00 ± 0.00; F~1,12~ = 1.29 | 
-| Nitrogen cycling  | -5.69 ± 4.03; F~1,10~ = 2.00 |-0.22 ± 8.66; F~3,16~ = 1.84 | 3.97 ± 5.63; F~1,5~ = 0.50 | -0.00 ± 0.01; F~1,13~ = 0.15 | 
+
+
+\begin{table}[htbp]
+  \resizebox{0.7\textwidth}{!}{\begin{minipage}{\textwidth}
+    \begin{tabular}{lllll}
+Response & Predator Presence & Identity & Richness & Pairwise PD \\
+Total prey survival  &   -7.37 ± 2.45; $F_{1,10} = 9.07 $\* & 2.00 ± 2.07; $F_{3,16} = 0.60 $  & 2.05 ± 1.46; $F_{1,5} = 1.96 $ & 0.01 ± 0.00; $F_{1,13} = 7.64 $\* \\
+Decomposition (g)  & 0.01 ± 0.02; $F_{1,10} = 0.47 $ & -0.01 ± 0.03; $F_{3,15} = 1.29 $& -0.01 ± 0.02; $F_{1,5} = 0.21 $ & 0.00 ± 0.00; $F_{1,13} = 0.40 $ \\ 
+FPOM (g)     & -0.06 ± 0.09; $F_{1,10} = 0.46 $ & -0.06 ± 0.11; $F_{3,15} = 0.28 $ & 0.18 ± 0.07; $F_{1,5} = 6.19 $ & -0.00 ± 0.00; $F_{1,13} = 1.45 $ \\
+Bromeliad growth  & -0.79 ± 1.10; $F_{1,10} = 0.51 $ &-1.08 ± 1.62; $F_{3,16} = 0.96 $ & 0.59 ± 0.84; $F_{1,5} = 0.49 $ & 0.00 ± 0.00; $F_{1,12} = 1.29 $ \\
+Nitrogen cycling  & -5.69 ± 4.03; $F_{1,10} = 2.00 $ &-0.22 ± 8.66; $F_{3,16} = 1.84 $ & 3.97 ± 5.63; $F_{1,5} = 0.50 $ & -0.00 ± 0.01; $F_{1,13} = 0.15 $ \\
+
+          \hline
+        \end{tabular}
+      \end{minipage}}
+\end{table}
+
+
+
 
 ## Discussion
 
@@ -448,3 +465,7 @@ combined effect of multiple predator species, to predict the top-down effect of
 diverse predator assemblages.
 
 ## References
+
+<div id = 'refs'></div>
+
+This is a test
