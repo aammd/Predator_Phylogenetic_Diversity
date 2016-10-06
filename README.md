@@ -46,14 +46,16 @@ remake::make()
 
 This will run all the models and simulations, build figures, and compile the final pdf output of the main manuscript and the supplementary figures.
 
+## Data
+
+All of the data for this paper is available on Figshare:
+
+<iframe src="https://widgets.figshare.com/articles/3978783/embed?show_title=1" width="568" height="351" frameborder="0"></iframe>
 
 ## Licenses
 
-The original data, analysis techniques and writing in these documents are copyright &copy; MacDonald, Srivastava and Romero, 2013.
+The original data, analysis techniques and writing in these documents are &copy; MacDonald, Srivastava and Romero, 2013.
 
-We licence all original text in this repository under CC-BY:
 <a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/deed.en_GB"><img alt="Creative Commons Licence" style="border-width:0" src="http://i.creativecommons.org/l/by/2.5/ca/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title">Predator Phylogenetic Diversity</span> by <span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName">A. Andrew M. MacDonald, D.S. Srivastava and G.Q. Romero</span> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/2.5/ca/deed.en_GB">Creative Commons Attribution 2.5 Canada License</a>.
 
-_We release Data (contents of [`data`](data/)) are under CC-0_ (we need to talk about this)
-
-We release all dode (all other files, including `.R` scripts in [`R.scripts`](R.scripts/)) under the MIT [license](LICENSE)
+We release all code (`.R` scripts in [`src`](src/)) under the MIT [license](LICENSE)
