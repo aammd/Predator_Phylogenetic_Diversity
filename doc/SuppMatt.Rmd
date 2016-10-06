@@ -11,7 +11,7 @@ output:
   word_document:
     reference_docx: reference.docx
 geometry: margin=1in
-bibliography: formatting/pdef.bib
+bibliography: formatting/references.bib
 csl: formatting/the-american-naturalist.csl
 ---
 
@@ -24,15 +24,45 @@ knitr::opts_chunk$set(message = FALSE,
 mytheme <- theme_bw()
 
 
-timetree <- list.files("../raw-data/TreeData", full.names = TRUE, pattern = "*.csv") %>%
+timetree_papers <- dir("../raw-data/TreeData", full.names = TRUE, pattern = "*.csv") %>%
   (function(d) {basename(d) %>% gsub(".csv","",.) %>% set_names(d,.)}) %>%
   lapply(read.csv,stringsAsFactors = FALSE) %>%
-  plyr::ldply() %>%
+  plyr::ldply() 
+
+timetree <- timetree_papers %>%
   mutate(foo = seq_along(Taxon.A)) %>%
   gather(var,val,-foo) %>%
   mutate(val = gsub("\\(.+\\)","", val)) %>%
   spread(var,val) %>%
   select(-foo,"study taxa" = .id,Time:Year)
+
+newnames <- data_frame(
+  `study taxa` = c("Ceratopogonidae_Chironomidae", 
+                   "CulicidaetoChironomidae", 
+                   "dolicho_tabanid", 
+                   "empididaeDolichopodidae", 
+                   "insects.to.leeches", 
+                   "odonata-Tabanidae", 
+                   "tabanidae_culidicae_ie_Diptera"),
+  Studytaxa = c("Ceratopogonidae_Chironomidae", 
+                   "Culicidae_Chironomidae", 
+                   "Dolichopodidae_Tabanidae", 
+                   "Dolichopodidae_Empididae", 
+                   "Insecta_Hirudinea", 
+                   "Odonata_Tabanidae", 
+                   "Tabanidae_Culidicdae")
+  
+)
+
+timetree_table <- timetree %>% 
+  left_join(newnames) %>% 
+  separate(Studytaxa, into = c("Study taxon 1", "Study taxon 2")) %>% 
+  select(`Study taxon 1`, `Study taxon 2`, Taxon.A, Taxon.B, Time, Reference, Year)
+
+
+urls <- timetree_papers$Reference %>% map(str_replace, ".*?\\(", "") %>% map(str_replace, "\\)", "") 
+
+dois <- c("10.1093/sysbio/52.6.745", "10.1098/rstb.2007.2233", "10.1111/j.1600-0668.2005.00370.x", "10.1073/pnas.0401670101", "10.1016/S0022-5193(03)00057-2", "10.1080/10635150290102375", "10.1098/rspb.2004.2917", "10.1093/molbev/msi039", "10.1186/1471-2105-6-53", "10.1006/mpev.1997.0457")
 
 ```
 
@@ -40,10 +70,11 @@ timetree <- list.files("../raw-data/TreeData", full.names = TRUE, pattern = "*.c
 
 We used information from timetree.org to add node ages to our tree.  This web service provides age estimates from the literature for all available pairs of taxa from the same groups as the searched taxa. Thus deeper nodes are estimated from more taxa and studies than shallower nodes.  
 
-**Table S1** Studies used to date nodes on our predator phylogeny.  When more than one study was available, we used the median value.  
+**Table S1** Studies used to date nodes on our predator phylogeny.  When more than one study was available, we used the median value. Papers reporting phylogenetic time estimates include. 
 
 ```{r TABLE_Timetree, results='asis'}
-xtable(timetree) %>% print(include.rownames = FALSE, size = 8, comment = FALSE)
+timetree_table %>% 
+  xtable() %>% print(include.rownames = FALSE, size = 8, comment = FALSE)
 ```
 
 ```{r FIG_predatorphylo}
@@ -536,5 +567,11 @@ cortable %>%
 # }
 # 
 # cor.test.p(pd[c("total.surv","fine","decomp","growth","N")])
+```
+
+## References
+
+```{r}
+write.bibtex(file="formatting/references.bib")
 ```
 
