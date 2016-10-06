@@ -13,7 +13,7 @@ output:
   word_document:
     reference_docx: reference.docx
 geometry: margin=1in
-bibliography: formatting/references.bib
+bibliography: formatting/timetreerefs.bib
 csl: formatting/the-american-naturalist.csl
 ---
 
@@ -76,7 +76,7 @@ timetree_table_links <- timetree_table %>%
 
 We used information from timetree.org to add node ages to our tree.  This web service provides age estimates from the literature for all available pairs of taxa from the same groups as the searched taxa. Thus deeper nodes are estimated from more taxa and studies than shallower nodes.  
 
-**Table S1** Studies used to date nodes on our predator phylogeny.  When more than one study was available, we used the median value. Papers reporting phylogenetic time estimates include. 
+**Table S1** Studies used to date nodes on our predator phylogeny.  When more than one study was available, we used the median value. Papers reporting phylogenetic time estimates include [@gaunt_insect_2002; @wiegmann_time_2003; @peterson_ediacaran_2008; @peterson_estimating_2004; @otsuka_advanced_2003; @aris-brosou_effects_2002; @regier_pancrustacean_2005; @blair_molecular_2005; @blair_evolutionary_2005; @foley_evolution_1998]. 
 
 ```{r TABLE_Timetree, results='asis'}
 timetree_table_links %>% 
