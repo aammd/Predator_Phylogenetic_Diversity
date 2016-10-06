@@ -6,12 +6,14 @@ output:
     latex_engine: xelatex
     includes:
       in_header: formatting/myheader_suppmatt.tex
+    fig_caption: false
+    dev: pdf
   md_document: default
   html_document: default
   word_document:
     reference_docx: reference.docx
 geometry: margin=1in
-bibliography: formatting/pdef.bib
+bibliography: formatting/timetreerefs.bib
 csl: formatting/the-american-naturalist.csl
 ---
 
@@ -22,72 +24,45 @@ csl: formatting/the-american-naturalist.csl
 
 We used information from timetree.org to add node ages to our tree.  This web service provides age estimates from the literature for all available pairs of taxa from the same groups as the searched taxa. Thus deeper nodes are estimated from more taxa and studies than shallower nodes.  
 
-**Table S1** Studies used to date nodes on our predator phylogeny.  When more than one study was available, we used the median value.  
+**Table S1** Studies used to date nodes on our predator phylogeny.  When more than one study was available, we used the median value. Papers reporting phylogenetic time estimates include [@gaunt_insect_2002; @wiegmann_time_2003; @peterson_ediacaran_2008; @peterson_estimating_2004; @otsuka_advanced_2003; @aris-brosou_effects_2002; @regier_pancrustacean_2005; @blair_molecular_2005; @blair_evolutionary_2005; @foley_evolution_1998]. 
 
 \begin{table}[ht]
 \centering
 \begin{tabular}{llllll}
   \hline
-study taxa & Reference & Taxon.A & Taxon.B & Time & Year \\ 
+Study taxon 1 & Study taxon 2 & Taxon.A & Taxon.B & Time & Reference \\ 
   \hline
-Ceratopogonidae\_Chironomidae & Bertone et al.  & Ceratopogonidae  & Chironomidae  & 213 & 2008 \\ 
-  CulicidaetoChironomidae & Bertone et al.  & Chaoborinae  & Chironomoidea  & 220 & 2008 \\ 
-  dolicho\_tabanid & Wiegmann et al.  & Nemestrinoidea  & Pelecorhynchidae  & 216 & 2003 \\ 
-  empididaeDolichopodidae & Wiegmann et al.  & Gloma  & Liancalus  & 86 & 2003 \\ 
-  insects.to.leeches & Peterson et al.  & Anophelinae  & Capitellidae  & 610 & 2008 \\ 
-  insects.to.leeches & Foto et al.  & Arthropoda  & Chaetopteridae  & 561 & 2005 \\ 
-  insects.to.leeches & Peterson et al.  & Arthropoda  & Annelida  & 560 & 2004 \\ 
-  insects.to.leeches & Otsuka et al.  & Crustacea  & Annelida  & 700 & 2003 \\ 
-  insects.to.leeches & Aris-Brosou et al.  & Culicidae  & Lumbricidae  & 543 & 2002 \\ 
-  odonata-Tabanidae & Peterson et al.  & Coenagrionidae  & Anophelinae  & 385 & 2008 \\ 
-  odonata-Tabanidae & Regier et al.  & Hexagenia  & Forficulidae  & 151 & 2005 \\ 
-  odonata-Tabanidae & Blair et al.  & Enallagma  & gambiae species complex  & 543 & 2005 \\ 
-  odonata-Tabanidae & Regier et al.  & Hexagenia  & Forficulidae  & 376.5 & 2004 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & Bertone et al.  & Trichoceroidea  & Oestroidea  & 196 & 2008 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & Peterson et al.  & Anopheles  & Drosophila  & 280 & 2008 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & Blair et al.  & Anopheles gambiae  & Drosophila melanogaster  & 419 & 2005 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & Blair et al.  & Anopheles  & Drosophila  & 474 & 2005 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & Aris-Brosou et al.  & Aedes  & Drosophila  & 184 & 2002 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & Gaunt et al.  & Anopheles  & Ceratitidini  & 265.2 & 2002 \\ 
-  tabanidae\_culidicae\_ie\_Diptera & Foley et al.  & Culicini  & Drosophila  & 106.2 & 1998 \\ 
+Ceratopogonidae & Chironomidae & Ceratopogonidae  & Chironomidae  & 213 & Bertone et al. 2008 \\ 
+  Culicidae & Chironomidae & Chaoborinae  & Chironomoidea  & 220 & Bertone et al. 2008 \\ 
+  Dolichopodidae & Tabanidae & Nemestrinoidea  & Pelecorhynchidae  & 216 & Wiegmann et al. 2003 \\ 
+  Dolichopodidae & Empididae & Gloma  & Liancalus  & 86 & Wiegmann et al. 2003 \\ 
+  Insecta & Hirudinea & Anophelinae  & Capitellidae  & 610 & Peterson et al. 2008 \\ 
+  Insecta & Hirudinea & Arthropoda  & Chaetopteridae  & 561 & Foto et al. 2005 \\ 
+  Insecta & Hirudinea & Arthropoda  & Annelida  & 560 & Peterson et al. 2004 \\ 
+  Insecta & Hirudinea & Crustacea  & Annelida  & 700 & Otsuka et al. 2003 \\ 
+  Insecta & Hirudinea & Culicidae  & Lumbricidae  & 543 & Aris-Brosou et al. 2002 \\ 
+  Odonata & Tabanidae & Coenagrionidae  & Anophelinae  & 385 & Peterson et al. 2008 \\ 
+  Odonata & Tabanidae & Hexagenia  & Forficulidae  & 151 & Regier et al. 2005 \\ 
+  Odonata & Tabanidae & Enallagma  & gambiae species complex  & 543 & Blair et al. 2005 \\ 
+  Odonata & Tabanidae & Hexagenia  & Forficulidae  & 376.5 & Regier et al. 2004 \\ 
+  Tabanidae & Culidicdae & Trichoceroidea  & Oestroidea  & 196 & Bertone et al. 2008 \\ 
+  Tabanidae & Culidicdae & Anopheles  & Drosophila  & 280 & Peterson et al. 2008 \\ 
+  Tabanidae & Culidicdae & Anopheles gambiae  & Drosophila melanogaster  & 419 & Blair et al. 2005 \\ 
+  Tabanidae & Culidicdae & Anopheles  & Drosophila  & 474 & Blair et al. 2005 \\ 
+  Tabanidae & Culidicdae & Aedes  & Drosophila  & 184 & Aris-Brosou et al. 2002 \\ 
+  Tabanidae & Culidicdae & Anopheles  & Ceratitidini  & 265.2 & Gaunt et al. 2002 \\ 
+  Tabanidae & Culidicdae & Culicini  & Drosophila  & 106.2 & Foley et al. 1998 \\ 
    \hline
 \end{tabular}
 \end{table}
 
-![plot of chunk FIG_predatorphylo](figure/SuppMatt__FIG_predatorphylo-1.png)
+![plot of chunk FIG_predatorphylo](figure/FIG_predatorphylo-1.pdf)
 
 **Figure S1** Predator phylogeny, with dated nodes derived from data in Table 1.  When multiple time estimates were available for the same internal node, we used the median estimate.
 
-
-# Phylogenetic distance and similarity in distribution and diet: nonlinear models
-
-Both biological and statistical effects could cause a nonlinear relationship between similarity in distribution or diet and phylogenetic distance.  Biological, because the fixed compositon of the prey community limits dissimilarity between predators. Statistical, because Pianka's similarity index is bounded by 0 and 1 and therefore an OLS linear model could potentially predict impossible (i.e. $< 0$ or $> 1$) values. We fit several nonlinear equations to our data in order to describe how the amount of divergence in distribution or diet between predators changed over evolutionary time.
-
-## Distributional similarity
-
-**Table S2** Linear, nonlinear and constant functions fit to the relationship of diet similarity and predator phylogenetic distance.
-
-------------------------------------------------
-   model               Equation             AIC 
------------ ------------------------------ -----
-bellshaped  $a \times (PD)^2 + b \times PD 20.77
-                         + c$                   
-
- quadratic         $a \times x + b$        21.51
-
-  linear    $\frac{c \times {e}^{(a \times 21.56
-            PD)}}{(c \times {e}^{(a \times      
-                  PD)} + (1 - c))}$             
-
-exponential $b \times {e}^{(a \times PD)}$ 21.92
-
- constant    $peak \times {e}^{(-1 \times  21.97
-                    (PD)^2 / a)}$               
-------------------------------------------------
-
 ## Diet similarity
 
-**Table S3** Proportion of predation in feeding trials. Each cell of the graph represents a predator-prey pair; note that some pairs are represented more than others (not shown).  Composition of these trials was limited by the abundance of organisms in the field.
+**Table S2** Proportion of predation in feeding trials. Each cell of the graph represents a predator-prey pair; note that some pairs are represented more than others (not shown).  Composition of these trials was limited by the abundance of organisms in the field.
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrrrrr}
@@ -111,36 +86,9 @@ Tipulid & 0.60 & 1.00 & 1.00 & 1.00 & 1.00 & 0.40 & 0.50 & 1.00 \\
 \end{table}
 
 
-**Table S3** Linear, nonlinear and constant functions fit to the relationship of diet similarity and predator phylogenetic distance. These models are weighted by the number of prey species tested, but do not correct for the phylogenetic non-independence of the predator taxa.
+## Predator diversity experiment
 
--------------------------------------------------
-   model               Equation             AIC  
------------ ------------------------------ ------
- quadratic         $a \times x + b$         -638 
-
-exponential $b \times {e}^{(a \times PD)}$ -634.9
-
-  linear    $\frac{c \times {e}^{(a \times -634.7
-            PD)}}{(c \times {e}^{(a \times       
-                  PD)} + (1 - c))}$              
-
-bellshaped  $a \times (PD)^2 + b \times PD -630.5
-                         + c$                    
-
- constant    $peak \times {e}^{(-1 \times  -625.2
-                    (PD)^2 / a)}$                
--------------------------------------------------
-
-<!--
-calculates the the difference in feeding rate.
-Among the most common predator taxa (i.e. those used in our experiment,
-described below) the damselflies (_Leptagrion andromache_ and _Leptagrion
-elongatum_) showed the highest rates of prey consumption (prey consumed in ` r andro`% and ` r elong`% of trials, respectively). 
--->
-
-# Predator diversity experiment
-
-## Prey community composition 
+### Prey community composition 
 
 We estimated the densities of these common prey species based on their abundances in our 2008 observational dataset.  We estimated how many of each taxa would be found in a bromeliad of the same size as those we used in our experiment, and adjusted our estimates slightly to account for interannual variation in invertebrate abundance.
 
@@ -160,7 +108,7 @@ We estimated the densities of these common prey species based on their abundance
 
 We calculated means and standard error for every experimental treatment and response variable.  
 
-**Table S5**: Means and standard errors for all response variables for each predator treatment in our manipulative experiment. n = 5 for every pair of numbers, with only two exceptions due to missing values: `elong + leech` x `growth`, and `leech` x `decomp`.
+**Table S3**: Means and standard errors for all response variables for each predator treatment in our manipulative experiment. n = 5 for every pair of numbers, with only two exceptions due to missing values: `elong + leech` x `growth`, and `leech` x `decomp`.
 \begin{table}[ht]
 \centering
 \begin{tabular}{llllll}
@@ -191,7 +139,7 @@ We divided our experimental design into three separate hypothesis tests.
 
 Because the first and third hypotheses suggest a ranking of the independent variables (increasing species number and phylogenetic diversity) we used ordinal contrasts in the corresponding linear models.
 
-**Table S6**: Number of predator species in each experimental treatment.
+**Table S4**: Number of predator species in each experimental treatment.
 \begin{table}[ht]
 \centering
 \begin{tabular}{ll}
@@ -210,7 +158,7 @@ none & control \\
 \end{tabular}
 \end{table}
 
-**Table S7**: The effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how an increasing number of predator species influenced the response.  Treatment order was none < one < two species. (See Table S6). For each non-control treatment, replicates were the mean of all bromeliads with the same predator treatment. Control (no predator) bromeliads were used as independent replicates.  Thus there are 5 replicates for the "none" factor level, four replicates of "one predator" and three of  "two predators". Note that we model prey survival using OLS, rather than poisson regression, because we are modeling the distribution of means.
+**Table S5**: The effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how an increasing number of predator species influenced the response.  Treatment order was none < one < two species. (See Table S6). For each non-control treatment, replicates were the mean of all bromeliads with the same predator treatment. Control (no predator) bromeliads were used as independent replicates.  Thus there are 5 replicates for the "none" factor level, four replicates of "one predator" and three of  "two predators". Note that we model prey survival using OLS, rather than poisson regression, because we are modeling the distribution of means.
 
 \begingroup 
 \small 
@@ -244,7 +192,7 @@ F Statistic (df = 2; 9) & 0.260 & 1.636 & 0.310 & 1.226 & 4.450$^{**}$ \\
 \endgroup 
 
 
-**Table S8**: Tukey post-hoc tests for the effects of predator species number on each response variable.
+**Table S6**: Tukey post-hoc tests for the effects of predator species number on each response variable.
 \begin{table}[ht]
 \centering
 \begin{tabular}{llrrrr}
@@ -271,9 +219,12 @@ Decomposition (g) & one-none & 0.02 & -0.05 & 0.09 & 0.76 \\
 \end{table}
 
 
-![plot of chunk FIG_spp_number](figure/SuppMatt__FIG_spp_number-1.png)
+\pagebreak
+
+![plot of chunk FIG_spp_number](figure/FIG_spp_number-1.pdf)
 
 **Figure S2**: The effect of predator species number on each of our response variables.  Each dot represents the mean (n = 5) for different predator treatments.  Green dots represent group (i.e. species number) means.  
+
 
 \pagebreak
 
@@ -281,7 +232,7 @@ Decomposition (g) & one-none & 0.02 & -0.05 & 0.09 & 0.76 \\
 
 Within the single-predator treatments, we tested for difference in our response variables among different predator species. 
 
-**Table S9** : Contrasting predator species effects. These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
+**Table S7** : Contrasting predator species effects. These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
 
 \begingroup 
 \small 
@@ -319,7 +270,7 @@ F Statistic & 0.603 (df = 3; 16) & 0.277 (df = 3; 15) & 1.289 (df = 3; 15) & 0.9
 
 
 
-**Table S10**: Post-hoc Tukey tests for differences between predator species in all 5 responses. 
+**Table S8**: Post-hoc Tukey tests for differences between predator species in all 5 responses. 
 \begin{table}[ht]
 \centering
 \begin{tabular}{llrrrr}
@@ -354,8 +305,9 @@ FPOM (g) & elong-andro & -0.06 & -0.37 & 0.25 & 0.94 \\
 \end{tabular}
 \end{table}
 
+\pagebreak 
 
-![plot of chunk FIG_predspp](figure/SuppMatt__FIG_predspp-1.png)
+![plot of chunk FIG_predspp](figure/FIG_predspp-1.pdf)
 
 **Figure S3**: The effect of predator species identity on each of our response variables.  Each dot represents the observed value for a different predator treatment.  Green dots represent group means.  
 
@@ -365,7 +317,7 @@ FPOM (g) & elong-andro & -0.06 & -0.37 & 0.25 & 0.94 \\
 
 Our two-species combinations represent a range of increasing phylogenetic distance.  By examining differences between these three treatments, we can test how increasing PD *per se* influences our response variables.
 
-**Table S11**: Effects of increasing phylogenetic diversity of the predator assemblage on 5 response variables.  We used linear contrasts, ranking the independent variable by increasing predator PD (see Figure S4).  Linear model coefficients (standard error) are shown for Linear, Quadratic and Constant contrasts.
+**Table S9**: Effects of increasing phylogenetic diversity of the predator assemblage on 5 response variables.  We used linear contrasts, ranking the independent variable by increasing predator PD (see Figure S4).  Linear model coefficients (standard error) are shown for Linear, Quadratic and Constant contrasts.
 
 \begingroup 
 \small 
@@ -398,7 +350,7 @@ F Statistic & 1.787 (df = 2; 12) & 0.681 (df = 2; 12) & 1.056 (df = 2; 11) & 0.6
 \end{tabular} 
 \endgroup 
 
-**Table S12**: Tukey post-hoc tests for differences between predator phylogenetic diversity treatments on all response variables.
+**Table S10**: Tukey post-hoc tests for differences between predator phylogenetic diversity treatments on all response variables.
 \begin{table}[ht]
 \centering
 \begin{tabular}{llrrrr}
@@ -425,14 +377,14 @@ Decomposition (g) & elong + tab-elong + andro & 0.04 & -0.03 & 0.12 & 0.34 \\
 \end{table}
 
 
-![plot of chunk FIG_twopred](figure/SuppMatt__FIG_twopred-1.png)
+![plot of chunk FIG_twopred](figure/FIG_twopred-1.pdf)
 
 **Figure S4**: The effect of increasing phylogenetic signal on each of our response variables in our community experiment.  In each treatment category, *Leptagrion elongatum* is paired with another predator; these treatments are ordered by increasing phylogenetic diversity.  For clarity the axes are labelled with abbreviations for species names: andro = *Leptagrion andromache*, tab = Tabanidae, leech = Hirudinidae.
 
 
 ## Correlation matrix
 
-**Table S13**: Correlation matrix of all variables in our experiment. n = 30 for most of these values. Bold type indicates values of Pearson's product moment correlation with p < 0.05.
+**Table S11**: Correlation matrix of all variables in our experiment. n = 30 for most of these values. Bold type indicates values of Pearson's product moment correlation with p < 0.05.
 
 
 
@@ -451,4 +403,6 @@ decomp & \textbf{} & 0.08 & \textbf{-0.33} & 0.13 & 0.15 \\
    \hline
 \end{tabular}
 \end{table}
+
+## References
 
