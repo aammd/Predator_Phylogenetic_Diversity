@@ -49,17 +49,17 @@ prF <- function(resp,test,.modlist){
   
   fv <- modsum %>%
     extract2("fstatistic")
-  F_format <- paste0("F~",fv[["numdf"]],",",fv[["dendf"]],"~", " = ")
+  F_format <- paste0("$F_{",fv[["numdf"]],",",fv[["dendf"]],"}"," = ")
   pv <- pf(fv[1],fv[2],fv[3],lower.tail=F)
   
   fval <- sprintf("%.2f", fv[["value"]])
   
   if (pv < 0.05 & pv > 0.01) {
-    paste0(F_format,fval,"\\*")
+    paste0(F_format,fval," $\\*")
   } else if (pv < 0.01) {
-    paste0(F_format,fval,"\\*\\*")
+    paste0(F_format,fval," $\\*\\*")
   } else {
-    paste0(F_format,fval)      
+    paste0(F_format,fval," $")      
   }
 }
 
