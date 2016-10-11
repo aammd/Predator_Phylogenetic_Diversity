@@ -42,5 +42,6 @@ doc/MacDonald_romero_srivastava.dvi
 doc/MacDonald_romero_srivastava.pdf
 .httr-oauth
 *csvy
-*.tex
+MacDonald*tex
+predatordiversity.tex
 doc/figure/*
