@@ -53,13 +53,12 @@ prF <- function(resp,test,.modlist){
   pv <- pf(fv[1],fv[2],fv[3],lower.tail=F)
   
   fval <- sprintf("%.2f", fv[["value"]])
-  
   if (pv < 0.05 & pv > 0.01) {
-    paste0(F_format,fval," $\\*")
+    paste0(F_format,fval,"\\ast$")
   } else if (pv < 0.01) {
-    paste0(F_format,fval," $\\*\\*")
+    paste0(F_format,fval,"\\ast\\ast$")
   } else {
-    paste0(F_format,fval," $")      
+    paste0(F_format,fval,"$")      
   }
 }
 
