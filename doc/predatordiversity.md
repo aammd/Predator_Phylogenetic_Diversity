@@ -353,14 +353,15 @@ not in turn create a significant difference in the ecosystem function variables.
 
 **Figure 3**: Non-additive effects of predator combinations on prey decrease with increasing phylogenetic distance between predators. A difference of 0 indicates that two-predator treatments resulted in no more prey mortality than would be expected from simply averaging single-predator treatments. A negative difference indicates that two-predator treatments resulted in less mortality than expected. Error bars represent bootstrap 95% confidence intervals.
 
+\pagebreak
 
-**Table 1** Predator diversity effects on community and ecosystem variables. We measured five community-level variables: total prey survival (both emerged adults and surviving larvae; see Fig. 2 & 3), the breakdown of coarse detritus (decomposition), the production of fine particulate organic matter (FPOM), the cycling of nitrogen from detritus to bromeliad tissue, and the growth of the bromeliad itself. We contrast treatments in our experimental design in four orthogonal ways: comparing treatments with predators to those without ("Predator Presence"), contrasting predator species ("Identity"), comparing predator communities of 1 or 2 species ("Richness"), and considering the effects of phylogenetic distance between predators ("Pairwise PD").  Values are slope ±  standard error and \* = p < 0.05
+\begin{landscape}
+
+\textbf{Table 1:} Predator diversity effects on community and ecosystem variables. We measured five community-level variables: total prey survival (both emerged adults and surviving larvae; see Fig. 2  and 3), the breakdown of coarse detritus (decomposition), the production of fine particulate organic matter (FPOM), the cycling of nitrogen from detritus to bromeliad tissue, and the growth of the bromeliad itself. We contrast treatments in our experimental design in four orthogonal ways: comparing treatments with predators to those without ("Predator Presence"), contrasting predator species ("Identity"), comparing predator communities of 1 or 2 species ("Richness"), and considering the effects of phylogenetic distance between predators ("Pairwise PD").  Values are slope ±  standard error and \* = p < 0.05
 
 
 
 \begin{table}[htbp]
-  \resizebox{0.7\textwidth}{!}{
-    \begin{minipage}{\textwidth}
     \begin{tabular}{lllll}
 Response & Predator Presence & Identity & Richness & Pairwise PD \\
       \hline
@@ -371,12 +372,11 @@ Bromeliad growth  & -0.79 ± 1.10; $F_{1,10} = 0.51$ &-1.08 ± 1.62; $F_{3,16} =
 nitrogen cycling  & -5.69 ± 4.03; $F_{1,10} = 2.00$ &-0.22 ± 8.66; $F_{3,16} = 1.84$ & 3.97 ± 5.63; $F_{1,5} = 0.50$ & -0.00 ± 0.01; $F_{1,13} = 0.15$ \\
       \hline
     \end{tabular}
-    \end{minipage}
-    }
 \end{table}
 
+\end{landscape}
 
-
+\pagebreak
 
 ## Discussion
 
