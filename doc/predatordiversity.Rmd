@@ -343,11 +343,6 @@ meta_phylo_lm_summary <- lm(overlap~phylodistance,
   summary
 ```
 
-```{r CALC_nodeages}
-n.nodes <- nrow(nodeages)
-nstudies <- sum(nodeages$nstudies)
-```
-
 We did not find any significant relationship between the co-occurence of a pair of predators in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between the two predators. A Mantel test found no evidence of correlation between differences among predators in habitat use, and phylogenetic distance (correlation `r sprintf("%.2f", meta_pd_mantel$statistic)`, p = `r sprintf("%.2f", meta_pd_mantel$signif)`, `r meta_pd_mantel$control$nperm` permutations). This indicates that all `r metabolic$Taxa %>% unique %>% length` predator species have roughly similar habitat distributions -- indeed, we often found multiple predator species co-occurring in the same bromeliads (mean `r nspp$meanpred` ± `r nspp$sdpred` predator species per plant). We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
 (Odonata:Coenagrionidae). There were also two groups of confamilials -- three species of
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera were represented by a single predator species each (Dolichopodidae, Corethrellidae and

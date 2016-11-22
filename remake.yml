@@ -67,10 +67,7 @@ targets:
   #  command: read_csv("data/reorganized.feeding.trial.data.csv")
   feeding_trials:
     command: read_published_data(I("3978783")) 
-  # phylogeny data
-  nodeages:
-    command: read_csv("data/nodeages.csv")
-    
+
 # experiment results
   pd_raw:
     command: read_published_data(I("3983964"))
@@ -152,7 +149,6 @@ targets:
       - rando_pvals
       - pd_no_out
       - feeding_trials
-      - nodeages
       - metabolic
       - metabolic_occur_phylo
       - diet_overlap_phylo
