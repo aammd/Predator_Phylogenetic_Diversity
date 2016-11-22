@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/9960337.svg)](https://zenodo.org/badge/latestdoi/9960337)
+
 # Predator phylogenetic diversity decreases predation rate via antagonistic interactions
 
 Manuscript: [md](doc/predatordiversity.md), [pdf](doc/predatordiversity.pdf)
