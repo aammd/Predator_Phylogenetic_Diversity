@@ -177,6 +177,10 @@ We included phylogenetic information in our analyses of all three datasets. We o
 phylogenetic study (e.g. _Leptagrion_) prevented more information from being
 included. These branches were left unresolved (i.e., as polytomies) and were all assigned identical, arbitrary and short branch lengths (15 Mya). The result is a phylogeny that closely resembles the qualitative, taxonomy-based tree with which we began. Because the node ages between our major predators (leeches, tabanids and odonata) are so deep, variation among studies in the estimated age of these nodes was minor compared to the differences between them Our final tree is available at https://dx.doi.org/10.6084/m9.figshare.3980349.v1.
 
+```{r}
+n_broms <- cardoso08files$environmental_variables.csv$Bromeliad %>% unique %>% length()
+```
+
 We conducted all three experiments in Parque Estadual da Ilha do Cardoso (25^o^
 03' S, 47^o^ 53' W), a 22.5 ha island off the south coast of São Paulo state,
 Brazil. We worked in a coastal forest (_restinga_) with an understory dominated
@@ -184,7 +188,7 @@ by  _Quesnelia arvensis_ Mez. (Bromeliaceae). _Q. arvensis_ is a large
 terrestrial bromeliad that catches and holds rainwater (phytotelmata),
 accumulating up to 2.8 L of rainwater in a single plant. Our observational
 survey found more than 47 species of macroinvertebrates in these aquatic
-communities [@Romero2010], in `r ncol(metabolic) -1` bromeliads of various sizes.
+communities [@Romero2010], in `r n_broms` bromeliads of various sizes.
 This diversity encompasses multiple trophic and functional groups. Filter
 feeders were entirely mosquito larvae (Diptera:Culicidae); detritivores include shredders
 (Diptera:Tipulidae, Trichoptera:Calamoceratidae), scrapers
