@@ -15,11 +15,11 @@ library(plyr)
 
 
 data <-
-  read.table("../raw-data/BWGdatasets/cardoso_2008_speciesname.txt",
+  read.table("raw-data/BWGdatasets/cardoso_2008_speciesname.txt",
              sep="\t",header=TRUE,stringsAsFactors=FALSE)
 
 data_biomass <-
-  read.table("../raw-data/BWGdatasets/Cardoso2008_WGformat_correct.txt",
+  read.table("raw-data/BWGdatasets/Cardoso2008_WGformat_correct.txt",
              sep="\t",header=TRUE,stringsAsFactors=FALSE)
 
 ## remove this "comment" column:
