@@ -305,7 +305,7 @@ indicate a significant non-additive effect of a predator combination. We used R 
 
 
 
-We did not find any significant relationship between the co-occurence of a pair of predators in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between the two predators. A Mantel test found no evidence of correlation between differences among predators in habitat use, and phylogenetic distance (correlation -0.18, p = 0.84, 999 permutations). This indicates that all 14 predator species have roughly similar habitat distributions -- indeed, we often found multiple predator species co-occurring in the same bromeliads (mean 4.45 ± 2.8 predator species per plant). We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
+We did not find any significant relationship between the co-occurence of a pair of predators in bromeliads (measured as Pianka's index of niche overlap) and the phylogenetic distance between the two predators. A Mantel test found no evidence of correlation between differences among predators in habitat use, and phylogenetic distance (correlation -0.18, p = 0.82, 999 permutations). This indicates that all 14 predator species have roughly similar habitat distributions -- indeed, we often found multiple predator species co-occurring in the same bromeliads (mean 4.45 ± 2.8 predator species per plant). We were able to sample a wide range of phylogenetic relatedness, including two groups of congenerics -- two species of _Bezzia_ sp. (Diptera:Ceratopogonidae) and three species of _Leptagrion_ sp.
 (Odonata:Coenagrionidae). There were also two groups of confamilials -- three species of
 Tabanidae and two species of Empididae, all Diptera.  Deeper divisions were also present: three families of Diptera were represented by a single predator species each (Dolichopodidae, Corethrellidae and
 Chironomidae) and the deepest taxonomic divide was between all insects present and the predatory leeches (Arhynchobdellida:Hirudinidae).
@@ -318,7 +318,7 @@ Chironomidae) and the deepest taxonomic divide was between all insects present a
 
 
 
-Overall, predators were remarkably similar in their diets, reflecting the broad generalist diets of most predators (Fig. 1b). Although diet similarity appears to decline slightly with phylogenetic distance between predators, this effect disappears once we correct for non-independence of predator pairs with a Mantel test (correlation -0.27, p = 0.90, 999 permutations).
+Overall, predators were remarkably similar in their diets, reflecting the broad generalist diets of most predators (Fig. 1b). Although diet similarity appears to decline slightly with phylogenetic distance between predators, this effect disappears once we correct for non-independence of predator pairs with a Mantel test (correlation -0.27, p = 0.88, 999 permutations).
 
 ### Hypothesis 3: similarity in top-down effects
 
@@ -330,7 +330,7 @@ We tested for non-additive effects of predator phylogenetic diversity with boots
 were quite similar to the effect of either alone, when _L. elongatum_ was
 placed in the same plant as either a _Stibasoma_ larva or leeches, on average five
 more prey individuals (18% of total prey community) survived till the end of
-the experiment (Fig 3; Tabanid, p = 0.01, Leech, p = 0.018).  Once again, this effect on invertebrate density did
+the experiment (Fig 3; Tabanid, p = 0.016, Leech, p = 0.016).  Once again, this effect on invertebrate density did
 not in turn create a significant difference in the ecosystem function variables.
 
 \pagebreak 
