@@ -1,7 +1,7 @@
 # Predator phylogenetic diversity decreases predation rate via antagonistic interactions
 
-Manuscript: [md](MS/predatordiversity.md), [pdf](MS/predatordiversity.pdf)
-Supplementary material : [md](MS/SuppMatt.md), [pdf](MS/SuppMatt.pdf)
+Manuscript: [md](doc/predatordiversity.md), [pdf](doc/predatordiversity.pdf)
+Supplementary material : [md](doc/SuppMatt.md), [pdf](doc/SuppMatt.pdf)
 
 ## About this project
 
