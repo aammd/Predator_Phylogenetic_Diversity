@@ -20,7 +20,7 @@ packages:
   - rentrez
   - knitcitations
   - csvy
-  - rfigshare
+  - rfigshare # github.com/ropensci/rfigshare/tree/sckott
   - purrr
 
 ## source in R functions
@@ -152,7 +152,6 @@ targets:
       - metabolic
       - metabolic_occur_phylo
       - diet_overlap_phylo
-      - doc/TABLE1.md
       - experiment_phylo
       - diet_pd_mantel
       - meta_pd_mantel
@@ -225,7 +224,6 @@ targets:
   doc/SuppMatt.md:
     knitr: 
       chdir: true
-      dev: pdf
     depends:
       - predtree_timetree_ages
       - distributional_similarity_AIC
