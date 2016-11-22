@@ -42,6 +42,7 @@ sources:
   - src/renew_rando.R
   - src/mantel.R
   - src/READING_data_published.R
+  - src/READING_data_published_zenodo.R
   
 targets:
   all: 
@@ -53,11 +54,14 @@ targets:
     
   one_point:
     command: makept()
-      
+    
+  cardoso08files:
+    command: read_published_zenodo(I("https://zenodo.org/record/168039/files/SrivastavaLab/cardoso2008-v1.0.0.zip"))
+
   # occurrance data -- metabolic capacity
   metabolic:
-    command: read_csv("data/predator.cooccur.metabolic.txt")
-
+    command: create_metabolic_matrix(cardoso08files)
+    
   # feeding trial data
   #feeding_trials:
   #  command: read_csv("data/reorganized.feeding.trial.data.csv")
