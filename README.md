@@ -36,6 +36,8 @@ This project uses lots of other R packages to organize the data and perform anal
 remake::install_missing_packages()
 ```
 
+Note that you may require the github version of [`rfigshare`](https://github.com/ropensci/rfigshare/), i.e. `0.3.7.99` or higher
+
 ### Creating the project
 
 The last step is to create the final project. To do that, run
