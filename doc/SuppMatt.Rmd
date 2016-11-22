@@ -90,6 +90,8 @@ predtree_timetree_ages %>% plot
 
 **Figure S1** Predator phylogeny, with dated nodes derived from data in Table 1.  When multiple time estimates were available for the same internal node, we used the median estimate.
 
+\pagebreak
+
 ## Diet similarity
 
 **Table S2** Proportion of predation in feeding trials. Each cell of the graph represents a predator-prey pair; note that some pairs are represented more than others (not shown).  Composition of these trials was limited by the abundance of organisms in the field.
@@ -108,6 +110,9 @@ prop_eaten %>%
   xtable %>%
   print(include.rownames = TRUE, size = 5, comment = FALSE)
 ```
+
+
+\pagebreak
 
 
 ## Predator diversity experiment
@@ -158,6 +163,9 @@ pd_no_out %>%
 #                       "bromeliad growth (g)","Nitrogen cycling")
 ```
 
+
+\pagebreak  
+
 ## Differences among treatments
 
 ### Number of predator species
@@ -190,6 +198,10 @@ data.frame(Nspp = factor(trt_lkp, levels = c("none",
   xtable %>% 
   print(include.rownames = FALSE, size = 8, comment = FALSE)
 ```
+
+
+
+\pagebreak
 
 **Table S5**: The effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how an increasing number of predator species influenced the response.  Treatment order was none < one < two species. (See Table S6). For each non-control treatment, replicates were the mean of all bromeliads with the same predator treatment. Control (no predator) bromeliads were used as independent replicates.  Thus there are 5 replicates for the "none" factor level, four replicates of "one predator" and three of  "two predators". Note that we model prey survival using OLS, rather than poisson regression, because we are modeling the distribution of means.
 ```{r results='asis'}
@@ -233,6 +245,10 @@ stargazer(ctrl_single_pair_lm,label = "",
 ```
 
 
+
+\pagebreak
+
+
 **Table S6**: Tukey post-hoc tests for the effects of predator species number on each response variable.
 ```{r results='asis'}
 ctrl_single_pair %>% 
@@ -259,7 +275,7 @@ ctrl_single_pair %>%
 ```
 
 
-\pagebreak
+\newpage
 
 ```{r FIG_spp_number, dev="pdf"}
 ctrl_single_pair %>% 
@@ -279,14 +295,9 @@ ctrl_single_pair %>%
 
 **Figure S2**: The effect of predator species number on each of our response variables.  Each dot represents the mean (n = 5) for different predator treatments.  Green dots represent group (i.e. species number) means.  
 
+\newpage
 
-\pagebreak
-
-## Differences among predator species
-
-Within the single-predator treatments, we tested for difference in our response variables among different predator species. 
-
-**Table S7** : Contrasting predator species effects. These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
+**Table S7** : Within the single-predator treatments, we tested for difference in our response variables among different predator species. These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
 ```{r TEST_experiment_single_pred, results='asis'}
 singlepred <- pd_no_out %>%
   select(treatment,total.surv,fine,decomp,growth,N) %>%
@@ -313,6 +324,7 @@ stargazer(singlepred_resp,label = "",
 ```
 
 
+\newpage
 
 **Table S8**: Post-hoc Tukey tests for differences between predator species in all 5 responses. 
 ```{r results='asis'}
@@ -340,6 +352,7 @@ lapply(trts,function(x) data.frame(comparison = rownames(x),x)) %>%
 
 \pagebreak 
 
+
 ```{r FIG_predspp, dev="pdf"}
 singlepred %>%
   select(-trt_type) %>%
@@ -361,6 +374,7 @@ singlepred %>%
 **Figure S3**: The effect of predator species identity on each of our response variables.  Each dot represents the observed value for a different predator treatment.  Green dots represent group means.  
 
 \pagebreak
+
 
 ## Increasing predator phylogenetic diversity
 
@@ -427,6 +441,7 @@ stargazer(twopred_lm,label = "",
           #covariate.labels = c("Linear","Quadratic","Constant"),
           font.size = "small")
 ```
+
 
 **Table S10**: Tukey post-hoc tests for differences between predator phylogenetic diversity treatments on all response variables.
 ```{r TABLE_twopred_tukey, results='asis'}

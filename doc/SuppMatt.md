@@ -60,6 +60,8 @@ Ceratopogonidae & Chironomidae & Ceratopogonidae  & Chironomidae  & 213 & Berton
 
 **Figure S1** Predator phylogeny, with dated nodes derived from data in Table 1.  When multiple time estimates were available for the same internal node, we used the median estimate.
 
+\pagebreak
+
 ## Diet similarity
 
 **Table S2** Proportion of predation in feeding trials. Each cell of the graph represents a predator-prey pair; note that some pairs are represented more than others (not shown).  Composition of these trials was limited by the abundance of organisms in the field.
@@ -84,6 +86,9 @@ Tipulid & 0.60 & 1.00 & 1.00 & 1.00 & 1.00 & 0.40 & 0.50 & 1.00 \\
    \hline
 \end{tabular}
 \end{table}
+
+
+\pagebreak
 
 
 ## Predator diversity experiment
@@ -127,6 +132,9 @@ andro & 0.37 ± 0.028 & 0.26 ± 0.041 & 4 ± 0.45 & 45 ± 6.2 & 5.8 ± 1.9 \\
 \end{tabular}
 \end{table}
 
+
+\pagebreak  
+
 ## Differences among treatments
 
 ### Number of predator species
@@ -157,6 +165,10 @@ none & control \\
    \hline
 \end{tabular}
 \end{table}
+
+
+
+\pagebreak
 
 **Table S5**: The effect of predator species number on all 5 response variables.  We used ordinal contrasts to investigate how an increasing number of predator species influenced the response.  Treatment order was none < one < two species. (See Table S6). For each non-control treatment, replicates were the mean of all bromeliads with the same predator treatment. Control (no predator) bromeliads were used as independent replicates.  Thus there are 5 replicates for the "none" factor level, four replicates of "one predator" and three of  "two predators". Note that we model prey survival using OLS, rather than poisson regression, because we are modeling the distribution of means.
 
@@ -192,6 +204,10 @@ F Statistic (df = 2; 9) & 0.260 & 1.636 & 0.310 & 1.226 & 4.450$^{**}$ \\
 \endgroup 
 
 
+
+\pagebreak
+
+
 **Table S6**: Tukey post-hoc tests for the effects of predator species number on each response variable.
 \begin{table}[ht]
 \centering
@@ -219,20 +235,15 @@ Decomposition (g) & one-none & 0.02 & -0.05 & 0.09 & 0.76 \\
 \end{table}
 
 
-\pagebreak
+\newpage
 
 ![plot of chunk FIG_spp_number](figure/FIG_spp_number-1.pdf)
 
 **Figure S2**: The effect of predator species number on each of our response variables.  Each dot represents the mean (n = 5) for different predator treatments.  Green dots represent group (i.e. species number) means.  
 
+\newpage
 
-\pagebreak
-
-## Differences among predator species
-
-Within the single-predator treatments, we tested for difference in our response variables among different predator species. 
-
-**Table S7** : Contrasting predator species effects. These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
+**Table S7** : Within the single-predator treatments, we tested for difference in our response variables among different predator species. These linear models use treatment contrasts, which contrast all treatments with *L. andromache*.  Coefficents (standard error) are given for *L. andromache*, and differences between coefficients (standard error of difference) for all other predators.
 
 \begingroup 
 \small 
@@ -269,6 +280,7 @@ F Statistic & 0.603 (df = 3; 16) & 0.277 (df = 3; 15) & 1.289 (df = 3; 15) & 0.9
 \endgroup 
 
 
+\newpage
 
 **Table S8**: Post-hoc Tukey tests for differences between predator species in all 5 responses. 
 \begin{table}[ht]
@@ -307,11 +319,13 @@ FPOM (g) & elong-andro & -0.06 & -0.37 & 0.25 & 0.94 \\
 
 \pagebreak 
 
+
 ![plot of chunk FIG_predspp](figure/FIG_predspp-1.pdf)
 
 **Figure S3**: The effect of predator species identity on each of our response variables.  Each dot represents the observed value for a different predator treatment.  Green dots represent group means.  
 
 \pagebreak
+
 
 ## Increasing predator phylogenetic diversity
 
@@ -349,6 +363,7 @@ F Statistic & 1.787 (df = 2; 12) & 0.681 (df = 2; 12) & 1.056 (df = 2; 11) & 0.6
 \textit{Note:}  & \multicolumn{5}{r}{$^{*}$p$<$0.1; $^{**}$p$<$0.05; $^{***}$p$<$0.01} \\ 
 \end{tabular} 
 \endgroup 
+
 
 **Table S10**: Tukey post-hoc tests for differences between predator phylogenetic diversity treatments on all response variables.
 \begin{table}[ht]
