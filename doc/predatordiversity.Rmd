@@ -569,5 +569,3 @@ We thank Aline Nishi, Robin LeCraw, Alathea Letaw, Gustavo Cauê Piccoli and Tia
 ## References
 
 <div id = 'refs'></div>
-
-This is a test

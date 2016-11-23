@@ -156,6 +156,7 @@ targets:
       - diet_pd_mantel
       - meta_pd_mantel
       - modlist
+      - cardoso08files
     knitr: true
     
 #  doc/predatordiversity.pdf:
