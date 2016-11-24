@@ -22,6 +22,7 @@ packages:
   - csvy
   - rfigshare # github.com/ropensci/rfigshare/tree/sckott
   - purrr
+  - broom
 
 ## source in R functions
 sources: 
